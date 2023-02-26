@@ -17,6 +17,7 @@
         <module>hibernate-dao</module>
         <module>filter</module>
         <module>core</module>
+        <module>chain</module>
     </modules>
 
     <properties>

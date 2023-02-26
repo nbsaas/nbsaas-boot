@@ -15,8 +15,6 @@
         <module>framework</module>
         <module>adapters</module>
         <module>code-generator</module>
-        <module>framework/chain</module>
-        <module>resources/tenant-resource</module>
         <module>support</module>
         <module>models</module>
         <module>commons</module>

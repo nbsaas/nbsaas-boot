@@ -16,6 +16,7 @@
         <module>user-resource</module>
         <module>system-resource</module>
         <module>trade-resource</module>
+        <module>tenant-resource</module>
     </modules>
 
     <name>resources</name>
