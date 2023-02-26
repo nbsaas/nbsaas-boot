@@ -11,25 +11,57 @@
 {**nbsaas**}
 nbsaas一个快速代码开发框架
 
-#### 软件架构
+### 技术选型：
 
-软件架构说明
+* **服务端**
 
-#### 安装教程
+* SSH (Spring、SpringMVC、Hibernate）
+* Spring boot,Spring cloud,Spring alibaba
+* 安全权限 Shiro
+* 缓存 Ehcache
+* 视图模板 freemarker
+* 其它 Jsoup、gson
 
-1. xxxx
-2. xxxx
-3. xxxx
+### 编码规范
+1.项目结构规范
+```
+com.{公司域名}.{主工程}
+com.{公司域名}.{主工程}.{子工程}
 
-#### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+```
+2.包结构规范
+```
+//主包结构
+com.{公司域名}.{主工程}.{子工程}
+com.{公司域名}.{主工程}.{子工程}.controller
+com.{公司域名}.{主工程}.{子工程}.data
+com.{公司域名}.{主工程}.{子工程}.freemaker
+com.{公司域名}.{主工程}.{子工程}.web
+com.{公司域名}.{主工程}.{子工程}.utils
+com.{公司域名}.{主工程}.{子工程}.rest
+com.{公司域名}.{主工程}.{子工程}.plugins
+com.{公司域名}.{主工程}.{子工程}.web
+com.{公司域名}.{主工程}.{子工程}.exception
 
-#### 参与贡献
+//controller包子结构
+com.{公司域名}.{主工程}.{子工程}.controller.admin
+com.{公司域名}.{主工程}.{子工程}.controller.front
+com.{公司域名}.{主工程}.{子工程}.controller.rest
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+//rest包子结构
+com.{公司域名}.{主工程}.{子工程}.rest.conver
+com.{公司域名}.{主工程}.{子工程}.data.resources
+
+```
+
+
+### 使用访问
+已经发布到maven中央仓库了
+```
+    <parent>
+        <groupId>com.nbsaas.boot</groupId>
+        <artifactId>boot-nbsaas</artifactId>
+        <version>1.0.2-2023-02-26</version>
+    </parent>
+```
