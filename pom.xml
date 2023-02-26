@@ -117,6 +117,9 @@
                 <includes>
                     <include>**/*.ftl</include>
                     <include>**/*.html</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.json</include>
                 </includes>
             </resource>
             <resource>
@@ -128,6 +131,7 @@
                     <include>**/*.ftl</include>
                     <include>**/*.html</include>
                     <include>**/*.yml</include>
+                    <include>**/*.xml</include>
                 </includes>
             </resource>
         </resources>
