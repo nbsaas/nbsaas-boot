@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * author:Rhythm-2019
- * date: 2020/3/9
- * description: 文件操作工具类
+ *  文件操作工具类
  */
 public class FileUtil {
 

@@ -2,8 +2,6 @@ package com.nbsaas.boot.generator.utils;
 
 /**
  * author:Rhythm-2019
- * date: 2020/3/9
- * description: 字符串工具类
  */
 public class StringUtil {
 

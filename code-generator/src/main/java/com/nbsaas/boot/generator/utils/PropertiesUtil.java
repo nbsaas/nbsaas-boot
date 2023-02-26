@@ -6,9 +6,7 @@ import java.io.FileReader;
 import java.util.*;
 
 /**
- * @author Rhythm-2019
  * @version 1.0
- * @description: Properties工具类
  */
 public class PropertiesUtil {
 
