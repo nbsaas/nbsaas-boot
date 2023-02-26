@@ -14,43 +14,14 @@ import java.io.Serializable;
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -3078342809727773232L;
-
-    /**
-     * 方向
-     */
-    public enum Direction {
-
-        /**
-         * 递增
-         */
-        asc,
-
-        /**
-         * 递减
-         */
-        desc;
-
-        /**
-         * 从String中获取Direction
-         *
-         * @param value 值
-         * @return String对应的Direction
-         */
-        public static Direction fromString(String value) {
-            return Direction.valueOf(value.toLowerCase());
-        }
-    }
-
     /**
      * 默认方向
      */
     private static final Direction DEFAULT_DIRECTION = Direction.desc;
-
     /**
      * 属性
      */
     private String property;
-
     /**
      * 方向
      */
@@ -125,6 +96,32 @@ public class Order implements Serializable {
      */
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    /**
+     * 方向
+     */
+    public enum Direction {
+
+        /**
+         * 递增
+         */
+        asc,
+
+        /**
+         * 递减
+         */
+        desc;
+
+        /**
+         * 从String中获取Direction
+         *
+         * @param value 值
+         * @return String对应的Direction
+         */
+        public static Direction fromString(String value) {
+            return Direction.valueOf(value.toLowerCase());
+        }
     }
 
 

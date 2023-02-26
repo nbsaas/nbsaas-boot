@@ -3,7 +3,6 @@ package com.nbsaas.boot.generator.command.hibernate;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.TableContext;
 import freemarker.cache.ClassTemplateLoader;
-import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.chain2.Command;
@@ -15,12 +14,11 @@ import java.io.FileWriter;
 public abstract class BaseCommand implements Command<String, Object, TableContext> {
 
 
+    protected TableContext tableContext;
+
     public abstract Processing handle(TableContext context);
 
     public abstract String outPath();
-
-
-    protected TableContext tableContext;
 
     @Override
     public Processing execute(TableContext context) {

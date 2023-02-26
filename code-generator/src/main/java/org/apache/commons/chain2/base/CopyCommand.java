@@ -34,6 +34,7 @@ public class CopyCommand<K, V, C extends Map<K, V>> implements Command<K, V, C> 
     // -------------------------------------------------------------- Properties
 
     private K fromKey = null;
+    private K toKey = null;
 
     /**
      * <p>Return the context attribute key for the source attribute.</p>
@@ -52,8 +53,6 @@ public class CopyCommand<K, V, C extends Map<K, V>> implements Command<K, V, C> 
     public void setFromKey(K fromKey) {
         this.fromKey = fromKey;
     }
-
-    private K toKey = null;
 
     /**
      * <p>Return the context attribute key for the destination attribute.</p>

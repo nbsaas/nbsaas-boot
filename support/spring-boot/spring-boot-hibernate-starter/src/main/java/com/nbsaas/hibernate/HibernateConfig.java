@@ -14,7 +14,7 @@ import java.util.List;
 public class HibernateConfig {
 
     @Bean
-    public HibernateProperties properties(){
+    public HibernateProperties properties() {
         return new HibernateProperties();
     }
 
@@ -28,7 +28,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    LocalSessionFactoryBean initSessionFactory(DataSource dataSource,HibernateProperties hibernateProperties) {
+    LocalSessionFactoryBean initSessionFactory(DataSource dataSource, HibernateProperties hibernateProperties) {
         System.out.println(hibernateProperties);
         System.out.println("init ... LocalSessionFactoryBean");
         LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
@@ -40,7 +40,7 @@ public class HibernateConfig {
 
 
         bean.setDataSource(dataSource);
-        List<String> scans =hibernateProperties.getEntities();
+        List<String> scans = hibernateProperties.getEntities();
         //ServletRegistrationBean
 
         String[] pas = new String[scans.size()];

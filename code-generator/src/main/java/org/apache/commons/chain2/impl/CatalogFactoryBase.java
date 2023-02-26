@@ -38,127 +38,30 @@ public class CatalogFactoryBase<K, V, C extends Map<K, V>> implements CatalogFac
     // ----------------------------------------------------------- Constructors
 
     /**
-     * <p>Construct an empty instance of {@link CatalogFactoryBase}.  This
-     * constructor is intended solely for use by {@link CatalogFactory}.</p>
-     */
-    public CatalogFactoryBase() {
-    }
-
-    // ----------------------------------------------------- Instance Variables
-
-    /**
-     * <p>The default {@link Catalog} for this {@link CatalogFactoryBase}.</p>
-     */
-    private Catalog<K, V, C> catalog = null;
-
-    /**
-     * <p>Map of named {@link Catalog}s, keyed by catalog name.</p>
-     */
-    private final Map<String, Catalog<K, V, C>> catalogs = new ConcurrentHashMap<String, Catalog<K, V, C>>();
-
-    // --------------------------------------------------------- Public Methods
-
-    /**
-     * <p>Gets the default instance of Catalog associated with the factory
-     * (if any); otherwise, return <code>null</code>.</p>
-     *
-     * @return the default Catalog instance
-     */
-    @Override
-    public Catalog<K, V, C> getCatalog() {
-        return catalog;
-    }
-
-    /**
-     * <p>Sets the default instance of Catalog associated with the factory.</p>
-     *
-     * @param catalog the default Catalog instance
-     */
-    @Override
-    public void setCatalog(Catalog<K, V, C> catalog) {
-        this.catalog = catalog;
-    }
-
-    /**
-     * <p>Retrieves a Catalog instance by name (if any); otherwise
-     * return <code>null</code>.</p>
-     *
-     * @param name the name of the Catalog to retrieve
-     * @return the specified Catalog
-     */
-    @Override
-    public Catalog<K, V, C> getCatalog(String name) {
-        return catalogs.get(name);
-    }
-
-    /**
-     * <p>Adds a named instance of Catalog to the factory (for subsequent
-     * retrieval later).</p>
-     *
-     * @param name    the name of the Catalog to add
-     * @param catalog the Catalog to add
-     */
-    @Override
-    public void addCatalog(String name, Catalog<K, V, C> catalog) {
-        catalogs.put(name, catalog);
-    }
-
-    /**
-     * <p>Return an <code>Iterator</code> over the set of named
-     * {@link Catalog}s known to this {@link CatalogFactoryBase}.
-     * If there are no known catalogs, an empty Iterator is returned.</p>
-     *
-     * @return An Iterator of the names of the Catalogs known by this factory.
-     */
-    @Override
-    public Iterator<String> getNames() {
-        return catalogs.keySet().iterator();
-    }
-
-
-    public <CMD extends Command<K, V, C>> CMD getCommand(String commandID) {
-        String commandName = commandID;
-        String catalogName = null;
-        Catalog<K, V, C> catalog;
-
-        if (commandID != null) {
-            int splitPos = commandID.indexOf(DELIMITER);
-            if (splitPos != -1) {
-                catalogName = commandID.substring(0, splitPos);
-                commandName = commandID.substring(splitPos + DELIMITER.length());
-                if (commandName.contains(DELIMITER)) {
-                    throw new IllegalArgumentException("commandID [" +
-                            commandID +
-                            "] has too many delimiters (reserved for future use)");
-                }
-            }
-        }
-
-        if (catalogName != null) {
-            catalog = this.getCatalog(catalogName);
-            if (catalog == null) {
-                return null;
-            }
-        } else {
-            catalog = this.getCatalog();
-            if (catalog == null) {
-                return null;
-            }
-        }
-
-        return catalog.<CMD>getCommand(commandName);
-    }
-
-    // ------------------------------------------------------- Static Variables
-
-    /**
      * <p>The set of registered {@link CatalogFactoryBase} instances,
      * keyed by the relevant class loader.</p>
      */
     private static final Map<ClassLoader, CatalogFactoryBase<?, ?, ? extends Map<?, ?>>> factories =
             new HashMap<ClassLoader, CatalogFactoryBase<?, ?, ? extends Map<?, ?>>>();
 
-    // -------------------------------------------------------- Static Methods
+    // ----------------------------------------------------- Instance Variables
+    /**
+     * <p>Map of named {@link Catalog}s, keyed by catalog name.</p>
+     */
+    private final Map<String, Catalog<K, V, C>> catalogs = new ConcurrentHashMap<String, Catalog<K, V, C>>();
+    /**
+     * <p>The default {@link Catalog} for this {@link CatalogFactoryBase}.</p>
+     */
+    private Catalog<K, V, C> catalog = null;
+
+    // --------------------------------------------------------- Public Methods
+
+    /**
+     * <p>Construct an empty instance of {@link CatalogFactoryBase}.  This
+     * constructor is intended solely for use by {@link CatalogFactory}.</p>
+     */
+    public CatalogFactoryBase() {
+    }
 
     /**
      * <p>Return the singleton {@link CatalogFactoryBase} instance
@@ -204,8 +107,6 @@ public class CatalogFactoryBase<K, V, C extends Map<K, V>> implements CatalogFac
         }
     }
 
-    // ------------------------------------------------------- Private Methods
-
     /**
      * <p>Return the relevant <code>ClassLoader</code> to use as a Map key
      * for this request.  If there is a thread context class loader, return
@@ -234,6 +135,102 @@ public class CatalogFactoryBase<K, V, C extends Map<K, V>> implements CatalogFac
                     "into the classpath and try again.";
             throw new IllegalStateException(msg, e);
         }
+    }
+
+    /**
+     * <p>Gets the default instance of Catalog associated with the factory
+     * (if any); otherwise, return <code>null</code>.</p>
+     *
+     * @return the default Catalog instance
+     */
+    @Override
+    public Catalog<K, V, C> getCatalog() {
+        return catalog;
+    }
+
+    // ------------------------------------------------------- Static Variables
+
+    /**
+     * <p>Sets the default instance of Catalog associated with the factory.</p>
+     *
+     * @param catalog the default Catalog instance
+     */
+    @Override
+    public void setCatalog(Catalog<K, V, C> catalog) {
+        this.catalog = catalog;
+    }
+
+    // -------------------------------------------------------- Static Methods
+
+    /**
+     * <p>Retrieves a Catalog instance by name (if any); otherwise
+     * return <code>null</code>.</p>
+     *
+     * @param name the name of the Catalog to retrieve
+     * @return the specified Catalog
+     */
+    @Override
+    public Catalog<K, V, C> getCatalog(String name) {
+        return catalogs.get(name);
+    }
+
+    /**
+     * <p>Adds a named instance of Catalog to the factory (for subsequent
+     * retrieval later).</p>
+     *
+     * @param name    the name of the Catalog to add
+     * @param catalog the Catalog to add
+     */
+    @Override
+    public void addCatalog(String name, Catalog<K, V, C> catalog) {
+        catalogs.put(name, catalog);
+    }
+
+    // ------------------------------------------------------- Private Methods
+
+    /**
+     * <p>Return an <code>Iterator</code> over the set of named
+     * {@link Catalog}s known to this {@link CatalogFactoryBase}.
+     * If there are no known catalogs, an empty Iterator is returned.</p>
+     *
+     * @return An Iterator of the names of the Catalogs known by this factory.
+     */
+    @Override
+    public Iterator<String> getNames() {
+        return catalogs.keySet().iterator();
+    }
+
+    public <CMD extends Command<K, V, C>> CMD getCommand(String commandID) {
+        String commandName = commandID;
+        String catalogName = null;
+        Catalog<K, V, C> catalog;
+
+        if (commandID != null) {
+            int splitPos = commandID.indexOf(DELIMITER);
+            if (splitPos != -1) {
+                catalogName = commandID.substring(0, splitPos);
+                commandName = commandID.substring(splitPos + DELIMITER.length());
+                if (commandName.contains(DELIMITER)) {
+                    throw new IllegalArgumentException("commandID [" +
+                            commandID +
+                            "] has too many delimiters (reserved for future use)");
+                }
+            }
+        }
+
+        if (catalogName != null) {
+            catalog = this.getCatalog(catalogName);
+            if (catalog == null) {
+                return null;
+            }
+        } else {
+            catalog = this.getCatalog();
+            if (catalog == null) {
+                return null;
+            }
+        }
+
+        return catalog.<CMD>getCommand(commandName);
     }
 
 }

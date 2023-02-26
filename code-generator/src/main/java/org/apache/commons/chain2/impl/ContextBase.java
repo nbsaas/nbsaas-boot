@@ -47,6 +47,53 @@ public class ContextBase extends ContextMap<String, Object> {
      *
      */
     private static final long serialVersionUID = 20120724L;
+    /**
+     * <p>Distinguished singleton value that is stored in the map for each
+     * key that is actually a property.  This value is used to ensure that
+     * <code>equals()</code> comparisons will always fail.</p>
+     */
+    private static final Object singleton;
+    /**
+     * <p>Zero-length array of parameter values for calling property getters.
+     * </p>
+     */
+    private static Object[] zeroParams = new Object[0];
+
+    // ------------------------------------------------------ Instance Variables
+
+    // NOTE - PropertyDescriptor instances are not Serializable, so the
+    // following variables must be declared as transient.  When a ContextBase
+    // instance is deserialized, the no-arguments constructor is called,
+    // and the initialize() method called there will repoopulate them.
+    // Therefore, no special restoration activity is required.
+
+    static {
+        singleton = new Serializable() {
+            private static final long serialVersionUID = 20120724L;
+
+            @Override
+            public boolean equals(Object object) {
+                return false;
+            }
+
+            @Override
+            public int hashCode() {
+                return super.hashCode();
+            }
+        };
+    }
+
+    /**
+     * <p>The <code>PropertyDescriptor</code>s for all JavaBeans properties
+     * of this {@link Context} implementation class, keyed by property name.
+     * This collection is allocated only if there are any JavaBeans
+     * properties.</p>
+     */
+    private transient Map<String, PropertyDescriptor> descriptors = null;
+    /**
+     * <p>The same <code>PropertyDescriptor</code>s as an array.</p>
+     */
+    private transient PropertyDescriptor[] pd = null;
 
     /**
      * Default, no argument constructor.
@@ -72,56 +119,6 @@ public class ContextBase extends ContextMap<String, Object> {
         initialize();
         putAll(map);
     }
-
-    // ------------------------------------------------------ Instance Variables
-
-    // NOTE - PropertyDescriptor instances are not Serializable, so the
-    // following variables must be declared as transient.  When a ContextBase
-    // instance is deserialized, the no-arguments constructor is called,
-    // and the initialize() method called there will repoopulate them.
-    // Therefore, no special restoration activity is required.
-
-    /**
-     * <p>The <code>PropertyDescriptor</code>s for all JavaBeans properties
-     * of this {@link Context} implementation class, keyed by property name.
-     * This collection is allocated only if there are any JavaBeans
-     * properties.</p>
-     */
-    private transient Map<String, PropertyDescriptor> descriptors = null;
-
-    /**
-     * <p>The same <code>PropertyDescriptor</code>s as an array.</p>
-     */
-    private transient PropertyDescriptor[] pd = null;
-
-    /**
-     * <p>Distinguished singleton value that is stored in the map for each
-     * key that is actually a property.  This value is used to ensure that
-     * <code>equals()</code> comparisons will always fail.</p>
-     */
-    private static final Object singleton;
-
-    static {
-        singleton = new Serializable() {
-            private static final long serialVersionUID = 20120724L;
-
-            @Override
-            public boolean equals(Object object) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return super.hashCode();
-            }
-        };
-    }
-
-    /**
-     * <p>Zero-length array of parameter values for calling property getters.
-     * </p>
-     */
-    private static Object[] zeroParams = new Object[0];
 
     // ------------------------------------------------------------- Map Methods
 
@@ -614,14 +611,13 @@ public class ContextBase extends ContextMap<String, Object> {
      */
     private class MapEntryImpl implements Entry<String, Object> {
 
+        private String key;
+        private Object value;
+
         MapEntryImpl(String key, Object value) {
             this.key = key;
             this.value = value;
         }
-
-        private String key;
-
-        private Object value;
 
         @Override
         public boolean equals(Object obj) {

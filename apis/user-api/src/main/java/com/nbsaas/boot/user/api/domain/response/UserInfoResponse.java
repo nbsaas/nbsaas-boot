@@ -16,40 +16,40 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class UserInfoResponse  implements Serializable {
-/**
-* 序列化参数
-*/
-private static final long serialVersionUID = 1L;
+public class UserInfoResponse implements Serializable {
+    /**
+     * 序列化参数
+     */
+    private static final long serialVersionUID = 1L;
 
     Long id;
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     private Date lastDate;
 
-        private StoreState storeState;
+    private StoreState storeState;
 
-        private State state;
+    private State state;
 
-            //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
-        private Date addDate;
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date addDate;
 
-        private Integer structure;
+    private Integer structure;
 
-        private String note;
+    private String note;
 
-        private DataScope dataScope;
+    private DataScope dataScope;
 
-        private String structureName;
+    private String structureName;
 
-        private String avatar;
+    private String avatar;
 
-        private Integer catalog;
+    private Integer catalog;
 
-        private String phone;
+    private String phone;
 
-        private Integer loginSize;
+    private Integer loginSize;
 
-        private String name;
+    private String name;
 
 
 }

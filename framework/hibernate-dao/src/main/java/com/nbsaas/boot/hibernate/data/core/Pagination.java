@@ -9,6 +9,12 @@ import java.util.List;
 public class Pagination<T> extends SimplePage implements java.io.Serializable,
         Paginable {
 
+    int size = 2;
+    /**
+     * 当前页的数据
+     */
+    private List<T> list;
+
     public Pagination() {
     }
 
@@ -34,6 +40,21 @@ public class Pagination<T> extends SimplePage implements java.io.Serializable,
     public Pagination(int pageNo, int pageSize, int totalCount, List<T> list) {
         super(pageNo, pageSize, totalCount);
         this.list = list;
+    }
+
+    public static void main(String[] args) {
+
+        Pagination p = new Pagination(9, 10, 100);
+
+
+        System.out.println(p.getFirstNo());
+        System.out.println(p.getEndNo());
+        System.out.println(p.getPageNo());
+        System.out.println(p.getNextPage());
+        System.out.println(p.getPrePage());
+        System.out.println(p.getTotalPage());
+
+
     }
 
     /**
@@ -65,8 +86,6 @@ public class Pagination<T> extends SimplePage implements java.io.Serializable,
         return result;
     }
 
-    int size = 2;
-
     /**
      * 第一条数据位置
      *
@@ -88,11 +107,6 @@ public class Pagination<T> extends SimplePage implements java.io.Serializable,
         }
         return result;
     }
-
-    /**
-     * 当前页的数据
-     */
-    private List<T> list;
 
     /**
      * 获得分页内容
@@ -117,20 +131,5 @@ public class Pagination<T> extends SimplePage implements java.io.Serializable,
     public String toString() {
         return "Pagination [totalCount=" + totalCount + ", pageSize="
                 + pageSize + ", pageNo=" + pageNo + "]";
-    }
-
-    public static void main(String[] args) {
-
-        Pagination p = new Pagination(9, 10, 100);
-
-
-        System.out.println(p.getFirstNo());
-        System.out.println(p.getEndNo());
-        System.out.println(p.getPageNo());
-        System.out.println(p.getNextPage());
-        System.out.println(p.getPrePage());
-        System.out.println(p.getTotalPage());
-
-
     }
 }

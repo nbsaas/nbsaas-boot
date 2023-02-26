@@ -13,6 +13,25 @@ import java.util.Map;
  * HQL语句分页查询
  */
 public class Finder {
+    public static final String ROW_COUNT = "select count(*) ";
+    public static final String FROM = "from";
+    public static final String DISTINCT = "distinct";
+    public static final String HQL_FETCH = "fetch";
+    public static final String ORDER_BY = "order ";
+    private StringBuilder hqlBuilder;
+    private List<String> params;
+    private List<Object> values;
+    private List<Type> types;
+    private List<String> paramsList;
+    private List<Collection<Object>> valuesList;
+    private List<Type> typesList;
+    private List<String> paramsArray;
+    private List<Object[]> valuesArray;
+    private List<Type> typesArray;
+    private int firstResult = 0;
+    private int maxResults = 0;
+    private boolean cacheable = false;
+
     protected Finder() {
         hqlBuilder = new StringBuilder();
     }
@@ -27,6 +46,13 @@ public class Finder {
 
     public static Finder create(String hql) {
         return new Finder(hql);
+    }
+
+    public static void main(String[] args) {
+        Finder find = Finder
+                .create("select c.course,c from Tradingrecord c ");
+        System.out.println(find.getRowCountHql());
+        System.out.println(find.getOrigHql());
     }
 
     public Finder append(String hql) {
@@ -124,20 +150,6 @@ public class Finder {
         getParams().add(param);
         getValues().add(value);
         getTypes().add(type);
-        return this;
-    }
-
-    /**
-     * 设置参数。与hibernate的Query接口一致。
-     *
-     * @param paramMap
-     * @return
-     * @see Query#setProperties(Map)
-     */
-    public Finder setParams(Map<String, Object> paramMap) {
-        for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-            setParam(entry.getKey(), entry.getValue());
-        }
         return this;
     }
 
@@ -270,6 +282,20 @@ public class Finder {
         return params;
     }
 
+    /**
+     * 设置参数。与hibernate的Query接口一致。
+     *
+     * @param paramMap
+     * @return
+     * @see Query#setProperties(Map)
+     */
+    public Finder setParams(Map<String, Object> paramMap) {
+        for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
+            setParam(entry.getKey(), entry.getValue());
+        }
+        return this;
+    }
+
     private List<Object> getValues() {
         if (values == null) {
             values = new ArrayList<Object>();
@@ -324,39 +350,6 @@ public class Finder {
             typesArray = new ArrayList<Type>();
         }
         return typesArray;
-    }
-
-    private StringBuilder hqlBuilder;
-
-    private List<String> params;
-    private List<Object> values;
-    private List<Type> types;
-
-    private List<String> paramsList;
-    private List<Collection<Object>> valuesList;
-    private List<Type> typesList;
-
-    private List<String> paramsArray;
-    private List<Object[]> valuesArray;
-    private List<Type> typesArray;
-
-    private int firstResult = 0;
-
-    private int maxResults = 0;
-
-    private boolean cacheable = false;
-
-    public static final String ROW_COUNT = "select count(*) ";
-    public static final String FROM = "from";
-    public static final String DISTINCT = "distinct";
-    public static final String HQL_FETCH = "fetch";
-    public static final String ORDER_BY = "order ";
-
-    public static void main(String[] args) {
-        Finder find = Finder
-                .create("select c.course,c from Tradingrecord c ");
-        System.out.println(find.getRowCountHql());
-        System.out.println(find.getOrigHql());
     }
 
 }

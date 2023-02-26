@@ -26,7 +26,26 @@ public class Config {
 
 
     private String base;
-
+    /**
+     * 模板路径
+     */
+    private String templateDir;
+    /**
+     * 基础包名称
+     */
+    private String basePackage;
+    /**
+     * 实体类路径
+     */
+    private String entityPackage;
+    /**
+     * 需要生成的表
+     */
+    private List<String> tables;
+    /**
+     * 数据库连接信息
+     */
+    private DataBase database;
 
     public String getBasePackage() {
         if (multiple) {
@@ -42,32 +61,5 @@ public class Config {
     public String getBasicPackage() {
         return basePackage;
     }
-
-    /**
-     * 模板路径
-     */
-    private String templateDir;
-
-    /**
-     * 基础包名称
-     */
-    private String basePackage;
-
-
-    /**
-     * 实体类路径
-     */
-    private String entityPackage;
-
-    /**
-     * 需要生成的表
-     */
-    private List<String> tables;
-
-
-    /**
-     * 数据库连接信息
-     */
-    private DataBase database;
 
 }

@@ -28,6 +28,13 @@ import static java.lang.String.format;
 public final class Chains {
 
     /**
+     * Private constructor, this class cannot be instantiated directly.
+     */
+    private Chains() {
+        // do nothing
+    }
+
+    /**
      * Defines the target chain has to be invoked.
      *
      * @param <K>   Context key type
@@ -55,11 +62,11 @@ public final class Chains {
         return new DefaultNamedCommandSetter<K, V, C>(checkNotNullArgument(catalog, "Null Catalog can not be setup"));
     }
 
-    /**
-     * Private constructor, this class cannot be instantiated directly.
-     */
-    private Chains() {
-        // do nothing
+    private static <T> T checkNotNullArgument(T reference, String message, Object... args) {
+        if (reference == null) {
+            throw new IllegalArgumentException(format(message, args));
+        }
+        return reference;
     }
 
     private static class DefaultCommandSetter<K, V, C extends Map<K, V>> implements ToExecutorCommandSetter<K, V, C> {
@@ -129,13 +136,6 @@ public final class Chains {
             return new DefaultNamedCommandSetter<K, V, C>(catalog);
         }
 
-    }
-
-    private static <T> T checkNotNullArgument(T reference, String message, Object... args) {
-        if (reference == null) {
-            throw new IllegalArgumentException(format(message, args));
-        }
-        return reference;
     }
 
 }

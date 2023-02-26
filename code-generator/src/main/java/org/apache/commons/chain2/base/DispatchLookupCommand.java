@@ -56,6 +56,21 @@ public class DispatchLookupCommand<K, V, C extends Context<K, V>>
     // -------------------------------------------------------------- Constructors
 
     /**
+     * The base implementation expects dispatch methods to take a <code>
+     * Context</code> as their only argument.
+     */
+    private static final Class<?>[] DEFAULT_SIGNATURE = new Class<?>[]{Context.class};
+    private final WeakHashMap<String, Method> methods = new WeakHashMap<String, Method>();
+
+    // ------------------------------------------------------- Static Variables
+    private String method = null;
+
+    // ----------------------------------------------------- Instance Variables
+    private String methodKey = null;
+
+    // ------------------------------------------------------------- Properties
+
+    /**
      * Create an instance with an unspecified <code>catalogFactory</code> property.
      * This property can be set later using <code>setProperty</code>, or if it is not set,
      * the static singleton instance from <code>CatalogFactory.getInstance()</code> will be used.
@@ -73,24 +88,6 @@ public class DispatchLookupCommand<K, V, C extends Context<K, V>>
         super(factory);
     }
 
-    // ------------------------------------------------------- Static Variables
-
-    /**
-     * The base implementation expects dispatch methods to take a <code>
-     * Context</code> as their only argument.
-     */
-    private static final Class<?>[] DEFAULT_SIGNATURE = new Class<?>[]{Context.class};
-
-    // ----------------------------------------------------- Instance Variables
-
-    private final WeakHashMap<String, Method> methods = new WeakHashMap<String, Method>();
-
-    // ------------------------------------------------------------- Properties
-
-    private String method = null;
-
-    private String methodKey = null;
-
     /**
      * Return the method name.
      *
@@ -101,21 +98,21 @@ public class DispatchLookupCommand<K, V, C extends Context<K, V>>
     }
 
     /**
-     * Return the Context key for the method name.
-     *
-     * @return The Context key for the method name.
-     */
-    public String getMethodKey() {
-        return methodKey;
-    }
-
-    /**
      * Set the method name.
      *
      * @param method The method name.
      */
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    /**
+     * Return the Context key for the method name.
+     *
+     * @return The Context key for the method name.
+     */
+    public String getMethodKey() {
+        return methodKey;
     }
 
     /**

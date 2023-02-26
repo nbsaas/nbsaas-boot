@@ -22,18 +22,15 @@ public class ResponseObject<T> implements Serializable {
      * 是否成功
      */
 
+    protected ResponseType responseType;
     /**
      * 状态码
      */
     private int code = 200;
-
     /**
      * 状态消息
      */
     private String msg = "success";
-
-    protected ResponseType responseType;
-
     private T data;
 
 

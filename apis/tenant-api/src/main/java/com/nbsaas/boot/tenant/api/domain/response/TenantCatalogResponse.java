@@ -1,44 +1,47 @@
 package com.nbsaas.boot.tenant.api.domain.response;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
+
 /**
-* 响应对象
-*/
+ * 响应对象
+ */
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class TenantCatalogResponse  implements Serializable {
-/**
-* 序列化参数
-*/
-private static final long serialVersionUID = 1L;
+public class TenantCatalogResponse implements Serializable {
+    /**
+     * 序列化参数
+     */
+    private static final long serialVersionUID = 1L;
 
-            //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
-        private Date addDate;
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date addDate;
 
-            //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
-        private Date lastDate;
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date lastDate;
 
-        private Integer lft;
+    private Integer lft;
 
-        private Integer rgt;
+    private Integer rgt;
 
-        private String ids;
+    private String ids;
 
-        private Integer levelInfo;
+    private Integer levelInfo;
 
-        private Integer parent;
+    private Integer parent;
 
-        private Integer sortNum;
+    private Integer sortNum;
 
-        private String name;
+    private String name;
 
-        private String parentName;
+    private String parentName;
 
-        private String code;
+    private String code;
 
 
 }

@@ -85,14 +85,6 @@ public class Pageable implements Serializable {
     private List<Order> orders = new ArrayList<Order>();
     private boolean cache = false;
 
-    public boolean isCache() {
-        return cache;
-    }
-
-    public void setCache(boolean cache) {
-        this.cache = cache;
-    }
-
     /**
      * 初始化一个新创建的Pageable对象
      */
@@ -114,13 +106,12 @@ public class Pageable implements Serializable {
         }
     }
 
-    /**
-     * 获取页码
-     *
-     * @return 页码
-     */
-    public int getPageNumber() {
-        return pageNumber;
+    public boolean isCache() {
+        return cache;
+    }
+
+    public void setCache(boolean cache) {
+        this.cache = cache;
     }
 
     /**
@@ -128,7 +119,7 @@ public class Pageable implements Serializable {
      *
      * @return 页码
      */
-    public int getPageNo() {
+    public int getPageNumber() {
         return pageNumber;
     }
 
@@ -142,6 +133,15 @@ public class Pageable implements Serializable {
             pageNumber = DEFAULT_PAGE_NUMBER;
         }
         this.pageNumber = pageNumber;
+    }
+
+    /**
+     * 获取页码
+     *
+     * @return 页码
+     */
+    public int getPageNo() {
+        return pageNumber;
     }
 
     public void setPageNo(int no) {

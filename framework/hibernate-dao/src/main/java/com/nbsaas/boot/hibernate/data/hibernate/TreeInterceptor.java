@@ -17,11 +17,11 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class TreeInterceptor extends EmptyInterceptor implements
         ApplicationContextAware {
+    public static final String SESSION_FACTORY = "initSessionFactory";
     private static final Logger log = LoggerFactory
             .getLogger(TreeInterceptor.class);
     private ApplicationContext appCtx;
     private SessionFactory sessionFactory;
-    public static final String SESSION_FACTORY = "initSessionFactory";
 
     public void setApplicationContext(ApplicationContext appCtx)
             throws BeansException {

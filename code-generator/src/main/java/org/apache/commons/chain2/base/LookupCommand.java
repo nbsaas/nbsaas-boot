@@ -45,6 +45,16 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
 
     // -------------------------------------------------------------- Constructors
 
+    private CatalogFactory<K, V, C> catalogFactory = null;
+    private String catalogName = null;
+
+    // -------------------------------------------------------------- Properties
+    private String name = null;
+    private String nameKey = null;
+    private boolean optional = false;
+    private boolean ignoreExecuteResult = false;
+    private boolean ignorePostprocessResult = false;
+
     /**
      * Create an instance, setting its <code>catalogFactory</code> property to the
      * value of <code>CatalogFactory.getInstance()</code>.
@@ -66,9 +76,15 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
         this.catalogFactory = factory;
     }
 
-    // -------------------------------------------------------------- Properties
-
-    private CatalogFactory<K, V, C> catalogFactory = null;
+    /**
+     * Return the {@link CatalogFactoryBase} from which lookups will be performed.
+     *
+     * @return The Catalog factory.
+     * @since 1.1
+     */
+    public CatalogFactory<K, V, C> getCatalogFactory() {
+        return this.catalogFactory;
+    }
 
     /**
      * <p>Set the {@link CatalogFactoryBase} from which lookups will be
@@ -80,18 +96,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
     public void setCatalogFactory(CatalogFactory<K, V, C> catalogFactory) {
         this.catalogFactory = catalogFactory;
     }
-
-    /**
-     * Return the {@link CatalogFactoryBase} from which lookups will be performed.
-     *
-     * @return The Catalog factory.
-     * @since 1.1
-     */
-    public CatalogFactory<K, V, C> getCatalogFactory() {
-        return this.catalogFactory;
-    }
-
-    private String catalogName = null;
 
     /**
      * <p>Return the name of the {@link Catalog} to be searched, or
@@ -113,8 +117,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
         this.catalogName = catalogName;
     }
 
-    private String name = null;
-
     /**
      * <p>Return the name of the {@link Command} that we will look up and
      * delegate execution to.</p>
@@ -134,8 +136,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
     public void setName(String name) {
         this.name = name;
     }
-
-    private String nameKey = null;
 
     /**
      * <p>Return the context attribute key under which the {@link Command}
@@ -157,8 +157,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
         this.nameKey = nameKey;
     }
 
-    private boolean optional = false;
-
     /**
      * <p>Return <code>true</code> if locating the specified command
      * is optional.</p>
@@ -177,8 +175,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
     public void setOptional(boolean optional) {
         this.optional = optional;
     }
-
-    private boolean ignoreExecuteResult = false;
 
     /**
      * <p>Return <code>true</code> if this command should ignore
@@ -210,8 +206,6 @@ public class LookupCommand<K, V, C extends Map<K, V>> implements Filter<K, V, C>
     public void setIgnoreExecuteResult(boolean ignoreReturn) {
         this.ignoreExecuteResult = ignoreReturn;
     }
-
-    private boolean ignorePostprocessResult = false;
 
     /**
      * <p>Return <code>true</code> if this command is a Filter and

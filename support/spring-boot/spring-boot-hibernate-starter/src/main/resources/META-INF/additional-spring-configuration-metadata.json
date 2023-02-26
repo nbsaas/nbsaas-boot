@@ -5,7 +5,6 @@
     }
   ],
   "properties": [
-
     {
       "name": "nb.hibernate.hbm2ddl",
       "type": "java.lang.String",

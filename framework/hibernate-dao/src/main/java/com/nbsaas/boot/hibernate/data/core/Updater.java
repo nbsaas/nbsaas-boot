@@ -14,6 +14,11 @@ import java.util.Set;
  * </ul>
  */
 public class Updater<T> {
+    private T bean;
+    private Set<String> includeProperties = new HashSet<String>();
+    private Set<String> excludeProperties = new HashSet<String>();
+    private UpdateMode mode = UpdateMode.MIDDLE;
+
     /**
      * 构造器
      *
@@ -91,19 +96,7 @@ public class Updater<T> {
         return true;
     }
 
-    private T bean;
-
-    private Set<String> includeProperties = new HashSet<String>();
-
-    private Set<String> excludeProperties = new HashSet<String>();
-
-    private UpdateMode mode = UpdateMode.MIDDLE;
-
     // private static final Logger log = LoggerFactory.getLogger(Updater.class);
-
-    public enum UpdateMode {
-        MAX, MIN, MIDDLE
-    }
 
     public T getBean() {
         return bean;
@@ -115,5 +108,9 @@ public class Updater<T> {
 
     public Set<String> getIncludeProperties() {
         return includeProperties;
+    }
+
+    public enum UpdateMode {
+        MAX, MIN, MIDDLE
     }
 }

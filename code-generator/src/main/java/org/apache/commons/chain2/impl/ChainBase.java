@@ -35,6 +35,18 @@ public class ChainBase<K, V, C extends Map<K, V>> implements Chain<K, V, C> {
     // ----------------------------------------------------------- Constructors
 
     /**
+     * <p>The list of {@link Command}s configured for this {@link Chain}, in
+     * the order in which they may delegate processing to the remainder of
+     * the {@link Chain}.</p>
+     */
+    private final List<Command<K, V, C>> commands = new ArrayList<Command<K, V, C>>();
+    /**
+     * <p>Flag indicating whether the configuration of our commands list
+     * has been frozen by a call to the <code>execute()</code> method.</p>
+     */
+    private boolean frozen = false;
+
+    /**
      * <p>Construct a {@link Chain} with no configured {@link Command}s.</p>
      */
     public ChainBase() {
@@ -51,6 +63,8 @@ public class ChainBase<K, V, C extends Map<K, V>> implements Chain<K, V, C> {
     public ChainBase(Command<K, V, C> command) {
         addCommand(command);
     }
+
+    // ----------------------------------------------------- Instance Variables
 
     /**
      * <p>Construct a {@link Chain} configured with the specified
@@ -87,21 +101,6 @@ public class ChainBase<K, V, C extends Map<K, V>> implements Chain<K, V, C> {
             addCommand(command);
         }
     }
-
-    // ----------------------------------------------------- Instance Variables
-
-    /**
-     * <p>The list of {@link Command}s configured for this {@link Chain}, in
-     * the order in which they may delegate processing to the remainder of
-     * the {@link Chain}.</p>
-     */
-    private final List<Command<K, V, C>> commands = new ArrayList<Command<K, V, C>>();
-
-    /**
-     * <p>Flag indicating whether the configuration of our commands list
-     * has been frozen by a call to the <code>execute()</code> method.</p>
-     */
-    private boolean frozen = false;
 
     // ---------------------------------------------------------- Chain Methods
 

@@ -15,113 +15,33 @@ import java.io.Serializable;
 public class Filter implements Serializable {
 
     /**
-     * 运算符
-     */
-    public enum Operator {
-
-        /**
-         * 等于
-         */
-        eq,
-
-        /**
-         * 不等于
-         */
-        ne,
-
-        /**
-         * 大于
-         */
-        gt,
-
-        /**
-         * 小于
-         */
-        lt,
-
-        /**
-         * 大于等于
-         */
-        ge,
-
-        /**
-         * 小于等于
-         */
-        le,
-
-        /**
-         * 相似
-         */
-        like,
-
-        /**
-         * 包含
-         */
-        in,
-
-        /**
-         * 为Null
-         */
-        isNull,
-
-        /**
-         * 不为Null
-         */
-        isNotNull;
-
-        /**
-         * 从String中获取Operator
-         *
-         * @param value 值
-         * @return String对应的operator
-         */
-        public static Operator fromString(String value) {
-            return Operator.valueOf(value.toLowerCase());
-        }
-    }
-
-    /**
      * 默认是否忽略大小写
      */
     private static final boolean DEFAULT_IGNORE_CASE = false;
-
     /**
      * 属性
      */
     private String property;
-
     /**
      * 运算符
      */
     private Operator operator;
-
     /**
      * 值
      */
     private Object value;
-
     /**
      * 条件
      */
     private String condition = "and";
-
     /**
      * 表达式前缀
      */
     private String prefix = "";
-
     /**
      * 是否忽略大小写
      */
     private Boolean ignoreCase = DEFAULT_IGNORE_CASE;
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
 
     /**
      * 初始化一个新创建的Filter对象
@@ -289,6 +209,14 @@ public class Filter implements Serializable {
         return new Filter(property, Operator.isNotNull, null);
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
     /**
      * 返回忽略大小写筛选
      *
@@ -371,7 +299,6 @@ public class Filter implements Serializable {
         this.ignoreCase = ignoreCase;
     }
 
-
     @Override
     public String toString() {
         return "Filter [property=" + property + ", operator=" + operator + ", value=" + value + ", ignoreCase="
@@ -384,5 +311,71 @@ public class Filter implements Serializable {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    /**
+     * 运算符
+     */
+    public enum Operator {
+
+        /**
+         * 等于
+         */
+        eq,
+
+        /**
+         * 不等于
+         */
+        ne,
+
+        /**
+         * 大于
+         */
+        gt,
+
+        /**
+         * 小于
+         */
+        lt,
+
+        /**
+         * 大于等于
+         */
+        ge,
+
+        /**
+         * 小于等于
+         */
+        le,
+
+        /**
+         * 相似
+         */
+        like,
+
+        /**
+         * 包含
+         */
+        in,
+
+        /**
+         * 为Null
+         */
+        isNull,
+
+        /**
+         * 不为Null
+         */
+        isNotNull;
+
+        /**
+         * 从String中获取Operator
+         *
+         * @param value 值
+         * @return String对应的operator
+         */
+        public static Operator fromString(String value) {
+            return Operator.valueOf(value.toLowerCase());
+        }
     }
 }

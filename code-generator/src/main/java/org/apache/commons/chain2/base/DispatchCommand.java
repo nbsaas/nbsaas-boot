@@ -38,25 +38,22 @@ import java.util.WeakHashMap;
 public abstract class DispatchCommand<K, V, C extends Context<K, V>> implements Command<K, V, C> {
 
     /**
-     * Cache of methods
-     */
-    private final Map<String, Method> methods = new WeakHashMap<String, Method>();
-
-    /**
-     * Method name
-     */
-    private String method = null;
-
-    /**
-     * Method key
-     */
-    private String methodKey = null;
-
-    /**
      * The base implementation expects dispatch methods to take a <code>Context</code>
      * as their only argument.
      */
     protected static final Class<?>[] DEFAULT_SIGNATURE = new Class<?>[]{Context.class};
+    /**
+     * Cache of methods
+     */
+    private final Map<String, Method> methods = new WeakHashMap<String, Method>();
+    /**
+     * Method name
+     */
+    private String method = null;
+    /**
+     * Method key
+     */
+    private String methodKey = null;
 
     /**
      * Look up the method specified by either "method" or "methodKey" and invoke it,
@@ -175,21 +172,21 @@ public abstract class DispatchCommand<K, V, C extends Context<K, V>> implements 
     }
 
     /**
-     * Return the Context key for the method name.
-     *
-     * @return The Context key for the method name.
-     */
-    public String getMethodKey() {
-        return methodKey;
-    }
-
-    /**
      * Set the method name.
      *
      * @param method The method name.
      */
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    /**
+     * Return the Context key for the method name.
+     *
+     * @return The Context key for the method name.
+     */
+    public String getMethodKey() {
+        return methodKey;
     }
 
     /**

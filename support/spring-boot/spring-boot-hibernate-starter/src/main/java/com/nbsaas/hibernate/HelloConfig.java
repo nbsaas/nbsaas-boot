@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class HelloConfig {
 
     @Bean
-    public HelloResource helloResource(){
+    public HelloResource helloResource() {
         return new HelloResource();
     }
 }

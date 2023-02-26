@@ -29,6 +29,10 @@ public class ResultMapBuilder extends Builder {
         return result;
     }
 
+    public static void main(String[] args) {
+        System.out.println(ResultMapBuilder.builder().key("ada", "ada").key("name", "ada").build());
+    }
+
     /**
      * 增加建和值
      *
@@ -89,9 +93,5 @@ public class ResultMapBuilder extends Builder {
         result.setCode(code);
         result.setMsg(msg);
         return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(ResultMapBuilder.builder().key("ada", "ada").key("name", "ada").build());
     }
 }

@@ -41,17 +41,15 @@ public class UserInfo extends AbstractUser {
 
 
     private StoreState storeState;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role_links", joinColumns = {@JoinColumn(name = "user_id")})
+    private Set<UserRole> roles = new HashSet<UserRole>();
 
     public static UserInfo fromId(Long id) {
         UserInfo result = new UserInfo();
         result.setId(id);
         return result;
     }
-
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role_links", joinColumns = {@JoinColumn(name = "user_id")})
-    private Set<UserRole> roles = new HashSet<UserRole>();
 
 
 }
