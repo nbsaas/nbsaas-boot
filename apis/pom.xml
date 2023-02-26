@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boot-nbsaas</artifactId>
+        <groupId>com.nbsaas.boot</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>apis</artifactId>
+    <packaging>pom</packaging>
+
+    <name>apis</name>
+    <url>http://www.example.com</url>
+    <modules>
+        <module>user-api</module>
+        <module>ad-api</module>
+        <module>system-api</module>
+        <module>trade-api</module>
+        <module>tenant-api</module>
+        <module>common-api</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nbsaas.boot</groupId>
+            <artifactId>rest</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.nbsaas.boot</groupId>
+            <artifactId>enums</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>

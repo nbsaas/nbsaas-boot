@@ -1,0 +1,61 @@
+server:
+  port: 8888 #修改默认的端口号
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: image/png,image/jpeg,image/jpg,text/html,application/javascript,text/css,text/plain,application/octet-stream,application/json
+
+spring:
+  application:
+    name: admin
+  # 环境 dev|test|pc
+  main:
+    allow-bean-definition-overriding: true
+  datasource: # 数据源的相关配置
+    driver-class-name: com.mysql.cj.jdbc.Driver          # mysql驱动
+    type: com.zaxxer.hikari.HikariDataSource #bill_management_pro  cartonexchange_pre
+    url: jdbc:mysql://127.0.01:3306/billCloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123.com #
+    hikari:
+      connection-timeout: 30000       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+      minimum-idle: 5                 # 最小连接数
+      maximum-pool-size: 20           # 最大连接数
+      auto-commit: true               # 自动提交
+      idle-timeout: 600000            # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+      pool-name: DateSourceHikariCP     # 连接池名字
+      max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+      connection-test-query: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      current_session_context_class: jta
+    #控制台显示sql语句
+    show-sql: true
+    database: mysql
+    open-in-view: true
+    #报错：Error executing DDL，解决方案：设置数据库引擎为InnoDB
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  servlet:
+    multipart:
+      # 过滤springmvc的文件上传
+      enabled: false
+      # 单个文件最大值
+      max-file-size: 5MB
+      # 上传文件总的最大值
+      max-request-size: 100MB
+  cloud:
+    nacos:
+      config:
+        server-addr: 59.110.220.54:8848
+        file-extension: yml
+        #prefix: admin
+        #group: DEFAULT_GROUP
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+logging:
+  level:
+    root: info
+
+shiro:
+  enabled: true

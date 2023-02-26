@@ -1,0 +1,16 @@
+projectName: system #多项目的时候模块名
+multiple: true #是否多模块项目
+templateDir: /template/hibernate #代码模块文件夹
+entityPackage: com.nbsaas.boot.entity.system
+
+tables:
+  - Menu
+  - Application
+  - ApplicationMenu
+  - Config
+  - ErrorLog
+  - Mock
+  - RecordLog
+  - Sequence
+outputPath: E:\codes\boot\bootadmin #项目根目录
+basePackage: com.nbsaas.boot #基础包名

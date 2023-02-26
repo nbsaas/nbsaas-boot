@@ -1,0 +1,42 @@
+
+target/
+test-output/
+.settings
+.classpath
+.checkstyle
+.idea/
+.sonar/
+*.iml
+bin
+dependency-reduced-pom.xml
+*.jar
+*.class
+*tags
+**.swp
+/docxs
+*.project
+*.db
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/.vscode/

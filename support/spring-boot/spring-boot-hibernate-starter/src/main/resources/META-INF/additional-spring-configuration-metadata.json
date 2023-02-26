@@ -1,0 +1,34 @@
+{
+  "groups": [
+    {
+      "name": "nb.hibernate"
+    }
+  ],
+  "properties": [
+
+    {
+      "name": "nb.hibernate.hbm2ddl",
+      "type": "java.lang.String",
+      "description": "反向生成sql方式.",
+      "defaultValue": "none"
+    },
+    {
+      "name": "nb.hibernate.show_sql",
+      "type": "java.lang.Boolean",
+      "description": "是否显示sql.",
+      "defaultValue": false
+    },
+    {
+      "name": "nb.hibernate.format_sql",
+      "type": "java.lang.Boolean",
+      "description": "是否格式化sql.",
+      "defaultValue": false
+    },
+    {
+      "name": "nb.hibernate.entities",
+      "type": "java.util.List",
+      "description": "实体类的包名.",
+      "defaultValue": null
+    }
+  ]
+}
