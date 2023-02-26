@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>tenant-resource</name>
-    <url>http://maven.apache.org</url>
+    <url>http://www.nbsaas.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

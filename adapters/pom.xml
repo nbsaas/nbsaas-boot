@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <name>adapters</name>
-    <url>http://maven.apache.org</url>
+    <url>http://www.nbsaas.com</url>
     <modules>
         <module>security</module>
     </modules>

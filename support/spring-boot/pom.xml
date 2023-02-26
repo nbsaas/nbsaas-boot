@@ -8,7 +8,7 @@
     </parent>
     <artifactId>spring-boot</artifactId>
     <name>Archetype - spring-boot</name>
-    <url>http://maven.apache.org</url>
+    <url>http://www.nbsaas.com</url>
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-hibernate-starter</module>
