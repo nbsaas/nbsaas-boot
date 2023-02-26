@@ -22,11 +22,7 @@ public class HibernateApp {
 
         //config/bootadmin/system.yml
         //config/bootadmin/user.yml
-        makeCodes("config/boot/trade.yml");
-        makeCodes("config/boot/system.yml");
         makeCodes("config/boot/ad.yml");
-        makeCodes("config/boot/user.yml");
-        makeCodes("config/boot/tenant.yml");
 
     }
 

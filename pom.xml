@@ -119,6 +119,17 @@
                     <include>**/*.html</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/spring.factories</include>
+                    <include>**/spring.provides</include>
+                    <include>**/*.json</include>
+                    <include>**/*.ftl</include>
+                    <include>**/*.html</include>
+                    <include>**/*.yml</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -132,23 +143,6 @@
                     <meminitial>512m</meminitial>
                     <maxmem>1024m</maxmem>
                     <fork>true</fork>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.rat</groupId>
-                <artifactId>apache-rat-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/.externalToolBuilders/*</exclude>
-                        <exclude>**/infinitest.filters</exclude>
-                        <exclude>velocity.log</exclude>
-                        <exclude>CONTRIBUTING.md</exclude>
-                        <exclude>README.md</exclude>
-                        <exclude>**/*.json</exclude>
-                        <exclude>**/spring.factories</exclude>
-                        <exclude>**/spring.provides</exclude>
-                        <exclude>**/*.iml</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
@@ -167,9 +161,9 @@
         </developer>
     </developers>
     <scm>
-        <url>https://github.com/haoxuer/codegen</url>
-        <connection>git@github.com:cng1985/disconver.git</connection>
-        <developerConnection>git@github.com:cng1985/disconver.git</developerConnection>
+        <url>https://github.com/nbsaas/boot-nbsaas</url>
+        <connection>git@github.com:nbsaas/boot-nbsaas.git</connection>
+        <developerConnection>git@github.com:nbsaas/boot-nbsaas.git</developerConnection>
     </scm>
     <profiles>
         <profile>

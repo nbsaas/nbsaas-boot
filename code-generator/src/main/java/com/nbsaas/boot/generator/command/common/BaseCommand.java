@@ -2,6 +2,7 @@ package com.nbsaas.boot.generator.command.common;
 
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.TableContext;
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -71,7 +72,8 @@ public abstract class BaseCommand implements Command<String, Object, TableContex
             String codePath = basePackage + codeType;
             Config config = tableContext.getConfig();
             Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
-            configuration.setTemplateLoader(new FileTemplateLoader(new File(config.getBase() + config.getTemplateDir())));
+            //configuration.setTemplateLoader(new FileTemplateLoader(new File(config.getBase() + config.getTemplateDir())));
+            configuration.setTemplateLoader(new ClassTemplateLoader());
             Template template = configuration.getTemplate(model + ".ftl");
             String requestDir = outPath() + baseCode + codePath.replace(".", "\\");
             String outFile = requestDir + "\\" + tableContext.getTable().getName() + className + "." + extension;
