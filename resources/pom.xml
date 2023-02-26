@@ -7,7 +7,7 @@
     <parent>
         <artifactId>boot-nbsaas</artifactId>
         <groupId>com.nbsaas.boot</groupId>
-        <version>1.0.1</version>
+        <version>1.0.2-2023-02-26</version>
     </parent>
     <artifactId>resources</artifactId>
     <packaging>pom</packaging>
@@ -50,12 +50,12 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>hibernate-dao</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-2023-02-26</version>
         </dependency>
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>models</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-2023-02-26</version>
         </dependency>
     </dependencies>
 

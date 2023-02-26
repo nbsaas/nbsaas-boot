@@ -5,7 +5,7 @@
     <parent>
         <artifactId>boot-nbsaas</artifactId>
         <groupId>com.nbsaas.boot</groupId>
-        <version>1.0.1</version>
+        <version>1.0.2-2023-02-26</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -41,13 +41,13 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>rest</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-2023-02-26</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>enums</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-2023-02-26</version>
         </dependency>
     </dependencies>
 
