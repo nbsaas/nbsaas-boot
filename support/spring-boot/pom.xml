@@ -9,4 +9,8 @@
     <artifactId>spring-boot</artifactId>
     <name>Archetype - spring-boot</name>
     <url>http://maven.apache.org</url>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring-boot-hibernate-starter</module>
+    </modules>
 </project>

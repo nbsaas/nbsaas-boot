@@ -14,7 +14,6 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>spring-boot</module>
-        <module>spring-boot/spring-boot-hibernate-starter</module>
     </modules>
 
     <properties>
