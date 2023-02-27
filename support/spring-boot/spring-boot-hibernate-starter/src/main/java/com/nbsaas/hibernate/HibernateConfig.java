@@ -36,7 +36,7 @@ public class HibernateConfig {
         bean.getHibernateProperties().put("hibernate.show_sql", hibernateProperties.getShow_sql());
         bean.getHibernateProperties().put("hibernate.format_sql", hibernateProperties.getFormat_sql());
         bean.getHibernateProperties().put("hibernate.hbm2ddl.auto", hibernateProperties.getHbm2ddl());
-        bean.getHibernateProperties().put("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
+        //bean.getHibernateProperties().put("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
 
 
         bean.setDataSource(dataSource);
