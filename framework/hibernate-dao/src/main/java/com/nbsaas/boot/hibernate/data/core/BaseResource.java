@@ -1,11 +1,7 @@
 package com.nbsaas.boot.hibernate.data.core;
 
-import com.nbsaas.boot.filter.Order;
 import com.nbsaas.boot.rest.api.BaseApi;
-import com.nbsaas.boot.rest.filter.Condition;
-import com.nbsaas.boot.rest.filter.Filter;
-import com.nbsaas.boot.rest.filter.Operator;
-import com.nbsaas.boot.rest.filter.Search;
+import com.nbsaas.boot.rest.filter.*;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.request.RequestId;
 import com.nbsaas.boot.rest.response.ListResponse;
@@ -55,15 +51,15 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     public abstract Function<Entity, Response> getConvertResponse();
 
     private List<Order> getOrders(PageRequest search) {
-        List<Order> filters = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
         if (StringUtils.hasText(search.getSortField())) {
             if ("asc".equals(search.getSortMethod())) {
-                filters.add(Order.asc(search.getSortField()));
+                orders.add(Order.asc(search.getSortField()));
             } else {
-                filters.add(Order.desc(search.getSortField()));
+                orders.add(Order.desc(search.getSortField()));
             }
         }
-        return filters;
+        return orders;
     }
 
     private List<Filter> getFilters(Object search) {
@@ -101,13 +97,12 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
                     }
 
 
-                    if (item.operator() == Operator.like) {
+                    if(item.operator() == Operator.like) {
                         filter = new Filter(item.name(), "%" + object + "%", item.operator());
-                        filter.prefix = item.prefix();
                     } else {
                         filter = new Filter(item.name(), object, item.operator());
-                        filter.prefix = item.prefix();
                     }
+                    filter.prefix = item.prefix();
 
                     if (item.condition() == Condition.AND) {
                         filter.condition = "and";
@@ -146,7 +141,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     @Transactional
     @Override
     public PageResponse<Simple> search(Request request) {
-        PageResponse<Simple> result = new PageResponse<Simple>();
+        PageResponse<Simple> result = new PageResponse<>();
 
         Finder finder = makeFinder(getFilters(request), getOrders(request));
         Pagination<Entity> page = find(finder, request.getNo(), request.getSize());
@@ -483,7 +478,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             for (Order order : orders) {
                 num++;
                 finder.append(" model." + order.getProperty());
-                if (order.getDirection() == Order.Direction.asc) {
+                if (order.getSortType() == SortType.asc) {
                     finder.append(" asc ");
                 } else {
                     finder.append(" desc ");

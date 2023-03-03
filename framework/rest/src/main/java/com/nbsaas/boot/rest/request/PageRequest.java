@@ -1,6 +1,9 @@
 package com.nbsaas.boot.rest.request;
 
+import com.nbsaas.boot.rest.filter.FilterGroup;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author ada
@@ -21,4 +24,9 @@ public class PageRequest extends RequestObject {
 
 
     private String sortMethod;
+
+    /**
+     * 过滤条件组
+     */
+    private List<FilterGroup> groups;
 }

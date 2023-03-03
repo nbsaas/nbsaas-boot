@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>boot-nbsaas</artifactId>
-        <version>1.0.2-2023-02-26</version>
+        <version>1.0.3-2023-03-03</version>
     </parent>
 
     <artifactId>code-generator</artifactId>
@@ -25,11 +25,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.nbsaas.boot</groupId>
-            <artifactId>models</artifactId>
-            <version>1.0.2-2023-02-26</version>
-        </dependency>
-        <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.33</version>
@@ -37,7 +32,12 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>chain</artifactId>
-            <version>1.0.2-2023-02-26</version>
+            <version>1.0.3-2023-03-03</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nbsaas.discovery</groupId>
+            <artifactId>code-make</artifactId>
+            <version>1.0.17</version>
         </dependency>
     </dependencies>
 </project>

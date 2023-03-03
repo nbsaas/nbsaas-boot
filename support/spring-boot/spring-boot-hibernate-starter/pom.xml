@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>support</artifactId>
-        <version>1.0.2-2023-02-26</version>
+        <version>1.0.3-2023-03-03</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>hibernate-dao</artifactId>
-            <version>1.0.2-2023-02-26</version>
+            <version>1.0.3-2023-03-03</version>
         </dependency>
     </dependencies>
 </project>

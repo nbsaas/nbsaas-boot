@@ -4,7 +4,7 @@
     <parent>
         <artifactId>framework</artifactId>
         <groupId>com.nbsaas.boot</groupId>
-        <version>1.0.2-2023-02-26</version>
+        <version>1.0.3-2023-03-03</version>
     </parent>
 
     <artifactId>chain</artifactId>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>rest</artifactId>
-            <version>1.0.2-2023-02-26</version>
+            <version>1.0.3-2023-03-03</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

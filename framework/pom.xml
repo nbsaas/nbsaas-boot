@@ -5,7 +5,7 @@
     <parent>
         <artifactId>boot-nbsaas</artifactId>
         <groupId>com.nbsaas.boot</groupId>
-        <version>1.0.2-2023-02-26</version>
+        <version>1.0.3-2023-03-03</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>framework</artifactId>
@@ -15,7 +15,6 @@
     <modules>
         <module>rest</module>
         <module>hibernate-dao</module>
-        <module>filter</module>
         <module>core</module>
         <module>chain</module>
     </modules>
