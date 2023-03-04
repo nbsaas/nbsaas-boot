@@ -26,10 +26,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>hibernate-dao</artifactId>
             <version>1.0.3-2023-03-03</version>
