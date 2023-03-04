@@ -1,7 +1,9 @@
 {
   "groups": [
     {
-      "name": "nb"
+      "name": "nb.hibernate",
+      "type": "com.nbsaas.hibernate.HibernateProperties",
+      "sourceType": "com.nbsaas.hibernate.HibernateProperties"
     }
   ],
   "properties": [
@@ -10,6 +12,12 @@
       "type": "java.lang.String",
       "description": "反向生成sql方式.",
       "defaultValue": "none"
+    },
+    {
+      "name": "nb.hibernate.dialect",
+      "type": "java.lang.String",
+      "description": "hibernate方言.",
+      "defaultValue": "org.hibernate.dialect.MySQL55Dialect"
     },
     {
       "name": "nb.hibernate.show_sql",

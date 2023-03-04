@@ -15,11 +15,13 @@ import java.util.List;
 )
 public class HibernateProperties {
 
-    private Boolean show_sql;
+    private Boolean show_sql=false;
 
-    private Boolean format_sql;
+    private Boolean format_sql=false;
 
     private String hbm2ddl;
+
+    private String dialect;
 
     private List<String> entities;
 }
