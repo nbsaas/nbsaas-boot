@@ -11,7 +11,29 @@
       "name": "nb.hibernate.hbm2ddl",
       "type": "java.lang.String",
       "description": "反向生成sql方式.",
-      "defaultValue": "none"
+      "defaultValue": "none",
+      "values": [
+        {
+          "value": "none",
+          "description": "Disable DDL handling."
+        },
+        {
+          "value": "validate",
+          "description": "Validate the schema, make no changes to the database."
+        },
+        {
+          "value": "update",
+          "description": "Update the schema if necessary."
+        },
+        {
+          "value": "create",
+          "description": "Create the schema and destroy previous data."
+        },
+        {
+          "value": "create-drop",
+          "description": "Create and then destroy the schema at the end of the session."
+        }
+      ]
     },
     {
       "name": "nb.hibernate.dialect",
