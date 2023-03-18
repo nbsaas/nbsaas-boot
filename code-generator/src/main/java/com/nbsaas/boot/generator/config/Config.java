@@ -39,13 +39,9 @@ public class Config {
      */
     private String entityPackage;
     /**
-     * 需要生成的表
+     * 需要生成的实体类
      */
-    private List<String> tables;
-    /**
-     * 数据库连接信息
-     */
-    private DataBase database;
+    private List<String> entities;
 
     public String getBasePackage() {
         if (multiple) {

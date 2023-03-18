@@ -1,28 +1,28 @@
 package com.nbsaas.boot.generator.command.hibernate;
 
+import com.nbsaas.boot.chain.Command;
 import com.nbsaas.boot.generator.config.Config;
-import com.nbsaas.boot.generator.context.TableContext;
+import com.nbsaas.boot.generator.context.InputRequestObject;
+import com.nbsaas.boot.rest.response.ResponseObject;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import org.apache.commons.chain2.Command;
-import org.apache.commons.chain2.Processing;
 
 import java.io.File;
 import java.io.FileWriter;
 
-public abstract class BaseCommand implements Command<String, Object, TableContext> {
+public abstract class BaseCommand implements Command<InputRequestObject, ResponseObject<?>> {
 
 
-    protected TableContext tableContext;
+    protected InputRequestObject inputRequestObject;
 
-    public abstract Processing handle(TableContext context);
+    public abstract ResponseObject handle(InputRequestObject context);
 
     public abstract String outPath();
 
     @Override
-    public Processing execute(TableContext context) {
-        this.tableContext = context;
+    public ResponseObject execute(InputRequestObject context) {
+        this.inputRequestObject = context;
         Config config = context.getConfig();
 
         context.put("repositoryPackage", config.getBasePackage() + ".data.repository");
@@ -56,19 +56,19 @@ public abstract class BaseCommand implements Command<String, Object, TableContex
 
     protected void makeCode(String model, String className, String codePackage) {
         // 初始化模板路径
-        makeCode(model, className, "\\src\\main\\java\\", "java", codePackage, tableContext.getConfig().getBasePackage());
+        makeCode(model, className, "\\src\\main\\java\\", "java", codePackage, inputRequestObject.getConfig().getBasePackage());
     }
 
     protected void makeXml(String model, String className, String codePackage) {
         // 初始化模板路径
-        makeCode(model, className, "\\src\\main\\resources\\", "xml", codePackage, tableContext.getConfig().getBasePackage());
+        makeCode(model, className, "\\src\\main\\resources\\", "xml", codePackage, inputRequestObject.getConfig().getBasePackage());
     }
 
     protected void makeCode(String model, String className, String baseCode, String extension, String codeType, String basePackage) {
         // 初始化模板路径
         try {
             String codePath = basePackage + codeType;
-            Config config = tableContext.getConfig();
+            Config config = inputRequestObject.getConfig();
             Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
 
             //configuration.setTemplateLoader(new FileTemplateLoader(new File(config.getBase() + config.getTemplateDir())));
@@ -76,13 +76,13 @@ public abstract class BaseCommand implements Command<String, Object, TableContex
 
             Template template = configuration.getTemplate(model + ".ftl");
             String requestDir = outPath() + baseCode + codePath.replace(".", "\\");
-            String outFile = requestDir + "\\" + tableContext.getFormBean().getClassName() + className + "." + extension;
+            String outFile = requestDir + "\\" + inputRequestObject.getFormBean().getClassName() + className + "." + extension;
             File out = new File(outFile);
             if (!out.getParentFile().exists()) {
                 out.getParentFile().mkdirs();
             }
             FileWriter fileWriter = new FileWriter(outFile);
-            template.process(tableContext, fileWriter);
+            template.process(inputRequestObject, fileWriter);
         } catch (Exception e) {
             e.printStackTrace();
             //throw new RuntimeException(e);
@@ -91,7 +91,7 @@ public abstract class BaseCommand implements Command<String, Object, TableContex
 
     protected void makePackage(String basePackage) {
 
-        String packageTemp = tableContext.getConfig().getBasePackage() + basePackage;
+        String packageTemp = inputRequestObject.getConfig().getBasePackage() + basePackage;
         String requestDir = outPath() + "\\src\\main\\java\\" + packageTemp.replace(".", "\\");
         File out = new File(requestDir);
         if (!out.exists()) {

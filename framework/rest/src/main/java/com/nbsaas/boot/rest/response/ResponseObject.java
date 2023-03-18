@@ -67,4 +67,11 @@ public class ResponseObject<T> implements Serializable {
         result.setData(data);
         return result;
     }
+
+    public static ResponseObject<?> success() {
+        ResponseObject<?> result = new ResponseObject<>();
+        result.setCode(200);
+        result.setMsg("success");
+        return result;
+    }
 }
