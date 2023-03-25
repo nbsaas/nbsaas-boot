@@ -12,10 +12,9 @@ import com.nbsaas.boot.rest.response.ResponseObject;
  *
  * @param <Response> 详情对象
  * @param <Simple>   列表对象
- * @param <Form>     表单对象
- * @param <Request>  搜索对象
+ * @param <Request>     表单对象
  */
-public interface ResponseApi<Response, Simple, Form extends RequestId, Request extends PageRequest> {
+public interface ResponseApi<Response, Simple, Request extends RequestId> {
 
     /**
      * 分页查询
@@ -23,7 +22,7 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 分页数据信息
      */
-    PageResponse<Simple> search(Request request);
+    PageResponse<Simple> search(PageRequest request);
 
     /**
      * 根据条件查询集合，不分页
@@ -31,7 +30,7 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 数据集合数据
      */
-    ListResponse<Simple> list(Request request);
+    ListResponse<Simple> list(PageRequest request);
 
     /**
      * 创建
@@ -39,7 +38,7 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 数据详情
      */
-    ResponseObject<Response> create(Form request);
+    ResponseObject<Response> create(Request request);
 
     /**
      * 更新
@@ -47,7 +46,7 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 数据详情
      */
-    ResponseObject<Response> update(Form request);
+    ResponseObject<Response> update(Request request);
 
     /**
      * 删除
@@ -55,7 +54,7 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 删除状态
      */
-    ResponseObject<?> delete(Form request);
+    ResponseObject<?> delete(RequestId request);
 
     /**
      * 根据ID查询详情
@@ -63,6 +62,6 @@ public interface ResponseApi<Response, Simple, Form extends RequestId, Request e
      * @param request
      * @return 数据详情
      */
-    ResponseObject<Response> view(Form request);
+    ResponseObject<Response> view(RequestId request);
 
 }

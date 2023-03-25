@@ -2,7 +2,6 @@ package ${resourcePackage};
 
 import ${apiPackage}.${formBean.className}Api;
 import ${jpaEntityPackage}.${formBean.className};
-import ${requestPackage}.${formBean.className}SearchRequest;
 import ${requestPackage}.${formBean.className}DataRequest;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
@@ -26,28 +25,28 @@ import java.util.function.Function;
 */
 @Transactional
 @Service
-public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest, ${formBean.className}SearchRequest>  implements ${formBean.className}Api {
+public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest>  implements ${formBean.className}Api {
 
-@Override
-protected Class<${formBean.className}> getEntityClass() {
-return ${formBean.className}.class;
-}
+    @Override
+    protected Class<${formBean.className}> getEntityClass() {
+        return ${formBean.className}.class;
+    }
 
-@Override
-public Function<${formBean.className}, ${formBean.className}Simple> getConvertSimple() {
-return new ${formBean.className}SimpleConvert();
-}
+    @Override
+    public Function<${formBean.className}, ${formBean.className}Simple> getConvertSimple() {
+        return new ${formBean.className}SimpleConvert();
+    }
 
-@Override
-public Function
-<${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
-return new ${formBean.className}EntityConvert();
-}
+    @Override
+    public Function
+    <${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
+        return new ${formBean.className}EntityConvert();
+    }
 
-@Override
-public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
-return new ${formBean.className}ResponseConvert();
-}
+    @Override
+    public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
+        return new ${formBean.className}ResponseConvert();
+    }
 
 }
 

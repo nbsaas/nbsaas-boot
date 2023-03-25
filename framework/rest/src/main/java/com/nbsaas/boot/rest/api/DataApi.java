@@ -12,10 +12,8 @@ import java.util.List;
 /**
  * @param <Response> Response 单个响应对象
  * @param <Simple>   Simple 列表对象
- * @param <Form>     Form  表单对象
- * @param <Request>  SearchRequest 搜索对象
  */
-public interface DataApi<Response, Simple, Form extends RequestId, Request extends PageRequest> {
+public interface DataApi<Response, Simple, Request extends RequestId> {
 
     /**
      * 单个对象查询
@@ -49,7 +47,7 @@ public interface DataApi<Response, Simple, Form extends RequestId, Request exten
      * @param request
      * @return 搜索的数据集合
      */
-    List<Simple> searchData(Request request);
+    List<Simple> searchData(PageRequest request);
 
 
     /**
@@ -58,7 +56,7 @@ public interface DataApi<Response, Simple, Form extends RequestId, Request exten
      * @param request
      * @return 数据行数
      */
-    Long countData(Request request);
+    Long countData(PageRequest request);
 
     /**
      * 根据id查询对象
@@ -66,7 +64,7 @@ public interface DataApi<Response, Simple, Form extends RequestId, Request exten
      * @param form
      * @return 数据对象
      */
-    Response findById(Form form);
+    Response findById(RequestId form);
 
 
     /**
@@ -75,7 +73,7 @@ public interface DataApi<Response, Simple, Form extends RequestId, Request exten
      * @param form
      * @return 创建数据信息
      */
-    Response createData(Form form);
+    Response createData(Request form);
 
 
     /**
@@ -84,7 +82,7 @@ public interface DataApi<Response, Simple, Form extends RequestId, Request exten
      * @param form
      * @return 更新信息
      */
-    Response updateData(Form form);
+    Response updateData(Request form);
 
     /**
      * 根本id批量删除

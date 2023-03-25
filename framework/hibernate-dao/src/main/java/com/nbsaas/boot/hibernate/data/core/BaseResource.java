@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public abstract class BaseResource<Entity, Response, Simple, Form extends RequestId, Request extends PageRequest> extends HibernateDaoSupport implements BaseApi<Response, Simple, Form, Request> {
+public abstract class BaseResource<Entity, Response, Simple,Request extends RequestId> extends HibernateDaoSupport implements BaseApi<Response, Simple,Request> {
 
     protected abstract Class<Entity> getEntityClass();
 
@@ -41,7 +41,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      *
      * @return 实体转化类
      */
-    public abstract Function<Form, Entity> getConvertForm();
+    public abstract Function<Request, Entity> getConvertForm();
 
     /**
      * 实体转响应处理类
@@ -140,7 +140,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public PageResponse<Simple> search(Request request) {
+    public PageResponse<Simple> search(PageRequest request) {
         PageResponse<Simple> result = new PageResponse<>();
 
         Finder finder = makeFinder(getFilters(request), getOrders(request));
@@ -160,7 +160,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public ListResponse<Simple> list(Request request) {
+    public ListResponse<Simple> list(PageRequest request) {
         ListResponse<Simple> result = new ListResponse<>();
         Finder finder = makeFinder(getFilters(request), getOrders(request));
         List<Entity> list = find(finder);
@@ -173,7 +173,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public ResponseObject<Response> create(Form request) {
+    public ResponseObject<Response> create(Request request) {
         ResponseObject<Response> result = new ResponseObject<Response>();
         Entity entity = getConvertForm().apply(request);
         getHibernateTemplate().save(entity);
@@ -184,7 +184,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public ResponseObject<Response> update(Form request) {
+    public ResponseObject<Response> update(Request request) {
         ResponseObject<Response> result = new ResponseObject<>();
         Entity bean = get(request.getId(), false);
         if (bean == null) {
@@ -199,7 +199,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public ResponseObject<?> delete(Form request) {
+    public ResponseObject<?> delete(RequestId request) {
         ResponseObject<?> result = new ResponseObject<>();
         Entity bean = get(request.getId(), false);
         if (bean == null) {
@@ -221,7 +221,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      */
     @Transactional
     @Override
-    public ResponseObject<Response> view(Form request) {
+    public ResponseObject<Response> view(RequestId request) {
 
         ResponseObject<Response> result = new ResponseObject<>();
         Entity bean = get(request.getId(), false);
@@ -306,7 +306,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
 
     @Override
-    public Response findById(Form form) {
+    public Response findById(RequestId form) {
         Entity data = get(form.getId(), false);
         if (data == null) {
             return null;
@@ -315,7 +315,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
-    public Response createData(Form form) {
+    public Response createData(Request form) {
         if (form == null) {
             return null;
         }
@@ -325,7 +325,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
-    public Response updateData(Form form) {
+    public Response updateData(Request form) {
         if (form == null) {
             return null;
         }
@@ -368,7 +368,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
-    public List<Simple> searchData(Request request) {
+    public List<Simple> searchData(PageRequest request) {
 
         Finder finder = makeFinder(getFilters(request), getOrders(request));
         List<Entity> list = find(finder);
@@ -379,7 +379,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
-    public Long countData(Request request) {
+    public Long countData(PageRequest request) {
         Finder finder = makeFinder(getFilters(request), getOrders(request));
         return Long.valueOf(countQueryResult(finder));
     }
