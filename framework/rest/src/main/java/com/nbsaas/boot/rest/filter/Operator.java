@@ -14,7 +14,8 @@ public enum Operator {
     in,
     notIn,
     isNull,
-    isNotNull;
+    isNotNull,
+    between;
 
     private Operator() {
     }

@@ -48,7 +48,6 @@ public class ResultMapBuilder extends Builder {
     /**
      * 增加一个map返回对象
      *
-     * @param map
      * @return
      */
     public ResultMapBuilder map(Map<String, Object> map) {

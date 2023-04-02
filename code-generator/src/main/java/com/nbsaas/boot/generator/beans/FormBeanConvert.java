@@ -245,6 +245,28 @@ public class FormBeanConvert {
             formBean.setViewWidth(formAnnotation.viewWidth());
             formBean.setSearchWidth(formAnnotation.searchWidth());
         }
+        CatalogClass catalogClass=object.getAnnotation(CatalogClass.class);
+        if (catalogClass!=null){
+            formBean.setCatalog(true);
+        }
+        ComposeView composeView=object.getAnnotation(ComposeView.class);
+        if (composeView!=null){
+            formBean.setCompose(true);
+        }
+        CreateByUser createByUser=object.getAnnotation(CreateByUser.class);
+        if (createByUser!=null){
+            formBean.setCreateByUser(true);
+        }
+        PermissionClass permissionClass=object.getAnnotation(PermissionClass.class);
+        if (permissionClass!=null){
+            formBean.setPermissionClass(true);
+        }
+        TenantPermissionClass tenantPermissionClass=object.getAnnotation(TenantPermissionClass.class);
+        if (tenantPermissionClass!=null){
+            formBean.setTenantPermissionClass(true);
+        }
+
+
         for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
             Field[] fs = clazz.getDeclaredFields();
             for (Field f : fs) {
@@ -320,7 +342,7 @@ public class FormBeanConvert {
         return formBean;
     }
 
-    public FormBean conver(Object object) {
+    public FormBean convertObject(Object object) {
         return convertClass(object.getClass());
     }
 

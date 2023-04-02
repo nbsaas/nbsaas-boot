@@ -31,6 +31,26 @@ public class FormBean implements Serializable {
 
     private Boolean hasImage = false;
 
+    /**
+     * 是否是目录类
+     */
+    private boolean catalog;
+
+    /**
+     * 详情展示的时候是否是组合展示
+     */
+    private boolean compose;
+
+    /**
+     * 是否有用户Bean
+     */
+    private boolean createByUser;
+
+    private boolean permissionClass;
+
+    private boolean tenantPermissionClass;
+
+
     private List<FieldBean> fields = new ArrayList<>();
 
     private Set<FieldBean> requests = new HashSet<>();
@@ -40,6 +60,7 @@ public class FormBean implements Serializable {
     private Set<FieldBean> responses = new HashSet<FieldBean>();
 
     List<FieldBean> searches = new ArrayList<FieldBean>();
+
     private List<FieldBean> dates = new ArrayList<FieldBean>();
 
 

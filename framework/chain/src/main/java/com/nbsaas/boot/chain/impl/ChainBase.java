@@ -28,7 +28,7 @@ public class ChainBase<Request extends RequestObject, Response> implements Chain
     @Override
     public void addAllCommand(List<Command<Request, Response>> commands) {
         if (commands != null) {
-            commands.addAll(commands);
+            this.commands.addAll(commands);
         }
     }
 
