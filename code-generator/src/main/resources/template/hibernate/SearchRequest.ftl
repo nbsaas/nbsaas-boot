@@ -34,7 +34,7 @@ public class ${formBean.className}SearchRequest   extends PageRequest implements
     <#if formBean.catalog>
         private int fetch;
 
-        @Search(name = "levelInfo",operator = Filter.Operator.eq)
+        @Search(name = "levelInfo",operator = Operator.eq)
         private Integer level;
     </#if>
 
