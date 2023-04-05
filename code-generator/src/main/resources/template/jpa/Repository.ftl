@@ -1,12 +1,9 @@
 package ${repositoryPackage};
 
-import ${jpaEntityPackage}.${table.name};
+import ${jpaEntityPackage}.${formBean.className};
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import java.io.Serializable;
 
-/**
-* description: ${table.srcName} ${table.comment} Mapper
-*/
-public interface ${table.name}Repository  extends  JpaRepositoryImplementation<${table.name}, Serializable>{
+public interface ${formBean.className}Repository  extends  JpaRepositoryImplementation<${formBean.className}, Serializable>{
 
 }

@@ -2,9 +2,9 @@ package ${fieldPackage};
 
 
 /**
-* description: ${table.srcName} ${table.comment} 字段映射类
+*   字段映射类
 */
-public class ${table.name}Field  {
+public class ${formBean.className}Field  {
 
 
 <#list table.fields as column>

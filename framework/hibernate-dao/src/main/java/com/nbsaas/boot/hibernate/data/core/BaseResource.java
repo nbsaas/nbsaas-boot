@@ -184,7 +184,7 @@ public abstract class BaseResource<Entity, Response, Simple,Request extends Requ
 
     @Transactional
     @Override
-    public ResponseObject<Response> update(Request request) {
+    public ResponseObject<Response> update(RequestId request) {
         ResponseObject<Response> result = new ResponseObject<>();
         Entity bean = get(request.getId(), false);
         if (bean == null) {

@@ -133,7 +133,16 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
 
     }
+    @Override
+    public List<Simple> searchData(PageRequest request) {
 
+        SpecificationData<Entity> spec = new SpecificationData<>(request);
+        List<Entity> list = getJpaRepository().findAll(spec);
+        if (list == null) {
+            return null;
+        }
+        return list.stream().map(getConvertSimple()).collect(Collectors.toList());
+    }
     /**
      * 删除数据
      *

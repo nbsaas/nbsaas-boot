@@ -1,19 +1,19 @@
 package ${controllerPackage};
 
-import com.he1618.common.mysql.domain.annotations.Add;
-import com.he1618.common.mysql.domain.annotations.Delete;
-import com.he1618.common.mysql.domain.annotations.Update;
-import com.he1618.common.mysql.domain.annotations.View;
-import com.he1618.common.mysql.domain.response.ListResponse;
-import com.he1618.common.mysql.domain.response.PageResponse;
-import com.he1618.common.mysql.domain.response.ResultResponse;
-import com.he1618.core.annotations.CreateData;
-import com.he1618.core.annotations.UpdateData;
-import ${requestPackage}.${table.name}Form;
-import ${requestPackage}.${table.name}SearchRequest;
-import ${responsePackage}.${table.name}Response;
-import ${simplePackage}.${table.name}Simple;
-import ${apiPackage}.${table.name}Api;
+import com.nbsaas.boot.rest.annotations.Add;
+import com.nbsaas.boot.rest.annotations.Delete;
+import com.nbsaas.boot.rest.annotations.Update;
+import com.nbsaas.boot.rest.annotations.View;
+import com.nbsaas.boot.rest.response.ListResponse;
+import com.nbsaas.boot.rest.response.PageResponse;
+import com.nbsaas.boot.rest.response.ResponseObject;
+import com.nbsaas.boot.rest.annotations.CreateData;
+import com.nbsaas.boot.rest.annotations.UpdateData;
+import ${requestPackage}.${formBean.className}DataRequest;
+import ${requestPackage}.${formBean.className}SearchRequest;
+import ${responsePackage}.${formBean.className}Response;
+import ${simplePackage}.${formBean.className}Simple;
+import ${apiPackage}.${formBean.className}Api;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,58 +21,54 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
-* Description ${table.srcName} ${table.comment} 接口
+*  对外控制器
 */
 @RequiresAuthentication
 @RestController
-@RequestMapping("/${table.name?uncap_first}")
-public class ${table.name}Controller {
+@RequestMapping("/${formBean.className?uncap_first}")
+public class ${formBean.className}Controller {
 
 
-@Resource
-private ${table.name}Api ${table.name?uncap_first}Api;
+      @Resource
+      private ${formBean.className}Api ${formBean.className?uncap_first}Api;
 
 
-@RequestMapping("/search")
-public PageResponse
-<${table.name}Simple> search(${table.name}SearchRequest request) {
-    return ${table.name?uncap_first}Api.search(request);
+    @RequestMapping("/search")
+    public PageResponse<${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
+         return ${formBean.className?uncap_first}Api.search(request);
     }
 
     @RequestMapping("/list")
-    public ListResponse
-    <${table.name}Simple> list(${table.name}SearchRequest request) {
-        return ${table.name?uncap_first}Api.list(request);
-        }
+    public ListResponse<${formBean.className}Simple> list(${formBean.className}SearchRequest request) {
+        return ${formBean.className?uncap_first}Api.list(request);
+    }
 
         /**
         * 添加数据
         *
-        * @param form
+        * @param request
         * @return
         */
         @CreateData
-        @RequestMapping("/add")
-        public ResultResponse
-        <${table.name}Response> add(@Validated(Add.class) ${table.name}Form form) {
-            return ${table.name?uncap_first}Api.add(form);
-            }
+        @RequestMapping("/create")
+        public ResponseObject
+        <${formBean.className}Response> create(@Validated(Add.class) ${formBean.className}DataRequest request) {
+            return ${formBean.className?uncap_first}Api.create(request);
+        }
 
-            @UpdateData
-            @RequestMapping("/update")
-            public ResultResponse
-            <${table.name}Response> update(@Validated(Update.class) ${table.name}Form form) {
-                return ${table.name?uncap_first}Api.update(form);
-                }
+        @UpdateData
+       @RequestMapping("/update")
+       public ResponseObject<${formBean.className}Response> update(@Validated(Update.class) ${formBean.className}DataRequest request) {
+          return ${formBean.className?uncap_first}Api.update(request);
+       }
 
-                @RequestMapping("/delete")
-                public ResultResponse<?> delete(@Validated(Delete.class) ${table.name}Form form) {
-                return ${table.name?uncap_first}Api.delete(form);
-                }
+      @RequestMapping("/delete")
+      public ResponseObject<?> delete(@Validated(Delete.class) ${formBean.className}DataRequest request) {
+         return ${formBean.className?uncap_first}Api.delete(request);
+      }
 
-                @RequestMapping("/view")
-                public ResultResponse
-                <${table.name}Response> view(@Validated(View.class) ${table.name}Form form) {
-                    return ${table.name?uncap_first}Api.view(form);
-                    }
-                    }
+       @RequestMapping("/view")
+       public ResponseObject <${formBean.className}Response> view(@Validated(View.class) ${formBean.className}DataRequest request) {
+          return ${formBean.className?uncap_first}Api.view(request);
+       }
+}
