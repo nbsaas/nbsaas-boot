@@ -17,6 +17,7 @@
         <module>hibernate-dao</module>
         <module>core</module>
         <module>chain</module>
+        <module>jpa-dao</module>
     </modules>
 
     <properties>
