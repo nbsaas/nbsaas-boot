@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>framework</artifactId>
-        <version>1.0.4-2023-03-25</version>
+        <version>1.0.5-2023-04-08</version>
     </parent>
 
     <artifactId>jpa-dao</artifactId>
@@ -19,19 +19,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>rest</artifactId>
-            <version>1.0.4-2023-03-25</version>
+            <version>1.0.5-2023-04-08</version>
         </dependency>
     </dependencies>
 </project>

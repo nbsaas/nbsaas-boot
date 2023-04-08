@@ -17,7 +17,7 @@
     </modules>
     <groupId>com.nbsaas.boot</groupId>
     <artifactId>boot-nbsaas</artifactId>
-    <version>1.0.4-2023-03-25</version>
+    <version>1.0.5-2023-04-08</version>
     <packaging>pom</packaging>
     <name>boot-nbsaas</name>
     <url>http://www.nbsaas.com</url>
@@ -27,12 +27,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2021.0.6</spring-cloud.version>
-        <discover.version>3.3.18-20230117</discover.version>
         <hibernate.version>5.6.15.Final</hibernate.version>
         <shiro.version>1.11.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <nacos.version>2.2.0</nacos.version>
-        <hibernate.version>5.6.15.Final</hibernate.version>
     </properties>
     <description>Spring Boot for nbsaas.com</description>
     <dependencies>
