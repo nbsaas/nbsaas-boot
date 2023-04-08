@@ -23,6 +23,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>rest</artifactId>
             <version>1.0.5-2023-04-08</version>
