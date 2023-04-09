@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>support</artifactId>
-        <version>1.0.5-2023-04-08</version>
+        <version>1.0.6-2023-04-09</version>
     </parent>
     <artifactId>spring-boot</artifactId>
     <name>Archetype - spring-boot</name>
