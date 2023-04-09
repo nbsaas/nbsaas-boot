@@ -7,7 +7,7 @@ import lombok.Data;
 import com.nbsaas.boot.rest.request.RequestId;
 <#if formBean.requests??>
     <#list formBean.requests as item>
-        <#if item.fieldType?? && item.fieldType gt 2 >
+        <#if item.fieldType?? && item.fieldType == 4 >
             import ${item.fullType};
         </#if>
     </#list>

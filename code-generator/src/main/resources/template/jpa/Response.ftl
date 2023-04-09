@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 <#if formBean.requests??>
     <#list formBean.requests as item>
-        <#if item.fieldType?? && item.fieldType gt 2 >
+        <#if item.fieldType?? && item.fieldType == 4 >
             import ${item.fullType};
         </#if>
     </#list>

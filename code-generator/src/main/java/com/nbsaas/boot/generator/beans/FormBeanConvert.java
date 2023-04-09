@@ -93,64 +93,6 @@ public class FormBeanConvert {
 
 
 
-    /**
-     * 获取实体所有字段
-     *
-     * @param object
-     * @return
-     */
-    public Set<FieldBean> fields(Class<?> object) {
-        Set<FieldBean> beans = new HashSet<>();
-        for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
-            Field[] fs = clazz.getDeclaredFields();
-            for (Field f : fs) {
-                f.setAccessible(true);
-//                if (haveId(f)) {
-//                    continue;
-//                }
-                NoHandle noHandle = f.getAnnotation(NoHandle.class);
-                if (noHandle != null) {
-                    continue;
-                }
-                FieldConvert convert = f.getAnnotation(FieldConvert.class);
-                if (convert != null) {
-                    FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
-                    bean.setType(convert.classType());
-                    bean.setFieldType(2);
-                    bean.setParentType(f.getType().getSimpleName());
-                    bean.setParentFullType(f.getType().getName());
-                    beans.add(bean);
-                }
-
-                if (f.getType().isEnum()) {
-                    FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
-                    bean.setType(f.getType().getSimpleName());
-                    bean.setFieldType(4);
-                    bean.setFullType(f.getType().getName());
-                    beans.add(bean);
-                    continue;
-                }
-
-                if (f.getType().getName().startsWith("java.lang")
-                        || f.getType().getName().equals("int")
-                        || f.getType().getName().equals("long")
-                        || f.getType().getName().equals("float")
-                        || f.getType().getName().equals("double")
-                        || f.getType().getName().equals("Date")
-                        || f.getType().getSimpleName().equals("BigDecimal")
-                        || f.getType().getSimpleName().equals("Date")) {
-                    FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
-                    bean.setType(f.getType().getSimpleName());
-                    bean.setFieldType(1);
-                    beans.add(bean);
-                }
-            }
-        }
-        return beans;
-    }
 
     public Set<FieldBean> fieldsForSimple(Class<?> object) {
         return getFieldBeans(object, NoSimple.class);
@@ -174,6 +116,7 @@ public class FormBeanConvert {
                     bean.setFieldType(2);
                     bean.setParentType(f.getType().getSimpleName());
                     bean.setParentFullType(f.getType().getName());
+                    bean.setFullType(f.getType().getName());
                     beans.add(bean);
                 }
 
@@ -196,6 +139,7 @@ public class FormBeanConvert {
                     bean.setParent(f.getName());
                     bean.setType(fieldName.classType());
                     bean.setFieldType(3);
+                    bean.setFullType(f.getType().getName());
                     beans.add(bean);
                 }
 
@@ -203,6 +147,7 @@ public class FormBeanConvert {
                     FieldBean bean = new FieldBean();
                     bean.setId(f.getName());
                     bean.setType(f.getType().getSimpleName());
+                    bean.setFullType(f.getType().getName());
                     bean.setFieldType(4);
                     beans.add(bean);
                 }
@@ -215,7 +160,7 @@ public class FormBeanConvert {
                         || f.getType().getName().equals("double")
                         || f.getType().getSimpleName().equals("BigDecimal")
                         || f.getType().getSimpleName().equals("Date")) {
-                    if (f.getAnnotation(annotation) != null) {
+                    if (annotation!=null&&f.getAnnotation(annotation) != null) {
                         continue;
                     }
                     FieldBean bean = new FieldBean();
@@ -236,8 +181,7 @@ public class FormBeanConvert {
         formBean.setSimples(fieldsForSimple(object));
         formBean.setResponses(fieldsForResponse(object));
         formBean.setSearches(search(object));
-        formBean.setRequests(fields(object));
-        List<FieldBean> beanList = formBean.getFields();
+        formBean.setRequests(getFieldBeans(object,null));
         FormAnnotation formAnnotation = object.getAnnotation(FormAnnotation.class);
         if (formAnnotation != null) {
             formBean.setTitle(formAnnotation.title());
@@ -266,79 +210,6 @@ public class FormBeanConvert {
             formBean.setTenantPermissionClass(true);
         }
 
-
-        for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
-            Field[] fs = clazz.getDeclaredFields();
-            for (Field f : fs) {
-                f.setAccessible(true);
-                FormField field = f.getAnnotation(FormField.class);
-                FieldBean bean = new FieldBean();
-                if (field == null) {
-                    continue;
-                }
-
-                if (f.getType().isEnum()) {
-                    bean.setFieldType(4);
-                    bean.setExtName("Name");
-                } else {
-                    bean.setFieldType(1);
-                    bean.setExtName("");
-                }
-                FieldName fieldName = f.getAnnotation(FieldName.class);
-                if (fieldName != null) {
-                    bean.setFieldType(3);
-                    bean.setExtName("Name");
-                }
-                bean.setWidth(field.width());
-                bean.setClassName(field.className());
-                bean.setId(field.id());
-                if (bean.getId() == null) {
-                    bean.setId(f.getName());
-                }
-                bean.setType(field.type().name());
-                bean.setPlaceholder(field.placeholder());
-                Integer sortNum = getInteger(field);
-                bean.setSortNum(sortNum);
-                bean.setTitle(field.title());
-                bean.setCol(field.col());
-                bean.setRequired(field.required());
-                bean.setOption(field.option());
-                bean.setSort(field.sort());
-                if (field.grid()) {
-                    formBean.getGrids().add(bean);
-                }
-                if (StringUtils.isEmpty(bean.getTitle())) {
-                    bean.setTitle(f.getName());
-                }
-                if (StringUtils.isEmpty(bean.getId())) {
-                    bean.setId(f.getName());
-                }
-                if (StringUtils.isEmpty(bean.getPlaceholder())) {
-                    bean.setPlaceholder(bean.getTitle());
-                }
-                if ("date".equals(bean.getType())) {
-                    formBean.setHasDate(true);
-                    formBean.getDates().add(bean);
-                }
-                if ("image".equals(bean.getType())) {
-                    formBean.setHasImage(true);
-                    formBean.getImages().add(bean);
-                }
-                if (field.ignore()) {
-                    continue;
-                }
-                if (!beanList.contains(bean)) {
-                    beanList.add(bean);
-                }
-            }
-        }
-        beanList.sort(new Comparator<FieldBean>() {
-            @Override
-            public int compare(FieldBean o1, FieldBean o2) {
-                return o1.getSortNum().compareTo(o2.getSortNum());
-            }
-        });
-        Collections.sort(formBean.getGrids());
         return formBean;
     }
 

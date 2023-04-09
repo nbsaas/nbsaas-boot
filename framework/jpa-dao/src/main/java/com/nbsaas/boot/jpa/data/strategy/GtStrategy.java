@@ -8,6 +8,11 @@ public class GtStrategy implements OperatorStrategy{
 
     @Override
     public Predicate handle(CriteriaBuilder criteriaBuilder,Root<?> root, String field, Object object) {
-       return criteriaBuilder.gt(root.get(field),  (Number) object);
+        if (object instanceof Number) {
+            return criteriaBuilder.gt(root.get(field), (Number) object);
+        } else if (object instanceof Comparable) {
+            return criteriaBuilder.greaterThan(root.get(field), (Comparable) object);
+        }
+        return null;
     }
 }

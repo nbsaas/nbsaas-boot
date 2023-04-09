@@ -23,6 +23,10 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     private String className;
 
+    private String javaType;
+
+    private Boolean simpleType;
+
     /**
      * java简体类
      */

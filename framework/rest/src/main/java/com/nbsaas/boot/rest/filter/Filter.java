@@ -2,6 +2,7 @@ package com.nbsaas.boot.rest.filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -100,6 +101,11 @@ public class Filter {
         numbers.add(object2);
         return new Filter(field, numbers, Operator.between);
     }
-
+    public static Filter between(String field, Date object, Date object2) {
+        List<Date> numbers=new ArrayList<>();
+        numbers.add(object);
+        numbers.add(object2);
+        return new Filter(field, numbers, Operator.between);
+    }
 
 }

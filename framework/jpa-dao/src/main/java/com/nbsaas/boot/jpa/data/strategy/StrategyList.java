@@ -20,6 +20,7 @@ public class StrategyList {
         strategyMap.put(Operator.le, new LeStrategy());
         strategyMap.put(Operator.like, new LikeStrategy());
         strategyMap.put(Operator.lt, new LtStrategy());
+        strategyMap.put(Operator.between, new BetweenStrategy());
 
     }
 
