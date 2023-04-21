@@ -1,7 +1,7 @@
 package com.nbsaas.boot.generator.command.jpa;
 
 
-import com.nbsaas.boot.generator.command.hibernate.BaseCommand;
+import com.nbsaas.boot.generator.command.common.BaseCommand;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
 import com.nbsaas.boot.rest.response.ResponseObject;

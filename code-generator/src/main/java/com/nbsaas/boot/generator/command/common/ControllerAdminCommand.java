@@ -1,13 +1,14 @@
-package com.nbsaas.boot.generator.command.hibernate;
+package com.nbsaas.boot.generator.command.common;
 
+import com.nbsaas.boot.generator.command.common.BaseCommand;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
 import com.nbsaas.boot.rest.response.ResponseObject;
 
-public class ControllerFrontCommand extends BaseCommand {
+public class ControllerAdminCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+        makeCodePackage("Controller", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
         return ResponseObject.success();
     }
 
@@ -15,7 +16,7 @@ public class ControllerFrontCommand extends BaseCommand {
     public String outPath() {
         Config config = inputRequestObject.getConfig();
         if (config.getMultiple()) {
-            return config.getOutputPath() + "\\gates\\front";
+            return config.getOutputPath() + "\\gates\\admin";
         } else {
             return config.getOutputPath();
         }

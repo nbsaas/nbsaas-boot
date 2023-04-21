@@ -1,20 +1,28 @@
 package com.nbsaas.boot.generator.command.common;
 
+import com.nbsaas.boot.generator.command.common.BaseCommand;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
 import com.nbsaas.boot.rest.response.ResponseObject;
 
-public class ControllerFrontCommand extends BaseCommand {
+public class DomainCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+        makeCode("DataRequest", ".api.domain.request");
+        makeCode("SearchRequest", ".api.domain.request");
+        makeCode("Response", ".api.domain.response");
+        makeCode("Simple", ".api.domain.simple");
         return ResponseObject.success();
+    }
+
+    protected boolean overrideFile(){
+        return true;
     }
     @Override
     public String outPath() {
         Config config = inputRequestObject.getConfig();
         if (config.getMultiple()) {
-            return config.getOutputPath() + "\\gates\\front";
+            return config.getOutputPath() + "\\apis\\[[]]-api".replace("[[]]", config.getProjectName());
         } else {
             return config.getOutputPath();
         }

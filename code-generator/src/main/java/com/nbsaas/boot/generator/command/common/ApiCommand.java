@@ -1,4 +1,4 @@
-package com.nbsaas.boot.generator.command.hibernate;
+package com.nbsaas.boot.generator.command.common;
 
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;

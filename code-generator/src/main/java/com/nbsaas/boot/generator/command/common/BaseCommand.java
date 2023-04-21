@@ -18,6 +18,10 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
 
     public abstract ResponseObject handle(InputRequestObject context);
 
+    protected boolean overrideFile() {
+        return false;
+    }
+
     public abstract String outPath();
 
     @Override
@@ -26,7 +30,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         Config config = context.getConfig();
 
         context.put("repositoryPackage", config.getBasePackage() + ".data.repository");
-        context.put("jpaEntityPackage", config.getBasePackage() + ".data.entity");
+        context.put("jpaEntityPackage", config.getSimplePackage() + ".entity." + context.getConfig().getProjectName());
         context.put("resourcePackage", config.getBasePackage() + ".rest.resource");
         context.put("simplePackage", config.getBasePackage() + ".api.domain.simple");
         context.put("responsePackage", config.getBasePackage() + ".api.domain.response");
@@ -70,14 +74,19 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
             String codePath = basePackage + codeType;
             Config config = inputRequestObject.getConfig();
             Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
+
             //configuration.setTemplateLoader(new FileTemplateLoader(new File(config.getBase() + config.getTemplateDir())));
-            configuration.setTemplateLoader(new ClassTemplateLoader());
+            configuration.setTemplateLoader(new ClassTemplateLoader(Template.class, config.getTemplateDir()));
+
             Template template = configuration.getTemplate(model + ".ftl");
             String requestDir = outPath() + baseCode + codePath.replace(".", "\\");
-            String outFile = requestDir + "\\" + inputRequestObject.getTable().getName() + className + "." + extension;
+            String outFile = requestDir + "\\" + inputRequestObject.getFormBean().getClassName() + className + "." + extension;
             File out = new File(outFile);
             if (!out.getParentFile().exists()) {
                 out.getParentFile().mkdirs();
+            }
+            if (!overrideFile() && out.exists()) {
+                return;
             }
             FileWriter fileWriter = new FileWriter(outFile);
             template.process(inputRequestObject, fileWriter);
