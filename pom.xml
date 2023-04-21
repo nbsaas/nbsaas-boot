@@ -6,13 +6,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.10</version>
+        <version>2.7.11</version>
         <relativePath/>
     </parent>
     <modules>
         <module>framework</module>
         <module>code-generator</module>
-        <module>support</module>
         <module>annotations</module>
     </modules>
     <groupId>com.nbsaas.boot</groupId>
@@ -27,7 +26,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2021.0.6</spring-cloud.version>
-        <hibernate.version>5.6.15.Final</hibernate.version>
         <shiro.version>1.11.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <nacos.version>2.2.0</nacos.version>
@@ -82,11 +80,6 @@
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
                 <version>${nacos.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.shiro</groupId>
