@@ -32,7 +32,7 @@ public class HibernateConfig {
         System.out.println(hibernateProperties);
         System.out.println("init ... LocalSessionFactoryBean");
         LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
-        bean.getHibernateProperties().put("hibernate.dialect", "org.hibernate.dialect.MySQL55Dialect");
+        bean.getHibernateProperties().put("hibernate.dialect", hibernateProperties.getDialect());
         bean.getHibernateProperties().put("hibernate.show_sql", hibernateProperties.getShow_sql());
         bean.getHibernateProperties().put("hibernate.format_sql", hibernateProperties.getFormat_sql());
         bean.getHibernateProperties().put("hibernate.hbm2ddl.auto", hibernateProperties.getHbm2ddl());
