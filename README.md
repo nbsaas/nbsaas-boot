@@ -8,7 +8,6 @@
 
 #### 介绍
 
-{**nbsaas**}
 boot-nbsaas是一个企业级快速开发框架，具有以下特点：
 
 1. 自动建表：boot-nbsaas提供了自动建表功能，根据用户定义的数据模型自动生成数据库表结构，减少手动操作，提高开发效率。
@@ -34,23 +33,23 @@ boot-nbsaas是一个企业级快速开发框架，具有以下特点：
 ### 技术选型：
 
 * **服务端**
-
-* SSH (Spring、SpringMVC、Hibernate）
+* Spring、SpringMVC、spring data jpa
 * Spring boot,Spring cloud,Spring alibaba
 * 安全权限 Shiro
 * 缓存 Ehcache
 * 视图模板 freemarker
 * 其它 Jsoup、gson
+* 核心采用Request-Response模式，Chain模型。
 
-### 编码规范
-1.项目结构规范
+## 编码规范
+### 1.项目结构规范
 ```
 com.{公司域名}.{主工程}
 com.{公司域名}.{主工程}.{子工程}
 
 ```
 
-2.Api模块结构规范
+### 2.Api模块结构规范
 ```
 com.{公司域名}.{主工程}.{子工程}
 com.{公司域名}.{主工程}.{子工程}.api.apis
@@ -65,7 +64,7 @@ com.{公司域名}.{主工程}.{子工程}.ext.domain.response
 com.{公司域名}.{主工程}.{子工程}.ext.domain.simple
 ```
 
-3.Resource模块结构规范
+### 3.Resource模块结构规范
 ```
 com.{公司域名}.{主工程}.{子工程}
 com.{公司域名}.{主工程}.{子工程}.data.entity
@@ -76,6 +75,97 @@ com.{公司域名}.{主工程}.{子工程}.ext.conver
 com.{公司域名}.{主工程}.{子工程}.ext.resource
 ```
 
+### 4.api接口
+
+```
+/**
+ * 响应接口
+ *
+ * @param <Response> 详情对象
+ * @param <Simple>   列表对象
+ * @param <Request>     表单对象
+ */
+public interface ResponseApi<Response, Simple, Request extends RequestId> {
+
+    /**
+     * 分页查询
+     *
+     * @param request
+     * @return 分页数据信息
+     */
+    PageResponse<Simple> search(PageRequest request);
+
+    /**
+     * 根据条件查询集合，不分页
+     *
+     * @param request
+     * @return 数据集合数据
+     */
+    ListResponse<Simple> list(PageRequest request);
+
+    /**
+     * 创建
+     *
+     * @param request
+     * @return 数据详情
+     */
+    ResponseObject<Response> create(Request request);
+
+    /**
+     * 更新
+     *
+     * @param request
+     * @return 数据详情
+     */
+    ResponseObject<Response> update(RequestId request);
+
+    /**
+     * 删除
+     *
+     * @param request
+     * @return 删除状态
+     */
+    ResponseObject<?> delete(RequestId request);
+
+    /**
+     * 根据ID查询详情
+     *
+     * @param request
+     * @return 数据详情
+     */
+    ResponseObject<Response> view(RequestId request);
+
+}
+```
+### 5.搜索对象
+```
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class UserInfoSearchRequest   extends PageRequest implements Serializable {
+
+
+      
+      @Search(name = "phone",operator = Operator.like)
+      private String phone;
+
+     @Search(name = "catalog",operator = Operator.eq)
+      private Integer catalog;
+
+    
+     @Search(name = "note",operator = Operator.like)
+      private String note;
+     
+     @Search(name = "loginSize",operator = Operator.eq)
+      private Integer loginSize;
+     
+     @Search(name = "name",operator = Operator.like)
+      private String name;
+
+
+}
+```
 
 ### 使用访问
 已经发布到maven中央仓库了
