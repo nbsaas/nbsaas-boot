@@ -62,6 +62,6 @@ com.{公司域名}.{主工程}.{子工程}.data.resources
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>boot-nbsaas</artifactId>
-        <version>1.0.6-2023-04-09</version>
+        <version>1.0.7-2023</version>
     </parent>
 ```
