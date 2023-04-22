@@ -44,8 +44,17 @@ boot-nbsaas是一个企业级快速开发框架，具有以下特点：
 ## 编码规范
 ### 1.项目结构规范
 ```
-com.{公司域名}.{主工程}
-com.{公司域名}.{主工程}.{子工程}
+{主工程}
+{主工程}.adapters
+{主工程}.admins
+{主工程}.api
+{主工程}.apps
+{主工程}.code-generator
+{主工程}.commons
+{主工程}.gates
+{主工程}.gateway
+{主工程}.models
+{主工程}.resources
 
 ```
 
