@@ -16,11 +16,17 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
 
     protected InputRequestObject inputRequestObject;
 
-    public abstract ResponseObject handle(InputRequestObject context);
-
-    protected boolean overrideFile() {
-        return false;
+    public boolean isOverrideFile() {
+        return overrideFile;
     }
+
+    public void setOverrideFile(boolean overrideFile) {
+        this.overrideFile = overrideFile;
+    }
+
+    protected boolean overrideFile;
+
+    public abstract ResponseObject handle(InputRequestObject context);
 
     public abstract String outPath();
 
@@ -30,13 +36,13 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         Config config = context.getConfig();
 
         context.put("repositoryPackage", config.getBasePackage() + ".data.repository");
-        context.put("jpaEntityPackage", config.getSimplePackage() + ".entity." + context.getConfig().getProjectName());
+        context.put("jpaEntityPackage",config.getEntityPackage());
         context.put("resourcePackage", config.getBasePackage() + ".rest.resource");
         context.put("simplePackage", config.getBasePackage() + ".api.domain.simple");
         context.put("responsePackage", config.getBasePackage() + ".api.domain.response");
         context.put("requestPackage", config.getBasePackage() + ".api.domain.request");
         context.put("fieldPackage", config.getBasePackage() + ".api.domain.field");
-        context.put("entityPackage", config.getBasePackage() + ".data.entity");
+        context.put("entityPackage", config.getEntityPackage());
         context.put("mapperPackage", config.getBasePackage() + ".data.mapper");
         context.put("apiPackage", config.getBasePackage() + ".api.apis");
         context.put("controllerPackage", config.getBasicPackage() + ".controller." + config.getProjectName());
@@ -85,7 +91,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
             if (!out.getParentFile().exists()) {
                 out.getParentFile().mkdirs();
             }
-            if (!overrideFile() && out.exists()) {
+            if (!isOverrideFile() && out.exists()) {
                 return;
             }
             FileWriter fileWriter = new FileWriter(outFile);

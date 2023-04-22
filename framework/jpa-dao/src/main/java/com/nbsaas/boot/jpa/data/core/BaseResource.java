@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -108,6 +109,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      * @param request
      * @return
      */
+    @Transactional
     @Override
     public ResponseObject<Response> create(Form request) {
         return new JpaHelper<>(getJpaRepository()).add(request, getConvertForm(), getConvertResponse());
@@ -119,6 +121,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      * @param request
      * @return
      */
+    @Transactional
     @Override
     public ResponseObject<Response> update(RequestId request) {
         ResponseObject<Response> result = new ResponseObject<>();
@@ -149,6 +152,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      * @param request
      * @return
      */
+    @Transactional
     @Override
     public ResponseObject<?> delete(RequestId request) {
         ResponseObject<?> result = new ResponseObject<>();
