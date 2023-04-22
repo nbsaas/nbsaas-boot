@@ -2,6 +2,7 @@ package com.nbsaas.boot.jpa.data.entity;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,56 +20,39 @@ public abstract class CatalogEntity implements   Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Comment("主键id")
     private Long id;
 
 
-    /**
-     * 名称
-     */
+    @Comment("名称")
     private String name;
 
 
-    /**
-     * 排序号
-     */
+    @Comment("排序号")
     private Integer sortNum;
 
-    /**
-     * 编码
-     */
+    @Comment("编码")
     @Column(length = 50)
     private String code;
 
-
-    /**
-     * ids
-     */
+    @Comment("ids")
     private String ids;
 
-    /**
-     * 左节点
-     */
+    @Comment("左节点")
     private Integer lft;
 
-    /**
-     * 右节点
-     */
+
+    @Comment("右节点")
     private Integer rgt;
 
-    /**
-     * 等级
-     */
-    private Integer levelInfo;
+    @Comment("深度")
+    private Integer depth;
 
 
-    /**
-     * 添加时间
-     */
+    @Comment("添加时间")
     private Date addDate;
 
-    /**
-     * 最新修改时间
-     */
+    @Comment("最新修改时间")
     private Date lastDate;
 
 
