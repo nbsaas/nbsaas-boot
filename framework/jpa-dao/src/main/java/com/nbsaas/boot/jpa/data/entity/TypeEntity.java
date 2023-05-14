@@ -1,6 +1,7 @@
 package com.nbsaas.boot.jpa.data.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class TypeEntity {
 
+    @Comment("主键id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

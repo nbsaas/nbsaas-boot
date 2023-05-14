@@ -1,5 +1,7 @@
 package com.nbsaas.boot.jpa.data.entity;
 
+import org.hibernate.annotations.Comment;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @MappedSuperclass
 public class LongEntity implements Serializable {
 
+    @Comment("主键id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

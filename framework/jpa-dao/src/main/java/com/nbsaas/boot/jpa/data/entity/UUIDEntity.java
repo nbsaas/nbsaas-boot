@@ -1,5 +1,7 @@
 package com.nbsaas.boot.jpa.data.entity;
 
+import org.hibernate.annotations.Comment;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -13,6 +15,7 @@ public class UUIDEntity implements Serializable {
     /**
      * 数据库主键
      */
+    @Comment("主键id")
     @Id
     @Column(length = 32, unique = true)
     private String id;

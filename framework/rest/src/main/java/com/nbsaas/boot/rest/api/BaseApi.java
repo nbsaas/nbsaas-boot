@@ -8,6 +8,7 @@ import com.nbsaas.boot.rest.request.RequestId;
  * @param <Simple>   Simple 列表对象
  */
 public interface BaseApi<Response, Simple,Request extends RequestId> extends
+        ExtApi,
         DataApi<Response, Simple,Request>,
         ResponseApi<Response, Simple,Request> {
 
