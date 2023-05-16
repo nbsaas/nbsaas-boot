@@ -51,24 +51,24 @@ public class ${formBean.className}AppController {
         */
     @CreateData
   @RequestMapping("/create")
-   public ResponseObject<${formBean.className}Response> create(@Validated(Add.class) ${formBean.className}DataRequest request) {
+   public ResponseObject<${formBean.className}Response> create(@Validated(AddOperator.class) ${formBean.className}DataRequest request) {
        return ${formBean.className?uncap_first}Api.create(request);
     }
 
     @UpdateData
     @RequestMapping("/update")
    public ResponseObject
-    <${formBean.className}Response> update(@Validated(Update.class) ${formBean.className}DataRequest request) {
+    <${formBean.className}Response> update(@Validated(UpdateOperator.class) ${formBean.className}DataRequest request) {
          return ${formBean.className?uncap_first}Api.update(request);
     }
 
      @RequestMapping("/delete")
-     public ResponseObject<?> delete(@Validated(Delete.class) ${formBean.className}DataRequest request) {
+     public ResponseObject<?> delete(@Validated(DeleteOperator.class) ${formBean.className}DataRequest request) {
         return ${formBean.className?uncap_first}Api.delete(request);
     }
 
     @RequestMapping("/view")
-    public ResponseObject <${formBean.className}Response> view(@Validated(View.class) ${formBean.className}DataRequest request) {
+    public ResponseObject <${formBean.className}Response> view(@Validated(ViewOperator.class) ${formBean.className}DataRequest request) {
          return ${formBean.className?uncap_first}Api.view(request);
     }
 }
