@@ -1,9 +1,9 @@
 package ${controllerPackage};
 
-import com.nbsaas.boot.rest.annotations.Add;
-import com.nbsaas.boot.rest.annotations.Delete;
-import com.nbsaas.boot.rest.annotations.Update;
-import com.nbsaas.boot.rest.annotations.View;
+import com.nbsaas.boot.rest.annotations.AddOperator;
+import com.nbsaas.boot.rest.annotations.DeleteOperator;
+import com.nbsaas.boot.rest.annotations.UpdateOperator;
+import com.nbsaas.boot.rest.annotations.ViewOperator;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;

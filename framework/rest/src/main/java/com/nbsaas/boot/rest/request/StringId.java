@@ -8,7 +8,7 @@ public class StringId implements RequestId{
         this.id = id;
     }
 
-    private String id;
+    private final String id;
 
     @Override
     public Serializable getId() {

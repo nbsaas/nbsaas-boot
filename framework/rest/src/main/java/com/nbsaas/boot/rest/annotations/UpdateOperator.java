@@ -16,17 +16,8 @@ package com.nbsaas.boot.rest.annotations;
  * 纽百特® 是西安纽百特科技有限责任公司的注册商标，未经授权不得使用。
  */
 
-
-import java.lang.annotation.*;
-
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Documented
-public @interface RecordLogData {
-
-    String title() default "";
-
-    String app() default "";
-
+/**
+ * 更新数据时候的校验分组
+ */
+public interface UpdateOperator {
 }

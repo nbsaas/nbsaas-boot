@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class ResultMapBuilder extends Builder {
 
-    private Map<String, Object> param = new HashMap<>();
+    private final Map<String, Object> param = new HashMap<>();
 
     private int code = 200;
 

@@ -8,7 +8,7 @@ public class LongId implements RequestId{
         this.id = id;
     }
 
-    private Long id;
+    private final Long id;
 
     @Override
     public Serializable getId() {

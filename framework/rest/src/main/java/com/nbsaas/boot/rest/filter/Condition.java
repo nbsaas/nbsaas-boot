@@ -7,6 +7,6 @@ public enum Condition {
     AND,
     OR;
 
-    private Condition() {
+    Condition() {
     }
 }

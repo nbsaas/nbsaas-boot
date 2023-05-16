@@ -17,7 +17,7 @@ public enum Operator {
     isNotNull,
     between;
 
-    private Operator() {
+    Operator() {
     }
 
     public Operator fromString(String value) {
