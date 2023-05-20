@@ -3,6 +3,7 @@ package com.nbsaas.boot.jpa.data.entity;
 
 import com.nbsaas.boot.jpa.data.listener.EntityListener;
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
@@ -19,11 +20,13 @@ public abstract class AbstractEntity extends LongEntity implements Serializable 
     /**
      * 添加时间
      */
+    @Comment("添加时间")
     private Date addDate;
 
     /**
      * 最新修改时间
      */
+    @Comment("最新修改时间")
     private Date lastDate;
 
 

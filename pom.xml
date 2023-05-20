@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.11</version>
+        <version>2.7.12</version>
         <relativePath/>
     </parent>
     <modules>
@@ -16,7 +16,7 @@
     </modules>
     <groupId>com.nbsaas.boot</groupId>
     <artifactId>boot-nbsaas</artifactId>
-    <version>1.0.7-2023</version>
+    <version>1.0.8-2023</version>
     <packaging>pom</packaging>
     <name>boot-nbsaas</name>
     <url>http://www.nbsaas.com</url>
@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-cloud.version>2021.0.7</spring-cloud.version>
         <shiro.version>1.11.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <nacos.version>2.2.0</nacos.version>

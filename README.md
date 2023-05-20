@@ -182,6 +182,6 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>boot-nbsaas</artifactId>
-        <version>1.0.7-2023</version>
+        <version>1.0.8-2023</version>
     </parent>
 ```
