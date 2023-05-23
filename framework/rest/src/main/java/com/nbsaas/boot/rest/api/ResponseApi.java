@@ -40,6 +40,8 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
      */
     PageResponse<Simple> search(PageRequest request);
 
+
+
     /**
      * 根据条件查询集合，不分页
      *
