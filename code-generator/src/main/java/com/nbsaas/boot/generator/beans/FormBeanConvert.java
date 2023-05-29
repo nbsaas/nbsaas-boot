@@ -210,6 +210,107 @@ public class FormBeanConvert {
             formBean.setTenantPermissionClass(true);
         }
 
+
+        List<FieldBean> beanList = formBean.getFields();
+
+        for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
+            Field[] fs = clazz.getDeclaredFields();
+            for (Field f : fs) {
+                f.setAccessible(true);
+                FormField field = f.getAnnotation(FormField.class);
+                FieldBean bean = new FieldBean();
+                if (field == null) {
+                    continue;
+                }
+
+                if (f.getType().isEnum()) {
+                    bean.setFieldType(4);
+                    bean.setExtName("Name");
+                } else {
+                    bean.setFieldType(1);
+                    bean.setExtName("");
+                }
+                FieldName fieldName = f.getAnnotation(FieldName.class);
+                if (fieldName != null) {
+                    bean.setFieldType(3);
+                    bean.setExtName("Name");
+                }
+                bean.setWidth(field.width());
+                bean.setClassName(field.className());
+                bean.setId(field.id());
+                if (bean.getId() == null) {
+                    bean.setId(f.getName());
+                }
+                bean.setType(field.type().name());
+                bean.setPlaceholder(field.placeholder());
+                Integer sortNum = getInteger(field);
+                bean.setSortNum(sortNum);
+                bean.setTitle(field.title());
+                bean.setCol(field.col());
+                bean.setRequired(field.required());
+                bean.setOption(field.option());
+                bean.setSort(field.sort());
+                if (field.grid()) {
+                    formBean.getGrids().add(bean);
+                }
+                if (StringUtils.isEmpty(bean.getTitle())) {
+                    bean.setTitle(f.getName());
+                }
+                if (StringUtils.isEmpty(bean.getId())) {
+                    bean.setId(f.getName());
+                }
+                if (StringUtils.isEmpty(bean.getPlaceholder())) {
+                    bean.setPlaceholder(bean.getTitle());
+                }
+                if ("date".equals(bean.getType())) {
+                    formBean.setHasDate(true);
+                    formBean.getDates().add(bean);
+                }
+                if ("image".equals(bean.getType())) {
+                    formBean.setHasImage(true);
+                    formBean.getImages().add(bean);
+                }
+                if (field.ignore()) {
+                    continue;
+                }
+                if (!beanList.contains(bean)) {
+                    beanList.add(bean);
+                }
+
+
+
+                //
+                if (field.type()== InputType.image){
+
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("avatar").model("@/components/avatar.vue")
+                            .build());
+                }
+                if (field.type()== InputType.el_upload){
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("avatar").model("@/components/avatar.vue")
+                            .build());
+                }
+                if (field.type()== InputType.dictionary){
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
+                }
+                if (field.type()== InputType.richText){
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("VueUeditorWrap").model("vue-ueditor-wrap")
+                            .build());
+                }
+            }
+        }
+        beanList.sort(new Comparator<FieldBean>() {
+            @Override
+            public int compare(FieldBean o1, FieldBean o2) {
+                return o1.getSortNum().compareTo(o2.getSortNum());
+            }
+        });
+        Collections.sort(formBean.getGrids());
+
         return formBean;
     }
 

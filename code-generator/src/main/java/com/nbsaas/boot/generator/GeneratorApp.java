@@ -4,6 +4,7 @@ import com.nbsaas.boot.chain.impl.ChainBase;
 import com.nbsaas.boot.generator.beans.FormBean;
 import com.nbsaas.boot.generator.beans.FormBeanConvert;
 import com.nbsaas.boot.generator.command.common.*;
+import com.nbsaas.boot.generator.command.vue3.VueCommand;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
 import com.nbsaas.boot.rest.response.ResponseObject;
@@ -19,7 +20,7 @@ public class GeneratorApp {
 
         //config/bootadmin/system.yml
         //config/bootadmin/user.yml
-        generator("config/boot/ad.yml");
+        generator("config/vue/ad.yml");
 
     }
 
@@ -41,13 +42,14 @@ public class GeneratorApp {
             FormBean formBean = new FormBeanConvert().convertClass(Class.forName(config.getEntityPackage() + "." + table));
 
             ChainBase<InputRequestObject, ResponseObject<?>> chainBase = new ChainBase<>();
-            chainBase.addCommand(new DomainCommand());
-            chainBase.addCommand(new ApiCommand());
-            chainBase.addCommand(new ConvertCommand());
-            chainBase.addCommand(new ControllerAdminCommand());
-            chainBase.addCommand(new ControllerFrontCommand());
-            chainBase.addCommand(new RestCommand());
-            chainBase.addCommand(new ExtApiCommand());
+//            chainBase.addCommand(new DomainCommand());
+//            chainBase.addCommand(new ApiCommand());
+//            chainBase.addCommand(new ConvertCommand());
+//            chainBase.addCommand(new ControllerAdminCommand());
+//            chainBase.addCommand(new ControllerFrontCommand());
+//            chainBase.addCommand(new RestCommand());
+//            chainBase.addCommand(new ExtApiCommand());
+            chainBase.addCommand(new VueCommand());
             chainBase.addCommand(new FinishCommand());
 
             InputRequestObject context = new InputRequestObject();

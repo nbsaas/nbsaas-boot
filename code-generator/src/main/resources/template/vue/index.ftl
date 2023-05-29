@@ -10,10 +10,10 @@
             </template>
         </el-dialog>
         <div class="search">
-            <el-form label-width="${bean.searchWidth!80}px">
+            <el-form label-width="${formBean.searchWidth!80}px">
                 <el-row>
-                    <#if searchs??>
-                        <#list searchs as item>
+                    <#if formBean.searchs??>
+                        <#list formBean.searchs as item>
                             <#if item.show>
                                 <el-col :span="6" style="padding: 0 8px;">
                                     <el-form-item label="${item.title}">
@@ -58,10 +58,10 @@
                 <el-button type="primary" size="small" @click="addView">新增</el-button>
             </div>
 
-            <el-table v-loading="loading" :data="tableData.list" @sort-change="changeTableSort"
+            <el-table v-loading="loading" :data="tableData.data" @sort-change="changeTableSort"
                       style="width: 100%;font-size: 12px;">
-                <#if bean.grids??>
-                    <#list bean.grids as item>
+                <#if formBean.grids??>
+                    <#list formBean.grids as item>
                         <el-table-column label="${item.title}" prop="${item.id!}${item.extName!}"
                                          <#if item.sort>sortable="custom" </#if>  <#if item.width?length lt 4 > width="${item.width!}"  </#if> >
                         </el-table-column>
@@ -101,7 +101,7 @@
     import common from "@/mixins/common.js";
 
     export default {
-        name: "${config_entity}_index",
+        name: "${formBean.className?uncap_first}_index",
         mixins: [common],
         data() {
             return {
@@ -116,7 +116,6 @@
                     </#list>
                     </#if>
                 },
-                adPositionOptions: [],
                 dialogVisible: false,
                 defaultProps: {
                     children: 'children',
@@ -124,7 +123,7 @@
                 },
                 loading: false,
                 tableData: {},
-                <#list bean.fields as item>
+                <#list formBean.fields as item>
                 <#if item.option?length gt 2 >
                 ${item.id}Options: [],
                 </#if>
@@ -133,13 +132,13 @@
         },
         mounted() {
 
-            let search = this.$tool.data.get("${config_entity}_search");
+            let search = this.$tool.data.get("${formBean.className?uncap_first}_search");
             if (search) {
                 Object.assign(this.searchObject, search)
             }
             this.getSearchList();
 
-            <#list bean.fields as item>
+            <#list formBean.fields as item>
             <#if item.option?length gt 2 >
             this.load${item.id?cap_first}Options();
             </#if>
@@ -149,12 +148,12 @@
             async getSearchList() {
                 this.loading = true;
                 let data = this.searchObject;
-                let res = await this.$http.form("/tenantRest/${config_entity}/search.htm", data);
-                if (res.code === 0) {
+                let res = await this.$http.form("/${formBean.className?uncap_first}/search", data);
+                if (res.code === 200) {
                     this.tableData = res;
                 }
                 this.loading = false;
-                this.$tool.data.set("${config_entity}_search", this.searchObject);
+                this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
 
             },
             addView() {
@@ -182,7 +181,7 @@
                 this.selectId = row.id;
                 this.dialogVisible = true;
             },
-            <#list bean.fields as item>
+            <#list formBean.fields as item>
             <#if item.option?length gt 2 >
             async load${item.id?cap_first}Options() {
                 let self = this;
@@ -192,9 +191,9 @@
                 param.level = 1;
                 param.size = 500;
                 param.fetch = 0;
-                let res = await this.$http.form("/tenantRest/${item.id?lower_case}/list.htm", param);
-                if (res.code === 0) {
-                    self.${item.id}Options = res.list;
+                let res = await this.$http.form("/${item.id?uncap_first}/list", param);
+                if (res.code === 200) {
+                    self.${item.id}Options = res.data;
                 }
             },
             </#if>
@@ -202,8 +201,8 @@
             clearSearch() {
                 this.searchObject.key = "";
                 this.searchObject.name = "";
-                <#if searchs??>
-                <#list searchs as item>
+                <#if formBean.searchs??>
+                <#list formBean.searchs as item>
                 this.searchObject.${item.id} = "";
                 </#list>
                 </#if>
@@ -214,8 +213,8 @@
                 if (this.selectId) {
                     let params = {};
                     params.id = this.selectId;
-                    let res = await this.$http.form("/tenantRest/${config_entity}/delete.htm", params);
-                    if (res.code === 0) {
+                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete", params);
+                    if (res.code === 200) {
                         this.$message({
                             message: '删除数据成功',
                             type: 'success'

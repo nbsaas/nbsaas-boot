@@ -1,8 +1,8 @@
 <template>
     <div>
         <el-form class="viewForm" label-width="80px">
-            <#if bean.fields??>
-                <#list bean.fields as item>
+            <#if formBean.fields??>
+                <#list formBean.fields as item>
                     <el-col :span="${item.col!12}">
                         <el-form-item label="${item.title}">
                             <div v-html="viewModel.${item.id!}${item.extName!}"></div>
@@ -17,29 +17,25 @@
 <script>
     import common from "@/mixins/common.js";
 
-    var config = {};
-    config.methods = {};
-    config.mixins = [common];
-
-    config.data = function () {
-        return {
-            viewModel: {},
-            activeIndex: "1"
-        }
-    };
-    config.mounted = function () {
-        var id = this.$route.query.id;
-        var self = this;
-        var data = {};
-        data.id = id;
-        this.postData("/tenantRest/${config_entity}/view.htm", data, function (res) {
-            if (res.code == 0) {
-                self.viewModel = res;
+    export default {
+        name: "${formBean.className?uncap_first}_view",
+        mixins: [common],
+        data() {
+            return {
+                viewModel: {},
+                activeIndex: "1"
             }
-        });
+        },
+        async mounted() {
+            let id = this.$route.query.id;
+            let data = {};
+            data.id = id;
+            let res = await this.$http.form("/${formBean.className?uncap_first}/view", data);
+            if (res.code === 200) {
+                this.viewModel = res.data;
+            }
+        }
     }
-
-    export default config;
 </script>
 
 <style scoped>

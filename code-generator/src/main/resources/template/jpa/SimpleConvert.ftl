@@ -31,11 +31,11 @@ public class ${formBean.className}SimpleConvert implements Converter<${formBean.
             <#list formBean.simples as item>
                 <#if item.fieldType==2>
                     if(source.get${item.id?cap_first}()!=null){
-                    result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
+                        result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
                     }
                 <#elseif item.fieldType==3>
                     if(source.get${item.id?cap_first?replace("Name", "")}()!=null){
-                    result.set${item.id?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().getName());
+                        result.set${item.id?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().getName());
                     }
                 <#else>
                     result.set${item.id?cap_first}(source.get${item.id?cap_first}());

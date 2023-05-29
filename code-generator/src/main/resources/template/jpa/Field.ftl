@@ -7,11 +7,9 @@ package ${fieldPackage};
 public class ${formBean.className}Field  {
 
 
-<#list table.fields as column>
-    /**
-    * ${column.columnSrcName} ${column.columnComment}
-    */
-    public static final String   ${column.columnName} = "${column.columnName}";
+<#list formBean.requests as item>
+
+    public static final String  ${item.id} = "${item.id}";
 
 </#list>
 }

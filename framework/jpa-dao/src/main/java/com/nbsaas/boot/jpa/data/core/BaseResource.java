@@ -262,7 +262,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     @Override
     public Response oneData(Filter... filters) {
         List<Entity> list = list(filters);
-        if (list == null) {
+        if (list == null||list.size()==0) {
             return null;
         }
         Entity data = list.get(0);

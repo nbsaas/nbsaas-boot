@@ -1,0 +1,8 @@
+projectName: ad #多项目的时候模块名
+multiple: true #是否多模块项目
+templateDir: /template/vue #代码模块文件夹
+entityPackage: com.nbsaas.boot.generator.entity
+entities:
+  - Ad
+outputPath: E:\codes\vue3\nbsaas-life-admin #项目根目录
+basePackage: com.nbsaas.boot #基础包名

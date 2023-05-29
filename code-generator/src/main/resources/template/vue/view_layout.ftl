@@ -19,7 +19,7 @@
     import common from "@/mixins/common.js";
 
     export default {
-        name: "${config_entity}_layout_index",
+        name: "${formBean.className?uncap_first}_layout_index",
         mixins: [common],
         data() {
             return {
@@ -31,7 +31,7 @@
                 let selectId = this.selectId;
                 if (index === "1") {
                     this.$router.replace({
-                        path: '/${config_entity}/view',
+                        path: '/${formBean.className?uncap_first}/view',
                         query: {
                             id: selectId,
                             activeIndex: 1,
@@ -40,7 +40,7 @@
                     })
                 } else if (index === "2") {
                     this.$router.replace({
-                        path: '/${config_entity}/qrcode',
+                        path: '/${formBean.className?uncap_first}/qrcode',
                         query: {
                             id: selectId,
                             activeIndex: 2,

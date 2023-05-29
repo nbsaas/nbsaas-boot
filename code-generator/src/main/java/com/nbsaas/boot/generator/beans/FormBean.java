@@ -70,4 +70,8 @@ public class FormBean implements Serializable {
     private List<FieldBean> images = new ArrayList<FieldBean>();
 
 
+    private Set<ComponentSimple> componentSet=new HashSet<>();
+
+    private Set<ComponentSimple> components=new HashSet<>();
+
 }

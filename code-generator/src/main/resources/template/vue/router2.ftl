@@ -1,50 +1,49 @@
 export default [
-{
-name: "${config_entity}_home",
-path: "/${config_entity}/index",
-component: () => import("@/views/pages/${config_entity}/index.vue"),
-meta: {
-title: "${model!}管理",
-icon: "el-icon-platform-eleme"
-}
-},
-{
-name: "${config_entity}_add",
-path: "/${config_entity}/add",
-component: () => import("@/views/pages/${config_entity}/add.vue"),
-meta: {
-title: "添加${model!}",
-icon: "el-icon-platform-eleme"
-}
-},
-{
-name: "${config_entity}_update",
-path: "/${config_entity}/update",
-component: () => import("@/views/pages/${config_entity}/update.vue"),
-meta: {
-title: "更新${model!}",
-icon: "el-icon-platform-eleme"
-}
-},
-{
-name: "${config_entity}_layout",
-path: "/${config_entity}/view_layout",
-component: () => import("@/views/pages/${config_entity}/view_layout.vue"),
-meta: {
-title: "${model!}详情",
-icon: "el-icon-platform-eleme"
-},
-children:[
-{
-name: "${config_entity}_view",
-path: "/${config_entity}/view",
-component: () => import("@/views/pages/${config_entity}/view.vue"),
-meta: {
-title: "${model!}详情",
-icon: "el-icon-platform-eleme"
-}
-}
-]
-
-}
+    {
+        name: "${formBean.className?uncap_first}_home",
+        path: "/${formBean.className?uncap_first}/index",
+        component: () => import("@/views/pages/${formBean.className?uncap_first}/index.vue"),
+        meta: {
+            title: "${model!}管理",
+            icon: "el-icon-platform-eleme"
+        }
+    },
+    {
+        name: "${formBean.className?uncap_first}_add",
+        path: "/${formBean.className?uncap_first}/add",
+        component: () => import("@/views/pages/${formBean.className?uncap_first}/add.vue"),
+        meta: {
+            title: "添加${model!}",
+            icon: "el-icon-platform-eleme"
+        }
+    },
+    {
+        name: "${formBean.className?uncap_first}_update",
+        path: "/${formBean.className?uncap_first}/update",
+        component: () => import("@/views/pages/${formBean.className?uncap_first}/update.vue"),
+        meta: {
+            title: "更新${model!}",
+            icon: "el-icon-platform-eleme"
+        }
+    },
+    {
+        name: "${formBean.className?uncap_first}_layout",
+        path: "/${formBean.className?uncap_first}/view_layout",
+        component: () => import("@/views/pages/${formBean.className?uncap_first}/view_layout.vue"),
+        meta: {
+            title: "${model!}详情",
+            icon: "el-icon-platform-eleme"
+        },
+        children:[
+            {
+                name: "${formBean.className?uncap_first}_view",
+                path: "/${formBean.className?uncap_first}/view",
+                component: () => import("@/views/pages/${formBean.className?uncap_first}/view.vue"),
+                meta: {
+                    title: "${model!}详情",
+                    icon: "el-icon-platform-eleme"
+                }
+            }
+        ]
+    }
 ]

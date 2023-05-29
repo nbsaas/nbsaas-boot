@@ -247,7 +247,7 @@
         },
         mounted() {
 
-            let search = this.$tool.data.get("${config_entity}_search");
+            let search = this.$tool.data.get("${formBean.className?uncap_first}_search");
             if (search) {
                 this.searchObject = search;
             }
@@ -268,12 +268,12 @@
                 data.sortMethod = "asc";
                 data.sortField = "sortNum";
                 data.level = 1;
-                let res = await this.$http.form("/tenantRest/${config_entity}/list.htm", data);
-                if (res.code === 0) {
+                let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
+                if (res.code === 200) {
                     this.treeOptions.children = res.list;
                 }
                 this.loading = false;
-                this.$tool.data.set("${config_entity}_search", this.searchObject);
+                this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
 
             },
             addView() {
@@ -292,7 +292,7 @@
             },
             async addData() {
                 let data = this.form;
-                let res = await this.$http.form("/tenantRest/${config_entity}/create.htm", data);
+                let res = await this.$http.form("/${formBean.className?uncap_first}/create", data);
                 if (res.code !== 0) {
                     this.$message.error(res.msg);
                 }
@@ -314,7 +314,7 @@
                 this.workLoad = false;
             },
             async updateDataPost() {
-                let res = await this.$http.form("/tenantRest/${config_entity}/update.htm", this.form);
+                let res = await this.$http.form("/${formBean.className?uncap_first}/update", this.form);
                 if (res.code !== 0) {
                     this.$message.error(res.msg);
                     return
@@ -363,8 +363,8 @@
                 param.size = 500;
                 param.fetch = 0;
 
-                let res = await this.$http.form("/tenantRest/${item.id?lower_case}/list.htm", param);
-                if (res.code === 0) {
+                let res = await this.$http.form("/${item.id?lower_case}/list", param);
+                if (res.code === 200) {
                     self.${item.id}Options = res.list;
                 }
             },
@@ -385,8 +385,8 @@
                 if (this.selectId) {
                     let params = {};
                     params.id = this.selectId;
-                    let res = await this.$http.form("/tenantRest/${config_entity}/delete.htm", params);
-                    if (res.code === 0) {
+                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete.htm", params);
+                    if (res.code === 200) {
                         this.$message({
                             message: '删除数据成功',
                             type: 'success'

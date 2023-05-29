@@ -3,8 +3,8 @@
         <el-page-header @back="goBack" content="${model!}详情">
         </el-page-header>
         <el-form class="viewForm" label-width="80px">
-            <#if bean.fields??>
-                <#list bean.fields as item>
+            <#if formBean.fields??>
+                <#list formBean.fields as item>
                     <el-col :span="${item.col!12}">
                         <el-form-item label="${item.title}">
                             <div v-html="viewModel.${item.id!}${item.extName!}"></div>
@@ -20,7 +20,7 @@
     import common from "@/mixins/common.js";
 
     export default {
-        name: "${config_entity}_view",
+        name: "${formBean.className?uncap_first}_view",
         mixins: [common],
         data() {
             return {
@@ -32,9 +32,9 @@
             let id = this.$route.query.id;
             let data = {};
             data.id = id;
-            let res = await this.$http.form("/tenantRest/${config_entity}/view.htm", data);
-            if (res.code === 0) {
-                this.viewModel = res;
+            let res = await this.$http.form("/${formBean.className?uncap_first}/view", data);
+            if (res.code === 200) {
+                this.viewModel = res.data;
             }
         }
     }

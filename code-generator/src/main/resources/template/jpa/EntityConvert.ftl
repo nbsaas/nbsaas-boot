@@ -27,9 +27,9 @@ BeanDataUtils.copyProperties(source, result);
     <#list formBean.requests as item>
         <#if item.fieldType==2>
             if(source.get${item.id?cap_first}()!=null){
-            ${item.parentType!} ${item.id} =new ${item.parentType!}();
-            ${item.id}.setId(source.get${item.id?cap_first}());
-            result.set${item.id?cap_first}(${item.id});
+                ${item.parentType!} ${item.id} =new ${item.parentType!}();
+                ${item.id}.setId(source.get${item.id?cap_first}());
+                result.set${item.id?cap_first}(${item.id});
             }
         </#if>
     </#list>
