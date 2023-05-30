@@ -1,12 +1,12 @@
 <#macro componentInput item>
     <#if item.type='date'>
-        <el-date-picker v-model="form.${item.id!}" type="date" value-format="yyyy-MM-dd" placeholder="选择日期">
+        <el-date-picker v-model="form.${item.id!}" type="date" value-format="YYYY-MM-DD" placeholder="选择日期">
         </el-date-picker>
     <#elseif item.type='el_date_picker'>
-        <el-date-picker v-model="form.${item.id!}" type="date" value-format="yyyy-MM-dd" placeholder="选择日期">
+        <el-date-picker v-model="form.${item.id!}" type="date" value-format="YYYY-MM-DD" placeholder="选择日期">
         </el-date-picker>
     <#elseif item.type='el_date_time_picker'>
-        <el-date-picker v-model="form.${item.id!}" type="datetime" value-format="yyyy-MM-dd HH:mm"
+        <el-date-picker v-model="form.${item.id!}" type="datetime" value-format="YYYY-MM-DD HH:mm"
                         placeholder="选择日期">
         </el-date-picker>
     <#elseif item.type='el_time_select'>

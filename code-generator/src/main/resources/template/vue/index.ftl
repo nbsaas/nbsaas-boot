@@ -12,8 +12,8 @@
         <div class="search">
             <el-form label-width="${formBean.searchWidth!80}px">
                 <el-row>
-                    <#if formBean.searchs??>
-                        <#list formBean.searchs as item>
+                    <#if formBean.searches??>
+                        <#list formBean.searches as item>
                             <#if item.show>
                                 <el-col :span="6" style="padding: 0 8px;">
                                     <el-form-item label="${item.title}">
@@ -44,7 +44,7 @@
                         </#list>
                     </#if>
 
-                    <el-col :span="${leftSize!'6'}" style="padding: 0 10px;margin-top: 5px;">
+                    <el-col :span="${formBean.leftSize!'6'}" style="padding: 0 10px;margin-top: 5px;">
                         <el-row type="flex" justify="end">
                             <el-button size="small" type="primary" @click="search">搜索</el-button>
                             <el-button size="small" plain @click="clearSearch">清除条件</el-button>
@@ -110,8 +110,8 @@
                 searchObject: {
                     no: 1,
                     size: 8,
-                    <#if searchs??>
-                    <#list searchs as item>
+                    <#if formBean.searches??>
+                    <#list formBean.searches as item>
                     ${item.id}: ''<#sep>,
                     </#list>
                     </#if>
@@ -122,7 +122,12 @@
                     label: 'name'
                 },
                 loading: false,
-                tableData: {},
+                tableData: {
+                    size:0,
+                    total:0,
+                    totalPage:0,
+                    data:[]
+                },
                 <#list formBean.fields as item>
                 <#if item.option?length gt 2 >
                 ${item.id}Options: [],
@@ -201,8 +206,8 @@
             clearSearch() {
                 this.searchObject.key = "";
                 this.searchObject.name = "";
-                <#if formBean.searchs??>
-                <#list formBean.searchs as item>
+                <#if formBean.searches??>
+                <#list formBean.searches as item>
                 this.searchObject.${item.id} = "";
                 </#list>
                 </#if>

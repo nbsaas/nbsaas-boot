@@ -311,6 +311,8 @@ public class FormBeanConvert {
         });
         Collections.sort(formBean.getGrids());
 
+        formBean.setLeftSize(24-formBean.getSearches().size()*6);
+
         return formBean;
     }
 

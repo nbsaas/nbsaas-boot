@@ -31,6 +31,8 @@ public class FormBean implements Serializable {
 
     private Boolean hasImage = false;
 
+    private Integer leftSize;
+
     /**
      * 是否是目录类
      */

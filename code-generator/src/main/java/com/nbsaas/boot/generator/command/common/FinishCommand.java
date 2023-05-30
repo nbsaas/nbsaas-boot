@@ -7,9 +7,6 @@ public class FinishCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
 
-        if (context.getTable() != null) {
-            System.out.println(context.getTable().getName() + "代码生成完成");
-        }
         if (context.getFormBean() != null) {
             System.out.println(context.getFormBean().getClassName() + "代码生成完成");
         }
