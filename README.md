@@ -185,3 +185,6 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
         <version>1.0.10-2023</version>
     </parent>
 ```
+
+### 使用boot-nbsaas的项目
+[nbsaas-life](https://gitee.com/quhaodian/nbsaas-life)
