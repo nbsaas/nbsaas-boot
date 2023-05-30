@@ -12,7 +12,7 @@ import lombok.Data;
     </#list>
 </#if>
 <#if formBean.catalog>
-import java.util.List;
+    import java.util.List;
 </#if>
 
 /**
@@ -21,15 +21,16 @@ import java.util.List;
 @Data
 public class ${formBean.className}Simple implements Serializable {
 
-    /**
-    * 序列化参数
-    */
-    private static final long serialVersionUID = 1L;
+/**
+* 序列化参数
+*/
+private static final long serialVersionUID = 1L;
 
-    <#if formBean.catalog>
-    private String value;
-    private String label;
-    private List<${formBean.className}Simple> children;
+<#if formBean.catalog>
+private String value;
+private String label;
+private List
+<${formBean.className}Simple> children;
     </#if>
 
     <#if formBean.simples??>
@@ -47,4 +48,4 @@ public class ${formBean.className}Simple implements Serializable {
         </#list>
     </#if>
 
-}
+    }

@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Data
 @MappedSuperclass
-public abstract class CatalogEntity implements   Serializable {
+public abstract class CatalogEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,10 +4,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-public class GtStrategy implements OperatorStrategy{
+public class GtStrategy implements OperatorStrategy {
 
     @Override
-    public Predicate handle(CriteriaBuilder criteriaBuilder,Root<?> root, String field, Object object) {
+    public Predicate handle(CriteriaBuilder criteriaBuilder, Root<?> root, String field, Object object) {
         if (object instanceof Number) {
             return criteriaBuilder.gt(root.get(field), (Number) object);
         } else if (object instanceof Comparable) {

@@ -17,25 +17,25 @@ import java.math.BigDecimal;
 @ToString(callSuper = true)
 public class ${formBean.className}SearchRequest   extends PageRequest implements Serializable {
 
-    /**
-    * 序列化参数
-    */
-    private static final long serialVersionUID = 1L;
+/**
+* 序列化参数
+*/
+private static final long serialVersionUID = 1L;
 
-    <#if formBean.searches??>
-        <#list formBean.searches as item>
-            //${item.title}
-            @Search(name = "${item.key}",operator = Operator.${item.operator})
-            private ${item.className} ${item.id};
+<#if formBean.searches??>
+    <#list formBean.searches as item>
+        //${item.title}
+        @Search(name = "${item.key}",operator = Operator.${item.operator})
+        private ${item.className} ${item.id};
 
-        </#list>
-    </#if>
+    </#list>
+</#if>
 
-    <#if formBean.catalog>
-        private int fetch;
+<#if formBean.catalog>
+    private int fetch;
 
-        @Search(name = "levelInfo",operator = Operator.eq)
-        private Integer level;
-    </#if>
+    @Search(name = "levelInfo",operator = Operator.eq)
+    private Integer level;
+</#if>
 
 }

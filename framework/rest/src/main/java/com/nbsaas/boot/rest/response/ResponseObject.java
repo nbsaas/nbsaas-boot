@@ -15,6 +15,7 @@ package com.nbsaas.boot.rest.response;
  *
  * 纽百特® 是西安纽百特科技有限责任公司的注册商标，未经授权不得使用。
  */
+
 import com.nbsaas.boot.rest.enums.ResponseType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -67,6 +68,13 @@ public class ResponseObject<T> implements Serializable {
         return result;
     }
 
+    public static ResponseObject<?> success() {
+        ResponseObject<?> result = new ResponseObject<>();
+        result.setCode(200);
+        result.setMsg("success");
+        return result;
+    }
+
     /**
      * 返回错误对象
      *
@@ -80,13 +88,6 @@ public class ResponseObject<T> implements Serializable {
         result.setCode(code);
         result.setMsg(message);
         result.setData(data);
-        return result;
-    }
-
-    public static ResponseObject<?> success() {
-        ResponseObject<?> result = new ResponseObject<>();
-        result.setCode(200);
-        result.setMsg("success");
         return result;
     }
 }

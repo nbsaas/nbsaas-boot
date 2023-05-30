@@ -5,7 +5,7 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 
 import java.util.Objects;
 
-public interface Command<Request extends RequestObject, Response>{
+public interface Command<Request extends RequestObject, Response> {
 
     ResponseObject<Response> execute(Request request);
 
@@ -13,9 +13,9 @@ public interface Command<Request extends RequestObject, Response>{
         Objects.requireNonNull(command);
         return (Request request) -> {
             ResponseObject<Response> temp = command.execute(request);
-            if (temp.getCode() == 200){
+            if (temp.getCode() == 200) {
                 return execute(request);
-            } else{
+            } else {
                 return temp;
             }
         };
@@ -26,9 +26,9 @@ public interface Command<Request extends RequestObject, Response>{
 
         return (Request request) -> {
             ResponseObject<Response> temp = execute(request);
-            if (temp.getCode() == 200){
+            if (temp.getCode() == 200) {
                 return command.execute(request);
-            } else{
+            } else {
                 return temp;
             }
         };

@@ -145,6 +145,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
 
     }
+
     @Override
     public List<Simple> searchData(PageRequest request) {
 
@@ -155,6 +156,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         }
         return list.stream().map(getConvertSimple()).collect(Collectors.toList());
     }
+
     /**
      * 删除数据
      *
@@ -207,7 +209,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
 
     protected List<Entity> list(Filter... filters) {
-        Specification<Entity> queryWrapper = new  SpecificationFilter<>(filters);
+        Specification<Entity> queryWrapper = new SpecificationFilter<>(filters);
         return getJpaRepository().findAll(queryWrapper);
     }
 
@@ -262,7 +264,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     @Override
     public Response oneData(Filter... filters) {
         List<Entity> list = list(filters);
-        if (list == null||list.size()==0) {
+        if (list == null || list.size() == 0) {
             return null;
         }
         Entity data = list.get(0);

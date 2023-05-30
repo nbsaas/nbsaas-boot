@@ -123,10 +123,10 @@
                 },
                 loading: false,
                 tableData: {
-                    size:0,
-                    total:0,
-                    totalPage:0,
-                    data:[]
+                    size: 0,
+                    total: 0,
+                    totalPage: 0,
+                    data: []
                 },
                 <#list formBean.fields as item>
                 <#if item.option?length gt 2 >

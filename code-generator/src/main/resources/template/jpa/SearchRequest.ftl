@@ -17,43 +17,43 @@ import java.math.BigDecimal;
 @ToString(callSuper = true)
 public class ${formBean.className}SearchRequest   extends PageRequest implements Serializable {
 
-    /**
-    * 序列化参数
-    */
-    private static final long serialVersionUID = 1L;
+/**
+* 序列化参数
+*/
+private static final long serialVersionUID = 1L;
 
-   <#list formBean.requests as item>
-        <#if item.fieldType==1>
-            <#if item.type == 'String'>
+<#list formBean.requests as item>
+    <#if item.fieldType==1>
+        <#if item.type == 'String'>
 
-                /**
-                * ${item.comment!}
-                **/
-               @Search(name = "${item.id}",operator = Operator.like)
-                private ${item.type} ${item.id};
-            <#elseif item.type == 'Long'>
+            /**
+            * ${item.comment!}
+            **/
+            @Search(name = "${item.id}",operator = Operator.like)
+            private ${item.type} ${item.id};
+        <#elseif item.type == 'Long'>
 
-                /**
-                * ${item.comment!}
-                **/
-               @Search(name = "${item.id}",operator = Operator.eq)
-                private ${item.type} ${item.id};
-            <#elseif item.type == 'Integer'>
+            /**
+            * ${item.comment!}
+            **/
+            @Search(name = "${item.id}",operator = Operator.eq)
+            private ${item.type} ${item.id};
+        <#elseif item.type == 'Integer'>
 
-                /**
-                * ${item.comment!}
-                **/
-               @Search(name = "${item.id}",operator = Operator.eq)
-                private ${item.type} ${item.id};
-            </#if>
+            /**
+            * ${item.comment!}
+            **/
+            @Search(name = "${item.id}",operator = Operator.eq)
+            private ${item.type} ${item.id};
         </#if>
-   </#list>
-
-    <#if formBean.catalog>
-        private int fetch;
-
-        @Search(name = "levelInfo",operator = Operator.eq)
-        private Integer level;
     </#if>
+</#list>
+
+<#if formBean.catalog>
+    private int fetch;
+
+    @Search(name = "levelInfo",operator = Operator.eq)
+    private Integer level;
+</#if>
 
 }

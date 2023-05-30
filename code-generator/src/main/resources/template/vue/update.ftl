@@ -27,7 +27,7 @@
 
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
-    import ${item.name} from "${item.model}";
+
     </#list>
     </#if>
 
@@ -121,7 +121,7 @@
 
             <#list formBean.fields as item>
             <#if item.type='selectRemote'>
-          async  remote${item.id?cap_first}(query) {
+            async remote${item.id?cap_first}(query) {
                 if (query !== '') {
                 }
                 let self = this;

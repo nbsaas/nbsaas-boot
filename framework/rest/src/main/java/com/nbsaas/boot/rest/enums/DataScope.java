@@ -1,4 +1,5 @@
 package com.nbsaas.boot.rest.enums;
+
 /*
  * 版权声明和许可协议
  *

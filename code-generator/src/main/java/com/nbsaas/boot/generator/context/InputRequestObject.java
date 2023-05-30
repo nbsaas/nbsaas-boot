@@ -15,6 +15,7 @@ public class InputRequestObject extends RequestObject {
 
     private Config config;
     private FormBean formBean;
+    private Map<String, Object> maps = new HashMap<>();
 
     public Object get(Object key) {
         return maps.get(key);
@@ -23,6 +24,4 @@ public class InputRequestObject extends RequestObject {
     public Object put(String key, Object value) {
         return maps.put(key, value);
     }
-
-    private Map<String,Object> maps=new HashMap<>();
 }

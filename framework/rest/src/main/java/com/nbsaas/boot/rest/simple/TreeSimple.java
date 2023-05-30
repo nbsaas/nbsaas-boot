@@ -15,6 +15,7 @@ package com.nbsaas.boot.rest.simple;
  *
  * 纽百特® 是西安纽百特科技有限责任公司的注册商标，未经授权不得使用。
  */
+
 import lombok.*;
 
 import java.io.Serializable;

@@ -15,6 +15,7 @@ package com.nbsaas.boot.rest.filter;
  *
  * 纽百特® 是西安纽百特科技有限责任公司的注册商标，未经授权不得使用。
  */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -110,14 +111,15 @@ public class Filter {
     }
 
 
-    public static Filter between(String field, Number object,Number object2) {
-        List<Number> numbers=new ArrayList<>();
+    public static Filter between(String field, Number object, Number object2) {
+        List<Number> numbers = new ArrayList<>();
         numbers.add(object);
         numbers.add(object2);
         return new Filter(field, numbers, Operator.between);
     }
+
     public static Filter between(String field, Date object, Date object2) {
-        List<Date> numbers=new ArrayList<>();
+        List<Date> numbers = new ArrayList<>();
         numbers.add(object);
         numbers.add(object2);
         return new Filter(field, numbers, Operator.between);

@@ -6,5 +6,5 @@ import javax.persistence.criteria.Root;
 
 public interface OperatorStrategy {
 
-    Predicate handle(CriteriaBuilder criteriaBuilder,Root<?> root, String field, Object object );
+    Predicate handle(CriteriaBuilder criteriaBuilder, Root<?> root, String field, Object object);
 }

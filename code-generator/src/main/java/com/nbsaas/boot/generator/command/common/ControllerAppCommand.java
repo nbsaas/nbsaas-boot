@@ -10,6 +10,7 @@ public class ControllerAppCommand extends BaseCommand {
         makeCodePackage("AppController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
         return ResponseObject.success();
     }
+
     @Override
     public String outPath() {
         Config config = inputRequestObject.getConfig();

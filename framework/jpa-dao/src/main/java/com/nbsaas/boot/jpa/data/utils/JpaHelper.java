@@ -18,16 +18,16 @@ public class JpaHelper<T> {
         this.repository = repository;
     }
 
-    public   <R,F> ResponseObject<R> add(F object, Function<F,T> formConvert, Function<T,R> responseConvert) {
+    public <R, F> ResponseObject<R> add(F object, Function<F, T> formConvert, Function<T, R> responseConvert) {
         ResponseObject<R> result = new ResponseObject<>();
         T bean = formConvert.apply(object);
         this.repository.save(bean);
-        R obj=responseConvert.apply(bean);
+        R obj = responseConvert.apply(bean);
         result.setData(obj);
         return result;
     }
 
-    public <R,F extends RequestId> ResponseObject<R> handle(F form, Consumer<T> consumer, Function<T, R> convert) {
+    public <R, F extends RequestId> ResponseObject<R> handle(F form, Consumer<T> consumer, Function<T, R> convert) {
         ResponseObject<R> result = new ResponseObject<>();
         Optional<T> optional = repository.findById(form.getId());
         if (!optional.isPresent()) {
@@ -44,17 +44,18 @@ public class JpaHelper<T> {
         }
         return result;
     }
-    public  <R,F extends RequestId> ResponseObject<R>  update(F form, Function<T,R> convert) {
+
+    public <R, F extends RequestId> ResponseObject<R> update(F form, Function<T, R> convert) {
         return handle(form, bean -> {
             BeanUtils.copyProperties(form, bean);
         }, convert);
     }
 
-    public <R,F extends RequestId> ResponseObject<R>  delete(F form) {
+    public <R, F extends RequestId> ResponseObject<R> delete(F form) {
         return handle(form, repository::delete, null);
     }
 
-    public <R,F extends RequestId> ResponseObject<R>  view(F form, Function<T,R> convert) {
+    public <R, F extends RequestId> ResponseObject<R> view(F form, Function<T, R> convert) {
         return handle(form, null, convert);
     }
 }

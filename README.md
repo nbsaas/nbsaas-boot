@@ -42,7 +42,9 @@ boot-nbsaas是一个企业级快速开发框架，具有以下特点：
 * 核心采用Request-Response模式，Chain模型。
 
 ## 编码规范
+
 ### 1.项目结构规范
+
 ```
 {主工程}
 {主工程}.adapters
@@ -59,6 +61,7 @@ boot-nbsaas是一个企业级快速开发框架，具有以下特点：
 ```
 
 ### 2.Api模块结构规范
+
 ```
 com.{公司域名}.{主工程}.{子工程}
 com.{公司域名}.{主工程}.{子工程}.api.apis
@@ -74,6 +77,7 @@ com.{公司域名}.{主工程}.{子工程}.ext.domain.simple
 ```
 
 ### 3.Resource模块结构规范
+
 ```
 com.{公司域名}.{主工程}.{子工程}
 com.{公司域名}.{主工程}.{子工程}.data.entity
@@ -146,7 +150,9 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
 
 }
 ```
+
 ### 5.搜索对象
+
 ```
 @Getter
 @Setter
@@ -177,7 +183,9 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 ```
 
 ### 使用访问
+
 已经发布到maven中央仓库了
+
 ```
     <parent>
         <groupId>com.nbsaas.boot</groupId>
@@ -187,4 +195,5 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 ```
 
 ### 使用boot-nbsaas的项目
+
 [nbsaas-life](https://gitee.com/quhaodian/nbsaas-life)

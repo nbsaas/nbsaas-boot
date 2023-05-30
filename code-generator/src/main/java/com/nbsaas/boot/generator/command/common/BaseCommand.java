@@ -15,6 +15,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
 
 
     protected InputRequestObject inputRequestObject;
+    protected boolean overrideFile;
 
     public boolean isOverrideFile() {
         return overrideFile;
@@ -23,8 +24,6 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
     public void setOverrideFile(boolean overrideFile) {
         this.overrideFile = overrideFile;
     }
-
-    protected boolean overrideFile;
 
     public abstract ResponseObject handle(InputRequestObject context);
 
@@ -36,7 +35,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         Config config = context.getConfig();
 
         context.put("repositoryPackage", config.getBasePackage() + ".data.repository");
-        context.put("jpaEntityPackage",config.getEntityPackage());
+        context.put("jpaEntityPackage", config.getEntityPackage());
         context.put("resourcePackage", config.getBasePackage() + ".rest.resource");
         context.put("simplePackage", config.getBasePackage() + ".api.domain.simple");
         context.put("responsePackage", config.getBasePackage() + ".api.domain.response");

@@ -19,5 +19,5 @@ public class ComponentSimple {
     /**
      * js路径
      */
-    private String  model;
+    private String model;
 }

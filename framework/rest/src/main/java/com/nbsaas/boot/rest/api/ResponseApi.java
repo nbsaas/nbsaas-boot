@@ -28,7 +28,7 @@ import com.nbsaas.boot.rest.response.ResponseObject;
  *
  * @param <Response> 详情对象
  * @param <Simple>   列表对象
- * @param <Request>     表单对象
+ * @param <Request>  表单对象
  */
 public interface ResponseApi<Response, Simple, Request extends RequestId> {
 
@@ -39,7 +39,6 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
      * @return 分页数据信息
      */
     PageResponse<Simple> search(PageRequest request);
-
 
 
     /**

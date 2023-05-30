@@ -3,23 +3,24 @@ package com.nbsaas.boot.code.annotation;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.FIELD,ElementType.TYPE})
+@Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface SearchItem {
 
     /**
      * 标题
+     *
      * @return
      */
-    String label() ;
+    String label();
 
     /**
      * name
      *
      * @return
      */
-    String name() ;
+    String name();
 
     String key() default "";
 
@@ -33,7 +34,7 @@ public @interface SearchItem {
 
     String operator() default "like";
 
-    boolean show() default  true;
+    boolean show() default true;
 
 
 }

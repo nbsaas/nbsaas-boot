@@ -29,7 +29,7 @@
 
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
-    import ${item.name} from "${item.model}";
+
     </#list>
     </#if>
 

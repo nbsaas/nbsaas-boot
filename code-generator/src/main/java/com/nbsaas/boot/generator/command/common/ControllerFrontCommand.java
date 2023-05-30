@@ -10,6 +10,7 @@ public class ControllerFrontCommand extends BaseCommand {
         makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
         return ResponseObject.success();
     }
+
     @Override
     public String outPath() {
         Config config = inputRequestObject.getConfig();

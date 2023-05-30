@@ -1,6 +1,8 @@
 package com.nbsaas.boot.generator.entity;
 
-import com.nbsaas.boot.code.annotation.*;
+import com.nbsaas.boot.code.annotation.FormAnnotation;
+import com.nbsaas.boot.code.annotation.FormField;
+import com.nbsaas.boot.code.annotation.InputType;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,7 +13,7 @@ import java.util.Date;
 
 @FormAnnotation(title = "广告管理", model = "广告", menu = "1,51,53")
 @Data
-public class Ad   {
+public class Ad {
 
     /**
      * 标题

@@ -29,28 +29,29 @@ import java.util.function.Function;
 @Service
 public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest>  implements ${formBean.className}Api {
 
-    @Resource
-    private ${formBean.className}Repository ${formBean.className?uncap_first}Repository;
+@Resource
+private ${formBean.className}Repository ${formBean.className?uncap_first}Repository;
 
-    @Override
-    public JpaRepositoryImplementation<${formBean.className}, Serializable> getJpaRepository() {
-        return ${formBean.className?uncap_first}Repository;
-    }
+@Override
+public JpaRepositoryImplementation<${formBean.className}, Serializable> getJpaRepository() {
+return ${formBean.className?uncap_first}Repository;
+}
 
-    @Override
-    public Function<${formBean.className}, ${formBean.className}Simple> getConvertSimple() {
-        return new ${formBean.className}SimpleConvert();
-    }
+@Override
+public Function<${formBean.className}, ${formBean.className}Simple> getConvertSimple() {
+return new ${formBean.className}SimpleConvert();
+}
 
-    @Override
-    public Function<${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
-        return new ${formBean.className}EntityConvert();
-    }
+@Override
+public Function
+<${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
+return new ${formBean.className}EntityConvert();
+}
 
-    @Override
-    public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
-        return new ${formBean.className}ResponseConvert();
-    }
+@Override
+public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
+return new ${formBean.className}ResponseConvert();
+}
 
 }
 

@@ -11,6 +11,14 @@ import java.util.*;
 
 public class FormBeanConvert {
 
+    private static void updateComment(Field f, FieldBean bean) {
+        //注释注解
+        Comment comment = f.getAnnotation(Comment.class);
+        if (comment != null) {
+            bean.setComment(comment.value());
+        }
+    }
+
     // SearchItem
     public List<FieldBean> search(Class<?> object) {
         List<FieldBean> beans = new ArrayList<>();
@@ -92,9 +100,6 @@ public class FormBeanConvert {
         return beans;
     }
 
-
-
-
     public Set<FieldBean> fieldsForSimple(Class<?> object) {
         return getFieldBeans(object, NoSimple.class);
     }
@@ -147,9 +152,6 @@ public class FormBeanConvert {
                 }
 
 
-
-
-
                 if (f.getType().isEnum()) {
                     FieldBean bean = new FieldBean();
                     bean.setId(f.getName());
@@ -167,7 +169,7 @@ public class FormBeanConvert {
                         || f.getType().getName().equals("double")
                         || f.getType().getSimpleName().equals("BigDecimal")
                         || f.getType().getSimpleName().equals("Date")) {
-                    if (annotation!=null&&f.getAnnotation(annotation) != null) {
+                    if (annotation != null && f.getAnnotation(annotation) != null) {
                         continue;
                     }
                     FieldBean bean = new FieldBean();
@@ -184,21 +186,13 @@ public class FormBeanConvert {
         return beans;
     }
 
-    private static void updateComment(Field f, FieldBean bean) {
-        //注释注解
-        Comment comment = f.getAnnotation(Comment.class);
-        if (comment!=null){
-            bean.setComment(comment.value());
-        }
-    }
-
     public FormBean convertClass(Class<?> object) {
         FormBean formBean = new FormBean();
         formBean.setClassName(object.getSimpleName());
         formBean.setSimples(fieldsForSimple(object));
         formBean.setResponses(fieldsForResponse(object));
         formBean.setSearches(search(object));
-        formBean.setRequests(getFieldBeans(object,null));
+        formBean.setRequests(getFieldBeans(object, null));
         FormAnnotation formAnnotation = object.getAnnotation(FormAnnotation.class);
         if (formAnnotation != null) {
             formBean.setTitle(formAnnotation.title());
@@ -206,24 +200,24 @@ public class FormBeanConvert {
             formBean.setViewWidth(formAnnotation.viewWidth());
             formBean.setSearchWidth(formAnnotation.searchWidth());
         }
-        CatalogClass catalogClass=object.getAnnotation(CatalogClass.class);
-        if (catalogClass!=null){
+        CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
+        if (catalogClass != null) {
             formBean.setCatalog(true);
         }
-        ComposeView composeView=object.getAnnotation(ComposeView.class);
-        if (composeView!=null){
+        ComposeView composeView = object.getAnnotation(ComposeView.class);
+        if (composeView != null) {
             formBean.setCompose(true);
         }
-        CreateByUser createByUser=object.getAnnotation(CreateByUser.class);
-        if (createByUser!=null){
+        CreateByUser createByUser = object.getAnnotation(CreateByUser.class);
+        if (createByUser != null) {
             formBean.setCreateByUser(true);
         }
-        PermissionClass permissionClass=object.getAnnotation(PermissionClass.class);
-        if (permissionClass!=null){
+        PermissionClass permissionClass = object.getAnnotation(PermissionClass.class);
+        if (permissionClass != null) {
             formBean.setPermissionClass(true);
         }
-        TenantPermissionClass tenantPermissionClass=object.getAnnotation(TenantPermissionClass.class);
-        if (tenantPermissionClass!=null){
+        TenantPermissionClass tenantPermissionClass = object.getAnnotation(TenantPermissionClass.class);
+        if (tenantPermissionClass != null) {
             formBean.setTenantPermissionClass(true);
         }
 
@@ -295,25 +289,24 @@ public class FormBeanConvert {
                 }
 
 
-
                 //
-                if (field.type()== InputType.image){
+                if (field.type() == InputType.image) {
 
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("avatar").model("@/components/avatar.vue")
                             .build());
                 }
-                if (field.type()== InputType.el_upload){
+                if (field.type() == InputType.el_upload) {
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("avatar").model("@/components/avatar.vue")
                             .build());
                 }
-                if (field.type()== InputType.dictionary){
+                if (field.type() == InputType.dictionary) {
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("nbSelect").model("@/components/nbSelect.vue")
                             .build());
                 }
-                if (field.type()== InputType.richText){
+                if (field.type() == InputType.richText) {
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("VueUeditorWrap").model("vue-ueditor-wrap")
                             .build());
@@ -328,7 +321,7 @@ public class FormBeanConvert {
         });
         Collections.sort(formBean.getGrids());
 
-        formBean.setLeftSize(24-formBean.getSearches().size()*6);
+        formBean.setLeftSize(24 - formBean.getSearches().size() * 6);
 
         return formBean;
     }

@@ -18,11 +18,11 @@ import java.util.List;
 
 public class SpecificationData<T> implements Specification<T> {
 
+    private final PageRequest request;
+
     public SpecificationData(PageRequest request) {
         this.request = request;
     }
-
-    private final PageRequest request;
 
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {

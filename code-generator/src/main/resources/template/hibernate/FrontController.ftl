@@ -29,19 +29,21 @@ import javax.annotation.Resource;
 public class ${formBean.className}FrontController {
 
 
-    @Resource
-    private ${formBean.className}Api ${formBean.className?uncap_first}Api;
+@Resource
+private ${formBean.className}Api ${formBean.className?uncap_first}Api;
 
 
-    @RequestMapping("/search")
-   public PageResponse<${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
-        return ${formBean.className?uncap_first}Api.search(request);
+@RequestMapping("/search")
+public PageResponse
+<${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
+    return ${formBean.className?uncap_first}Api.search(request);
     }
 
     @RequestMapping("/list")
-    public ListResponse <${formBean.className}Simple> list(${formBean.className}SearchRequest request) {
+    public ListResponse
+    <${formBean.className}Simple> list(${formBean.className}SearchRequest request) {
         return ${formBean.className?uncap_first}Api.list(request);
-    }
+        }
 
         /**
         * 添加数据
@@ -49,26 +51,28 @@ public class ${formBean.className}FrontController {
         * @param request
         * @return
         */
-    @CreateData
-  @RequestMapping("/create")
-   public ResponseObject<${formBean.className}Response> create(@Validated(Add.class) ${formBean.className}DataRequest request) {
-       return ${formBean.className?uncap_first}Api.create(request);
-    }
+        @CreateData
+        @RequestMapping("/create")
+        public ResponseObject
+        <${formBean.className}Response> create(@Validated(Add.class) ${formBean.className}DataRequest request) {
+            return ${formBean.className?uncap_first}Api.create(request);
+            }
 
-    @UpdateData
-    @RequestMapping("/update")
-   public ResponseObject
-    <${formBean.className}Response> update(@Validated(Update.class) ${formBean.className}DataRequest request) {
-         return ${formBean.className?uncap_first}Api.update(request);
-    }
+            @UpdateData
+            @RequestMapping("/update")
+            public ResponseObject
+            <${formBean.className}Response> update(@Validated(Update.class) ${formBean.className}DataRequest request) {
+                return ${formBean.className?uncap_first}Api.update(request);
+                }
 
-     @RequestMapping("/delete")
-     public ResponseObject<?> delete(@Validated(Delete.class) ${formBean.className}DataRequest request) {
-        return ${formBean.className?uncap_first}Api.delete(request);
-    }
+                @RequestMapping("/delete")
+                public ResponseObject<?> delete(@Validated(Delete.class) ${formBean.className}DataRequest request) {
+                return ${formBean.className?uncap_first}Api.delete(request);
+                }
 
-    @RequestMapping("/view")
-    public ResponseObject <${formBean.className}Response> view(@Validated(View.class) ${formBean.className}DataRequest request) {
-         return ${formBean.className?uncap_first}Api.view(request);
-    }
-}
+                @RequestMapping("/view")
+                public ResponseObject
+                <${formBean.className}Response> view(@Validated(View.class) ${formBean.className}DataRequest request) {
+                    return ${formBean.className?uncap_first}Api.view(request);
+                    }
+                    }

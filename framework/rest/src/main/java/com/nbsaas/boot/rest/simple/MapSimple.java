@@ -15,7 +15,8 @@ package com.nbsaas.boot.rest.simple;
  *
  * 纽百特® 是西安纽百特科技有限责任公司的注册商标，未经授权不得使用。
  */
+
 import java.util.HashMap;
 
-public class MapSimple extends HashMap<String,Object> {
+public class MapSimple extends HashMap<String, Object> {
 }

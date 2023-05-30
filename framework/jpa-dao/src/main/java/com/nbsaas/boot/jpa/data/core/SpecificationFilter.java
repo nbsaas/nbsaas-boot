@@ -15,11 +15,11 @@ import java.util.List;
 
 public class SpecificationFilter<T> implements Specification<T> {
 
+    private final Filter[] filters;
+
     public SpecificationFilter(Filter[] filters) {
         this.filters = filters;
     }
-
-    private final Filter[] filters;
 
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {

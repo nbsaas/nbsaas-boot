@@ -11,7 +11,7 @@ public class RepositoryCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
 
-        makeCode("Repository",".data.repository");
+        makeCode("Repository", ".data.repository");
         return ResponseObject.success();
     }
 

@@ -3,7 +3,7 @@ package com.nbsaas.boot.generator;
 import com.nbsaas.boot.chain.impl.ChainBase;
 import com.nbsaas.boot.generator.beans.FormBean;
 import com.nbsaas.boot.generator.beans.FormBeanConvert;
-import com.nbsaas.boot.generator.command.common.*;
+import com.nbsaas.boot.generator.command.common.FinishCommand;
 import com.nbsaas.boot.generator.command.vue3.VueCommand;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
