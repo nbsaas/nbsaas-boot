@@ -25,15 +25,24 @@ public class ${formBean.className}SearchRequest   extends PageRequest implements
    <#list formBean.requests as item>
         <#if item.fieldType==1>
             <#if item.type == 'String'>
-                //${item.title!}
+
+                /**
+                * ${item.comment!}
+                **/
                @Search(name = "${item.id}",operator = Operator.like)
                 private ${item.type} ${item.id};
             <#elseif item.type == 'Long'>
-                //${item.title!}
+
+                /**
+                * ${item.comment!}
+                **/
                @Search(name = "${item.id}",operator = Operator.eq)
                 private ${item.type} ${item.id};
             <#elseif item.type == 'Integer'>
-                //${item.title!}
+
+                /**
+                * ${item.comment!}
+                **/
                @Search(name = "${item.id}",operator = Operator.eq)
                 private ${item.type} ${item.id};
             </#if>

@@ -4,6 +4,7 @@ package com.nbsaas.boot.generator.beans;
 import com.nbsaas.boot.code.annotation.*;
 import jodd.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Comment;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -117,6 +118,7 @@ public class FormBeanConvert {
                     bean.setParentType(f.getType().getSimpleName());
                     bean.setParentFullType(f.getType().getName());
                     bean.setFullType(f.getType().getName());
+                    updateComment(f, bean);
                     beans.add(bean);
                 }
 
@@ -140,8 +142,13 @@ public class FormBeanConvert {
                     bean.setType(fieldName.classType());
                     bean.setFieldType(3);
                     bean.setFullType(f.getType().getName());
+                    updateComment(f, bean);
                     beans.add(bean);
                 }
+
+
+
+
 
                 if (f.getType().isEnum()) {
                     FieldBean bean = new FieldBean();
@@ -167,12 +174,22 @@ public class FormBeanConvert {
                     bean.setId(f.getName());
                     bean.setType(f.getType().getSimpleName());
                     bean.setFieldType(1);
+
+                    updateComment(f, bean);
                     beans.add(bean);
 
                 }
             }
         }
         return beans;
+    }
+
+    private static void updateComment(Field f, FieldBean bean) {
+        //注释注解
+        Comment comment = f.getAnnotation(Comment.class);
+        if (comment!=null){
+            bean.setComment(comment.value());
+        }
     }
 
     public FormBean convertClass(Class<?> object) {

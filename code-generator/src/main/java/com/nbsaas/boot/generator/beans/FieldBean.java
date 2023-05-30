@@ -14,6 +14,11 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     private String title;
 
     /**
+     * 字段描述
+     */
+    private String comment;
+
+    /**
      * 字段标识
      */
     private String id;

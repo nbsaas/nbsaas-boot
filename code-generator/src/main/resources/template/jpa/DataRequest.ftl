@@ -26,6 +26,10 @@ private static final long serialVersionUID = 1L;
 
 <#if formBean.requests??>
     <#list formBean.requests as item>
+
+        /**
+        * ${item.comment!}
+        **/
         private ${item.type} ${item.id};
     </#list>
 </#if>

@@ -35,6 +35,9 @@ private static final long serialVersionUID = 1L;
 
 <#if formBean.enumList??>
     <#list formBean.enumList as item>
+        /**
+        * ${item.comment!}
+        **/
         private String ${item.field}Name;
     </#list>
 </#if>

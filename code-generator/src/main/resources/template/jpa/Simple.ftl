@@ -34,9 +34,10 @@ public class ${formBean.className}Simple implements Serializable {
 
     <#if formBean.simples??>
         <#list formBean.simples as item>
-            <#if item.type=="Date">
-                //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
-            </#if>
+
+            /**
+            * ${item.comment!}
+            **/
             private ${item.type} ${item.id};
         </#list>
     </#if>
