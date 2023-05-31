@@ -30,7 +30,12 @@ public class RepositoryCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
 
-        makeCode("Repository", ".data.repository");
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()){
+            makeCode("Repository", ".data.repository");
+        }else{
+            makeCode("Repository", "."+config.getProjectName()+".data.repository");
+        }
         return ResponseObject.success();
     }
 

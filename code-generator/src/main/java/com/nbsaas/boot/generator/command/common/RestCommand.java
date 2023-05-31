@@ -26,7 +26,13 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class RestCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCode("Resource", ".rest.resource");
+
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()){
+            makeCode("Resource", ".rest.resource");
+        }else{
+            makeCode("Resource", "."+config.getProjectName()+".rest.resource");
+        }
 
         return ResponseObject.success();
     }

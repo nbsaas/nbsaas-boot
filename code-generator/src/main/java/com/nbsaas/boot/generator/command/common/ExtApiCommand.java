@@ -26,11 +26,18 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class ExtApiCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makePackage(".ext.apis");
-        makePackage(".ext.domain.request");
-        makePackage(".ext.domain.simple");
-        makePackage(".ext.domain.response");
-
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()) {
+            makePackage(".ext.apis");
+            makePackage(".ext.domain.request");
+            makePackage(".ext.domain.simple");
+            makePackage(".ext.domain.response");
+        }else{
+            makePackage("."+config.getProjectName()+".ext.apis");
+            makePackage("."+config.getProjectName()+".ext.domain.request");
+            makePackage("."+config.getProjectName()+".ext.domain.simple");
+            makePackage("."+config.getProjectName()+".ext.domain.response");
+        }
         return ResponseObject.success();
     }
 

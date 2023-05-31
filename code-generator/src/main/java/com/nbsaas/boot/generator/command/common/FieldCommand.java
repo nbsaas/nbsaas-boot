@@ -26,7 +26,12 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class FieldCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCode("Field", ".api.domain.field");
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()) {
+            makeCode("Field", ".api.domain.field");
+        }else{
+            makeCode("Field", "."+config.getProjectName()+".api.domain.field");
+        }
         return ResponseObject.success();
     }
 

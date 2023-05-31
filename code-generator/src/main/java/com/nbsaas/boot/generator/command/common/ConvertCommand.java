@@ -28,9 +28,17 @@ public class ConvertCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
         this.setOverrideFile(true);
-        makeCode("EntityConvert", ".rest.convert");
-        makeCode("ResponseConvert", ".rest.convert");
-        makeCode("SimpleConvert", ".rest.convert");
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()){
+            makeCode("EntityConvert", ".rest.convert");
+            makeCode("ResponseConvert", ".rest.convert");
+            makeCode("SimpleConvert", ".rest.convert");
+        }else{
+            makeCode("EntityConvert", "."+config.getProjectName()+".rest.convert");
+            makeCode("ResponseConvert", "."+config.getProjectName()+".rest.convert");
+            makeCode("SimpleConvert", "."+config.getProjectName()+".rest.convert");
+        }
+
         return ResponseObject.success();
     }
 
