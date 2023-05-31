@@ -26,7 +26,12 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class ControllerFrontCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+        Config config = inputRequestObject.getConfig();
+        if (config.getMultiple()) {
+            makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+        }else{
+            makeCode("FrontController", "."+config.getProjectName()+".controller.");
+        }
         return ResponseObject.success();
     }
 

@@ -61,6 +61,8 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
             context.put("requestPackage", config.getBasePackage() + ".api.domain.request");
             context.put("fieldPackage", config.getBasePackage() + ".api.domain.field");
             context.put("apiPackage", config.getBasePackage() + ".api.apis");
+            context.put("controllerPackage", config.getBasicPackage() + ".controller." + config.getProjectName());
+
         } else {
             context.put("repositoryPackage", config.getBasePackage() + "." + config.getProjectName() + ".data.repository");
             context.put("resourcePackage", config.getBasePackage() +"." + config.getProjectName() + ".rest.resource");
@@ -72,13 +74,14 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
             context.put("responsePackage", config.getBasePackage() + "." + config.getProjectName() +".api.domain.response");
             context.put("requestPackage", config.getBasePackage() + "." + config.getProjectName() +".api.domain.request");
             context.put("fieldPackage", config.getBasePackage() +"." + config.getProjectName() + ".api.domain.field");
+            context.put("controllerPackage", config.getBasicPackage() + "." + config.getProjectName()+".controller");
+
         }
 
         context.put("jpaEntityPackage", config.getEntityPackage());
 
         context.put("entityPackage", config.getEntityPackage());
         context.put("mapperPackage", config.getBasePackage() + ".data.mapper");
-        context.put("controllerPackage", config.getBasicPackage() + ".controller." + config.getProjectName());
         if (context.getFormBean() != null) {
             context.put("formBean", context.getFormBean());
         }
