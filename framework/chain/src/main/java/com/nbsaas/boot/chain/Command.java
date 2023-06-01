@@ -19,12 +19,11 @@
 
 package com.nbsaas.boot.chain;
 
-import com.nbsaas.boot.rest.request.RequestObject;
 import com.nbsaas.boot.rest.response.ResponseObject;
 
 import java.util.Objects;
 
-public interface Command<Request extends RequestObject, Response> {
+public interface Command<Request, Response> {
 
     ResponseObject<Response> execute(Request request);
 
