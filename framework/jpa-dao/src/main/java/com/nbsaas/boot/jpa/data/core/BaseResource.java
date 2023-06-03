@@ -92,13 +92,13 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return search(request, convert);
     }
 
-    protected PageResponse<Simple> search(PageRequest request, Function<Entity, Simple> convert) {
-        PageResponse<Simple> result = new PageResponse<>();
+    protected <T> PageResponse<T> search(PageRequest request, Function<Entity, T> convert) {
+        PageResponse<T> result = new PageResponse<>();
         SpecificationData<Entity> data = new SpecificationData<>(request);
         Pageable pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize());
         Page<Entity> res = getJpaRepository().findAll(data, pageable);
         if (res.getContent().size() > 0) {
-            List<Simple> list = res.getContent().stream().map(convert).collect(toList());
+            List<T> list = res.getContent().stream().map(convert).collect(toList());
             result.setData(list);
         }
         result.setSize(res.getSize());
@@ -111,10 +111,10 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Override
     public ListResponse<Simple> list(PageRequest request) {
-        return listResponseData(request, getConvertSimple());
+        return listSimple(request, getConvertSimple());
     }
 
-    private ListResponse<Simple> listResponseData(PageRequest request, Function<Entity, Simple> convert) {
+    private ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
         ListResponse<Simple> result = new ListResponse<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
 
@@ -170,7 +170,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
         SpecificationData<Entity> spec = new SpecificationData<>(request);
         List<Entity> list = getJpaRepository().findAll(spec);
-        if (list == null) {
+        if (list == null || list.size() == 0) {
             return null;
         }
         return list.stream().map(getConvertSimple()).collect(Collectors.toList());
@@ -207,29 +207,26 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     public ResponseObject<Response> view(RequestId request) {
 
         ResponseObject<Response> result = new ResponseObject<>();
+
         Optional<Entity> optional = getJpaRepository().findById(request.getId());
-        if (!optional.isPresent()) {
+        Response response = optional.map(getConvertResponse()).orElse(null);
+        if (response == null) {
             result.setCode(501);
             result.setMsg("无效id");
             return result;
         }
-        if (getConvertResponse() != null) {
-            Response obj = getConvertResponse().apply(optional.get());
-            result.setData(obj);
-        }
+        result.setData(response);
         return result;
     }
 
 
     protected Entity one(Filter... filters) {
-        return one(list(filters));
-
+        return getJpaRepository().findOne(new SpecificationFilter<>(filters)).orElse(null);
     }
 
 
     protected List<Entity> list(Filter... filters) {
-        Specification<Entity> queryWrapper = new SpecificationFilter<>(filters);
-        return getJpaRepository().findAll(queryWrapper);
+        return getJpaRepository().findAll(new SpecificationFilter<>(filters));
     }
 
     protected ListResponse<Simple> listResponseData(Filter... filters) {
@@ -246,10 +243,6 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
     }
 
-
-    protected Entity onex(Supplier<Entity> supplier) {
-        return supplier.get();
-    }
 
 
     protected ResponseObject<Response> oneResponse(Filter... filters) {
@@ -272,32 +265,19 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
     }
 
-    private Entity one(List<Entity> list) {
-        if (list == null || list.size() == 0) {
-            return null;
-        }
-        return list.get(0);
-    }
 
 
     @Override
     public Response oneData(Filter... filters) {
-        List<Entity> list = list(filters);
-        if (list == null || list.size() == 0) {
-            return null;
-        }
-        Entity data = list.get(0);
-        return getConvertResponse().apply(data);
+        Specification<Entity> queryWrapper = new SpecificationFilter<>(filters);
+        return getJpaRepository().findOne(queryWrapper).map(getConvertResponse()).orElse(null);
     }
 
 
     @Override
     public Response findById(RequestId form) {
         Optional<Entity> data = getJpaRepository().findById(form.getId());
-        if (!data.isPresent()) {
-            return null;
-        }
-        return getConvertResponse().apply(data.get());
+        return data.map(entity -> getConvertResponse().apply(entity)).orElse(null);
     }
 
     @Override
@@ -320,7 +300,15 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
-    public int deleteBatchIds(Collection<?> idList) {
+    public int deleteBatchIds(Collection<Serializable> idList) {
+        if (idList != null) {
+            for (Serializable serializable : idList) {
+                Optional<Entity> optional = getJpaRepository().findById(serializable);
+                optional.ifPresent(entity -> {
+                    getJpaRepository().delete(entity);
+                });
+            }
+        }
         return 0;
     }
 
@@ -364,13 +352,9 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     /**
      * 扩展搜索，传递返回类
      *
-     * @param request
-     * @param domainClass
-     * @param <Domain>
-     * @return
      */
     public <Domain> PageResponse<Domain> searchExt(PageRequest request, Class<Domain> domainClass) {
-        Function<Object, Domain> convert = item -> {
+        Function<Entity, Domain> convert = item -> {
             Domain domain;
             try {
                 domain = domainClass.getConstructor().newInstance();
@@ -381,53 +365,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             return domain;
         };
 
-        return searchExt(request, convert);
-    }
-
-
-    /**
-     * 扩展搜索，传递转化接口
-     *
-     * @param request
-     * @param function
-     * @param <Domain>
-     * @return
-     */
-    public <Domain> PageResponse<Domain> searchExt(PageRequest request, Function<Object, Domain> function) {
-        PageResponse<Domain> result = new PageResponse<>();
-        SpecificationData<Entity> data = new SpecificationData<>(request);
-        Pageable pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize());
-        Page<Entity> res = getJpaRepository().findAll(data, pageable);
-        if (res.getContent().size() > 0) {
-            List<Domain> list = res.getContent().stream().map(function).collect(toList());
-            result.setData(list);
-        }
-        result.setSize(res.getSize());
-        result.setNo(res.getNumber());
-        result.setTotal(res.getTotalElements());
-        result.setTotalPage(res.getTotalPages());
-        return result;
-    }
-
-
-    /**
-     * 列表搜索
-     *
-     * @param request
-     * @param function
-     * @param <Domain>
-     * @return
-     */
-    public <Domain> ListResponse<Domain> listExt(PageRequest request, Function<Object, Domain> function) {
-        ListResponse<Domain> result = new ListResponse<>();
-        SpecificationData<Entity> spec = new SpecificationData<>(request);
-
-        List<Entity> res = getJpaRepository().findAll(spec);
-        if (res.size() > 0) {
-            List<Domain> list = res.stream().map(function).collect(toList());
-            result.setData(list);
-        }
-        return result;
+        return search(request, convert);
     }
 
 

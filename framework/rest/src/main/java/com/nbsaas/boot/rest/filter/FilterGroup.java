@@ -20,8 +20,11 @@
 package com.nbsaas.boot.rest.filter;
 
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class FilterGroup {
 
     private Condition condition;

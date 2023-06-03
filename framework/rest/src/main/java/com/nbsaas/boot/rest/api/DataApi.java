@@ -24,6 +24,7 @@ import com.nbsaas.boot.rest.filter.Filter;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.request.RequestId;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
@@ -109,7 +110,7 @@ public interface DataApi<Response, Simple, Request extends RequestId> {
      * @param idList
      * @return 删除数量
      */
-    int deleteBatchIds(Collection<?> idList);
+    int deleteBatchIds(Collection<Serializable> idList);
 
     /**
      * 根据Filter进行条件删除
