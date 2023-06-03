@@ -19,9 +19,6 @@
 
 package com.nbsaas.boot.generator.utils;
 
-/**
- * author:Rhythm-2019
- */
 public class StringUtil {
 
     /**

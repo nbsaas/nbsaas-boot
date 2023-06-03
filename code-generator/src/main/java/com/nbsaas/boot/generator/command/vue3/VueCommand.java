@@ -45,6 +45,12 @@ public class VueCommand extends BaseCommand {
         chars[0] = Character.toLowerCase(chars[0]);
         return new String(chars);
     }
+    private String first(String str){
+        if (str==null){
+            return str;
+        }
+      return   str.substring(0,1).toLowerCase()+str.substring(1);
+    }
 
     @Override
     public ResponseObject handle(InputRequestObject context) {
@@ -63,9 +69,9 @@ public class VueCommand extends BaseCommand {
         File routerDir = new File(config.getOutputPath() + "\\src\\router\\modules");
 
         if (formBean.isCompose()) {
-            handle(routerDir, configuration, context, "router2.ftl", formBean.getClassName() + ".js");
+            handle(routerDir, configuration, context, "router2.ftl", toLowerCase(formBean.getClassName()) + ".js");
         } else {
-            handle(routerDir, configuration, context, "router.ftl", formBean.getClassName() + ".js");
+            handle(routerDir, configuration, context, "router.ftl", toLowerCase(formBean.getClassName()) + ".js");
         }
 
         //\\src\\views\\pages\\+formBean.getClassName()
