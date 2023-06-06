@@ -30,7 +30,6 @@ import java.util.Set;
 @Data
 public class FormBean implements Serializable {
 
-    List<FieldBean> searches = new ArrayList<>();
     private String title;
     private String add;
     private String list;
@@ -61,6 +60,10 @@ public class FormBean implements Serializable {
     private Set<FieldBean> simples = new HashSet<>();
     private Set<FieldBean> responses = new HashSet<FieldBean>();
     private List<FieldBean> dates = new ArrayList<FieldBean>();
+
+    List<FieldBean> searches = new ArrayList<>();
+
+    List<FieldBean> searchFields = new ArrayList<>();
 
 
     private List<FieldBean> grids = new ArrayList<FieldBean>();

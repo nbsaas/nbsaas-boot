@@ -19,12 +19,14 @@
 
 package com.nbsaas.boot.generator.beans;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 
-@Data
+@Getter
+@Setter
 public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     /**
@@ -107,5 +109,20 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     @Override
     public int compareTo(FieldBean o) {
         return this.getSortNum().compareTo(o.getSortNum());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FieldBean fieldBean = (FieldBean) o;
+
+        return id.equals(fieldBean.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

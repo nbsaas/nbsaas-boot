@@ -209,6 +209,10 @@ public class FormBeanConvert {
         formBean.setResponses(fieldsForResponse(object));
         formBean.setSearches(search(object));
         formBean.setRequests(getFieldBeans(object, null));
+
+        formBean.getSearchFields().addAll(formBean.getRequests());
+        formBean.getSearchFields().removeAll(formBean.getSearches());
+        //formBean.getSearches().addAll(formBean.getRequests());
         FormAnnotation formAnnotation = object.getAnnotation(FormAnnotation.class);
         if (formAnnotation != null) {
             formBean.setTitle(formAnnotation.title());

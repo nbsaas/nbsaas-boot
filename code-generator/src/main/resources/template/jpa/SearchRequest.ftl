@@ -28,7 +28,7 @@ private static final long serialVersionUID = 1L;
     private ${item.className} ${item.id};
 </#list>
 
-<#list formBean.requests as item>
+<#list formBean.searchFields as item>
     <#if item.fieldType==1>
         <#if item.type == 'String'>
 
