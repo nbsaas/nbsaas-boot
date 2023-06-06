@@ -30,7 +30,11 @@ private static final long serialVersionUID = 1L;
         /**
         * ${item.comment!}
         **/
-        private ${item.type} ${item.id};
+        <#if item.fieldType==3>
+            //private ${item.type} ${item.id}${item.extName?cap_first};
+        <#else>
+            private ${item.type} ${item.id};
+        </#if>
     </#list>
 </#if>
 }

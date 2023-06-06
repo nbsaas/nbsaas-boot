@@ -25,11 +25,15 @@ private static final long serialVersionUID = 1L;
 
 <#if formBean.responses??>
     <#list formBean.responses as item>
-        <#if item.type=="Date">
-            //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
-        </#if>
-        private ${item.type} ${item.id};
 
+        /**
+        * ${item.comment!}
+        **/
+        <#if item.fieldType==3>
+            private ${item.type} ${item.id}${item.extName?cap_first};
+        <#else>
+            private ${item.type} ${item.id};
+        </#if>
     </#list>
 </#if>
 

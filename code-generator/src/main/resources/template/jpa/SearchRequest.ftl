@@ -22,6 +22,12 @@ public class ${formBean.className}SearchRequest   extends PageRequest implements
 */
 private static final long serialVersionUID = 1L;
 
+<#list formBean.searches as item>
+
+    @Search(name = "${item.key}",operator = Operator.${item.operator})
+    private ${item.className} ${item.id};
+</#list>
+
 <#list formBean.requests as item>
     <#if item.fieldType==1>
         <#if item.type == 'String'>
@@ -48,6 +54,7 @@ private static final long serialVersionUID = 1L;
         </#if>
     </#if>
 </#list>
+
 
 <#if formBean.catalog>
     private int fetch;

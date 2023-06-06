@@ -30,7 +30,7 @@ import java.util.Set;
 @Data
 public class FormBean implements Serializable {
 
-    List<FieldBean> searches = new ArrayList<FieldBean>();
+    List<FieldBean> searches = new ArrayList<>();
     private String title;
     private String add;
     private String list;

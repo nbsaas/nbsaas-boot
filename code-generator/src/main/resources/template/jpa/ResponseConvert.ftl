@@ -21,11 +21,11 @@ BeanDataUtils.copyProperties(source, result);
     <#list formBean.responses as item>
         <#if item.fieldType==2>
             if(source.get${item.id?cap_first}()!=null){
-            result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
+                result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
             }
         <#elseif item.fieldType==3>
             if(source.get${item.id?cap_first?replace("Name", "")}()!=null){
-            result.set${item.id?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().getName());
+                result.set${item.id?cap_first}${item.extName?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().get${item.extName?cap_first}());
             }
         <#else>
         </#if>

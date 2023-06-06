@@ -50,9 +50,6 @@ public class FormBeanConvert {
                     continue;
                 }
                 FieldBean bean = new FieldBean();
-                if (annotation == null) {
-                    continue;
-                }
                 bean.setType(annotation.type().name());
                 bean.setPlaceholder(annotation.placeholder());
                 bean.setTitle(annotation.label());
@@ -151,7 +148,7 @@ public class FormBeanConvert {
                     FieldBean bean = new FieldBean();
                     String parentName = fieldName.name();
                     if (StringUtil.isNotBlank(parentName)) {
-                        bean.setId(parentName);
+                        bean.setId(f.getName());
                         String parent = fieldName.parent();
                         if (StringUtils.isNoneEmpty(parent)) {
                             bean.setExtName(parent);
@@ -159,7 +156,7 @@ public class FormBeanConvert {
                             bean.setExtName(parentName);
                         }
                     } else {
-                        bean.setId(f.getName() + "Name");
+                        bean.setId(f.getName());
                         bean.setExtName("Name");
                     }
                     bean.setParent(f.getName());
