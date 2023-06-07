@@ -2,7 +2,7 @@
     <div class="model-form">
         <section>
             <el-tabs v-model="activeName">
-                <el-tab-pane label="${model!}树" name="third">
+                <el-tab-pane label="${formBean.model!}树" name="third">
                     <el-button type="primary" size="small" @click="append()" style="margin-bottom:15px;">增加一级分类
                     </el-button>
                     <el-table :data="treeOptions.children" style="width: 100%;margin-bottom: 20px;" row-key="id" border>
@@ -29,14 +29,14 @@
                         </el-table-column>
                     </el-table>
                 </el-tab-pane>
-                <el-tab-pane label="${model!}图" name="second">
+                <el-tab-pane label="${formBean.model!}图" name="second">
                     <vue2-org-tree class="tree-div" :data="treeOptions" :collapsable="collapsable"
                                    :expandAll="expandAll" :horizontal="horizontal" :label-class-name="labelClassName"
                                    :render-content="renderContent" @on-expand="onExpand" @on-node-click="onNodeClick"/>
                 </el-tab-pane>
             </el-tabs>
 
-            <el-dialog title="增加${model!}" v-model="showDialog" width="35%">
+            <el-dialog title="增加${formBean.model!}" v-model="showDialog" width="35%">
                 <el-row :gutter="20">
                     <el-col :span="18" :offset="2">
                         <el-row class="input-line">
@@ -82,7 +82,7 @@
 				</span>
                 </template>
             </el-dialog>
-            <el-dialog title="编辑${model!}" v-model="editDialog" width="35%">
+            <el-dialog title="编辑${formBean.model!}" v-model="editDialog" width="35%">
                 <el-row :gutter="20">
                     <el-col :span="18" :offset="2">
                         <el-row class="input-line">
@@ -179,7 +179,7 @@
     }
 
     export default {
-        name: "${config_entity}_index",
+        name: "${formBean.className?uncap_first}_index",
         mixins: [common],
         data() {
             return {
@@ -188,8 +188,8 @@
                 searchObject: {
                     no: 1,
                     size: 8,
-                    <#if searchs??>
-                    <#list searchs as item>
+                    <#if formBean.searchs??>
+                    <#list formBean.searchs as item>
                     ${item.id}: ''<#sep>,
                     </#list>
                     </#if>
@@ -225,7 +225,7 @@
                     sortNum: "",
                 },
                 rules: {
-                    <#list bean.fields as item>
+                    <#list formBean.fields as item>
                     <#if item.required>
                     ${item.id}: [
                         {required: true, message: '请输入${item.title!}', trigger: 'blur'}
@@ -237,7 +237,7 @@
                     </#list>
                 },
                 activeName: "third",
-                <#list bean.fields as item>
+                <#list formBean.fields as item>
                 <#if item.option?length gt 2 >
                 ${item.id}Options: [],
                 </#if>
@@ -253,7 +253,7 @@
             }
             this.getSearchList();
 
-            <#list bean.fields as item>
+            <#list formBean.fields as item>
             <#if item.option?length gt 2 >
             this.load${item.id?cap_first}Options();
             </#if>
@@ -270,7 +270,7 @@
                 data.level = 1;
                 let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
                 if (res.code === 200) {
-                    this.treeOptions.children = res.list;
+                    this.treeOptions.children = res.data;
                 }
                 this.loading = false;
                 this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
@@ -293,8 +293,9 @@
             async addData() {
                 let data = this.form;
                 let res = await this.$http.form("/${formBean.className?uncap_first}/create", data);
-                if (res.code !== 0) {
+                if (res.code !== 200) {
                     this.$message.error(res.msg);
+                    return;
                 }
 
                 this.$message({
@@ -315,7 +316,7 @@
             },
             async updateDataPost() {
                 let res = await this.$http.form("/${formBean.className?uncap_first}/update", this.form);
-                if (res.code !== 0) {
+                if (res.code !== 200) {
                     this.$message.error(res.msg);
                     return
                 }
@@ -352,7 +353,7 @@
                 this.selectId = row.id;
                 this.dialogVisible = true;
             },
-            <#list bean.fields as item>
+            <#list formBean.fields as item>
             <#if item.option?length gt 2 >
             async load${item.id?cap_first}Options() {
                 let self = this;
@@ -365,7 +366,7 @@
 
                 let res = await this.$http.form("/${item.id?lower_case}/list", param);
                 if (res.code === 200) {
-                    self.${item.id}Options = res.list;
+                    self.${item.id}Options = res.data;
                 }
             },
             </#if>

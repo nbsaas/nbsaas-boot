@@ -114,7 +114,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return listSimple(request, getConvertSimple());
     }
 
-    private ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
+    protected ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
         ListResponse<Simple> result = new ListResponse<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
 

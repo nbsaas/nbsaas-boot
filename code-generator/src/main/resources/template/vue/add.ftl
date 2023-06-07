@@ -3,7 +3,7 @@
 
 <template>
     <div class="model-form">
-        <el-page-header @back="goBack" content="增加${model!}">
+        <el-page-header @back="goBack" content="增加${formBean.model!}">
         </el-page-header>
         <div class="model-content">
             <el-form ref="ruleForm" :rules="rules" :model="form" label-width="160px">
@@ -29,7 +29,7 @@
 
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
-
+    import ${item.name} from "@/components/${item.name}.vue";
     </#list>
     </#if>
 

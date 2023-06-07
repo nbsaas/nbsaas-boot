@@ -26,11 +26,11 @@ public class ${formBean.className}Simple implements Serializable {
 */
 private static final long serialVersionUID = 1L;
 
-<#if formBean.catalog>
-private String value;
-private String label;
-private List
-<${formBean.className}Simple> children;
+    <#if formBean.catalog>
+    private String value;
+    private String label;
+    private List
+    <${formBean.className}Simple> children;
     </#if>
 
     <#if formBean.simples??>

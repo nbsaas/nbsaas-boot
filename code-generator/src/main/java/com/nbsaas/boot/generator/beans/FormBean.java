@@ -34,6 +34,7 @@ public class FormBean implements Serializable {
     private String add;
     private String list;
     private String update;
+    private String model;
     private String menu;
     private String searchWidth;
     private String viewWidth;

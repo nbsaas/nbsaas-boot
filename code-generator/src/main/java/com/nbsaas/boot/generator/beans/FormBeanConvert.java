@@ -219,6 +219,8 @@ public class FormBeanConvert {
             formBean.setMenu(formAnnotation.menu());
             formBean.setViewWidth(formAnnotation.viewWidth());
             formBean.setSearchWidth(formAnnotation.searchWidth());
+            formBean.setModel(formAnnotation.model());
+
         }
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {
