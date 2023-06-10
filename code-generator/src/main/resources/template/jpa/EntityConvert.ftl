@@ -19,22 +19,23 @@ import com.nbsaas.boot.utils.BeanDataUtils;
 */
 
 public class ${formBean.className}EntityConvert  implements Converter<${formBean.className}, ${formBean.className}DataRequest> {
-@Override
-public ${formBean.className} convert(${formBean.className}DataRequest source) {
-${formBean.className} result = new ${formBean.className}();
-BeanDataUtils.copyProperties(source, result);
-<#if formBean.requests??>
-    <#list formBean.requests as item>
-        <#if item.fieldType==2>
-            if(source.get${item.id?cap_first}()!=null){
-            ${item.parentType!} ${item.id} =new ${item.parentType!}();
-            ${item.id}.setId(source.get${item.id?cap_first}());
-            result.set${item.id?cap_first}(${item.id});
-            }
+
+    @Override
+    public ${formBean.className} convert(${formBean.className}DataRequest source) {
+        ${formBean.className} result = new ${formBean.className}();
+        BeanDataUtils.copyProperties(source, result);
+        <#if formBean.requests??>
+            <#list formBean.requests as item>
+                <#if item.fieldType==2>
+                    if(source.get${item.id?cap_first}()!=null){
+                    ${item.parentType!} ${item.id} =new ${item.parentType!}();
+                    ${item.id}.setId(source.get${item.id?cap_first}());
+                    result.set${item.id?cap_first}(${item.id});
+                    }
+                </#if>
+            </#list>
         </#if>
-    </#list>
-</#if>
-return result;
-}
+        return result;
+    }
 }
 

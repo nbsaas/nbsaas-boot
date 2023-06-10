@@ -15,8 +15,7 @@ import com.nbsaas.boot.rest.api.Converter;
 <#if formBean.catalog>
     @Data
 </#if>
-public class ${formBean.className}SimpleConvert implements Converter
-<${formBean.className}Simple, ${formBean.className}> {
+public class ${formBean.className}SimpleConvert implements Converter<${formBean.className}Simple, ${formBean.className}> {
 
 
 <#if formBean.catalog>
@@ -26,40 +25,40 @@ public class ${formBean.className}SimpleConvert implements Converter
 
 @Override
 public ${formBean.className}Simple convert(${formBean.className} source) {
-${formBean.className}Simple result = new ${formBean.className}Simple();
+    ${formBean.className}Simple result = new ${formBean.className}Simple();
 
-<#if formBean.simples??>
-    <#list formBean.simples as item>
-        <#if item.fieldType==2>
-            if(source.get${item.id?cap_first}()!=null){
-                result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
+    <#if formBean.simples??>
+        <#list formBean.simples as item>
+            <#if item.fieldType==2>
+                if(source.get${item.id?cap_first}()!=null){
+                    result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
+                }
+            <#elseif item.fieldType==3>
+                if(source.get${item.id?cap_first?replace("Name", "")}()!=null){
+                    result.set${item.id?cap_first}${item.extName?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().get${item.extName?cap_first}());
+                }
+            <#else>
+                result.set${item.id?cap_first}(source.get${item.id?cap_first}());
+            </#if>
+        </#list>
+    </#if>
+
+    <#if formBean.catalog>
+        result.setLabel(source.getName());
+        result.setValue(""+source.getId());
+        if (source.getChildren()!=null&&source.getChildren().size()>0){
+            if (fetch!=0){
+                result.setChildren(source.getChildren().stream().map(this).collect(Collectors.toList()));
             }
-        <#elseif item.fieldType==3>
-            if(source.get${item.id?cap_first?replace("Name", "")}()!=null){
-                result.set${item.id?cap_first}${item.extName?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().get${item.extName?cap_first}());
-            }
-        <#else>
-            result.set${item.id?cap_first}(source.get${item.id?cap_first}());
-        </#if>
-    </#list>
-</#if>
+        }
+    </#if>
 
-<#if formBean.catalog>
-    result.setLabel(source.getName());
-    result.setValue(""+source.getId());
-    if (source.getChildren()!=null&&source.getChildren().size()>0){
-    if (fetch!=0){
-    result.setChildren(source.getChildren().stream().map(this).collect(Collectors.toList()));
-    }
-    }
-</#if>
-
-<#if formBean.enumList??>
-    <#list formBean.enumList as item>
-        result.set${item.field?cap_first}Name(source.get${item.field?cap_first}()+"");
-    </#list>
-</#if>
-return result;
+    <#if formBean.enumList??>
+        <#list formBean.enumList as item>
+            result.set${item.field?cap_first}Name(source.get${item.field?cap_first}()+"");
+        </#list>
+    </#if>
+    return result;
 }
 
 }

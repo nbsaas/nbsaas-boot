@@ -57,7 +57,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
 
 
 
-<#if formBean.catalog>
+    <#if formBean.catalog>
     @Override
     public ListResponse<${formBean.className}Simple> list(PageRequest request) {
         ${formBean.className}SimpleConvert convert=new ${formBean.className}SimpleConvert();

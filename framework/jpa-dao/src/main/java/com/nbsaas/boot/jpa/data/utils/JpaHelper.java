@@ -19,6 +19,7 @@
 
 package com.nbsaas.boot.jpa.data.utils;
 
+import com.nbsaas.boot.jpa.data.entity.CatalogEntity;
 import com.nbsaas.boot.rest.request.RequestId;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +41,29 @@ public class JpaHelper<T> {
     public <R, F> ResponseObject<R> add(F object, Function<F, T> formConvert, Function<T, R> responseConvert) {
         ResponseObject<R> result = new ResponseObject<>();
         T bean = formConvert.apply(object);
+
+        //处理树型结构
+        if (bean instanceof CatalogEntity) {
+            CatalogEntity entity = (CatalogEntity) bean;
+            if (entity.getParentId() != null) {
+                Optional<T> parent = repository.findById(entity.getParentId());
+                if (parent.isPresent()) {
+                    T parentEntity = parent.get();
+                    CatalogEntity p = (CatalogEntity) parentEntity;
+                    Integer depth = p.getDepth();
+                    if (depth == null) {
+                        depth = 1;
+                        p.setDepth(1);
+                    }
+                    depth++;
+                    entity.setDepth(depth);
+                } else {
+                    entity.setDepth(1);
+                }
+            }
+            entity.setDepth(1);
+        }
+
         this.repository.save(bean);
         R obj = responseConvert.apply(bean);
         result.setData(obj);
