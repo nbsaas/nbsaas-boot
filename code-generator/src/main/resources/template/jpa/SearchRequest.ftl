@@ -58,9 +58,6 @@ private static final long serialVersionUID = 1L;
 
 <#if formBean.catalog>
     private int fetch;
-
-    @Search(name = "levelInfo",operator = Operator.eq)
-    private Integer level;
 </#if>
 
 }
