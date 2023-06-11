@@ -28,6 +28,7 @@ import com.nbsaas.boot.rest.request.RequestId;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
+import com.nbsaas.boot.utils.BeanDataUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -317,6 +318,12 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             return null;
         }
         Entity data = getConvertForm().apply(form);
+        Optional<Entity> dbEntity = getJpaRepository().findById(form.getId());
+        if (!dbEntity.isPresent()){
+            return null;
+        }
+        Entity db = dbEntity.get();
+        BeanDataUtils.copyProperties(data,db);
         return getConvertResponse().apply(data);
     }
 
