@@ -31,9 +31,11 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -96,6 +98,10 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         PageResponse<T> result = new PageResponse<>();
         SpecificationData<Entity> data = new SpecificationData<>(request);
         Pageable pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize());
+        if (StringUtils.hasText(request.getSortField())){
+            pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize(),getSortData(request));
+        }
+
         Page<Entity> res = getJpaRepository().findAll(data, pageable);
         if (res.getContent().size() > 0) {
             List<T> list = res.getContent().stream().map(convert).collect(toList());
@@ -117,13 +123,28 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     protected ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
         ListResponse<Simple> result = new ListResponse<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
+        List<Entity> res;
+        if (StringUtils.hasText(request.getSortField())){
+            res = getJpaRepository().findAll(spec,getSortData(request));
+        }else{
+            res = getJpaRepository().findAll(spec);
+        }
 
-        List<Entity> res = getJpaRepository().findAll(spec);
         if (res != null && res.size() > 0) {
             List<Simple> list = res.stream().map(convert).collect(toList());
             result.setData(list);
         }
         return result;
+    }
+
+    private static Sort getSortData(PageRequest request) {
+        Sort sort;
+        if ("asc".equals(request.getSortMethod())){
+            sort=Sort.by(Sort.Direction.ASC, request.getSortField());
+        }else{
+            sort=Sort.by(Sort.Direction.DESC, request.getSortField());
+        }
+        return sort;
     }
 
     public List<Simple> listData(FilterGroup... groups) {
