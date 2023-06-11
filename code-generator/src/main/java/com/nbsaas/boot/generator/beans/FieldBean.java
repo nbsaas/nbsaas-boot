@@ -44,6 +44,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
      */
     private String id;
 
+
     private String parent;
 
 

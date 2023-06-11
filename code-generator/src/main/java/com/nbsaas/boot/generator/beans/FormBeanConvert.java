@@ -128,72 +128,68 @@ public class FormBeanConvert {
         Set<FieldBean> beans = new HashSet<>();
         for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
             Field[] fs = clazz.getDeclaredFields();
-            for (Field f : fs) {
-                f.setAccessible(true);
-                FieldConvert convert = f.getAnnotation(FieldConvert.class);
+            for (Field field : fs) {
+                field.setAccessible(true);
+                FieldConvert convert = field.getAnnotation(FieldConvert.class);
                 if (convert != null) {
                     FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
+                    bean.setId(field.getName());
                     bean.setType(convert.classType());
                     bean.setFieldType(2);
-                    bean.setParentType(f.getType().getSimpleName());
-                    bean.setParentFullType(f.getType().getName());
-                    bean.setFullType(f.getType().getName());
-                    updateComment(f, bean);
+                    bean.setParentType(field.getType().getSimpleName());
+                    bean.setParentFullType(field.getType().getName());
+                    bean.setFullType(field.getType().getName());
+                    updateComment(field, bean);
                     beans.add(bean);
                 }
 
-                FieldName fieldName = f.getAnnotation(FieldName.class);
+                FieldName fieldName = field.getAnnotation(FieldName.class);
                 if (fieldName != null) {
                     FieldBean bean = new FieldBean();
-                    String parentName = fieldName.name();
-                    if (StringUtil.isNotBlank(parentName)) {
-                        bean.setId(f.getName());
-                        String parent = fieldName.parent();
-                        if (StringUtils.isNoneEmpty(parent)) {
-                            bean.setExtName(parent);
-                        } else {
-                            bean.setExtName(parentName);
-                        }
+                    String parent = fieldName.parent();
+                    if (StringUtil.isNotBlank(parent)) {
+                        String temp = parent.substring(0, 1).toUpperCase() + parent.substring(1);
+                        bean.setId(field.getName() + temp);
+                        bean.setExtName(parent);
                     } else {
-                        bean.setId(f.getName());
+                        bean.setId(field.getName() + "Name");
                         bean.setExtName("Name");
                     }
-                    bean.setParent(f.getName());
+                    bean.setParent(field.getName());
                     bean.setType(fieldName.classType());
                     bean.setFieldType(3);
-                    bean.setFullType(f.getType().getName());
-                    updateComment(f, bean);
+                    bean.setFullType(field.getType().getName());
+                    updateComment(field, bean);
                     beans.add(bean);
                 }
 
 
-                if (f.getType().isEnum()) {
+                if (field.getType().isEnum()) {
                     FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
-                    bean.setType(f.getType().getSimpleName());
-                    bean.setFullType(f.getType().getName());
+                    bean.setId(field.getName());
+                    bean.setType(field.getType().getSimpleName());
+                    bean.setFullType(field.getType().getName());
                     bean.setFieldType(4);
                     beans.add(bean);
                 }
 
 
-                if (f.getType().getName().startsWith("java.lang")
-                        || f.getType().getName().equals("int")
-                        || f.getType().getName().equals("long")
-                        || f.getType().getName().equals("float")
-                        || f.getType().getName().equals("double")
-                        || f.getType().getSimpleName().equals("BigDecimal")
-                        || f.getType().getSimpleName().equals("Date")) {
-                    if (annotation != null && f.getAnnotation(annotation) != null) {
+                if (field.getType().getName().startsWith("java.lang")
+                        || field.getType().getName().equals("int")
+                        || field.getType().getName().equals("long")
+                        || field.getType().getName().equals("float")
+                        || field.getType().getName().equals("double")
+                        || field.getType().getSimpleName().equals("BigDecimal")
+                        || field.getType().getSimpleName().equals("Date")) {
+                    if (annotation != null && field.getAnnotation(annotation) != null) {
                         continue;
                     }
                     FieldBean bean = new FieldBean();
-                    bean.setId(f.getName());
-                    bean.setType(f.getType().getSimpleName());
+                    bean.setId(field.getName());
+                    bean.setType(field.getType().getSimpleName());
                     bean.setFieldType(1);
 
-                    updateComment(f, bean);
+                    updateComment(field, bean);
                     beans.add(bean);
 
                 }

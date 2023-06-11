@@ -26,10 +26,18 @@ import java.lang.annotation.*;
 @Documented
 public @interface FieldName {
 
-    String name() default "";
-
+    /**
+     * 父类字段名称
+     *
+     * @return
+     */
     String parent() default "";
 
+    /**
+     * 父类字段数据类型
+     *
+     * @return
+     */
     String classType() default "String";
 
 }

@@ -34,9 +34,14 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
                     result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
                 }
             <#elseif item.fieldType==3>
-                if(source.get${item.id?cap_first?replace("Name", "")}()!=null){
-                    result.set${item.id?cap_first}${item.extName?cap_first}(source.get${item.id?cap_first?replace("Name", "")}().get${item.extName?cap_first}());
+                if(source.get${item.parent?cap_first}()!=null){
+                    result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.extName?cap_first}());
                 }
+            <#elseif item.fieldType==4>
+                if(source.get${item.id?cap_first}()!=null){
+                    result.set${item.id?cap_first}Name(String.valueOf(source.get${item.id?cap_first}()));
+                }
+                result.set${item.id?cap_first}(source.get${item.id?cap_first}());
             <#else>
                 result.set${item.id?cap_first}(source.get${item.id?cap_first}());
             </#if>
