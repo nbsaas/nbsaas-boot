@@ -66,7 +66,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
      * @param request
      * @return 数据详情
      */
-    ResponseObject<Response> update(RequestId request);
+    ResponseObject<Response> update(Request request);
 
     /**
      * 删除

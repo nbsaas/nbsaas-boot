@@ -173,7 +173,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      */
     @Transactional
     @Override
-    public ResponseObject<Response> update(RequestId request) {
+    public ResponseObject<Response> update(Form request) {
         ResponseObject<Response> result = new ResponseObject<>();
         Optional<Entity> optional = getJpaRepository().findById(request.getId());
         if (!optional.isPresent()) {
@@ -182,7 +182,8 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             return result;
         }
         Entity bean = optional.get();
-        BeanUtils.copyProperties(request, bean);
+        Entity temp = getConvertForm().apply(request);
+        BeanUtils.copyProperties(temp, bean);
         return result;
 
     }
