@@ -183,7 +183,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         }
         Entity bean = optional.get();
         Entity temp = getConvertForm().apply(request);
-        BeanUtils.copyProperties(temp, bean);
+        BeanDataUtils.copyProperties(temp, bean);
         return result;
 
     }
