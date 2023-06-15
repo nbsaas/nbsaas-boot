@@ -397,5 +397,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return search(request, convert);
     }
 
-
+    public <Domain> PageResponse<Domain> searchExt(PageRequest request, Function<Simple,Domain> function) {
+        return search(request, getConvertSimple().andThen(function));
+    }
 }

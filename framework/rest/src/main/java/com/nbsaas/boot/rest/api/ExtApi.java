@@ -23,7 +23,9 @@ package com.nbsaas.boot.rest.api;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.response.PageResponse;
 
-public interface ExtApi {
+import java.util.function.Function;
+
+public interface ExtApi<Simple> {
 
     /**
      * 扩展搜索，传递返回类
@@ -35,5 +37,7 @@ public interface ExtApi {
      */
     <Domain> PageResponse<Domain> searchExt(PageRequest request, Class<Domain> domainClass);
 
+
+    <Domain> PageResponse<Domain> searchExt(PageRequest request, Function<Simple,Domain> function);
 
 }
