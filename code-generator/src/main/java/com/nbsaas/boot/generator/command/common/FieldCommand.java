@@ -27,11 +27,7 @@ public class FieldCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()) {
-            makeCode("Field", ".api.domain.field");
-        }else{
-            makeCode("Field", "."+config.getProjectName()+".api.domain.field");
-        }
+        makeCode("Field", "." + config.getModuleName() + ".api.domain.field");
         return ResponseObject.success();
     }
 

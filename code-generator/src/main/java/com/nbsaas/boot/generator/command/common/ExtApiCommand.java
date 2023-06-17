@@ -27,17 +27,10 @@ public class ExtApiCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()) {
-            makePackage(".ext.apis");
-            makePackage(".ext.domain.request");
-            makePackage(".ext.domain.simple");
-            makePackage(".ext.domain.response");
-        }else{
-            makePackage("."+config.getProjectName()+".ext.apis");
-            makePackage("."+config.getProjectName()+".ext.domain.request");
-            makePackage("."+config.getProjectName()+".ext.domain.simple");
-            makePackage("."+config.getProjectName()+".ext.domain.response");
-        }
+        makePackage("."+config.getModuleName()+".ext.apis");
+        makePackage("."+config.getModuleName()+".ext.domain.request");
+        makePackage("."+config.getModuleName()+".ext.domain.simple");
+        makePackage("."+config.getModuleName()+".ext.domain.response");
         return ResponseObject.success();
     }
 

@@ -50,6 +50,9 @@ public class GeneratorApp {
         //读入文件
 
         Config config = yaml.loadAs(Files.newInputStream(f.toPath()), Config.class);
+        if (config.getModuleName() == null) {
+            config.setModuleName(config.getProjectName());
+        }
         config.setBase(baseFile);
 
         List<String> tables = config.getEntities();

@@ -16,7 +16,7 @@
     </modules>
     <groupId>com.nbsaas.boot</groupId>
     <artifactId>boot-nbsaas</artifactId>
-    <version>1.0.11-2023</version>
+    <version>1.0.12-2023</version>
     <packaging>pom</packaging>
     <name>boot-nbsaas</name>
     <url>http://www.nbsaas.com</url>

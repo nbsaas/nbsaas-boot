@@ -27,11 +27,7 @@ public class ApiCommand extends BaseCommand {
     @Override
     public ResponseObject<?> handle(InputRequestObject context) {
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()) {
-            makeCode("Api", ".api.apis");
-        }else{
-            makeCode("Api", "."+config.getProjectName()+".api.apis");
-        }
+        makeCode("Api", "."+config.getModuleName()+".api.apis");
         return ResponseObject.success();
     }
 

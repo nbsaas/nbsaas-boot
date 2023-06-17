@@ -26,7 +26,7 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class ControllerAdminCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
-        makeCodePackage("Controller", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+        makeCodePackage("Controller", ".controller." + context.getConfig().getModuleName(), context.getConfig().getBasicPackage());
         return ResponseObject.success();
     }
 

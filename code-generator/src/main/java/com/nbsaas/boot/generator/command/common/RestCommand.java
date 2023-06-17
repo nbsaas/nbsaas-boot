@@ -28,12 +28,7 @@ public class RestCommand extends BaseCommand {
     public ResponseObject handle(InputRequestObject context) {
 
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()){
-            makeCode("Resource", ".rest.resource");
-        }else{
-            makeCode("Resource", "."+config.getProjectName()+".rest.resource");
-        }
-
+        makeCode("Resource", "."+config.getModuleName()+".rest.resource");
         return ResponseObject.success();
     }
 

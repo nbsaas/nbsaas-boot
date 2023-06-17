@@ -31,11 +31,7 @@ public class RepositoryCommand extends BaseCommand {
     public ResponseObject handle(InputRequestObject context) {
 
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()){
-            makeCode("Repository", ".data.repository");
-        }else{
-            makeCode("Repository", "."+config.getProjectName()+".data.repository");
-        }
+        makeCode("Repository", "."+config.getModuleName()+".data.repository");
         return ResponseObject.success();
     }
 

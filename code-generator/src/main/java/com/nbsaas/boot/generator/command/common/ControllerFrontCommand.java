@@ -28,7 +28,7 @@ public class ControllerFrontCommand extends BaseCommand {
     public ResponseObject handle(InputRequestObject context) {
         Config config = inputRequestObject.getConfig();
         if (config.getMultiple()) {
-            makeCodePackage("FrontController", ".controller." + context.getConfig().getProjectName(), context.getConfig().getBasicPackage());
+            makeCodePackage("FrontController", ".controller." + context.getConfig().getModuleName(), context.getConfig().getBasicPackage());
         }else{
             makeCode("FrontController", "."+config.getProjectName()+".controller.");
         }

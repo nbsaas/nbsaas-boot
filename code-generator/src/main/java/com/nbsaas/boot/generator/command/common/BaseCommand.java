@@ -52,31 +52,21 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
     public ResponseObject execute(InputRequestObject context) {
         this.inputRequestObject = context;
         Config config = context.getConfig();
-        if (config.getMultiple()) {
-            context.put("repositoryPackage", config.getBasePackage() + ".data.repository");
-            context.put("resourcePackage", config.getBasePackage() + ".rest.resource");
-            context.put("convertPackage", config.getBasePackage() + ".rest.convert");
-            context.put("simplePackage", config.getBasePackage() + ".api.domain.simple");
-            context.put("responsePackage", config.getBasePackage() + ".api.domain.response");
-            context.put("requestPackage", config.getBasePackage() + ".api.domain.request");
-            context.put("fieldPackage", config.getBasePackage() + ".api.domain.field");
-            context.put("apiPackage", config.getBasePackage() + ".api.apis");
-            context.put("controllerPackage", config.getBasicPackage() + ".controller." + config.getProjectName());
 
-        } else {
-            context.put("repositoryPackage", config.getBasePackage() + "." + config.getProjectName() + ".data.repository");
-            context.put("resourcePackage", config.getBasePackage() +"." + config.getProjectName() + ".rest.resource");
-            context.put("convertPackage", config.getBasePackage() +"." + config.getProjectName() +  ".rest.convert");
 
-            context.put("apiPackage", config.getBasePackage() +"." + config.getProjectName() +  ".api.apis");
+        context.put("repositoryPackage", config.getBasePackage() + "." + config.getModuleName() + ".data.repository");
+        context.put("resourcePackage", config.getBasePackage() +"." + config.getModuleName() + ".rest.resource");
+        context.put("convertPackage", config.getBasePackage() +"." + config.getModuleName() +  ".rest.convert");
 
-            context.put("simplePackage", config.getBasePackage() +"." + config.getProjectName() + ".api.domain.simple");
-            context.put("responsePackage", config.getBasePackage() + "." + config.getProjectName() +".api.domain.response");
-            context.put("requestPackage", config.getBasePackage() + "." + config.getProjectName() +".api.domain.request");
-            context.put("fieldPackage", config.getBasePackage() +"." + config.getProjectName() + ".api.domain.field");
-            context.put("controllerPackage", config.getBasicPackage() + "." + config.getProjectName()+".controller");
+        context.put("apiPackage", config.getBasePackage() +"." + config.getModuleName() +  ".api.apis");
 
-        }
+        context.put("simplePackage", config.getBasePackage() +"." + config.getModuleName() + ".api.domain.simple");
+        context.put("responsePackage", config.getBasePackage() + "." + config.getModuleName() +".api.domain.response");
+        context.put("requestPackage", config.getBasePackage() + "." + config.getModuleName() +".api.domain.request");
+        context.put("fieldPackage", config.getBasePackage() +"." + config.getModuleName() + ".api.domain.field");
+        //context.put("controllerPackage", config.getBasicPackage() + "." + config.getModuleName()+".controller");
+        context.put("controllerPackage", config.getBasicPackage() + ".controller." + config.getModuleName());
+
 
         context.put("jpaEntityPackage", config.getEntityPackage());
 

@@ -28,17 +28,10 @@ public class DomainCommand extends BaseCommand {
     public ResponseObject handle(InputRequestObject context) {
         this.setOverrideFile(true);
         Config config = inputRequestObject.getConfig();
-        if (config.getMultiple()) {
-            makeCode("DataRequest", ".api.domain.request");
-            makeCode("SearchRequest", ".api.domain.request");
-            makeCode("Response", ".api.domain.response");
-            makeCode("Simple", ".api.domain.simple");
-        }else{
-            makeCode("DataRequest", "."+config.getProjectName()+".api.domain.request");
-            makeCode("SearchRequest", "."+config.getProjectName()+".api.domain.request");
-            makeCode("Response", "."+config.getProjectName()+".api.domain.response");
-            makeCode("Simple", "."+config.getProjectName()+".api.domain.simple");
-        }
+        makeCode("DataRequest", "."+config.getModuleName()+".api.domain.request");
+        makeCode("SearchRequest", "."+config.getModuleName()+".api.domain.request");
+        makeCode("Response", "."+config.getModuleName()+".api.domain.response");
+        makeCode("Simple", "."+config.getModuleName()+".api.domain.simple");
         return ResponseObject.success();
     }
 

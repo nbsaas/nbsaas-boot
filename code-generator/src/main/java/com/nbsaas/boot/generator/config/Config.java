@@ -38,6 +38,18 @@ public class Config {
      */
     private String projectName;
 
+    public String getModuleName() {
+        if (moduleName == null) {
+            return projectName;
+        }
+        return moduleName;
+    }
+
+    /**
+     * 模块名称
+     */
+    private String moduleName;
+
     /**
      * 项目路径
      */
@@ -63,9 +75,6 @@ public class Config {
     private List<String> entities;
 
     public String getBasePackage() {
-        if (multiple) {
-            return basePackage + "." + projectName;
-        }
         return basePackage;
     }
 
