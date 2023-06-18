@@ -47,9 +47,14 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     private String parent;
 
-
+    /**
+     * java类型简称
+     */
     private String className;
 
+    /**
+     * java类型全路径名称
+     */
     private String javaType;
 
     private Boolean simpleType;
@@ -93,7 +98,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     private String operator;
 
     /**
-     * 2父级类id 3父级类名称 4枚举
+     * 2父级类id 3父级类名称 4枚举 5其他
      */
     private Integer fieldType;
 

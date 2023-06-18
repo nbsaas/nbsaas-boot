@@ -49,7 +49,7 @@ public @interface SearchItem {
 
     String placeholder() default "";
 
-    String classType() default "String";
+    Class<?> classType() default String.class;
 
     String operator() default "like";
 

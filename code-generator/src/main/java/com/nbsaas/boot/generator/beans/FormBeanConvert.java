@@ -54,7 +54,13 @@ public class FormBeanConvert {
                 bean.setPlaceholder(annotation.placeholder());
                 bean.setTitle(annotation.label());
                 bean.setId(annotation.name());
-                bean.setClassName(annotation.classType());
+                bean.setClassName(annotation.classType().getSimpleName());
+                bean.setFullType(annotation.classType().getName());
+                if (!isBasicType(annotation.classType())) {
+                    bean.setFieldType(5);
+                }
+
+
                 bean.setKey(annotation.key());
                 bean.setOperator(annotation.operator());
                 Integer sortNum = getInteger(annotation);
@@ -89,7 +95,11 @@ public class FormBeanConvert {
                     fieldBean.setPlaceholder(item.placeholder());
                     fieldBean.setTitle(item.label());
                     fieldBean.setId(item.name());
-                    fieldBean.setClassName(item.classType());
+                    fieldBean.setClassName(item.classType().getSimpleName());
+                    fieldBean.setFullType(item.classType().getName());
+                    if (!isBasicType(item.classType())) {
+                        fieldBean.setFieldType(5);
+                    }
                     fieldBean.setKey(item.key());
                     fieldBean.setOperator(item.operator());
                     fieldBean.setShow(item.show());
@@ -174,13 +184,7 @@ public class FormBeanConvert {
                 }
 
 
-                if (field.getType().getName().startsWith("java.lang")
-                        || field.getType().getName().equals("int")
-                        || field.getType().getName().equals("long")
-                        || field.getType().getName().equals("float")
-                        || field.getType().getName().equals("double")
-                        || field.getType().getSimpleName().equals("BigDecimal")
-                        || field.getType().getSimpleName().equals("Date")) {
+                if (isBasicType(field.getType())) {
                     if (annotation != null && field.getAnnotation(annotation) != null) {
                         continue;
                     }
@@ -196,6 +200,20 @@ public class FormBeanConvert {
             }
         }
         return beans;
+    }
+
+    boolean isBasicType(Class<?> type) {
+        if (type.getName().startsWith("java.lang")
+                || type.getName().equals("int")
+                || type.getName().equals("long")
+                || type.getName().equals("float")
+                || type.getName().equals("double")
+                || type.getSimpleName().equals("BigDecimal")
+                || type.getSimpleName().equals("Date")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public FormBean convertClass(Class<?> object) {

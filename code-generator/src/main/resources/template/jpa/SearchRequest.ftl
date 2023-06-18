@@ -7,6 +7,13 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.math.BigDecimal;
+<#if formBean.searches??>
+    <#list formBean.searches as item>
+        <#if item.fieldType?? && item.fieldType == 5 >
+import ${item.fullType};
+        </#if>
+    </#list>
+</#if>
 
 /**
 * 搜索bean
