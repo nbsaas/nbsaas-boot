@@ -38,7 +38,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 分页查询
      *
-     * @param request
+     * @param request 请求对象
      * @return 分页数据信息
      */
     PageResponse<Simple> search(PageRequest request);
@@ -47,7 +47,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 根据条件查询集合，不分页
      *
-     * @param request
+     * @param request 请求对象
      * @return 数据集合数据
      */
     ListResponse<Simple> list(PageRequest request);
@@ -55,7 +55,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 创建
      *
-     * @param request
+     * @param request 请求对象
      * @return 数据详情
      */
     ResponseObject<Response> create(Request request);
@@ -63,7 +63,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 更新
      *
-     * @param request
+     * @param request 请求对象
      * @return 数据详情
      */
     ResponseObject<Response> update(Request request);
@@ -71,7 +71,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 删除
      *
-     * @param request
+     * @param request 请求对象
      * @return 删除状态
      */
     ResponseObject<?> delete(RequestId request);
@@ -79,7 +79,7 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
     /**
      * 根据ID查询详情
      *
-     * @param request
+     * @param request 请求对象
      * @return 数据详情
      */
     ResponseObject<Response> view(RequestId request);
