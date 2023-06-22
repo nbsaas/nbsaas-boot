@@ -41,6 +41,13 @@ public @interface SearchItem {
      */
     String name();
 
+    /**
+     * api模型名称
+     *
+     * @return
+     */
+    String api() default "";
+
     String key() default "";
 
     InputType type() default InputType.text;

@@ -78,6 +78,10 @@ public class FormBeanConvert {
                 if (StringUtils.isEmpty(bean.getPlaceholder())) {
                     bean.setPlaceholder(bean.getTitle());
                 }
+                bean.setApi(annotation.api());
+                if (StringUtils.isEmpty(bean.getApi())) {
+                    bean.setApi(annotation.name());
+                }
                 beans.add(bean);
             }
         }
@@ -111,6 +115,11 @@ public class FormBeanConvert {
                     if (StringUtils.isEmpty(fieldBean.getPlaceholder())) {
                         fieldBean.setPlaceholder("");
                     }
+                    fieldBean.setApi(item.api());
+                    if (StringUtils.isEmpty(fieldBean.getApi())) {
+                        fieldBean.setApi(item.name());
+                    }
+
                     beans.add(fieldBean);
                 }
             }
@@ -357,7 +366,11 @@ public class FormBeanConvert {
         });
         Collections.sort(formBean.getGrids());
 
-        formBean.setLeftSize(24 - formBean.getSearches().size() * 6);
+        int left = 24 - formBean.getSearches().size() * 6;
+        if (left == 0) {
+            left = 24;
+        }
+        formBean.setLeftSize(left);
 
         return formBean;
     }

@@ -99,7 +99,7 @@
                 param.level = 1;
                 param.size = 500;
                 param.fetch = 0;
-                let res = await this.$http.form("/${item.id?uncap_first}/list", param);
+                let res = await this.$http.form("/${item.option?uncap_first}/list", param);
                 if (res.code === 200) {
                     self.${item.id}Options = res.data;
                 }

@@ -108,6 +108,12 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     private String extName;
 
+    /**
+     * api模型名称
+     */
+    private String api;
+
+
     private boolean sort;
 
     private boolean show = true;
