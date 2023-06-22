@@ -372,6 +372,38 @@ public class FormBeanConvert {
         }
         formBean.setLeftSize(left);
 
+        //查找扩展bean
+        BeanExt beanExt = object.getAnnotation(BeanExt.class);
+        if (beanExt != null) {
+            FormField[] items = beanExt.items();
+            if (items == null) {
+                return formBean;
+            }
+            for (FormField item : items) {
+                FieldBean bean = new FieldBean();
+                bean.setId(item.id());
+                bean.setType(item.classType().getSimpleName());
+                bean.setParent(item.parent());
+                bean.setParentField(item.parentField());
+                bean.setTitle(item.title());
+                bean.setWidth(item.width());
+                bean.setSortNum(Integer.valueOf(item.sortNum()));
+                if (!isBasicType(item.classType())) {
+                    bean.setFullType(item.classType().getName());
+                    bean.setFieldType(100);
+                } else {
+                    bean.setFieldType(101);
+                }
+                formBean.getSimples().add(bean);
+                formBean.getResponses().add(bean);
+                if (item.grid()) {
+                    formBean.getGrids().add(bean);
+                    formBean.getGrids().sort(Comparator.comparing(FieldBean::getSortNum));
+                }
+            }
+
+        }
+
         return formBean;
     }
 

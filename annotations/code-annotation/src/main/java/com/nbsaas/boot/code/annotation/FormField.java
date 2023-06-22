@@ -28,9 +28,19 @@ import java.lang.annotation.*;
 public @interface FormField {
 
 
+    /**
+     * 是否在添加或者更新页面显示
+     *
+     * @return
+     */
     boolean ignore() default false;
 
 
+    /**
+     * 是否在搜索页面显示
+     *
+     * @return
+     */
     boolean grid() default false;
 
     String title() default "";
@@ -102,6 +112,35 @@ public @interface FormField {
      */
     boolean sort() default false;
 
+
+    /**
+     * 父类搜索的api名称
+     *
+     * @return
+     */
     String option() default "";
+
+
+    /**
+     * 数据类型
+     *
+     * @return
+     */
+    Class<?> classType() default String.class;
+
+
+    /**
+     * 父类字段名称
+     *
+     * @return
+     */
+    String parentField() default "";
+
+    /**
+     * 当前类的父类名称
+     *
+     * @return
+     */
+    String parent() default "";
 
 }

@@ -27,7 +27,7 @@
 
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
-    import ${item.name} from "@/components/${item.name}.vue";
+    import ${item.name} from "${item.model!}";
     </#list>
     </#if>
 

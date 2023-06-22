@@ -37,6 +37,14 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
                 if(source.get${item.parent?cap_first}()!=null){
                     result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.extName?cap_first}());
                 }
+            <#elseif item.fieldType==101>
+                if(source.get${item.parent?cap_first}()!=null){
+                    result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.parentField?cap_first}());
+                }
+            <#elseif item.fieldType==100>
+                if(source.get${item.parent?cap_first}()!=null){
+                     result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.parentField?cap_first}());
+                }
             <#elseif item.fieldType==4>
                 if(source.get${item.id?cap_first}()!=null){
                     result.set${item.id?cap_first}Name(String.valueOf(source.get${item.id?cap_first}()));

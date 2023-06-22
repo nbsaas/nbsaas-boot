@@ -45,7 +45,15 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     private String id;
 
 
+    /**
+     * 父类在当前类的名称
+     */
     private String parent;
+
+    /**
+     * 父类字段
+     */
+    private String parentField;
 
     /**
      * java类型简称
