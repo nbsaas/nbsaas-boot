@@ -15,10 +15,10 @@
         <module>annotations</module>
     </modules>
     <groupId>com.nbsaas.boot</groupId>
-    <artifactId>boot-nbsaas</artifactId>
+    <artifactId>nbsaas-boot</artifactId>
     <version>1.0.12-2023</version>
     <packaging>pom</packaging>
-    <name>boot-nbsaas</name>
+    <name>nbsaas-boot</name>
     <url>http://www.nbsaas.com</url>
 
     <properties>
@@ -94,7 +94,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <finalName>boot-nbsaas</finalName>
+        <finalName>nbsaas-boot</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -149,9 +149,9 @@
         </developer>
     </developers>
     <scm>
-        <url>https://github.com/nbsaas/boot-nbsaas</url>
-        <connection>git@github.com:nbsaas/boot-nbsaas.git</connection>
-        <developerConnection>git@github.com:nbsaas/boot-nbsaas.git</developerConnection>
+        <url>https://github.com/nbsaas/nbsaas-boot</url>
+        <connection>git@github.com:nbsaas/nbsaas-boot.git</connection>
+        <developerConnection>git@github.com:nbsaas/nbsaas-boot.git</developerConnection>
     </scm>
     <profiles>
         <profile>

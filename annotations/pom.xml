@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.nbsaas.boot</groupId>
-        <artifactId>boot-nbsaas</artifactId>
+        <artifactId>nbsaas-boot</artifactId>
         <version>1.0.12-2023</version>
     </parent>
 

@@ -1,34 +1,34 @@
-# boot-nbsaas
+# nbsaas-boot
 
-[![maven](https://img.shields.io/maven-central/v/com.nbsaas.boot/boot-nbsaas.svg)](http://mvnrepository.com/artifact/com.nbsaas.boot/boot-nbsaas)
+[![maven](https://img.shields.io/maven-central/v/com.nbsaas.boot/nbsaas-boot.svg)](http://mvnrepository.com/artifact/com.nbsaas.boot/nbsaas-boot)
 [![QQ](https://img.shields.io/badge/chat-on%20QQ-ff69b4.svg?style=flat-square)](//shang.qq.com/wpa/qunwpa?idkey=d1a308945e4b2ff8aeb1711c2c7914342dae15e9ce7041e94756ab355430dc78)
 [![Apache-2.0](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/idea/)
-[![GitHub forks](https://img.shields.io/github/stars/nbsaas/boot-nbsaas.svg?style=social&logo=github&label=Stars)](https://github.com/nbsaas/boot-nbsaas)
+[![GitHub forks](https://img.shields.io/github/stars/nbsaas/nbsaas-boot.svg?style=social&logo=github&label=Stars)](https://github.com/nbsaas/nbsaas-boot)
 
 #### 介绍
 
-boot-nbsaas是一个企业级快速开发框架，具有以下特点：
+nbsaas-boot是一个企业级快速开发框架，具有以下特点：
 
-1. 自动建表：boot-nbsaas提供了自动建表功能，根据用户定义的数据模型自动生成数据库表结构，减少手动操作，提高开发效率。
+1. 自动建表：nbsaas-boot提供了自动建表功能，根据用户定义的数据模型自动生成数据库表结构，减少手动操作，提高开发效率。
 
-2. 开发规范：boot-nbsaas提供一套开发规范，包括代码风格、命名规范、注释规范等，使团队开发更加规范化和高效化。
+2. 开发规范：nbsaas-boot提供一套开发规范，包括代码风格、命名规范、注释规范等，使团队开发更加规范化和高效化。
 
-3. 数据搜索：boot-nbsaas提供一种新的数据搜索，基于搜索引擎技术，快速搜索海量数据，提供精确和高效的搜索结果。
+3. 数据搜索：nbsaas-boot提供一种新的数据搜索，基于搜索引擎技术，快速搜索海量数据，提供精确和高效的搜索结果。
 
-4. 代码生成器：boot-nbsaas提供代码生成器，根据数据模型自动生成前端和后端代码，提高开发效率和代码质量。
+4. 代码生成器：nbsaas-boot提供代码生成器，根据数据模型自动生成前端和后端代码，提高开发效率和代码质量。
 
-5. 多租户支持：boot-nbsaas支持多租户，为不同客户提供独立的数据存储空间和访问权限，保证数据安全性和隔离性。
+5. 多租户支持：nbsaas-boot支持多租户，为不同客户提供独立的数据存储空间和访问权限，保证数据安全性和隔离性。
 
-6. 云原生架构：boot-nbsaas基于云原生架构设计，支持容器化部署和自动化运维，具有高可用、高性能、弹性伸缩等优点。
+6. 云原生架构：nbsaas-boot基于云原生架构设计，支持容器化部署和自动化运维，具有高可用、高性能、弹性伸缩等优点。
 
-7. 数据安全：boot-nbsaas采用多重数据安全保障措施，包括数据加密、访问控制、备份与恢复等，保护用户数据的安全性和可靠性。
+7. 数据安全：nbsaas-boot采用多重数据安全保障措施，包括数据加密、访问控制、备份与恢复等，保护用户数据的安全性和可靠性。
 
-8. 用户友好性：boot-nbsaas提供友好的用户界面和操作体验，快速上手和使用，减少学习成本和使用难度。
+8. 用户友好性：nbsaas-boot提供友好的用户界面和操作体验，快速上手和使用，减少学习成本和使用难度。
 
-9. 可扩展性：boot-nbsaas具有良好的可扩展性，支持模块化开发和插件机制，方便扩展功能和定制化需求。
+9. 可扩展性：nbsaas-boot具有良好的可扩展性，支持模块化开发和插件机制，方便扩展功能和定制化需求。
 
-综上所述，boot-nbsaas是一个全面、高效、安全、可扩展、易用的SaaS平台，适用于各种企业级应用的开发和部署。
+综上所述，nbsaas-boot是一个全面、高效、安全、可扩展、易用的SaaS平台，适用于各种企业级应用的开发和部署。
 
 ### 技术选型：
 
@@ -189,12 +189,12 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 ```
     <parent>
         <groupId>com.nbsaas.boot</groupId>
-        <artifactId>boot-nbsaas</artifactId>
+        <artifactId>nbsaas-boot</artifactId>
         <version>1.0.12-2023</version>
     </parent>
 ```
 
-### 使用boot-nbsaas的项目
+### 使用nbsaas-boot的项目
 [nbsaas-life](https://gitee.com/quhaodian/nbsaas-life)
 [nbsaas-admin](https://gitee.com/cng1985/nbsaas-admin)
 [nbsaas-boot-starter](https://gitee.com/cng1985/nbsaas-boot-starter)
