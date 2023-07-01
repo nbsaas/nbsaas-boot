@@ -263,7 +263,13 @@
             async getSearchList() {
                 this.loading = true;
                 let data = this.searchObject;
+
+                <#if formBean.lazy>
+                data.fetch = 0;
+                <#else>
                 data.fetch = 1;
+                </#if>
+
                 data.size = 500;
                 data.sortMethod = "asc";
                 data.sortField = "sortNum";
