@@ -5,7 +5,7 @@
                 <el-tab-pane label="${formBean.model!}树" name="third">
                     <el-button type="primary" size="small" @click="append()" style="margin-bottom:15px;">增加一级分类
                     </el-button>
-                    <el-table :data="treeOptions.children" style="width: 100%;margin-bottom: 20px;" row-key="id" border>
+                    <el-table :data="treeOptions.children" style="width: 100%;margin-bottom: 20px;" row-key="id" border  <#if formBean.lazy> lazy="true" :load="loadChildren" </#if>  >
                         <el-table-column prop="name" label="${model!}名称" sortable width="260" align="left">
                         </el-table-column>
                         <el-table-column prop="code" label="编码" width="120" sortable align="center">
@@ -267,7 +267,7 @@
                 data.size = 500;
                 data.sortMethod = "asc";
                 data.sortField = "sortNum";
-                data.level = 1;
+                data.depth = 1;
                 let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
                 if (res.code === 200) {
                     this.treeOptions.children = res.data;
@@ -276,6 +276,22 @@
                 this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
 
             },
+            <#if formBean.lazy>
+            async loadChildren(event,treeNode, resolve) {
+                this.loading = true;
+                let data = {};
+                data.fetch = 0;
+                data.size = 500;
+                data.sortMethod = "asc";
+                data.sortField = "sortNum";
+                data.parent=event.id;
+                let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
+                if (res.code === 200) {
+                    resolve(res.data);
+                }
+                this.loading = false;
+            },
+            </#if>
             addView() {
                 this.$router.push({
                     path: 'add'

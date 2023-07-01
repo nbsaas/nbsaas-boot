@@ -26,4 +26,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface CatalogClass {
+
+    boolean lazyData() default false;
+
 }

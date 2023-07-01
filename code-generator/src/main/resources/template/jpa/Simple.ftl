@@ -32,9 +32,10 @@ private static final long serialVersionUID = 1L;
     <#if formBean.catalog>
     private String value;
     private String label;
-    private List
-    <${formBean.className}Simple> children;
-    </#if>
+    private List<${formBean.className}Simple> children;
+    private Boolean hasChildren;
+
+   </#if>
 
     <#if formBean.simples??>
         <#list formBean.simples as item>

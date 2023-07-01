@@ -248,6 +248,7 @@ public class FormBeanConvert {
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {
             formBean.setCatalog(true);
+            formBean.setLazy(catalogClass.lazyData());
         }
         ComposeView composeView = object.getAnnotation(ComposeView.class);
         if (composeView != null) {

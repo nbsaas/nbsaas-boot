@@ -46,6 +46,10 @@ public class FormBean implements Serializable {
      * 是否是目录类
      */
     private boolean catalog;
+
+    private boolean lazy;
+
+
     /**
      * 详情展示的时候是否是组合展示
      */
