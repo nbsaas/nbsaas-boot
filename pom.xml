@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-cloud.version>2021.0.7</spring-cloud.version>
+        <spring-cloud.version>2021.0.8</spring-cloud.version>
         <shiro.version>1.11.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <nacos.version>2.2.0</nacos.version>
@@ -56,7 +56,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2021.0.4.0</version>
+                <version>2021.0.5.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
