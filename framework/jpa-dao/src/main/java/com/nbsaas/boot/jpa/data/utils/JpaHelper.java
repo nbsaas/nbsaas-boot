@@ -60,8 +60,9 @@ public class JpaHelper<T> {
                 } else {
                     entity.setDepth(1);
                 }
+            }else{
+                entity.setDepth(1);
             }
-            entity.setDepth(1);
         }
 
         this.repository.save(bean);
