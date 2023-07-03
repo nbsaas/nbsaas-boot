@@ -308,9 +308,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         if (form == null) {
             return null;
         }
-        Entity data = getConvertForm().apply(form);
-        getJpaRepository().save(data);
-        return getConvertResponse().apply(data);
+        return new JpaHelper<>(getJpaRepository()).add(form, getConvertForm(), getConvertResponse()).getData();
     }
 
     @Override
