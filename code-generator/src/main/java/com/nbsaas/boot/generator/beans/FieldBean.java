@@ -106,7 +106,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     private String operator;
 
     /**
-     * 2父级类id 3父级类名称 4枚举 5其他
+     * 2父级类id 3父级类名称 4枚举 5其他 100父类字段其他类型 101父类字段基础类型
      */
     private Integer fieldType;
 

@@ -27,6 +27,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface BeanExt {
 
-    FormField[] items() default {};
+    FormExtField[] items() default {};
 
 }

@@ -376,27 +376,33 @@ public class FormBeanConvert {
         //查找扩展bean
         BeanExt beanExt = object.getAnnotation(BeanExt.class);
         if (beanExt != null) {
-            FormField[] items = beanExt.items();
+            FormExtField[] items = beanExt.items();
             if (items == null) {
                 return formBean;
             }
-            for (FormField item : items) {
+            for (FormExtField item : items) {
                 FieldBean bean = new FieldBean();
-                bean.setId(item.id());
-                bean.setType(item.classType().getSimpleName());
+                bean.setId(item.fieldName());
+                bean.setType(item.fieldClass().getSimpleName());
                 bean.setParent(item.parent());
                 bean.setParentField(item.parentField());
                 bean.setTitle(item.title());
-                bean.setWidth(item.width());
-                bean.setSortNum(Integer.valueOf(item.sortNum()));
-                if (!isBasicType(item.classType())) {
-                    bean.setFullType(item.classType().getName());
+                bean.setSortNum(item.sortNum());
+                if (!isBasicType(item.fieldClass())) {
+                    bean.setFullType(item.fieldClass().getName());
                     bean.setFieldType(100);
                 } else {
                     bean.setFieldType(101);
                 }
-                formBean.getSimples().add(bean);
-                formBean.getResponses().add(bean);
+
+                if (item.simple()) {
+                    formBean.getSimples().add(bean);
+                }
+
+                if (item.response()) {
+                    formBean.getResponses().add(bean);
+                }
+
                 if (item.grid()) {
                     formBean.getGrids().add(bean);
                     formBean.getGrids().sort(Comparator.comparing(FieldBean::getSortNum));
