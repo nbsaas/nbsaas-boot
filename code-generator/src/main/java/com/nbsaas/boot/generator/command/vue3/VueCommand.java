@@ -70,11 +70,11 @@ public class VueCommand extends BaseCommand {
 
         if (formBean.isCompose()) {
             handle(routerDir, configuration, context, "router2.ftl", toLowerCase(formBean.getClassName()) + ".js");
-        } else {
+        }else if (formBean.isCatalog()) {
+            handle(routerDir, configuration, context, "routerTree.ftl", toLowerCase(formBean.getClassName()) + ".js");
+        }  else {
             handle(routerDir, configuration, context, "router.ftl", toLowerCase(formBean.getClassName()) + ".js");
         }
-
-        //\\src\\views\\pages\\+formBean.getClassName()
 
 
         if (formBean.isCatalog()) {
