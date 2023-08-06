@@ -26,6 +26,7 @@
 
 <script>
     import common from "@/mixins/common.js";
+    import {ElLoading} from "element-plus";
 
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
@@ -78,7 +79,16 @@
             },
             async addData() {
                 let data = this.form;
+                const loading = ElLoading.service({
+                    lock: true,
+                    text: '数据处理中',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                })
+
                 let res = await this.$http.form("/${formBean.className?uncap_first}/create", data);
+
+                loading.close();
+
                 if (res.code !== 200) {
                     this.$message.error(res.msg);
                     return;
