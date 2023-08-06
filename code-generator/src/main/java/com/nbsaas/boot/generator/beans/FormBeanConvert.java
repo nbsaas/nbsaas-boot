@@ -153,7 +153,7 @@ public class FormBeanConvert {
                 if (convert != null) {
                     FieldBean bean = new FieldBean();
                     bean.setId(field.getName());
-                    bean.setType(convert.classType());
+                    bean.setType(convert.classType().getSimpleName());
                     bean.setFieldType(2);
                     bean.setParentType(field.getType().getSimpleName());
                     bean.setParentFullType(field.getType().getName());

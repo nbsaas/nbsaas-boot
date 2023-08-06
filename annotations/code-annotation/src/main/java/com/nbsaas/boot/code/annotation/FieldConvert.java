@@ -26,7 +26,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface FieldConvert {
 
-    String classType() default "Long";
+    Class<?> classType() default Long.class;
 
     String dao() default "";
 
