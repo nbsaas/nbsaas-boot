@@ -81,6 +81,7 @@
                 let res = await this.$http.form("/${formBean.className?uncap_first}/create", data);
                 if (res.code !== 200) {
                     this.$message.error(res.msg);
+                    return;
                 }
 
                 this.$message({
