@@ -88,6 +88,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     /**
      * 搜索
      */
+    @Transactional(readOnly = true)
     @Override
     public PageResponse<Simple> search(PageRequest request) {
         Function<Entity, Simple> convert = getConvertSimple();
@@ -115,7 +116,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
     }
 
-
+    @Transactional(readOnly = true)
     @Override
     public ListResponse<Simple> list(PageRequest request) {
         return listSimple(request, getConvertSimple());
@@ -226,6 +227,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      * @param request
      * @return
      */
+    @Transactional(readOnly = true)
     @Override
     public ResponseObject<Response> view(RequestId request) {
 
@@ -380,6 +382,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
      * 扩展搜索，传递返回类
      *
      */
+    @Transactional(readOnly = true)
     public <Domain> PageResponse<Domain> searchExt(PageRequest request, Class<Domain> domainClass) {
         Function<Entity, Domain> convert = item -> {
             Domain domain;
@@ -395,6 +398,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return search(request, convert);
     }
 
+    @Transactional(readOnly = true)
     public <Domain> PageResponse<Domain> searchExt(PageRequest request, Function<Simple,Domain> function) {
         return search(request, getConvertSimple().andThen(function));
     }

@@ -37,8 +37,7 @@
     <#elseif item.type='textarea'>
         <el-input v-model="form.${item.id!}" name="${item.id!}" type="textarea"></el-input>
     <#elseif item.type='el_input_number'>
-        <el-input-number v-model="form.${item.id!}" name="${item.id!}" type="textarea" :min="0"
-                         :max="100"></el-input-number>
+        <el-input-number v-model="form.${item.id!}" name="${item.id!}" :min="0" :max="9999999" style="width: 100%;"></el-input-number>
     <#elseif item.type='el_cascader'>
         <el-cascader
                 v-model="form.${item.id!}"
@@ -70,8 +69,7 @@
     <#elseif item.type='dictionary'>
         <nb-select catalog="${item.id!}" v-model="form.${item.id!}"></nb-select>
     <#elseif item.type='money'>
-        <el-input v-model.number="form.${item.id!}" name="${item.id!}">
-        </el-input>
+        <el-input-number v-model="form.${item.id!}" name="${item.id!}" type="textarea" :min="0" :max="99999999.99"  style="width: 100%;" ></el-input-number>
     <#else>
         <el-input v-model="form.${item.id!}" name="${item.id!}">
         </el-input>

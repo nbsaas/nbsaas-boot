@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-form class="viewForm" label-width="80px">
+        <el-form class="viewForm" label-width="${formBean.viewWidth!120}px">
             <#if formBean.fields??>
                 <#list formBean.fields as item>
                     <el-col :span="${item.col!12}">
