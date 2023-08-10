@@ -306,6 +306,12 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     @Override
+    public  Response viewById(Serializable id){
+        Optional<Entity> data = getJpaRepository().findById(id);
+        return data.map(entity -> getConvertResponse().apply(entity)).orElse(null);
+    }
+
+    @Override
     public Response createData(Form form) {
         if (form == null) {
             return null;
@@ -327,6 +333,18 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         BeanDataUtils.copyProperties(data,db);
         return getConvertResponse().apply(data);
     }
+
+    @Override
+    public int deleteById(Serializable id) {
+        int result = 0;
+        Optional<Entity> dbEntity = getJpaRepository().findById(id);
+        if (!dbEntity.isPresent()){
+            return 0;
+        }
+        getJpaRepository().deleteById(id);
+        return 1;
+    }
+
 
     @Override
     public int deleteBatchIds(Collection<Serializable> idList) {

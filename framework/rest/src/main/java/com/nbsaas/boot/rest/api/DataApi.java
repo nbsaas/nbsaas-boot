@@ -87,6 +87,9 @@ public interface DataApi<Response, Simple, Request extends RequestId> {
     Response findById(RequestId form);
 
 
+    Response viewById(Serializable id);
+
+
     /**
      * 添加对象
      *
@@ -103,6 +106,14 @@ public interface DataApi<Response, Simple, Request extends RequestId> {
      * @return 更新信息
      */
     Response updateData(Request form);
+
+    /**
+     * 根据id删除数据
+     *
+     * @param id
+     * @return
+     */
+    int deleteById(Serializable id);
 
     /**
      * 根本id批量删除
