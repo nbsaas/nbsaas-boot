@@ -60,6 +60,9 @@ public class FormBean implements Serializable {
     private boolean createByUser;
     private boolean permissionClass;
     private boolean tenantPermissionClass;
+
+    private boolean permissionDataClass;
+
     private List<FieldBean> fields = new ArrayList<>();
     private Set<FieldBean> requests = new HashSet<>();
     private Set<FieldBean> simples = new HashSet<>();

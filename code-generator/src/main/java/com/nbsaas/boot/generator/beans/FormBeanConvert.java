@@ -267,6 +267,10 @@ public class FormBeanConvert {
             formBean.setTenantPermissionClass(true);
         }
 
+        PermissionDataClass permissionDataClass = object.getAnnotation(PermissionDataClass.class);
+        if (permissionDataClass != null) {
+            formBean.setPermissionDataClass(true);
+        }
 
         List<FieldBean> beanList = formBean.getFields();
 

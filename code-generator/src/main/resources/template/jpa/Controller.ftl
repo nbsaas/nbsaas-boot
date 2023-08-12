@@ -20,6 +20,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
+<#if formBean.permissionDataClass??>
+import com.nbsaas.boot.rest.annotations.DataPermission
+</#if>
 
 /**
 *  对外控制器
@@ -34,6 +37,9 @@ public class ${formBean.className}Controller {
     private ${formBean.className}Api ${formBean.className?uncap_first}Api;
 
 
+    <#if formBean.permissionDataClass??>
+    @DataPermission
+    </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/search")
     public PageResponse <${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
