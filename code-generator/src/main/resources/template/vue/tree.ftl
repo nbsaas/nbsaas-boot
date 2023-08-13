@@ -408,7 +408,7 @@
                 if (this.selectId) {
                     let params = {};
                     params.id = this.selectId;
-                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete.htm", params);
+                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete", params);
                     if (res.code === 200) {
                         this.$message({
                             message: '删除数据成功',

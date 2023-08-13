@@ -20,8 +20,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
-<#if formBean.permissionDataClass??>
-import com.nbsaas.boot.rest.annotations.DataPermission
+<#if formBean.permissionDataClass>
+import com.nbsaas.boot.rest.annotations.DataPermission;
 </#if>
 
 /**
@@ -37,7 +37,7 @@ public class ${formBean.className}Controller {
     private ${formBean.className}Api ${formBean.className?uncap_first}Api;
 
 
-    <#if formBean.permissionDataClass??>
+    <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
@@ -46,6 +46,9 @@ public class ${formBean.className}Controller {
         return ${formBean.className?uncap_first}Api.search(request);
     }
 
+    <#if formBean.permissionDataClass>
+    @DataPermission
+    </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/list")
     public ListResponse<${formBean.className}Simple> list(${formBean.className}SearchRequest request) {

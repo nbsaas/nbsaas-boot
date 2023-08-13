@@ -24,6 +24,7 @@ import com.nbsaas.boot.rest.request.RequestId;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -42,6 +43,7 @@ public class JpaHelper<T> {
         ResponseObject<R> result = new ResponseObject<>();
         T bean = formConvert.apply(object);
 
+        String ids = "";
         //处理树型结构
         if (bean instanceof CatalogEntity) {
             CatalogEntity entity = (CatalogEntity) bean;
@@ -57,6 +59,11 @@ public class JpaHelper<T> {
                     }
                     depth++;
                     entity.setDepth(depth);
+
+                    ids = p.getIds();
+                    if (ids == null) {
+                        ids = "";
+                    }
                 } else {
                     entity.setDepth(1);
                 }
@@ -66,6 +73,15 @@ public class JpaHelper<T> {
         }
 
         this.repository.save(bean);
+        if (bean instanceof CatalogEntity) {
+            CatalogEntity entity = (CatalogEntity) bean;
+            if (StringUtils.hasText(ids)) {
+                entity.setIds(ids + "-" + entity.getId());
+            } else {
+                entity.setIds("" + entity.getId());
+            }
+        }
+
         R obj = responseConvert.apply(bean);
         result.setData(obj);
         return result;
