@@ -37,8 +37,10 @@ public class StrategyList {
         strategyMap.put(Operator.isNotNull, new IsNotNullStrategy());
         strategyMap.put(Operator.isNull, new IsNullStrategy());
         strategyMap.put(Operator.le, new LeStrategy());
-        strategyMap.put(Operator.like, new LikeStrategy());
         strategyMap.put(Operator.lt, new LtStrategy());
+        strategyMap.put(Operator.like, new LikeStrategy());
+        strategyMap.put(Operator.likeSuffix, new likeSuffixStrategy());
+        strategyMap.put(Operator.likePrefix, new likePrefixStrategy());
         strategyMap.put(Operator.between, new BetweenStrategy());
 
     }

@@ -63,9 +63,13 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
             if (fetch!=0){
                 result.setChildren(source.getChildren().stream().map(this).collect(Collectors.toList()));
             }
+            <#if formBean.lazy>
             result.setHasChildren(true);
+            </#if>
         }else{
+            <#if formBean.lazy>
             result.setHasChildren(false);
+            </#if>
         }
     </#if>
 

@@ -17,31 +17,16 @@
  *
  */
 
-package com.nbsaas.boot.rest.filter;
+package com.nbsaas.boot.jpa.data.strategy;
 
-/**
- * @author ada
- */
-public enum Operator {
-    eq,
-    ne,
-    gt,
-    lt,
-    ge,
-    le,
-    like,//%key%匹配
-    likePrefix,//key%匹配
-    likeSuffix,//%key匹配
-    in,
-    notIn,
-    isNull,
-    isNotNull,
-    between;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
-    Operator() {
-    }
+public class likeSuffixStrategy implements OperatorStrategy {
 
-    public Operator fromString(String value) {
-        return valueOf(value.toLowerCase());
+    @Override
+    public Predicate handle(CriteriaBuilder criteriaBuilder, Root<?> root, String field, Object object) {
+        return criteriaBuilder.like(root.get(field), "%" + object);
     }
 }
