@@ -62,7 +62,7 @@ public class FormBeanConvert {
 
 
                 bean.setKey(annotation.key());
-                bean.setOperator(annotation.operator());
+                bean.setOperator(annotation.operator().name());
                 Integer sortNum = getInteger(annotation);
                 bean.setSortNum(sortNum);
                 bean.setShow(annotation.show());
@@ -105,7 +105,7 @@ public class FormBeanConvert {
                         fieldBean.setFieldType(5);
                     }
                     fieldBean.setKey(item.key());
-                    fieldBean.setOperator(item.operator());
+                    fieldBean.setOperator(item.operator().name());
                     fieldBean.setShow(item.show());
                     Integer sortNum = getInteger(item);
                     fieldBean.setSortNum(sortNum);

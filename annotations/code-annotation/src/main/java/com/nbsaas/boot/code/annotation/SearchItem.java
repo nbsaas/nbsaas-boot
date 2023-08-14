@@ -20,6 +20,8 @@
 package com.nbsaas.boot.code.annotation;
 
 
+import com.nbsaas.boot.rest.filter.Operator;
+
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD, ElementType.TYPE})
@@ -58,7 +60,7 @@ public @interface SearchItem {
 
     Class<?> classType() default String.class;
 
-    String operator() default "like";
+    Operator operator() default Operator.like;
 
     boolean show() default true;
 
