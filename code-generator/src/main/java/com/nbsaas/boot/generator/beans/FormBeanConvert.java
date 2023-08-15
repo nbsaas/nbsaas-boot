@@ -392,6 +392,7 @@ public class FormBeanConvert {
                 bean.setParentField(item.parentField());
                 bean.setTitle(item.title());
                 bean.setSortNum(item.sortNum());
+                bean.setWidth(item.width());
                 if (!isBasicType(item.fieldClass())) {
                     bean.setFullType(item.fieldClass().getName());
                     bean.setFieldType(100);

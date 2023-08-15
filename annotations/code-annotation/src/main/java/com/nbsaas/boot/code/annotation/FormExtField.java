@@ -86,4 +86,7 @@ public @interface FormExtField {
      */
     boolean response() default true;
 
+
+    String width() default "100";
+
 }

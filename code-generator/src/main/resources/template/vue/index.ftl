@@ -99,15 +99,12 @@
 <script>
     import {Delete, Edit} from '@element-plus/icons-vue'
     import common from "@/mixins/common.js";
+    import {defineStore, mapState} from 'pinia'
 
-    export default {
-        name: "${formBean.className?uncap_first}_index",
-        mixins: [common],
-        data() {
-            return {
-                Edit: Edit,
-                deleteIcon: Delete,
-                searchObject: {
+    const searchStore = defineStore('${formBean.className?uncap_first}Store', {
+
+        state: () => {
+            return { searchObject: {
                     no: 1,
                     size: 10,
                     sortField: "id",
@@ -117,7 +114,18 @@
                     ${item.id}: ''<#sep>,
                     </#list>
                     </#if>
-                },
+                }
+            }
+        }
+    })
+
+    export default {
+        name: "${formBean.className?uncap_first}_index",
+        mixins: [common],
+        data() {
+            return {
+                Edit: Edit,
+                deleteIcon: Delete,
                 dialogVisible: false,
                 defaultProps: {
                     children: 'children',
@@ -137,12 +145,11 @@
                 </#list>
             }
         },
+        computed: {
+            ...mapState(searchStore, ['searchObject']),
+        },
         mounted() {
 
-            let search = this.$tool.data.get("${formBean.className?uncap_first}_search");
-            if (search) {
-                Object.assign(this.searchObject, search)
-            }
             this.getSearchList();
 
             <#list formBean.fields as item>
@@ -160,8 +167,6 @@
                     this.tableData = res;
                 }
                 this.loading = false;
-                this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
-
             },
             addView() {
                 this.$router.push({
