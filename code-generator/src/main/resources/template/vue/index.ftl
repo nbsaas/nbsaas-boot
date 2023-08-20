@@ -30,6 +30,8 @@
                                                            :label="item.name" :value="item.id">
                                                 </el-option>
                                             </el-select>
+                                        <#elseif item.type='dictionary'>
+                                            <nb-select catalog="${item.id!}" v-model="searchObject.${item.id!}"></nb-select>
                                         <#elseif item.type='textarea'>
                                             <el-input v-model="searchObject.${item.id!}" size="small" name="${item.id!}"
                                                       type="textarea"></el-input>
@@ -101,6 +103,12 @@
     import common from "@/mixins/common.js";
     import {defineStore, mapState} from 'pinia'
 
+    <#if formBean.searchComponentSet??>
+    <#list formBean.searchComponentSet as item>
+    import ${item.name} from "${item.model!}";
+    </#list>
+    </#if>
+
     const searchStore = defineStore('${formBean.className?uncap_first}Store', {
 
         state: () => {
@@ -122,6 +130,7 @@
     export default {
         name: "${formBean.className?uncap_first}_index",
         mixins: [common],
+        components: {<#list formBean.searchComponentSet as item>${item.name}<#sep>, </#list>},
         data() {
             return {
                 Edit: Edit,

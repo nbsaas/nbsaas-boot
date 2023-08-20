@@ -355,6 +355,10 @@ public class FormBeanConvert {
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("nbSelect").model("@/components/nbSelect.vue")
                             .build());
+
+                    formBean.getSearchComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
                 }
                 if (field.type() == InputType.richText) {
                     formBean.getComponentSet().add(ComponentSimple.builder()

@@ -84,4 +84,7 @@ public class FormBean implements Serializable {
 
     private Set<ComponentSimple> components = new HashSet<>();
 
+
+    private Set<ComponentSimple> searchComponentSet = new HashSet<>();
+
 }
