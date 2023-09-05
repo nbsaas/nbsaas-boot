@@ -19,6 +19,8 @@
 
 package com.nbsaas.boot.jpa.data.strategy;
 
+import com.nbsaas.boot.jpa.data.utils.PathUtils;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -33,7 +35,7 @@ public class BetweenStrategy implements OperatorStrategy {
             if (obs.size() == 2) {
                 Object one = obs.get(0);
                 if (one instanceof Comparable) {
-                    return criteriaBuilder.between(root.get(field), (Comparable) obs.get(0), (Comparable) obs.get(1));
+                    return criteriaBuilder.between(PathUtils.getPath(root,field), (Comparable) obs.get(0), (Comparable) obs.get(1));
                 }
             }
         }

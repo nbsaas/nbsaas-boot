@@ -24,7 +24,7 @@ import javax.persistence.criteria.Root;
 
 public class PathUtils {
 
-    public static <T> Path<T> getPath(Root<T> root, String field) {
+    public static <T> Path<T> getPath(Root<?> root, String field) {
         String[] fields = field.split("\\.");
         Path<T> temp = root.get(fields[0]);
         for (int i = 1; i < fields.length; i++) {
