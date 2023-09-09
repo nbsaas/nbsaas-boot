@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>nbsaas-boot</artifactId>
-        <version>1.0.17-2023</version>
+        <version>1.0.18-2023</version>
     </parent>
 
     <artifactId>code-generator</artifactId>
@@ -32,12 +32,12 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>chain</artifactId>
-            <version>1.0.17-2023</version>
+            <version>1.0.18-2023</version>
         </dependency>
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>code-annotation</artifactId>
-            <version>1.0.17-2023</version>
+            <version>1.0.18-2023</version>
         </dependency>
         <dependency>
             <groupId>org.jodd</groupId>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>jpa-dao</artifactId>
-            <version>1.0.17-2023</version>
+            <version>1.0.18-2023</version>
         </dependency>
     </dependencies>
 </project>
