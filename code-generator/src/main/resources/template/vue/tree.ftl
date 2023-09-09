@@ -3,7 +3,7 @@
         <section>
             <el-tabs v-model="activeName">
                 <el-tab-pane label="${formBean.model!}树" name="third">
-                    <el-button type="primary" size="small" @click="append()" style="margin-bottom:15px;">增加一级分类
+                    <el-button type="primary"  @click="append()" style="margin-bottom:15px;">增加一级分类
                     </el-button>
                     <el-table :data="treeOptions.children" style="width: 100%;margin-bottom: 20px;" row-key="id" border  <#if formBean.lazy> lazy="true" :load="loadChildren" </#if>  >
                         <el-table-column prop="name" label="${model!}名称" sortable width="260" align="left">
@@ -18,11 +18,11 @@
                         </el-table-column>
                         <el-table-column label="操作" width="240" align="center">
                             <template #default="scope">
-                                <el-button type="primary" size="small" @click="append(scope.row)">增加
+                                <el-button type="primary" @click="append(scope.row)">增加
                                 </el-button>
-                                <el-button type="primary" size="small" @click="editView(scope.row)">编辑
+                                <el-button type="primary" @click="editView(scope.row)">编辑
                                 </el-button>
-                                <el-button type="danger" size="small" style="cursor: pointer;"
+                                <el-button type="danger" style="cursor: pointer;"
                                            @click="deleteData(scope.row)">删除
                                 </el-button>
                             </template>
@@ -44,7 +44,7 @@
                                 <span class="el-form-item__label title">上级${model!}：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input disabled="true" size="small" v-model="form.parentName"></el-input>
+                                <el-input disabled="true" v-model="form.parentName"></el-input>
                             </el-col>
                         </el-row>
                         <el-row class="input-line">
@@ -52,7 +52,7 @@
                                 <span class="el-form-item__label title">${model!}名称：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input size="small" v-model="form.name"></el-input>
+                                <el-input v-model="form.name"></el-input>
                             </el-col>
                         </el-row>
                         <el-row class="input-line">
@@ -60,7 +60,7 @@
                                 <span class="el-form-item__label title">编码：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input size="small" v-model="form.code"></el-input>
+                                <el-input v-model="form.code"></el-input>
                             </el-col>
                         </el-row>
                         <el-row class="input-line">
@@ -68,7 +68,7 @@
                                 <span class="el-form-item__label title">排序号：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input-number size="small" v-model="form.sortNum"></el-input-number>
+                                <el-input-number v-model="form.sortNum"></el-input-number>
                             </el-col>
                         </el-row>
 
@@ -77,8 +77,8 @@
 
                 <template #footer>
 				<span class="dialog-footer">
-					<el-button size="small" @click="showDialog = false">取 消</el-button>
-					<el-button size="small" type="primary" @click="add" :loading="workLoad">确 定</el-button>
+					<el-button @click="showDialog = false">取 消</el-button>
+					<el-button type="primary" @click="add" :loading="workLoad">确 定</el-button>
 				</span>
                 </template>
             </el-dialog>
@@ -90,7 +90,7 @@
                                 <span class="el-form-item__label title">${model!}名称：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input size="small" v-model="form.name"></el-input>
+                                <el-input v-model="form.name"></el-input>
                             </el-col>
                         </el-row>
                         <el-row class="input-line">
@@ -98,7 +98,7 @@
                                 <span class="el-form-item__label title">编码：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input size="small" v-model="form.code"></el-input>
+                                <el-input v-model="form.code"></el-input>
                             </el-col>
                         </el-row>
                         <el-row class="input-line">
@@ -106,7 +106,7 @@
                                 <span class="el-form-item__label title">排序号：</span>
                             </el-col>
                             <el-col :span="16">
-                                <el-input-number size="small" v-model="form.sortNum"></el-input-number>
+                                <el-input-number v-model="form.sortNum"></el-input-number>
                             </el-col>
                         </el-row>
                     </el-col>
@@ -114,8 +114,8 @@
 
                 <template #footer>
 				<span class="dialog-footer">
-					<el-button size="small" @click="editDialog = false">取 消</el-button>
-					<el-button size="small" type="primary" @click="updateData" :loading="workLoad">确 定</el-button>
+					<el-button @click="editDialog = false">取 消</el-button>
+					<el-button type="primary" @click="updateData" :loading="workLoad">确 定</el-button>
 				</span>
                 </template>
             </el-dialog>

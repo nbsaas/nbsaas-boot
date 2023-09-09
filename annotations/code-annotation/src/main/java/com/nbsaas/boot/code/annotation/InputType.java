@@ -28,6 +28,7 @@ public enum InputType {
     date,
     image,
     select,
+    tree,
     selectRemote,
     textarea,
     dictionary,

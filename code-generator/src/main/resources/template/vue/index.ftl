@@ -18,26 +18,19 @@
                                 <el-col :span="6" style="padding: 0 8px;">
                                     <el-form-item label="${item.title}">
                                         <#if item.type='date'>
-                                            <el-date-picker value-format="yyyy-MM-dd" size="small"
-                                                            v-model="searchObject.${item.id!}" type="date"
-                                                            placeholder="选择日期">
+                                            <el-date-picker value-format="yyyy-MM-dd"    v-model="searchObject.${item.id!}" type="date"   placeholder="选择日期">
                                             </el-date-picker>
                                         <#elseif item.type='select'>
-                                            <el-select size="small" style="width: 100%;"
-                                                       v-model="searchObject.${item.id!}" filterable clearable
-                                                       placeholder="请选择">
-                                                <el-option v-for="item in ${item.id!}Options" :key="item.id"
-                                                           :label="item.name" :value="item.id">
+                                            <el-select style="width: 100%;" v-model="searchObject.${item.id!}" filterable clearable   placeholder="请选择">
+                                                <el-option v-for="item in ${item.id!}Options" :key="item.id"   :label="item.name" :value="item.id">
                                                 </el-option>
                                             </el-select>
                                         <#elseif item.type='dictionary'>
                                             <nb-select catalog="${item.id!}" v-model="searchObject.${item.id!}"></nb-select>
                                         <#elseif item.type='textarea'>
-                                            <el-input v-model="searchObject.${item.id!}" size="small" name="${item.id!}"
-                                                      type="textarea"></el-input>
+                                            <el-input v-model="searchObject.${item.id!}"   name="${item.id!}"  type="textarea"></el-input>
                                         <#else>
-                                            <el-input v-model="searchObject.${item.id!}" size="small"
-                                                      placeholder="${item.placeholder}" name="${item.id!}">
+                                            <el-input v-model="searchObject.${item.id!}"  placeholder="${item.placeholder}" name="${item.id!}">
                                             </el-input>
                                         </#if>
                                     </el-form-item>
@@ -48,8 +41,8 @@
 
                     <el-col :span="${formBean.leftSize!'6'}" style="padding: 0 10px;margin-top: 5px;">
                         <el-row type="flex" justify="end">
-                            <el-button size="small" type="primary" @click="search">搜索</el-button>
-                            <el-button size="small" plain @click="clearSearch">清除条件</el-button>
+                            <el-button  type="primary" @click="search">搜索</el-button>
+                            <el-button   plain @click="clearSearch">清除条件</el-button>
                         </el-row>
                     </el-col>
                 </el-row>
@@ -57,7 +50,7 @@
         </div>
         <div class="data-content">
             <div class="tool-add">
-                <el-button type="primary" size="small" @click="addView">新增</el-button>
+                <el-button type="primary"   @click="addView">新增</el-button>
             </div>
 
             <el-table v-loading="loading" :data="tableData.data" @sort-change="changeTableSort"
@@ -71,17 +64,13 @@
                 </#if>
                 <el-table-column width="185" align="center" fixed="right" label="操作">
                     <template #default="scope">
-                        <el-button text size="small" class="operation_bt" :icon="Edit" type="info"
-                                   @click="showView(scope.row)">详情
+                        <el-button text   class="operation_bt" :icon="Edit" type="info"   @click="showView(scope.row)">详情
                         </el-button>
 
-                        <el-button text size="small" class="operation_bt" :icon="Edit" type="primary"
-                                   @click="editView(scope.row)">编辑
+                        <el-button text   class="operation_bt" :icon="Edit" type="primary"   @click="editView(scope.row)">编辑
                         </el-button>
 
-                        <el-button text :icon="deleteIcon" class="operation_bt" type="danger" size="small"
-                                   style="cursor: pointer;"
-                                   @click="deleteData(scope.row)">删除
+                        <el-button text :icon="deleteIcon" class="operation_bt" type="danger"    style="cursor: pointer;"     @click="deleteData(scope.row)">删除
                         </el-button>
                     </template>
                 </el-table-column>

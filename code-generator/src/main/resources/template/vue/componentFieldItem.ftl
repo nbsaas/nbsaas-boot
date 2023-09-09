@@ -7,7 +7,7 @@
                 <vue-ueditor-wrap v-model="form.${item.id!}" :config="config" ref="${item.id!}"></vue-ueditor-wrap>
             </div>
         <#else>
-            <el-form-item label="${item.title!}" size="mini" prop="${item.id!}">
+            <el-form-item label="${item.title!}"  prop="${item.id!}">
                 <@componentInput item />
             </el-form-item>
         </#if>

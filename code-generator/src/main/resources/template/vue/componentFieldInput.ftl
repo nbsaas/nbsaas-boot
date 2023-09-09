@@ -26,12 +26,13 @@
                        :label="item.name" :value="item.id">
             </el-option>
         </el-select>
+    <#elseif item.type='tree'>
+        <el-tree-select ref="treeSelect" v-model="form.${item.id!}" :data="${item.option!}Options" node-key="id" check-strictly=true :render-after-expand="false" />
     <#elseif item.type='selectRemote'>
         <el-select style="width: 100%;" v-model="form.${item.id!}" filterable clearable
                    remote :remote-method="remote${item.id?cap_first}"
                    placeholder="请选择">
-            <el-option v-for="item in ${item.option!}Options" :key="item.id"
-                       :label="item.name" :value="item.id">
+            <el-option v-for="item in ${item.option!}Options" :key="item.id"  :label="item.name" :value="item.id">
             </el-option>
         </el-select>
     <#elseif item.type='textarea'>
