@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>framework</artifactId>
-        <version>1.0.18-2023</version>
+        <version>1.0.19-2023</version>
     </parent>
 
     <artifactId>utils</artifactId>
