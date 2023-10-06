@@ -17,7 +17,6 @@
         <module>rest</module>
         <module>core</module>
         <module>chain</module>
-        <module>jpa-dao</module>
         <module>utils</module>
     </modules>
 

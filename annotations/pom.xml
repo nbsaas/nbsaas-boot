@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <name>annotations</name>
-    <url>http://maven.apache.org</url>
+    <url>http://www.nbsaas.com</url>
     <modules>
         <module>code-annotation</module>
     </modules>

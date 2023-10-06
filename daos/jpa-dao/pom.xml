@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.nbsaas.boot</groupId>
-        <artifactId>framework</artifactId>
+        <artifactId>daos</artifactId>
         <version>1.0.19-2023</version>
     </parent>
 
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>2.0</version>
+            <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
             <groupId>com.nbsaas.boot</groupId>

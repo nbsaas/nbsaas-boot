@@ -35,5 +35,7 @@ public @interface Search {
 
     String prefix() default "";
 
+    String sql() default "";
+
     Condition condition() default Condition.AND;
 }

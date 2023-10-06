@@ -36,7 +36,12 @@ public enum Operator {
     notIn,
     isNull,
     isNotNull,
+    inSql,//mp专用
+    notInSql,//mp专用
+    apply,//mp专用
     between;
+
+
 
     Operator() {
     }

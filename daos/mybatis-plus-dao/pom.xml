@@ -1,16 +1,16 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.nbsaas.boot</groupId>
-        <artifactId>annotations</artifactId>
+        <artifactId>daos</artifactId>
         <version>1.0.19-2023</version>
     </parent>
 
-    <artifactId>code-annotation</artifactId>
+    <artifactId>mybatis-plus-dao</artifactId>
     <packaging>jar</packaging>
 
-    <name>code-annotation</name>
+    <name>mybatis-plus-dao</name>
     <url>http://www.nbsaas.com</url>
 
     <properties>
@@ -25,9 +25,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.nbsaas.boot</groupId>
             <artifactId>rest</artifactId>
             <version>1.0.19-2023</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
         </dependency>
     </dependencies>
 </project>
