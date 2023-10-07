@@ -375,7 +375,7 @@ public class FormBeanConvert {
         });
         Collections.sort(formBean.getGrids());
 
-        int left = 24 - formBean.getSearches().size() * 6;
+        int left = (int) (24 - formBean.getSearches().stream().filter(FieldBean::isShow).count()* 6);
         if (left == 0) {
             left = 24;
         }
