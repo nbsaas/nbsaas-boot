@@ -12,10 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author ada
- * @date 2022/3/8
- */
 public class MybatisWrapperUtils {
 
 

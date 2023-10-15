@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 /**
  * MyBatis辅助类
  *
- * @param <T> 实体类型
- * @author ada
  */
 public class MyBatisHelper<T> {
 

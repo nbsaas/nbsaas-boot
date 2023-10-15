@@ -18,9 +18,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * @author ada
- */
 public class QueryWrapperUtils {
 
     public static <T, R> PageResponse<R> search(BaseMapper<T> mapper, PageRequest request, Function<T, R> function) {

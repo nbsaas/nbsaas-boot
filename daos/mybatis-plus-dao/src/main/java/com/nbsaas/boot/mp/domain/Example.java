@@ -3,9 +3,6 @@ package com.nbsaas.boot.mp.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author ada
- */
 public class Example {
     protected String orderByClause;
 
