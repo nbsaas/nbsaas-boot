@@ -53,7 +53,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         this.inputRequestObject = context;
         Config config = context.getConfig();
 
-
+        context.put("mybatisPackage", config.getBasePackage() + "." + config.getModuleName() + ".data.mapper");
         context.put("repositoryPackage", config.getBasePackage() + "." + config.getModuleName() + ".data.repository");
         context.put("resourcePackage", config.getBasePackage() +"." + config.getModuleName() + ".rest.resource");
         context.put("convertPackage", config.getBasePackage() +"." + config.getModuleName() +  ".rest.convert");

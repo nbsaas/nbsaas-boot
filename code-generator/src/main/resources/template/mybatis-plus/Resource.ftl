@@ -1,7 +1,6 @@
 package ${resourcePackage};
 
-import com.nbsaas.boot.rest.request.PageRequest;
-import com.nbsaas.boot.rest.response.ListResponse;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${apiPackage}.${formBean.className}Api;
 import ${jpaEntityPackage}.${formBean.className};
 import ${requestPackage}.${formBean.className}DataRequest;
@@ -11,18 +10,12 @@ import ${simplePackage}.${formBean.className}Simple;
 import ${convertPackage}.${formBean.className}SimpleConvert;
 import ${convertPackage}.${formBean.className}EntityConvert;
 import ${convertPackage}.${formBean.className}ResponseConvert;
-import ${repositoryPackage}.${formBean.className}Repository;
+import ${mybatisPackage}.${formBean.className}Mapper;
 
-import java.io.Serializable;
-import com.nbsaas.boot.jpa.data.core.BaseResource;
+import com.nbsaas.boot.mp.core.BaseResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
-
-import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -33,11 +26,11 @@ import java.util.function.Function;
 public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest>  implements ${formBean.className}Api {
 
     @Resource
-    private ${formBean.className}Repository ${formBean.className?uncap_first}Repository;
+    private ${formBean.className}Mapper ${formBean.className?uncap_first}Mapper;
 
     @Override
-    public JpaRepositoryImplementation<${formBean.className}, Serializable> getJpaRepository() {
-        return ${formBean.className?uncap_first}Repository;
+    public BaseMapper<${formBean.className}> getMapper() {
+        return ${formBean.className?uncap_first}Mapper;
     }
 
     @Override
@@ -52,22 +45,11 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
 
     @Override
     public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
-    return new ${formBean.className}ResponseConvert();
+        return new ${formBean.className}ResponseConvert();
     }
 
 
 
-    <#if formBean.catalog>
-    @Override
-    public ListResponse<${formBean.className}Simple> list(PageRequest request) {
-        ${formBean.className}SimpleConvert convert=new ${formBean.className}SimpleConvert();
-        if (request instanceof ${formBean.className}SearchRequest){
-             ${formBean.className}SearchRequest searchRequest=(${formBean.className}SearchRequest)request;
-             convert.setFetch(searchRequest.getFetch());
-        }
-        return listSimple(request,convert);
-    }
-    </#if>
 
 }
 
