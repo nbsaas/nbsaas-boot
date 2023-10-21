@@ -27,7 +27,18 @@ public class SysException extends RuntimeException {
 
     private Integer code = 500;
 
+    public SysException() {
 
+    }
+
+    public SysException(String message) {
+        super(message);
+    }
+
+    public SysException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
     public Integer getCode() {
         return code;
     }

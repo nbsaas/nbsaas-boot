@@ -27,7 +27,18 @@ public class AppException extends RuntimeException {
 
     private Integer code = 500;
 
+    public AppException() {
 
+    }
+
+    public AppException(String message) {
+        super(message);
+    }
+
+    public AppException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
     public Integer getCode() {
         return code;
     }
