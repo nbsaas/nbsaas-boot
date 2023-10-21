@@ -22,7 +22,6 @@ package com.nbsaas.boot.jpa.data.core;
 import com.nbsaas.boot.jpa.data.strategy.OperatorStrategy;
 import com.nbsaas.boot.jpa.data.strategy.StrategyList;
 import com.nbsaas.boot.rest.filter.Search;
-import com.nbsaas.boot.rest.request.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
@@ -37,9 +36,9 @@ import java.util.List;
 
 public class SpecificationData<T> implements Specification<T> {
 
-    private final PageRequest request;
+    private final Object request;
 
-    public SpecificationData(PageRequest request) {
+    public SpecificationData(Object request) {
         this.request = request;
     }
 

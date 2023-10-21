@@ -20,7 +20,6 @@
 package com.nbsaas.boot.jpa.data.core;
 
 import com.nbsaas.boot.jpa.data.utils.JpaHelper;
-import com.nbsaas.boot.rest.api.BaseApi;
 import com.nbsaas.boot.rest.filter.Filter;
 import com.nbsaas.boot.rest.filter.FilterGroup;
 import com.nbsaas.boot.rest.request.PageRequest;
@@ -56,7 +55,7 @@ import static java.util.stream.Collectors.toList;
  * @param <Simple>   表单对象
  * @param <Form>     表单对象
  */
-public abstract class BaseResource<Entity, Response, Simple, Form extends RequestId> implements BaseApi<Response, Simple, Form> {
+public abstract class BaseResource<Entity, Response, Simple, Form extends RequestId> implements DataDaoApi<Entity,Response, Simple, Form> {
 
 
     /**
@@ -105,7 +104,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         }
 
         Page<Entity> res = getJpaRepository().findAll(data, pageable);
-        if (res.getContent().size() > 0) {
+        if (!res.getContent().isEmpty()) {
             List<T> list = res.getContent().stream().map(convert).collect(toList());
             result.setData(list);
         }
@@ -132,7 +131,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             res = getJpaRepository().findAll(spec);
         }
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             List<Simple> list = res.stream().map(convert).collect(toList());
             result.setData(list);
         }
@@ -194,7 +193,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
         SpecificationData<Entity> spec = new SpecificationData<>(request);
         List<Entity> list = getJpaRepository().findAll(spec);
-        if (list == null || list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             return null;
         }
         return list.stream().map(getConvertSimple()).collect(Collectors.toList());
@@ -244,6 +243,36 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public ResponseObject<Response> one(Object request) {
+
+        ResponseObject<Response> result = new ResponseObject<>();
+        SpecificationData<Entity> spec = new SpecificationData<>(request);
+
+        try {
+            Optional<Entity> optional = getJpaRepository().findOne(spec);
+            Response response = optional.map(getConvertResponse()).orElse(null);
+            if (response == null) {
+                result.setCode(501);
+                result.setMsg("没有找到数据");
+                return result;
+            }
+            result.setData(response);
+        } catch (Exception e) {
+            result.setCode(502);
+            result.setMsg("该查询有多条数据");
+        }
+
+        return result;
+    }
+
+    @Override
+    public Optional<Entity> oneData(Object request){
+        SpecificationData<Entity> spec = new SpecificationData<>(request);
+        return getJpaRepository().findOne(spec);
+    }
+
 
     protected Entity one(Filter... filters) {
         return getJpaRepository().findOne(new SpecificationFilter<>(filters)).orElse(null);
@@ -261,7 +290,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     private ListResponse<Simple> responses(List<Entity> list) {
         ListResponse<Simple> result = new ListResponse<>();
-        if (list != null && list.size() > 0) {
+        if (list != null && !list.isEmpty()) {
             List<Simple> temps = list.stream().map(getConvertSimple()).collect(Collectors.toList());
             result.setData(temps);
         }
@@ -282,7 +311,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     protected ResponseObject<Response> response(Entity entity) {
         ResponseObject<Response> result = new ResponseObject<>();
         if (entity == null) {
-            result.setCode(401);
+            result.setCode(501);
             result.setMsg("无数据");
             return result;
         }

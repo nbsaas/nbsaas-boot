@@ -84,4 +84,14 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
      */
     ResponseObject<Response> view(RequestId request);
 
+
+    /**
+     * 根据条件查询详情
+     *
+     * @param request 请求对象
+     *
+     * @return 数据详情
+     */
+    ResponseObject<Response> one(Object request);
+
 }

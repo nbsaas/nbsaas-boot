@@ -96,11 +96,8 @@ public abstract  class   BaseResource<Entity, Response, Simple, Form extends Req
 
     @Override
     public Response oneData(Filter... filters) {
-        List<Entity> list = listEntity(filters);
-        if (list == null) {
-            return null;
-        }
-        Entity data = list.get(0);
+        QueryWrapper<Entity> queryWrapper = QueryWrapperUtils.queryWrapper(filters);
+        Entity data = getMapper().selectOne(queryWrapper);
         return getConvertResponse().apply(data);
     }
 
@@ -239,5 +236,25 @@ public abstract  class   BaseResource<Entity, Response, Simple, Form extends Req
     @Override
     public ResponseObject<Response> view(RequestId request) {
         return new MyBatisHelper<>(getMapper()).view(request, getConvertResponse());
+    }
+
+    @Override
+    public ResponseObject<Response> one(Object request) {
+        ResponseObject<Response> result = new ResponseObject<>();
+
+        QueryWrapper<Entity> queryWrapper = QueryWrapperUtils.wrapper(request);
+        try {
+            Entity data = getMapper().selectOne(queryWrapper);
+            if (data == null) {
+                result.setCode(501);
+                result.setMsg("该条件无数据");
+                return result;
+            }
+            result.setData(getConvertResponse().apply(data));
+        } catch (Exception e) {
+            result.setCode(502);
+            result.setMsg("该条件有多条数据");
+        }
+        return result;
     }
 }
