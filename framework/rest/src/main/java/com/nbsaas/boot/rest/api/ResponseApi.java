@@ -92,6 +92,6 @@ public interface ResponseApi<Response, Simple, Request extends RequestId> {
      *
      * @return 数据详情
      */
-    ResponseObject<Response> one(Object request);
+    ResponseObject<Response> viewByOne(Object request);
 
 }

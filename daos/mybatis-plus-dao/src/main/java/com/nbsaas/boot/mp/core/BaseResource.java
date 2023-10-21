@@ -239,7 +239,7 @@ public abstract  class   BaseResource<Entity, Response, Simple, Form extends Req
     }
 
     @Override
-    public ResponseObject<Response> one(Object request) {
+    public ResponseObject<Response> viewByOne(Object request) {
         ResponseObject<Response> result = new ResponseObject<>();
 
         QueryWrapper<Entity> queryWrapper = QueryWrapperUtils.wrapper(request);

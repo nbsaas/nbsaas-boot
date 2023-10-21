@@ -243,14 +243,18 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return result;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
-    public ResponseObject<Response> one(Object request) {
+    public ResponseObject<Response> viewByOne(Object request) {
 
         ResponseObject<Response> result = new ResponseObject<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
 
         try {
+            if (getJpaRepository().count(spec)>1){
+                result.setCode(502);
+                result.setMsg("该查询有多条数据");
+            }
             Optional<Entity> optional = getJpaRepository().findOne(spec);
             Response response = optional.map(getConvertResponse()).orElse(null);
             if (response == null) {
