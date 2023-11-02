@@ -21,6 +21,7 @@ package com.nbsaas.boot.jpa.data.core;
 
 import com.nbsaas.boot.jpa.data.strategy.OperatorStrategy;
 import com.nbsaas.boot.jpa.data.strategy.StrategyList;
+import com.nbsaas.boot.rest.filter.Condition;
 import com.nbsaas.boot.rest.filter.Search;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
@@ -76,7 +77,11 @@ public class SpecificationData<T> implements Specification<T> {
                         predicate = operatorStrategy.handle(criteriaBuilder, root, item.name(), object);
                     }
                     if (predicate != null) {
-                        predicates.add(predicate);
+                        if (item.condition()== Condition.AND){
+                            predicates.add(predicate);
+                        }else{
+                            predicates.add(criteriaBuilder.or(predicate));
+                        }
                     }
                 } catch (IllegalArgumentException | IllegalAccessException e) {
                     e.printStackTrace();
