@@ -186,11 +186,11 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 
 ## nbsaas-boot业务生态
 
-|          项目名称           | git地址                                             | 
-|:-----------------------:|---------------------------------------------------|
-| nbsaas-boot-starter     | https://gitee.com/cng1985/nbsaas-boot-starter     | 
-| nbsaas-product-starter  | https://gitee.com/cng1985/nbsaas-product-starter  | 
-|  nbsaas-sample-starter  | https://gitee.com/cng1985/nbsaas-sample-starter   | 
+| 项目名称                   | git地址                                             | 
+|:-----------------------|---------------------------------------------------|
+| nbsaas-boot-starter    | https://gitee.com/cng1985/nbsaas-boot-starter     | 
+| nbsaas-product-starter | https://gitee.com/cng1985/nbsaas-product-starter  | 
+| nbsaas-sample-starter  | https://gitee.com/cng1985/nbsaas-sample-starter   | 
 
 ### 使用访问
 
