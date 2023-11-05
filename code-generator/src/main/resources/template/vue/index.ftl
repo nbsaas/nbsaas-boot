@@ -62,7 +62,7 @@
                         </el-table-column>
                     </#list>
                 </#if>
-                <el-table-column width="185" align="center" fixed="right" label="操作">
+                <el-table-column width="210" align="center" fixed="right" label="操作">
                     <template #default="scope">
                         <el-button text   class="operation_bt" :icon="Edit" type="info"   @click="showView(scope.row)">详情
                         </el-button>
