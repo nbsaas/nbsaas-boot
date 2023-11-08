@@ -242,8 +242,9 @@ public class FormBeanConvert {
             formBean.setMenu(formAnnotation.menu());
             formBean.setViewWidth(formAnnotation.viewWidth());
             formBean.setSearchWidth(formAnnotation.searchWidth());
+            formBean.setHandleWidth(formAnnotation.handleWidth());
             formBean.setModel(formAnnotation.model());
-
+            formBean.setShowHandle(formAnnotation.showHandle());
         }
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {
@@ -397,12 +398,22 @@ public class FormBeanConvert {
                 bean.setTitle(item.title());
                 bean.setSortNum(item.sortNum());
                 bean.setWidth(item.width());
-                if (!isBasicType(item.fieldClass())) {
-                    bean.setFullType(item.fieldClass().getName());
-                    bean.setFieldType(100);
-                } else {
-                    bean.setFieldType(101);
+                if (StringUtils.isNotBlank(item.parent())){
+                    if (!isBasicType(item.fieldClass())) {
+                        bean.setFullType(item.fieldClass().getName());
+                        bean.setFieldType(100);
+                    } else {
+                        bean.setFieldType(101);
+                    }
+                }else{
+                    //如果没有父字段值  判断是否有其他字段值，要是转换自己的子的字段
+                    if (StringUtils.isNotBlank(item.parentField())){
+                        bean.setFieldType(102);
+                    }else{
+                        bean.setFieldType(103);
+                    }
                 }
+
 
                 if (item.simple()) {
                     formBean.getSimples().add(bean);

@@ -41,6 +41,8 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
                 if(source.get${item.parent?cap_first}()!=null){
                     result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.parentField?cap_first}());
                 }
+            <#elseif item.fieldType==102>
+                result.set${item.id?cap_first}(source.get${item.parentField?cap_first}());
             <#elseif item.fieldType==100>
                 if(source.get${item.parent?cap_first}()!=null){
                      result.set${item.id?cap_first}(source.get${item.parent?cap_first}().get${item.parentField?cap_first}());

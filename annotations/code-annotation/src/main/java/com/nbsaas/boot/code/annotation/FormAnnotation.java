@@ -37,4 +37,13 @@ public @interface FormAnnotation {
 
     String viewWidth() default "80";
 
+    String handleWidth() default "210";
+
+    /**
+     * 表格是否有操作区域
+     *
+     * @return
+     */
+    boolean showHandle() default true;
+
 }

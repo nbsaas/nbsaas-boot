@@ -42,6 +42,11 @@ public class FormBean implements Serializable {
     private Boolean hasDate = false;
     private Boolean hasImage = false;
     private Integer leftSize;
+
+    private boolean showHandle;
+
+    private String handleWidth;
+
     /**
      * 是否是目录类
      */

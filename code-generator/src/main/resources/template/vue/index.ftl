@@ -62,7 +62,8 @@
                         </el-table-column>
                     </#list>
                 </#if>
-                <el-table-column width="210" align="center" fixed="right" label="操作">
+                <#if formBean.showHandle>
+                <el-table-column width="${formBean.handleWidth!'210'}" align="center" fixed="right" label="操作">
                     <template #default="scope">
                         <el-button text   class="operation_bt" :icon="Edit" type="info"   @click="showView(scope.row)">详情
                         </el-button>
@@ -74,6 +75,7 @@
                         </el-button>
                     </template>
                 </el-table-column>
+                </#if>
             </el-table>
 
             <div class="page">
