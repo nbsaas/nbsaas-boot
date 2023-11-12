@@ -39,7 +39,7 @@
                         </#list>
                     </#if>
 
-                    <el-col :span="${formBean.leftSize!'6'}" style="padding: 0 10px;margin-top: 5px;">
+                    <el-col :span="${formBean.leftSize!'6'}" style="padding: 0 10px;">
                         <el-row type="flex" justify="end">
                             <el-button  type="primary" @click="search">搜索</el-button>
                             <el-button   plain @click="clearSearch">清除条件</el-button>
