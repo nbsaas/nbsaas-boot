@@ -76,15 +76,26 @@ public class JpaHelper<T> {
         if (bean instanceof CatalogEntity) {
             CatalogEntity entity = (CatalogEntity) bean;
             if (StringUtils.hasText(ids)) {
-                entity.setIds(ids + "-" + entity.getId());
+                entity.setIds(ids + "-" + getId(entity));
             } else {
-                entity.setIds("" + entity.getId());
+                entity.setIds("" + getId(entity));
             }
         }
 
         R obj = responseConvert.apply(bean);
         result.setData(obj);
         return result;
+    }
+
+    private static String getId(CatalogEntity entity) {
+        StringBuffer buffer=new StringBuffer();
+        String id=entity.getId()+"";
+        int left=5-id.length();
+        for (int i = 0; i < left; i++) {
+            buffer.append("0");
+        }
+        buffer.append(id);
+        return buffer.toString();
     }
 
     public <R, F extends RequestId> ResponseObject<R> handle(F form, Consumer<T> consumer, Function<T, R> convert) {

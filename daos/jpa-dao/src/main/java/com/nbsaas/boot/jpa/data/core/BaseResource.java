@@ -254,6 +254,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
             if (getJpaRepository().count(spec)>1){
                 result.setCode(502);
                 result.setMsg("该查询有多条数据");
+                return result;
             }
             Optional<Entity> optional = getJpaRepository().findOne(spec);
             Response response = optional.map(getConvertResponse()).orElse(null);

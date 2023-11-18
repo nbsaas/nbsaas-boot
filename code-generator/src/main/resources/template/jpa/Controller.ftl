@@ -9,6 +9,7 @@ import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import com.nbsaas.boot.rest.annotations.CreateData;
 import com.nbsaas.boot.rest.annotations.UpdateData;
+import com.nbsaas.boot.rest.annotations.SearchData;
 import ${requestPackage}.${formBean.className}DataRequest;
 import ${requestPackage}.${formBean.className}SearchRequest;
 import ${responsePackage}.${formBean.className}Response;
@@ -40,6 +41,7 @@ public class ${formBean.className}Controller {
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
+    @SearchData
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/search")
     public PageResponse <${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
@@ -49,6 +51,7 @@ public class ${formBean.className}Controller {
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
+    @SearchData
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/list")
     public ListResponse<${formBean.className}Simple> list(${formBean.className}SearchRequest request) {
