@@ -32,6 +32,7 @@ public class StrategyList {
     static {
         strategyMap.put(Operator.eq, new EqStrategy());
         strategyMap.put(Operator.ge, new GeStrategy());
+        strategyMap.put(Operator.ne, new NeStrategy());
         strategyMap.put(Operator.gt, new GtStrategy());
         strategyMap.put(Operator.in, new InStrategy());
         strategyMap.put(Operator.isNotNull, new IsNotNullStrategy());
