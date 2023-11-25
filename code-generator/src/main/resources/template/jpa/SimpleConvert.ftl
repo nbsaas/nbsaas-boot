@@ -8,6 +8,11 @@ import com.nbsaas.boot.rest.api.Converter;
     import java.util.stream.Collectors;
     import lombok.Data;
 </#if>
+<#if formBean.dict>
+import java.util.HashMap;
+import java.util.Map;
+</#if>
+
 /**
 * 列表对象转换器
 */
@@ -50,6 +55,16 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
             <#elseif item.fieldType==4>
                 if(source.get${item.id?cap_first}()!=null){
                     result.set${item.id?cap_first}Name(String.valueOf(source.get${item.id?cap_first}()));
+                }
+                result.set${item.id?cap_first}(source.get${item.id?cap_first}());
+            <#elseif item.fieldType==201>
+                if(source.get${item.id?cap_first}()!=null){
+                   Map<Integer,String> ${item.id?cap_first}Map=new HashMap<>();
+                   <#list item.dictItems as dictItem>
+                       ${item.id?cap_first}Map.put(${dictItem.value},"${dictItem.label}");
+                   </#list>
+                   String label=  ${item.id?cap_first}Map.get(source.get${item.id?cap_first}());
+                   result.set${item.id?cap_first}Name(label);
                 }
                 result.set${item.id?cap_first}(source.get${item.id?cap_first}());
             <#else>

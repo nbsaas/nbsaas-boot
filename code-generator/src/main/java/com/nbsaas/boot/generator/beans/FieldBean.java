@@ -19,10 +19,12 @@
 
 package com.nbsaas.boot.generator.beans;
 
+import com.nbsaas.boot.generator.beans.dict.DictItemSimple;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
@@ -109,8 +111,15 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
      * 2父级类id 3父级类名称 4枚举 5其他 100父类字段其他类型 101父类字段基础类型
      * 102 本类字段
      * 103 扩展字段，转换器不做任何处理
+     *
+     * 201 数字-字符串字典
      */
     private Integer fieldType;
+
+    /**
+     * 字典项
+     */
+    private List<DictItemSimple> dictItems;
 
     private boolean required;
 

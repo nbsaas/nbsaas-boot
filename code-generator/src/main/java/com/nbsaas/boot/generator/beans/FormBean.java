@@ -54,6 +54,10 @@ public class FormBean implements Serializable {
 
     private boolean lazy;
 
+    /**
+     * 是否有字典
+     */
+    private boolean dict;
 
     /**
      * 详情展示的时候是否是组合展示

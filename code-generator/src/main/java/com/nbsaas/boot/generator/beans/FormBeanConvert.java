@@ -21,6 +21,9 @@ package com.nbsaas.boot.generator.beans;
 
 
 import com.nbsaas.boot.code.annotation.*;
+import com.nbsaas.boot.code.annotation.data.Dict;
+import com.nbsaas.boot.code.annotation.data.DictItem;
+import com.nbsaas.boot.generator.beans.dict.DictItemSimple;
 import jodd.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Comment;
@@ -192,6 +195,30 @@ public class FormBeanConvert {
                     beans.add(bean);
                 }
 
+                //处理字段注解是字典类型的
+                Dict dict = field.getAnnotation(Dict.class);
+                if (dict != null) {
+                    FieldBean bean = new FieldBean();
+                    bean.setId(field.getName());
+                    bean.setType(field.getType().getSimpleName());
+                    bean.setFullType(field.getType().getName());
+                    bean.setExtName("Name");
+                    bean.setFieldType(201);
+                    DictItem[] items = dict.items();
+                    if (items != null) {
+                        bean.setDictItems(new ArrayList<>());
+                        for (DictItem item : items) {
+                            DictItemSimple simple = new DictItemSimple();
+                            simple.setValue(item.value());
+                            simple.setLabel(item.label());
+                            simple.setNote(item.note());
+                            bean.getDictItems().add(simple);
+                        }
+                    }
+                    beans.add(bean);
+                }
+
+
 
                 if (isBasicType(field.getType())) {
                     if (annotation != null && field.getAnnotation(annotation) != null) {
@@ -279,6 +306,11 @@ public class FormBeanConvert {
             Field[] fs = clazz.getDeclaredFields();
             for (Field f : fs) {
                 f.setAccessible(true);
+                Dict dict=f.getAnnotation(Dict.class);
+                if (dict!=null){
+                    formBean.setDict(true);
+                }
+
                 FormField field = f.getAnnotation(FormField.class);
                 FieldBean bean = new FieldBean();
                 if (field == null) {
