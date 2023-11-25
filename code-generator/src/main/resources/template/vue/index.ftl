@@ -244,5 +244,10 @@
 </script>
 
 <style scoped>
-
+    <#if formBean.searches?size gt 4>
+    .el-col{
+        margin-bottom: 10px;
+    }
+    <#else>
+    </#if>
 </style>

@@ -23,6 +23,7 @@ package com.nbsaas.boot.generator.beans;
 import com.nbsaas.boot.code.annotation.*;
 import com.nbsaas.boot.code.annotation.data.Dict;
 import com.nbsaas.boot.code.annotation.data.DictItem;
+import com.nbsaas.boot.code.annotation.data.DictKey;
 import com.nbsaas.boot.generator.beans.dict.DictItemSimple;
 import jodd.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -215,7 +216,17 @@ public class FormBeanConvert {
                             bean.getDictItems().add(simple);
                         }
                     }
+
+                    DictKey dictKey = field.getAnnotation(DictKey.class);
+                    if (dictKey != null) {
+                        bean.setDictKey(dictKey.value());
+                    } else {
+                        bean.setDictKey(field.getName());
+                    }
+                    //bean.setType("dictionary");
                     beans.add(bean);
+
+
                 }
 
 
@@ -302,14 +313,14 @@ public class FormBeanConvert {
 
         List<FieldBean> beanList = formBean.getFields();
 
+        /**
+         * 处理表单字段
+         */
         for (Class<?> clazz = object; clazz != Object.class; clazz = clazz.getSuperclass()) {
             Field[] fs = clazz.getDeclaredFields();
             for (Field f : fs) {
                 f.setAccessible(true);
-                Dict dict=f.getAnnotation(Dict.class);
-                if (dict!=null){
-                    formBean.setDict(true);
-                }
+
 
                 FormField field = f.getAnnotation(FormField.class);
                 FieldBean bean = new FieldBean();
@@ -336,6 +347,28 @@ public class FormBeanConvert {
                     bean.setId(f.getName());
                 }
                 bean.setType(field.type().name());
+
+                Dict dict = f.getAnnotation(Dict.class);
+                if (dict != null) {
+                    formBean.setDict(true);
+                    bean.setType("dictionary");
+                    bean.setExtName("Name");
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
+
+                    formBean.getSearchComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
+                    DictKey dictKey = f.getAnnotation(DictKey.class);
+                    if (dictKey != null) {
+                        bean.setDictKey(dictKey.value());
+                    } else {
+                        bean.setDictKey(f.getName());
+                    }
+                }
+
+
                 bean.setPlaceholder(field.placeholder());
                 Integer sortNum = getInteger(field);
                 bean.setSortNum(sortNum);
@@ -385,6 +418,12 @@ public class FormBeanConvert {
                             .build());
                 }
                 if (field.type() == InputType.dictionary) {
+                    DictKey dictKey = f.getAnnotation(DictKey.class);
+                    if (dictKey != null) {
+                        bean.setDictKey(dictKey.value());
+                    } else {
+                        bean.setDictKey(f.getName());
+                    }
                     formBean.getComponentSet().add(ComponentSimple.builder()
                             .name("nbSelect").model("@/components/nbSelect.vue")
                             .build());
@@ -408,7 +447,7 @@ public class FormBeanConvert {
         });
         Collections.sort(formBean.getGrids());
 
-        int left = (int) (24 - formBean.getSearches().stream().filter(FieldBean::isShow).count()* 6);
+        int left = (int) (24 - (formBean.getSearches().stream().filter(FieldBean::isShow).count()%4)* 6);
         if (left == 0) {
             left = 24;
         }

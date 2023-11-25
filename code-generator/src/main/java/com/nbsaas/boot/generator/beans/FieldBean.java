@@ -75,6 +75,11 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
     private String type;
 
     /**
+     * 字典key
+     */
+    private String dictKey;
+
+    /**
      * java类全名称
      */
     private String fullType;

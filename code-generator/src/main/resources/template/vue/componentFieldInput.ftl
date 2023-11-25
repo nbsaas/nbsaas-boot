@@ -68,7 +68,7 @@
     <#elseif item.type='image'>
         <avatar v-model="form.${item.id!}"></avatar>
     <#elseif item.type='dictionary'>
-        <nb-select catalog="${item.id!}" v-model="form.${item.id!}"></nb-select>
+        <nb-select catalog="${item.dictKey!}" v-model="form.${item.id!}"></nb-select>
     <#elseif item.type='money'>
         <el-input-number v-model="form.${item.id!}" name="${item.id!}" type="textarea" :min="0" :max="99999999.99"  style="width: 100%;" ></el-input-number>
     <#else>
