@@ -324,6 +324,27 @@ public class FormBeanConvert {
 
                 FormField field = f.getAnnotation(FormField.class);
                 FieldBean bean = new FieldBean();
+
+                Dict dict = f.getAnnotation(Dict.class);
+                if (dict != null) {
+                    formBean.setDict(true);
+                    bean.setType("dictionary");
+                    bean.setExtName("Name");
+                    formBean.getComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
+
+                    formBean.getSearchComponentSet().add(ComponentSimple.builder()
+                            .name("nbSelect").model("@/components/nbSelect.vue")
+                            .build());
+                    DictKey dictKey = f.getAnnotation(DictKey.class);
+                    if (dictKey != null) {
+                        bean.setDictKey(dictKey.value());
+                    } else {
+                        bean.setDictKey(f.getName());
+                    }
+                }
+
                 if (field == null) {
                     continue;
                 }
@@ -348,25 +369,7 @@ public class FormBeanConvert {
                 }
                 bean.setType(field.type().name());
 
-                Dict dict = f.getAnnotation(Dict.class);
-                if (dict != null) {
-                    formBean.setDict(true);
-                    bean.setType("dictionary");
-                    bean.setExtName("Name");
-                    formBean.getComponentSet().add(ComponentSimple.builder()
-                            .name("nbSelect").model("@/components/nbSelect.vue")
-                            .build());
 
-                    formBean.getSearchComponentSet().add(ComponentSimple.builder()
-                            .name("nbSelect").model("@/components/nbSelect.vue")
-                            .build());
-                    DictKey dictKey = f.getAnnotation(DictKey.class);
-                    if (dictKey != null) {
-                        bean.setDictKey(dictKey.value());
-                    } else {
-                        bean.setDictKey(f.getName());
-                    }
-                }
 
 
                 bean.setPlaceholder(field.placeholder());
