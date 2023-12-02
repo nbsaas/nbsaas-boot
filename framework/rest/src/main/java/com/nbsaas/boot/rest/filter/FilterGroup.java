@@ -22,10 +22,11 @@ package com.nbsaas.boot.rest.filter;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class FilterGroup {
+public class FilterGroup implements Serializable {
 
     private Condition condition;
 
