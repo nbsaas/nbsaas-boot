@@ -44,8 +44,5 @@ public class PageRequest extends RequestObject {
 
     private String sortMethod;
 
-    /**
-     * 过滤条件组
-     */
-    private List<FilterGroup> groups;
+
 }
