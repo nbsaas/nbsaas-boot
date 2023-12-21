@@ -9,8 +9,8 @@ import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import com.nbsaas.boot.rest.annotations.CreateData;
 import com.nbsaas.boot.rest.annotations.UpdateData;
-import ${requestPackage}.${formBean.className}DataRequest;
-import ${requestPackage}.${formBean.className}SearchRequest;
+import ${requestPackage}.${formBean.className}Request;
+import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
 import ${apiPackage}.${formBean.className}Api;
@@ -34,12 +34,12 @@ public class ${formBean.className}FrontController {
 
 
     @RequestMapping("/search")
-    public PageResponse<${formBean.className}Simple> search(${formBean.className}SearchRequest request) {
+    public PageResponse<${formBean.className}Simple> search(${formBean.className}Search request) {
         return ${formBean.className?uncap_first}Api.search(request);
     }
 
     @RequestMapping("/list")
-    public ListResponse<${formBean.className}Simple> list(${formBean.className}SearchRequest request) {
+    public ListResponse<${formBean.className}Simple> list(${formBean.className}Search request) {
         return ${formBean.className?uncap_first}Api.list(request);
     }
 
@@ -51,23 +51,23 @@ public class ${formBean.className}FrontController {
     */
     @CreateData
     @RequestMapping("/create")
-    public ResponseObject<${formBean.className}Response> create(@Validated(AddOperator.class) ${formBean.className}DataRequest request) {
+    public ResponseObject<${formBean.className}Response> create(@Validated(AddOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.create(request);
     }
 
     @UpdateData
     @RequestMapping("/update")
-    public ResponseObject <${formBean.className}Response> update(@Validated(UpdateOperator.class) ${formBean.className}DataRequest request) {
+    public ResponseObject <${formBean.className}Response> update(@Validated(UpdateOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.update(request);
     }
 
     @RequestMapping("/delete")
-    public ResponseObject<?> delete(@Validated(DeleteOperator.class) ${formBean.className}DataRequest request) {
+    public ResponseObject<?> delete(@Validated(DeleteOperator.class) ${formBean.className}Request request) {
      return ${formBean.className?uncap_first}Api.delete(request);
     }
 
     @RequestMapping("/view")
-    public ResponseObject<${formBean.className}Response> view(@Validated(ViewOperator.class) ${formBean.className}DataRequest request) {
+    public ResponseObject<${formBean.className}Response> view(@Validated(ViewOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.view(request);
     }
 }

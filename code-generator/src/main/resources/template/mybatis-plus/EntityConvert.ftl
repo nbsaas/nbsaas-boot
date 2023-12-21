@@ -1,7 +1,7 @@
 package ${convertPackage};
 
 import ${jpaEntityPackage}.${formBean.className};
-import ${requestPackage}.${formBean.className}DataRequest;
+import ${requestPackage}.${formBean.className}Request;
 
 import org.springframework.beans.BeanUtils;
 import com.nbsaas.boot.rest.api.Converter;
@@ -18,10 +18,10 @@ import com.nbsaas.boot.utils.BeanDataUtils;
 * 请求对象转换成实体对象
 */
 
-public class ${formBean.className}EntityConvert  implements Converter<${formBean.className}, ${formBean.className}DataRequest> {
+public class ${formBean.className}EntityConvert  implements Converter<${formBean.className}, ${formBean.className}Request> {
 
     @Override
-    public ${formBean.className} convert(${formBean.className}DataRequest source) {
+    public ${formBean.className} convert(${formBean.className}Request source) {
         ${formBean.className} result = new ${formBean.className}();
         BeanDataUtils.copyProperties(source, result);
         <#if formBean.requests??>

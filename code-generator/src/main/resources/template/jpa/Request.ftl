@@ -16,7 +16,7 @@ import com.nbsaas.boot.rest.request.RequestId;
 * 请求对象
 */
 @Data
-public class ${formBean.className}DataRequest implements Serializable,RequestId {
+public class ${formBean.className}Request implements Serializable,RequestId {
 
 /**
 * 序列化参数

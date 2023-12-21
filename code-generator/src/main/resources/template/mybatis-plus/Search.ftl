@@ -22,7 +22,7 @@ import ${item.fullType};
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class ${formBean.className}SearchRequest   extends PageRequest implements Serializable {
+public class ${formBean.className}Search   extends PageRequest implements Serializable {
 
 /**
 * 序列化参数

@@ -4,8 +4,8 @@ import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.response.ListResponse;
 import ${apiPackage}.${formBean.className}Api;
 import ${jpaEntityPackage}.${formBean.className};
-import ${requestPackage}.${formBean.className}DataRequest;
-import ${requestPackage}.${formBean.className}SearchRequest;
+import ${requestPackage}.${formBean.className}Request;
+import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
 import ${convertPackage}.${formBean.className}SimpleConvert;
@@ -30,7 +30,7 @@ import java.util.function.Function;
 */
 @Transactional
 @Service
-public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest>  implements ${formBean.className}Api {
+public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}Request>  implements ${formBean.className}Api {
 
     @Resource
     private ${formBean.className}Repository ${formBean.className?uncap_first}Repository;
@@ -46,7 +46,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
     }
 
     @Override
-    public Function<${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
+    public Function<${formBean.className}Request, ${formBean.className}> getConvertForm() {
         return new ${formBean.className}EntityConvert();
     }
 
@@ -62,7 +62,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
     public ListResponse<${formBean.className}Simple> list(PageRequest request) {
         ${formBean.className}SimpleConvert convert=new ${formBean.className}SimpleConvert();
         if (request instanceof ${formBean.className}SearchRequest){
-             ${formBean.className}SearchRequest searchRequest=(${formBean.className}SearchRequest)request;
+             ${formBean.className}Search searchRequest=(${formBean.className}Search)request;
              convert.setFetch(searchRequest.getFetch());
         }
         return listSimple(request,convert);

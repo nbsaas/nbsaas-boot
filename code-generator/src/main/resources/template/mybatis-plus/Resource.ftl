@@ -3,8 +3,8 @@ package ${resourcePackage};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${apiPackage}.${formBean.className}Api;
 import ${jpaEntityPackage}.${formBean.className};
-import ${requestPackage}.${formBean.className}DataRequest;
-import ${requestPackage}.${formBean.className}SearchRequest;
+import ${requestPackage}.${formBean.className}Request;
+import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
 import ${convertPackage}.${formBean.className}SimpleConvert;
@@ -23,7 +23,7 @@ import java.util.function.Function;
 */
 @Transactional
 @Service
-public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}DataRequest>  implements ${formBean.className}Api {
+public class ${formBean.className}Resource extends BaseResource<${formBean.className},${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}Request>  implements ${formBean.className}Api {
 
     @Resource
     private ${formBean.className}Mapper ${formBean.className?uncap_first}Mapper;
@@ -39,7 +39,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
     }
 
     @Override
-    public Function<${formBean.className}DataRequest, ${formBean.className}> getConvertForm() {
+    public Function<${formBean.className}Request, ${formBean.className}> getConvertForm() {
         return new ${formBean.className}EntityConvert();
     }
 
