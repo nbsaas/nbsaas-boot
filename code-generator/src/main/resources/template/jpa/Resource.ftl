@@ -61,7 +61,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
     @Override
     public ListResponse<${formBean.className}Simple> list(PageRequest request) {
         ${formBean.className}SimpleConvert convert=new ${formBean.className}SimpleConvert();
-        if (request instanceof ${formBean.className}SearchRequest){
+        if (request instanceof ${formBean.className}Search){
              ${formBean.className}Search searchRequest=(${formBean.className}Search)request;
              convert.setFetch(searchRequest.getFetch());
         }
