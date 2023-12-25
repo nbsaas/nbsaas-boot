@@ -51,6 +51,10 @@ private static final long serialVersionUID = 1L;
                 private ${item.type} ${item.id};
 
                 private String ${item.id}Name;
+            <#elseif item.fieldType==201>
+                private ${item.type} ${item.id};
+
+                private String ${item.id}Name;
             <#else>
                 private ${item.type} ${item.id};
             </#if>

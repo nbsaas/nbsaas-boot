@@ -8,6 +8,10 @@ import com.nbsaas.boot.rest.api.Converter;
     import java.util.stream.Collectors;
     import lombok.Data;
 </#if>
+<#if formBean.dict>
+import java.util.HashMap;
+import java.util.Map;
+</#if>
 /**
 * 列表对象转换器
 */

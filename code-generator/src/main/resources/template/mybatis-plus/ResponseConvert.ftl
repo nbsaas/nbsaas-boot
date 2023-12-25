@@ -5,7 +5,10 @@ import ${responsePackage}.${formBean.className}Response;
 
 import com.nbsaas.boot.utils.BeanDataUtils;
 import com.nbsaas.boot.rest.api.Converter;
-
+<#if formBean.dict>
+    import java.util.HashMap;
+    import java.util.Map;
+</#if>
 /**
 * 实体对象转化成响应对象
 */
