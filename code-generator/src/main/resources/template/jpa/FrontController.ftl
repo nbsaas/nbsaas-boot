@@ -19,7 +19,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
-
+<#if formBean.storeState>
+    import com.nbsaas.boot.rest.enums.StoreState;
+</#if>
 /**
 *  前端控制器
 */
@@ -35,11 +37,17 @@ public class ${formBean.className}FrontController {
 
     @RequestMapping("/search")
     public PageResponse<${formBean.className}Simple> search(${formBean.className}Search request) {
+        <#if formBean.storeState>
+            request.setStoreState(StoreState.normal);
+        </#if>
         return ${formBean.className?uncap_first}Api.search(request);
     }
 
     @RequestMapping("/list")
     public ListResponse<${formBean.className}Simple> list(${formBean.className}Search request) {
+        <#if formBean.storeState>
+            request.setStoreState(StoreState.normal);
+        </#if>
         return ${formBean.className?uncap_first}Api.list(request);
     }
 

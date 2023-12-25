@@ -25,11 +25,14 @@ import com.nbsaas.boot.code.annotation.data.Dict;
 import com.nbsaas.boot.code.annotation.data.DictItem;
 import com.nbsaas.boot.code.annotation.data.DictKey;
 import com.nbsaas.boot.generator.beans.dict.DictItemSimple;
+import com.nbsaas.boot.generator.handle.BeanHandle;
 import jodd.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Comment;
+import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class FormBeanConvert {
@@ -505,6 +508,19 @@ public class FormBeanConvert {
 
         }
 
+        Reflections reflections = new Reflections("com.nbsaas.boot.generator.handle");
+        Set<Class<? extends BeanHandle>> handleList = reflections.getSubTypesOf(BeanHandle.class);
+        for (Class<? extends BeanHandle> handle : handleList) {
+            if (Modifier.isAbstract(handle.getModifiers())) {
+                continue;
+            }
+            try {
+                BeanHandle beanHandle = handle.newInstance();
+                beanHandle.handle(object, formBean);
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
         return formBean;
     }
 

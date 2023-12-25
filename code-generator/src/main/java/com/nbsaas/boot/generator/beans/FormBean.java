@@ -45,6 +45,11 @@ public class FormBean implements Serializable {
 
     private boolean showHandle;
 
+    /**
+     * 时候启用数据表逻辑删除
+     */
+    private boolean storeState;
+
     private String handleWidth;
 
     /**

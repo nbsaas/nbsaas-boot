@@ -26,6 +26,7 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class RestCommand extends BaseCommand {
     @Override
     public ResponseObject handle(InputRequestObject context) {
+        this.setOverrideFile(true);
 
         Config config = inputRequestObject.getConfig();
         makeCode("Resource", "."+config.getModuleName()+".rest.resource");

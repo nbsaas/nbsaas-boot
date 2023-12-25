@@ -1,11 +1,8 @@
 package ${resourcePackage};
 
-import com.nbsaas.boot.rest.request.PageRequest;
-import com.nbsaas.boot.rest.response.ListResponse;
 import ${apiPackage}.${formBean.className}Api;
 import ${jpaEntityPackage}.${formBean.className};
 import ${requestPackage}.${formBean.className}Request;
-import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
 import ${convertPackage}.${formBean.className}SimpleConvert;
@@ -20,11 +17,18 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
-import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
-
+<#if formBean.storeState>
+import com.nbsaas.boot.rest.enums.StoreState;
+import com.nbsaas.boot.rest.request.RequestId;
+import java.util.Optional;
+import com.nbsaas.boot.rest.response.ResponseObject;
+</#if>
+<#if formBean.catalog>
+import com.nbsaas.boot.rest.request.PageRequest;
+import com.nbsaas.boot.rest.response.ListResponse;
+import ${requestPackage}.${formBean.className}Search;
+</#if>
 /**
 *   业务接口实现
 */
@@ -52,7 +56,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
 
     @Override
     public Function<${formBean.className}, ${formBean.className}Response> getConvertResponse() {
-    return new ${formBean.className}ResponseConvert();
+        return new ${formBean.className}ResponseConvert();
     }
 
 
@@ -69,6 +73,29 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
     }
     </#if>
 
+    <#if formBean.storeState>
+    @Override
+    public ResponseObject<${formBean.className}Response> create(${formBean.className}Request request) {
+        request.setStoreState(StoreState.normal);
+        return super.create(request);
+   }
+
+    @Override
+    public ResponseObject<?> delete(RequestId request) {
+
+        ResponseObject<?> result = new ResponseObject<>();
+        Optional<${formBean.className}> optional = getJpaRepository().findById(request.getId());
+        if (!optional.isPresent()) {
+            result.setCode(501);
+            result.setMsg("无效id");
+            return result;
+        }
+        ${formBean.className} bean = optional.get();
+        bean.setStoreState(StoreState.draft);
+        return result;
+
+    }
+    </#if>
 }
 
 

@@ -23,6 +23,9 @@ import javax.annotation.Resource;
 <#if formBean.permissionDataClass>
 import com.nbsaas.boot.rest.annotations.DataPermission;
 </#if>
+<#if formBean.storeState>
+import com.nbsaas.boot.rest.enums.StoreState;
+</#if>
 
 /**
 *  对外控制器
@@ -43,6 +46,9 @@ public class ${formBean.className}Controller {
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/search")
     public PageResponse <${formBean.className}Simple> search(${formBean.className}Search request) {
+        <#if formBean.storeState>
+            request.setStoreState(StoreState.normal);
+        </#if>
         return ${formBean.className?uncap_first}Api.search(request);
     }
 
@@ -52,6 +58,9 @@ public class ${formBean.className}Controller {
     @RequiresPermissions("${formBean.className?uncap_first}")
     @RequestMapping("/list")
     public ListResponse<${formBean.className}Simple> list(${formBean.className}Search request) {
+        <#if formBean.storeState>
+            request.setStoreState(StoreState.normal);
+        </#if>
         return ${formBean.className?uncap_first}Api.list(request);
     }
 
