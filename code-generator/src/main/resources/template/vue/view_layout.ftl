@@ -27,7 +27,7 @@
             }
         },
         methods: {
-            handleSelect() {
+            handleSelect(index) {
                 let selectId = this.selectId;
                 if (index === "1") {
                     this.$router.replace({
