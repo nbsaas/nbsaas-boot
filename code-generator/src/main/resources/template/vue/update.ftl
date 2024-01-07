@@ -67,7 +67,7 @@
             let id = this.$route.query.id;
             let data = {};
             data.id = id;
-            let res = await this.$http.form("/${formBean.className?uncap_first}/view", data);
+            let res = await this.$http.post("/${formBean.className?uncap_first}/view", data);
             if (res.code === 200) {
                 this.form = res.data;
             }
@@ -90,7 +90,7 @@
                 await this.updateDataPost();
             },
             async updateDataPost() {
-                let res = await this.$http.form("/${formBean.className?uncap_first}/update", this.form);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/update", this.form);
                 if (res.code !== 200) {
                     this.$message.error(res.msg);
                     return
@@ -111,7 +111,7 @@
                 param.level = 1;
                 param.size = 500;
                 param.fetch = 0;
-                let res = await this.$http.form("/${item.option?uncap_first}/list", param);
+                let res = await this.$http.post("/${item.option?uncap_first}/list", param);
                 if (res.code === 200) {
                     self.${item.id}Options = res.data;
                 }
@@ -133,7 +133,7 @@
                 param.fetch = 0;
                 param.name = query;
 
-                let res = await this.$http.form("/${item.id?uncap_first}/list", param);
+                let res = await this.$http.post("/${item.id?uncap_first}/list", param);
                 if (res.code === 0) {
                     self.${item.id}Options = res.data;
                 }

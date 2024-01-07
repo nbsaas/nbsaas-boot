@@ -162,7 +162,7 @@
             async getSearchList() {
                 this.loading = true;
                 let data = this.searchObject;
-                let res = await this.$http.form("/${formBean.className?uncap_first}/search", data);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/search", data);
                 if (res.code === 200) {
                     this.tableData = res;
                 }
@@ -203,7 +203,7 @@
                 param.level = 1;
                 param.size = 500;
                 param.fetch = 0;
-                let res = await this.$http.form("/${item.option?uncap_first}/list", param);
+                let res = await this.$http.post("/${item.option?uncap_first}/list", param);
                 if (res.code === 200) {
                     self.${item.id}Options = res.data;
                 }
@@ -225,7 +225,7 @@
                 if (this.selectId) {
                     let params = {};
                     params.id = this.selectId;
-                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete", params);
+                    let res = await this.$http.post("/${formBean.className?uncap_first}/delete", params);
                     if (res.code === 200) {
                         this.$message({
                             message: '删除数据成功',

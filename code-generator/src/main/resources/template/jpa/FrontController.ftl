@@ -1,14 +1,9 @@
 package ${controllerPackage};
 
-import com.nbsaas.boot.rest.annotations.AddOperator;
-import com.nbsaas.boot.rest.annotations.DeleteOperator;
-import com.nbsaas.boot.rest.annotations.UpdateOperator;
-import com.nbsaas.boot.rest.annotations.ViewOperator;
+import com.nbsaas.boot.rest.annotations.*;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
-import com.nbsaas.boot.rest.annotations.CreateData;
-import com.nbsaas.boot.rest.annotations.UpdateData;
 import ${requestPackage}.${formBean.className}Request;
 import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;

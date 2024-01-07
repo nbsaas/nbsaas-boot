@@ -32,7 +32,7 @@
             let id = this.$route.query.id;
             let data = {};
             data.id = id;
-            let res = await this.$http.form("/${formBean.className?uncap_first}/view", data);
+            let res = await this.$http.post("/${formBean.className?uncap_first}/view", data);
             if (res.code === 200) {
                 this.viewModel = res.data;
             }
