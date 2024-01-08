@@ -6,7 +6,10 @@ import java.math.BigDecimal;
 import lombok.Data;
 <#if formBean.requests??>
     <#list formBean.requests as item>
-        <#if item.fieldType?? && item.fieldType gt 2 >
+        <#if item.fieldType?? && item.fieldType == 4 >
+            import ${item.fullType};
+        </#if>
+        <#if item.fieldType?? && item.fieldType == 100 >
             import ${item.fullType};
         </#if>
     </#list>
@@ -26,19 +29,35 @@ public class ${formBean.className}Simple implements Serializable {
 */
 private static final long serialVersionUID = 1L;
 
-<#if formBean.catalog>
-private String value;
-private String label;
-private List
-<${formBean.className}Simple> children;
+    <#if formBean.catalog>
+    private String value;
+    private String label;
+    private List<${formBean.className}Simple> children;
+   </#if>
+
+    <#if formBean.lazy>
+    private Boolean hasChildren;
     </#if>
 
     <#if formBean.simples??>
         <#list formBean.simples as item>
-            <#if item.type=="Date">
-                //@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+
+            /**
+            * ${item.comment!}
+            **/
+            <#if item.fieldType==3>
+                private ${item.type} ${item.id};
+            <#elseif item.fieldType==4>
+                private ${item.type} ${item.id};
+
+                private String ${item.id}Name;
+            <#elseif item.fieldType==201>
+                private ${item.type} ${item.id};
+
+                private String ${item.id}Name;
+            <#else>
+                private ${item.type} ${item.id};
             </#if>
-            private ${item.type} ${item.id};
         </#list>
     </#if>
 
@@ -48,4 +67,4 @@ private List
         </#list>
     </#if>
 
-    }
+}
