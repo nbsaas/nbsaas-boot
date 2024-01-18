@@ -12,9 +12,9 @@
                         </el-table-column>
                         <el-table-column prop="sortNum" label="排序号" width="120" sortable align="center">
                         </el-table-column>
-                        <el-table-column prop="addDate" label="添加时间" width="160">
+                        <el-table-column prop="addDate" label="添加时间" width="180">
                         </el-table-column>
-                        <el-table-column prop="demo" label="备注">
+                        <el-table-column prop="demo" label="备注" overflow-tooltip  >
                         </el-table-column>
                         <el-table-column label="操作" width="240" align="center">
                             <template #default="scope">
@@ -137,7 +137,24 @@
 <script>
     import common from "@/mixins/common.js";
     import {Delete, Edit} from '@element-plus/icons-vue'
+    import {defineStore, mapState} from 'pinia'
+    const searchStore = defineStore('${formBean.className?uncap_first}Store', {
 
+        state: () => {
+            return { searchObject: {
+                    no: 1,
+                    size: 10,
+                    sortField: "id",
+                    sortMethod: "desc",
+                    <#if formBean.searches??>
+                    <#list formBean.searches as item>
+                    ${item.id}: ''<#sep>,
+                    </#list>
+                    </#if>
+                }
+            }
+        }
+    })
     function clone(Obj) {
         var buf;
         if (Obj instanceof Array) {
@@ -245,12 +262,11 @@
                 workLoad: false
             }
         },
+        computed: {
+            ...mapState(searchStore, ['searchObject']),
+        },
         mounted() {
 
-            let search = this.$tool.data.get("${formBean.className?uncap_first}_search");
-            if (search) {
-                this.searchObject = search;
-            }
             this.getSearchList();
 
             <#list formBean.fields as item>
@@ -274,13 +290,11 @@
                 data.sortMethod = "asc";
                 data.sortField = "sortNum";
                 data.depth = 1;
-                let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/list", data);
                 if (res.code === 200) {
                     this.treeOptions.children = res.data;
                 }
                 this.loading = false;
-                this.$tool.data.set("${formBean.className?uncap_first}_search", this.searchObject);
-
             },
             <#if formBean.lazy>
             async loadChildren(event,treeNode, resolve) {
@@ -291,7 +305,7 @@
                 data.sortMethod = "asc";
                 data.sortField = "sortNum";
                 data.parent=event.id;
-                let res = await this.$http.form("/${formBean.className?uncap_first}/list", data);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/list", data);
                 if (res.code === 200) {
                     resolve(res.data);
                 }
@@ -314,7 +328,7 @@
             },
             async addData() {
                 let data = this.form;
-                let res = await this.$http.form("/${formBean.className?uncap_first}/create", data);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/create", data);
                 if (res.code !== 200) {
                     this.$message.error(res.msg);
                     return;
@@ -337,7 +351,7 @@
                 this.workLoad = false;
             },
             async updateDataPost() {
-                let res = await this.$http.form("/${formBean.className?uncap_first}/update", this.form);
+                let res = await this.$http.post("/${formBean.className?uncap_first}/update", this.form);
                 if (res.code !== 200) {
                     this.$message.error(res.msg);
                     return
@@ -386,7 +400,7 @@
                 param.size = 500;
                 param.fetch = 0;
 
-                let res = await this.$http.form("/${item.id?lower_case}/list", param);
+                let res = await this.$http.post("/${item.id?lower_case}/list", param);
                 if (res.code === 200) {
                     self.${item.id}Options = res.data;
                 }
@@ -408,7 +422,7 @@
                 if (this.selectId) {
                     let params = {};
                     params.id = this.selectId;
-                    let res = await this.$http.form("/${formBean.className?uncap_first}/delete", params);
+                    let res = await this.$http.post("/${formBean.className?uncap_first}/delete", params);
                     if (res.code === 200) {
                         this.$message({
                             message: '删除数据成功',
