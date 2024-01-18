@@ -23,23 +23,23 @@ package com.nbsaas.boot.rest.filter;
  * @author ada
  */
 public enum Operator {
-    eq,
-    ne,
-    gt,
-    lt,
-    ge,
+    eq,//等于
+    ne,//不等于
+    gt,//大于
+    lt,//小于
+    ge,//大于等于
     le,
     like,//%key%匹配
     likePrefix,//key%匹配
     likeSuffix,//%key匹配
-    in,
-    notIn,
-    isNull,
-    isNotNull,
+    in,//在什么范围
+    notIn,//不在什么范围
+    isNull,//为空
+    isNotNull,//不为空
     inSql,//mp专用
     notInSql,//mp专用
     apply,//mp专用
-    between;
+    between;//范围值
 
 
 
