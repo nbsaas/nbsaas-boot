@@ -23,6 +23,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+/**
+ * 操作符策略
+ */
 public interface OperatorStrategy {
 
     Predicate handle(CriteriaBuilder criteriaBuilder, Root<?> root, String field, Object object);

@@ -29,8 +29,15 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Search {
+
+    /**
+     * 操作符
+     */
     Operator operator() default Operator.eq;
 
+    /**
+     * 字段名
+     */
     String name() default "";
 
     String prefix() default "";
