@@ -191,6 +191,8 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 | nbsaas-boot-starter    | https://gitee.com/cng1985/nbsaas-boot-starter     | 
 | nbsaas-product-starter | https://gitee.com/cng1985/nbsaas-product-starter  | 
 | nbsaas-sample-starter  | https://gitee.com/cng1985/nbsaas-sample-starter   | 
+| nbsaas-app-starter     | https://gitee.com/cng1985/nbsaas-app-starter      | 
+
 
 ### 使用访问
 
@@ -200,7 +202,7 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
     <parent>
         <groupId>com.nbsaas.boot</groupId>
         <artifactId>nbsaas-boot</artifactId>
-        <version>1.1.2-2023</version>
+        <version>1.1.6-2023</version>
     </parent>
 ```
 
