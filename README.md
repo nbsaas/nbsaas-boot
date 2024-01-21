@@ -207,7 +207,7 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 ```
 
 ### 使用nbsaas-boot的项目
-[nbsaas-life](https://gitee.com/quhaodian/nbsaas-life)
+[nbsaas-mall2](https://gitee.com/quhaodian/nbsaas-mall2)
 [nbsaas-admin](https://gitee.com/cng1985/nbsaas-admin)
 [nbsaas-boot-starter](https://gitee.com/cng1985/nbsaas-boot-starter)
 
