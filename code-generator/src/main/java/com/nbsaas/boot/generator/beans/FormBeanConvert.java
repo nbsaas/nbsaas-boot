@@ -196,6 +196,7 @@ public class FormBeanConvert {
                     bean.setType(field.getType().getSimpleName());
                     bean.setFullType(field.getType().getName());
                     bean.setFieldType(4);
+                    updateComment(field, bean);
                     beans.add(bean);
                 }
 
@@ -203,6 +204,7 @@ public class FormBeanConvert {
                 Dict dict = field.getAnnotation(Dict.class);
                 if (dict != null) {
                     FieldBean bean = new FieldBean();
+                    updateComment(field, bean);
                     bean.setId(field.getName());
                     bean.setType(field.getType().getSimpleName());
                     bean.setFullType(field.getType().getName());
@@ -246,6 +248,14 @@ public class FormBeanConvert {
                     updateComment(field, bean);
                     beans.add(bean);
 
+                }else {
+                    FieldBean bean = new FieldBean();
+                    bean.setId(field.getName());
+                    bean.setType(field.getType().getSimpleName());
+                    bean.setFullType(field.getType().getName());
+                    bean.setFieldType(104);
+                    updateComment(field, bean);
+                    beans.add(bean);
                 }
             }
         }

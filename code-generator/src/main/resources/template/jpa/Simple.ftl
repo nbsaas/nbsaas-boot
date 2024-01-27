@@ -12,6 +12,9 @@ import lombok.Data;
         <#if item.fieldType?? && item.fieldType == 100 >
             import ${item.fullType};
         </#if>
+        <#if item.fieldType?? && item.fieldType == 104 >
+            import ${item.fullType};
+        </#if>
     </#list>
 </#if>
 <#if formBean.catalog>

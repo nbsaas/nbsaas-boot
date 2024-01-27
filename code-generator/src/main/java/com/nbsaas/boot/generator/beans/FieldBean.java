@@ -116,6 +116,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
      * 2父级类id 3父级类名称 4枚举 5其他 100父类字段其他类型 101父类字段基础类型
      * 102 本类字段
      * 103 扩展字段，转换器不做任何处理
+     * 104 其他类型字段
      *
      * 201 数字-字符串字典
      */

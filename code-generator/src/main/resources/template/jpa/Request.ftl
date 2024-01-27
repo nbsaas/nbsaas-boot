@@ -10,6 +10,9 @@ import com.nbsaas.boot.rest.request.RequestId;
         <#if item.fieldType?? && item.fieldType == 4 >
             import ${item.fullType};
         </#if>
+        <#if item.fieldType?? && item.fieldType == 104 >
+            import ${item.fullType};
+        </#if>
     </#list>
 </#if>
 /**
