@@ -249,6 +249,11 @@ public class FormBeanConvert {
                     beans.add(bean);
 
                 }else {
+
+                    //要是集合类不处理
+                    if (isCollection(field)){
+                        continue;
+                    }
                     FieldBean bean = new FieldBean();
                     bean.setId(field.getName());
                     bean.setType(field.getType().getSimpleName());
@@ -261,14 +266,19 @@ public class FormBeanConvert {
         }
         return beans;
     }
-
+    public static boolean isCollection(Field field) {
+        Class<?> fieldType = field.getType();
+        return Collection.class.isAssignableFrom(fieldType);
+    }
     boolean isBasicType(Class<?> type) {
         if (type.getName().startsWith("java.lang")
                 || type.getName().equals("int")
+                || type.getName().equals("boolean")
                 || type.getName().equals("long")
                 || type.getName().equals("float")
                 || type.getName().equals("double")
                 || type.getSimpleName().equals("BigDecimal")
+                || type.getSimpleName().equals("Boolean")
                 || type.getSimpleName().equals("Date")) {
             return true;
         } else {
