@@ -22,6 +22,7 @@ package com.nbsaas.boot.generator.command.common;
 import com.nbsaas.boot.chain.Command;
 import com.nbsaas.boot.generator.config.Config;
 import com.nbsaas.boot.generator.context.InputRequestObject;
+import com.nbsaas.boot.generator.utils.OsUtils;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
@@ -112,6 +113,10 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
             Template template = configuration.getTemplate(model + ".ftl");
             String requestDir = outPath() + baseCode + codePath.replace(".", "\\");
             String outFile = requestDir + "\\" + inputRequestObject.getFormBean().getClassName() + className + "." + extension;
+            if (OsUtils.isLinuxOrMac()){
+                outFile=outFile.replace("\\","/");
+            }
+
             File out = new File(outFile);
             if (!out.getParentFile().exists()) {
                 out.getParentFile().mkdirs();
