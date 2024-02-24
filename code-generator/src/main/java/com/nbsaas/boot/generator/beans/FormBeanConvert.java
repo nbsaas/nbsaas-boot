@@ -31,6 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Comment;
 import org.reflections.Reflections;
 
+import javax.persistence.Entity;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -66,6 +67,7 @@ public class FormBeanConvert {
                 if (!isBasicType(annotation.classType())) {
                     bean.setFieldType(5);
                 }
+                updateComment(f, bean);
 
 
                 bean.setKey(annotation.key());
@@ -253,6 +255,13 @@ public class FormBeanConvert {
                     //要是集合类不处理
                     if (isCollection(field)){
                         continue;
+                    }
+                    Entity entity = field.getType().getAnnotation(Entity.class);
+                    if (entity != null) {
+                        FieldConvert fieldConvert = field.getAnnotation(FieldConvert.class);
+                        if (fieldConvert==null){
+                            throw new RuntimeException(object.getName() + "中实体类不能为做请求参数:" + field.getType().getSimpleName());
+                        }
                     }
                     FieldBean bean = new FieldBean();
                     bean.setId(field.getName());

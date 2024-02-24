@@ -13,6 +13,7 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import javax.annotation.Resource;
@@ -35,12 +36,18 @@ public class ${formBean.className}Controller {
     @Resource
     private ${formBean.className}Api ${formBean.className?uncap_first}Api;
 
+    /**
+    * 搜索数据
+    *
+    * @param request
+    * @return
+    */
     @SearchData
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/search")
+    @PostMapping("/search")
     public PageResponse <${formBean.className}Simple> search(@RequestBody ${formBean.className}Search request) {
         <#if formBean.storeState>
             request.setStoreState(StoreState.normal);
@@ -48,12 +55,18 @@ public class ${formBean.className}Controller {
         return ${formBean.className?uncap_first}Api.search(request);
     }
 
+    /**
+    * 列表数据
+    *
+    * @param request
+    * @return
+    */
     @SearchData
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ListResponse<${formBean.className}Simple> list(@RequestBody ${formBean.className}Search request) {
         <#if formBean.storeState>
             request.setStoreState(StoreState.normal);
@@ -69,28 +82,45 @@ public class ${formBean.className}Controller {
     */
     @RequiresPermissions("${formBean.className?uncap_first}")
     @CreateData
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public ResponseObject <${formBean.className}Response> create(@RequestBody @Validated(AddOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.create(request);
     }
 
+   /**
+   * 修改数据
+   * @param request
+   * @return
+   */
    @RequiresPermissions("${formBean.className?uncap_first}")
    @UpdateData
-   @RequestMapping("/update")
+   @PostMapping("/update")
    public ResponseObject<${formBean.className}Response> update(@RequestBody @Validated(UpdateOperator.class) ${formBean.className}Request request) {
        return ${formBean.className?uncap_first}Api.update(request);
    }
 
+    /**
+    * 删除数据
+    *
+    * @param request
+    * @return
+    */
     @SearchData
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public ResponseObject<?> delete(@RequestBody @Validated(DeleteOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.delete(request);
     }
 
+    /**
+    * 查看数据
+    *
+    * @param request
+    * @return
+    */
     @SearchData
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/view")
+    @PostMapping("/view")
     public ResponseObject <${formBean.className}Response> view(@RequestBody @Validated(ViewOperator.class) ${formBean.className}Request  request) {
         return ${formBean.className?uncap_first}Api.view(request);
     }

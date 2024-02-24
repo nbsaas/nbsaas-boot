@@ -18,6 +18,7 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 <#if formBean.permissionDataClass>
@@ -41,7 +42,7 @@ public class ${formBean.className}Controller {
     @DataPermission
     </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/search")
+    @PostMapping("/search")
     public PageResponse <${formBean.className}Simple> search(${formBean.className}Search request) {
         return ${formBean.className?uncap_first}Api.search(request);
     }
@@ -50,7 +51,7 @@ public class ${formBean.className}Controller {
     @DataPermission
     </#if>
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ListResponse<${formBean.className}Simple> list(${formBean.className}Search request) {
         return ${formBean.className?uncap_first}Api.list(request);
     }
@@ -63,26 +64,26 @@ public class ${formBean.className}Controller {
     */
     @RequiresPermissions("${formBean.className?uncap_first}")
     @CreateData
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public ResponseObject <${formBean.className}Response> create(@Validated(AddOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.create(request);
     }
 
    @RequiresPermissions("${formBean.className?uncap_first}")
    @UpdateData
-   @RequestMapping("/update")
+   @PostMapping("/update")
    public ResponseObject<${formBean.className}Response> update(@Validated(UpdateOperator.class) ${formBean.className}Request request) {
        return ${formBean.className?uncap_first}Api.update(request);
    }
 
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public ResponseObject<?> delete(@Validated(DeleteOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.delete(request);
     }
 
     @RequiresPermissions("${formBean.className?uncap_first}")
-    @RequestMapping("/view")
+    @PostMapping("/view")
     public ResponseObject <${formBean.className}Response> view(@Validated(ViewOperator.class) ${formBean.className}Request  request) {
         return ${formBean.className?uncap_first}Api.view(request);
     }
