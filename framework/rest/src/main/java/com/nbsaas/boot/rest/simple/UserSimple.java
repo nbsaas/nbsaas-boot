@@ -31,4 +31,17 @@ public class UserSimple implements Serializable {
      * 业务id
      */
     private Long businessId;
+
+
+    /**
+     * 租户id
+     */
+    private Long tenantId;
+
+
+    /**
+     * 部门id
+     */
+    private Long structureId;
+
 }
