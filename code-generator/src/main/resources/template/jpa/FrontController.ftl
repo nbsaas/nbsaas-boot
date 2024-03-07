@@ -18,7 +18,7 @@ import javax.annotation.Resource;
     import com.nbsaas.boot.rest.enums.StoreState;
 </#if>
 /**
-*  前端控制器
+*  ${formBean.model!}前端控制器
 */
 @RequiresAuthentication
 @RestController

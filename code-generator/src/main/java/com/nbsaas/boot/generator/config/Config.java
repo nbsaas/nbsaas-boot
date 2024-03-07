@@ -51,6 +51,11 @@ public class Config {
     private String moduleName;
 
     /**
+     * 服务端接口路径
+     */
+    private String feignServer;
+
+    /**
      * 项目路径
      */
     private String outputPath;

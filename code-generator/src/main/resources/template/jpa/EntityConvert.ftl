@@ -15,7 +15,7 @@ import com.nbsaas.boot.utils.BeanDataUtils;
 </#if>
 
 /**
-* 请求对象转换成实体对象
+* ${formBean.model!}请求对象转换成实体对象
 */
 
 public class ${formBean.className}EntityConvert  implements Converter<${formBean.className}, ${formBean.className}Request> {

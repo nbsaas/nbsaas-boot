@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 </#if>
 /**
-* 列表对象转换器
+* ${formBean.model!}列表对象转换器
 */
 
 <#if formBean.catalog>

@@ -60,6 +60,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         context.put("convertPackage", config.getBasePackage() +"." + config.getModuleName() +  ".rest.convert");
 
         context.put("apiPackage", config.getBasePackage() +"." + config.getModuleName() +  ".api.apis");
+        context.put("feignPackage", config.getBasePackage() +"." + config.getModuleName() +  ".api.feign");
 
         context.put("simplePackage", config.getBasePackage() +"." + config.getModuleName() + ".api.domain.simple");
         context.put("responsePackage", config.getBasePackage() + "." + config.getModuleName() +".api.domain.response");
@@ -75,6 +76,9 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         context.put("mapperPackage", config.getBasePackage() + ".data.mapper");
         if (context.getFormBean() != null) {
             context.put("formBean", context.getFormBean());
+        }
+        if (context.getConfig() != null) {
+            context.put("config", context.getConfig());
         }
         return handle(context);
     }

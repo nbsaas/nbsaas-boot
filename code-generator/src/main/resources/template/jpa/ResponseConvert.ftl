@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 </#if>
 /**
-* 实体对象转化成响应对象
+* ${formBean.model!}-实体对象转化成响应对象
 */
 
 public class ${formBean.className}ResponseConvert  implements Converter<${formBean.className}Response,${formBean.className}> {

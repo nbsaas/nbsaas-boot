@@ -22,7 +22,7 @@ import lombok.Data;
 </#if>
 
 /**
-* 列表对象
+* ${formBean.model!}-列表对象
 */
 @Data
 public class ${formBean.className}Simple implements Serializable {
