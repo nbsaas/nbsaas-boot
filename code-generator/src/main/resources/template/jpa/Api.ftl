@@ -7,7 +7,7 @@ import com.nbsaas.boot.rest.api.BaseApi;
 
 
 /**
-* 对外接口
+* ${formBean.model!}接口
 */
 public interface ${formBean.className}Api extends BaseApi<${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}Request> {
 

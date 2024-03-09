@@ -25,7 +25,7 @@ import com.nbsaas.boot.rest.enums.StoreState;
 </#if>
 
 /**
-*  对外控制器
+*  ${formBean.model!}控制器
 */
 @RequiresAuthentication
 @RestController

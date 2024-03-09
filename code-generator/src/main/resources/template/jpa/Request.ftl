@@ -16,7 +16,7 @@ import com.nbsaas.boot.rest.request.RequestId;
     </#list>
 </#if>
 /**
-* 请求对象
+* ${formBean.model!}-请求对象
 */
 @Data
 public class ${formBean.className}Request implements Serializable,RequestId {

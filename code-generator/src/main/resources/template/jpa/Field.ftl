@@ -2,7 +2,7 @@ package ${fieldPackage};
 
 
 /**
-*   字段映射类
+*   ${formBean.model!}-字段映射类
 */
 public class ${formBean.className}Field  {
 

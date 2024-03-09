@@ -30,7 +30,7 @@ import com.nbsaas.boot.rest.response.ListResponse;
 import ${requestPackage}.${formBean.className}Search;
 </#if>
 /**
-*   业务接口实现
+*   ${formBean.model!}-业务接口实现
 */
 @Transactional
 @Service

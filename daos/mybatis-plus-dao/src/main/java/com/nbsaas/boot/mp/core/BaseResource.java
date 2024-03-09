@@ -98,6 +98,9 @@ public abstract  class   BaseResource<Entity, Response, Simple, Form extends Req
     public Response oneData(Filter... filters) {
         QueryWrapper<Entity> queryWrapper = QueryWrapperUtils.queryWrapper(filters);
         Entity data = getMapper().selectOne(queryWrapper);
+        if (data==null){
+            return null;
+        }
         return getConvertResponse().apply(data);
     }
 

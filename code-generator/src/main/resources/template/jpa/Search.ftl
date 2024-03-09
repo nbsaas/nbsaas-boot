@@ -16,7 +16,7 @@ import ${item.fullType};
 </#if>
 
 /**
-* 搜索bean
+* ${formBean.model!}-搜索bean
 */
 @Getter
 @Setter

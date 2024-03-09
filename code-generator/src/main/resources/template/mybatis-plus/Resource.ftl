@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.function.Function;
 
 /**
-*   业务接口实现
+*   ${formBean.model!}业务接口实现
 */
 @Transactional
 @Service

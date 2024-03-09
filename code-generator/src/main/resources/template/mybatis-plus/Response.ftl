@@ -15,7 +15,7 @@ import java.util.Date;
     </#list>
 </#if>
 /**
-* 响应对象
+* ${formBean.model!}响应对象
 */
 @Getter
 @Setter
