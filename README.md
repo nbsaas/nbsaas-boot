@@ -48,23 +48,6 @@ nbsaas-boot是一个企业级快速开发框架，具有以下特点：
 ### 1.项目结构规范
 
 ```
-{主工程}
-{主工程}.adapters
-{主工程}.admins
-{主工程}.api
-{主工程}.apps
-{主工程}.code-generator
-{主工程}.commons
-{主工程}.gates
-{主工程}.gateway
-{主工程}.models
-{主工程}.resources
-
-```
-
-### 2.Api模块结构规范
-
-```
 - 主工程（Main Project）
   - apis  // 包含各种API接口的模块
     - business-api  // 处理业务逻辑的API接口
@@ -91,6 +74,37 @@ nbsaas-boot是一个企业级快速开发框架，具有以下特点：
       - business-resources  // 业务相关的数据库资源管理
 
 ```
+
+```
+{主工程}
+{主工程}.apis
+{主工程}.apis.business-api
+{主工程}.apis.statistics-api
+{主工程}.code-generator
+{主工程}.gates
+{主工程}.gates.gateway
+{主工程}.gates.admins
+{主工程}.gates.admins.admin
+{主工程}.gates.admins.tenant
+{主工程}.gates.fronts
+{主工程}.gates.fronts.tenant
+{主工程}.gates.fronts.front
+{主工程}.gates.apps
+{主工程}.gates.apps.db-app
+{主工程}.gates.apps.tenant-app
+{主工程}.gates.saas
+{主工程}.gates.saas.front-saas
+{主工程}.gates.saas.admin-saas
+{主工程}.resources
+{主工程}.resources.adapters
+{主工程}.resources.db-resources
+{主工程}.resources.db-resources.tenant-resources
+{主工程}.resources.db-resources.business-resources
+
+```
+
+### 2.Api模块结构规范
+
 
 ```
 com.{公司域名}.{主工程}.{子工程}
