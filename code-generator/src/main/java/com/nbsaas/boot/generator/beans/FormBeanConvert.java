@@ -211,7 +211,11 @@ public class FormBeanConvert {
                     bean.setType(field.getType().getSimpleName());
                     bean.setFullType(field.getType().getName());
                     bean.setExtName("Name");
-                    bean.setFieldType(201);
+                    if (dict.keyType().getSimpleName().equals("String")){
+                        bean.setFieldType(202);
+                    }else{
+                        bean.setFieldType(201);
+                    }
                     DictItem[] items = dict.items();
                     if (items != null) {
                         bean.setDictItems(new ArrayList<>());
@@ -360,6 +364,7 @@ public class FormBeanConvert {
                 Dict dict = f.getAnnotation(Dict.class);
                 if (dict != null) {
                     formBean.setDict(true);
+                    bean.setKeyType(dict.keyType());
                     bean.setType("dictionary");
                     bean.setExtName("Name");
                     formBean.getComponentSet().add(ComponentSimple.builder()
