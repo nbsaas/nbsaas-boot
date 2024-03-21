@@ -48,21 +48,63 @@ nbsaas-boot是一个企业级快速开发框架，具有以下特点：
 ### 1.项目结构规范
 
 ```
+- 主工程（Main Project）
+  - apis  // 包含各种API接口的模块
+    - business-api  // 处理业务逻辑的API接口
+    - statistics-api  // 提供统计数据的API接口
+  - code-generator  // 代码生成器，用于生成特定模块的代码或配置文件
+  - gates  // 网关模块，用于管理和转发请求
+    - gateway  // 主网关模块，负责整个系统的流量管理
+    - admins  // 管理员模块
+      - admin  // 管理员信息管理功能
+      - tenant  // 租户信息管理功能
+    - fronts  // 前台模块
+      - tenant  // 租户前台页面管理功能
+      - front  // 前台页面管理功能
+    - apps  // 应用程序模块
+      - db-app  // 数据库管理应用程序
+      - tenant-app  // 租户管理应用程序
+    - saas  // SaaS模块
+      - front-saas  // 前台SaaS功能
+      - admin-saas  // 后台SaaS功能
+  - resources  // 资源管理模块，用于管理系统的各种资源
+    - adapters  // 适配器模块，处理不同资源之间的适配问题
+    - db-resources  // 数据库资源管理模块
+      - tenant-resources  // 租户相关的数据库资源管理
+      - business-resources  // 业务相关的数据库资源管理
+
+```
+
+```
 {主工程}
-{主工程}.adapters
-{主工程}.admins
-{主工程}.api
-{主工程}.apps
+{主工程}.apis
+{主工程}.apis.business-api
+{主工程}.apis.statistics-api
 {主工程}.code-generator
-{主工程}.commons
 {主工程}.gates
-{主工程}.gateway
-{主工程}.models
+{主工程}.gates.gateway
+{主工程}.gates.admins
+{主工程}.gates.admins.admin
+{主工程}.gates.admins.tenant
+{主工程}.gates.fronts
+{主工程}.gates.fronts.tenant
+{主工程}.gates.fronts.front
+{主工程}.gates.apps
+{主工程}.gates.apps.db-app
+{主工程}.gates.apps.tenant-app
+{主工程}.gates.saas
+{主工程}.gates.saas.front-saas
+{主工程}.gates.saas.admin-saas
 {主工程}.resources
+{主工程}.resources.adapters
+{主工程}.resources.db-resources
+{主工程}.resources.db-resources.tenant-resources
+{主工程}.resources.db-resources.business-resources
 
 ```
 
 ### 2.Api模块结构规范
+
 
 ```
 com.{公司域名}.{主工程}.{子工程}
