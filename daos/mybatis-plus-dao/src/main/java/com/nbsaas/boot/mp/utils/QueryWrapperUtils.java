@@ -59,9 +59,12 @@ public class QueryWrapperUtils {
                 queryWrapper.orderByDesc(request.getSortField());
             }
         }
-        if (request.getSize() != null) {
-            queryWrapper.last(" limit " + request.getSize());
-        }
+        /**
+         * todo 需要考虑数据库类型
+         */
+//        if (request.getSize() != null) {
+//            queryWrapper.last(" limit " + request.getSize());
+//        }
         List<T> selectList = mapper.selectList(queryWrapper);
         if (selectList != null && selectList.size() > 0) {
             result.setData(selectList.stream().map(function).collect(Collectors.toList()));
@@ -206,24 +209,23 @@ public class QueryWrapperUtils {
                             queryWrapper.notIn(item.name(), object);
                         }
                     } else if (item.operator() == Operator.notInSql) {
-                        if (object instanceof String){
-                            String sql=(String) object;
+                        if (object instanceof String) {
+                            String sql = (String) object;
                             if (StringUtils.hasText(sql)) {
-                                queryWrapper.notInSql(item.name(),sql);
+                                queryWrapper.notInSql(item.name(), sql);
                             }
-                        }
-                        else{
+                        } else {
                             if (StringUtils.hasText(item.sql())) {
                                 queryWrapper.notInSql(item.name(), item.sql());
                             }
                         }
-                    }else if (item.operator() == Operator.inSql) {
-                        if (object instanceof String){
-                            String sql=(String) object;
+                    } else if (item.operator() == Operator.inSql) {
+                        if (object instanceof String) {
+                            String sql = (String) object;
                             if (StringUtils.hasText(sql)) {
-                                queryWrapper.inSql(item.name(),sql);
+                                queryWrapper.inSql(item.name(), sql);
                             }
-                        }else{
+                        } else {
                             if (StringUtils.hasText(item.sql())) {
                                 queryWrapper.inSql(item.name(), item.sql());
                             }
@@ -349,7 +351,7 @@ public class QueryWrapperUtils {
                     Object value = filter.value;
                     if (value instanceof List) {
                         List<?> list = (List<?>) filter.value;
-                        if (!list.isEmpty()&&list.size()>1) {
+                        if (!list.isEmpty() && list.size() > 1) {
                             queryWrapper.between(filter.field, list.get(0), list.get(1));
 
                         }
