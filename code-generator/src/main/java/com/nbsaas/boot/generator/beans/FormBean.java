@@ -77,17 +77,41 @@ public class FormBean implements Serializable {
 
     private boolean permissionDataClass;
 
+    /**
+     * 页面字段集合
+     */
     private List<FieldBean> fields = new ArrayList<>();
+
+    /**
+     * 请求对象集合
+     */
     private Set<FieldBean> requests = new HashSet<>();
+
+    /**
+     * 列表对象
+     */
     private Set<FieldBean> simples = new HashSet<>();
+
+    /**
+     * 详情对象
+     */
     private Set<FieldBean> responses = new HashSet<FieldBean>();
     private List<FieldBean> dates = new ArrayList<FieldBean>();
 
+    /**
+     * 搜索字段
+     */
     List<FieldBean> searches = new ArrayList<>();
 
+    /**
+     * 没有标记搜索注解的字段
+     */
     List<FieldBean> searchFields = new ArrayList<>();
 
 
+    /**
+     * 列表显示字段
+     */
     private List<FieldBean> grids = new ArrayList<FieldBean>();
 
 
