@@ -35,6 +35,11 @@ public @interface DictItem {
     int value();
 
     /**
+     * 字典项值文本
+     */
+    String valueText() default "0";
+
+    /**
      * 字典项名称
      */
     String label();

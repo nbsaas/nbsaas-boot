@@ -143,6 +143,9 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     private boolean show = true;
 
+    private Class<?>  keyType;
+
+
     @Override
     public int compareTo(FieldBean o) {
         return this.getSortNum().compareTo(o.getSortNum());

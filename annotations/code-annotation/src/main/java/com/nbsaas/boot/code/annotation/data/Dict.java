@@ -29,5 +29,18 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Dict {
+
+    /**
+     * 字典项
+     *
+     * @return
+     */
     DictItem[] items() default {};
+
+    /**
+     * 字典的key数据类型
+     *
+     * @return
+     */
+    Class<?>  keyType() default Integer.class;
 }

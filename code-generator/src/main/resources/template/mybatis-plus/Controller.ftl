@@ -9,8 +9,6 @@ import ${requestPackage}.${formBean.className}Search;
 import ${responsePackage}.${formBean.className}Response;
 import ${simplePackage}.${formBean.className}Simple;
 import ${apiPackage}.${formBean.className}Api;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +25,6 @@ import com.nbsaas.boot.rest.enums.StoreState;
 /**
 *  ${formBean.model!}对外控制器
 */
-@RequiresAuthentication
 @RestController
 @RequestMapping("/${formBean.className?uncap_first}")
 public class ${formBean.className}Controller {
@@ -46,7 +43,6 @@ public class ${formBean.className}Controller {
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
-    @RequiresPermissions("${formBean.className?uncap_first}")
     @PostMapping("/search")
     public PageResponse <${formBean.className}Simple> search(@RequestBody ${formBean.className}Search request) {
         <#if formBean.storeState>
@@ -65,7 +61,6 @@ public class ${formBean.className}Controller {
     <#if formBean.permissionDataClass>
     @DataPermission
     </#if>
-    @RequiresPermissions("${formBean.className?uncap_first}")
     @PostMapping("/list")
     public ListResponse<${formBean.className}Simple> list(@RequestBody ${formBean.className}Search request) {
         <#if formBean.storeState>
@@ -80,7 +75,6 @@ public class ${formBean.className}Controller {
     * @param request
     * @return
     */
-    @RequiresPermissions("${formBean.className?uncap_first}")
     @CreateData
     @PostMapping("/create")
     public ResponseObject <${formBean.className}Response> create(@RequestBody @Validated(AddOperator.class) ${formBean.className}Request request) {
@@ -92,7 +86,6 @@ public class ${formBean.className}Controller {
    * @param request
    * @return
    */
-   @RequiresPermissions("${formBean.className?uncap_first}")
    @UpdateData
    @PostMapping("/update")
    public ResponseObject<${formBean.className}Response> update(@RequestBody @Validated(UpdateOperator.class) ${formBean.className}Request request) {
@@ -106,7 +99,6 @@ public class ${formBean.className}Controller {
     * @return
     */
     @SearchData
-    @RequiresPermissions("${formBean.className?uncap_first}")
     @PostMapping("/delete")
     public ResponseObject<?> delete(@RequestBody @Validated(DeleteOperator.class) ${formBean.className}Request request) {
         return ${formBean.className?uncap_first}Api.delete(request);
@@ -119,7 +111,6 @@ public class ${formBean.className}Controller {
     * @return
     */
     @SearchData
-    @RequiresPermissions("${formBean.className?uncap_first}")
     @PostMapping("/view")
     public ResponseObject <${formBean.className}Response> view(@RequestBody @Validated(ViewOperator.class) ${formBean.className}Request  request) {
         return ${formBean.className?uncap_first}Api.view(request);
