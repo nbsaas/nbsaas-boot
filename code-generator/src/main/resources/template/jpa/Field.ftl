@@ -12,7 +12,10 @@ public class ${formBean.className}Field  {
     /**
     * ${item.comment!}
     **/
+    <#if item.fieldType==2>
+    public static final String  ${item.id} = "${item.id}.id";
+    <#else>
     public static final String  ${item.id} = "${item.id}";
-
+    </#if>
 </#list>
 }
