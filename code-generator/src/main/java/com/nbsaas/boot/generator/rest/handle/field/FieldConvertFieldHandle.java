@@ -113,7 +113,11 @@ public class FieldConvertFieldHandle extends BaseFieldHandle {
             bean.setType(field.getType().getSimpleName());
             bean.setFullType(field.getType().getName());
             bean.setExtName("Name");
-            bean.setFieldType(201);
+            if (dict.keyType().getSimpleName().equals("String")){
+                bean.setFieldType(202);
+            }else{
+                bean.setFieldType(201);
+            }
             DictItem[] items = dict.items();
             if (items != null) {
                 bean.setDictItems(new ArrayList<>());
