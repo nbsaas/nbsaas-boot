@@ -17,7 +17,7 @@
  *
  */
 
-package com.nbsaas.boot.generator.rest.handle.impl;
+package com.nbsaas.boot.generator.rest.handle.field;
 
 
 import com.nbsaas.boot.code.annotation.bean.StoreStateBean;
