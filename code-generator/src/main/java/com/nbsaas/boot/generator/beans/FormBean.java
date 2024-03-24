@@ -78,7 +78,7 @@ public class FormBean implements Serializable {
     private boolean permissionDataClass;
 
     /**
-     * 页面字段集合
+     * 页面字段集合(添加，修改，查询)
      */
     private List<FieldBean> fields = new ArrayList<>();
 

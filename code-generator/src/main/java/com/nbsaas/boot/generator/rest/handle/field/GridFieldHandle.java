@@ -60,7 +60,6 @@ public class GridFieldHandle extends BaseFieldHandle {
 
         FormField formField = f.getAnnotation(FormField.class);
         FieldBean bean = new FieldBean();
-        formBean.getFields().add(bean);
 
         Dict dict = f.getAnnotation(Dict.class);
         if (dict != null) {
@@ -177,5 +176,8 @@ public class GridFieldHandle extends BaseFieldHandle {
                     .name("VueUeditorWrap").model("vue-ueditor-wrap")
                     .build());
         }
+
+        formBean.getFields().add(bean);
+
     }
 }
