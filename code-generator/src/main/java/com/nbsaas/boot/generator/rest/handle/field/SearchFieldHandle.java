@@ -38,7 +38,9 @@
 
 package com.nbsaas.boot.generator.rest.handle.field;
 
+import com.nbsaas.boot.code.annotation.InputType;
 import com.nbsaas.boot.code.annotation.SearchItem;
+import com.nbsaas.boot.generator.beans.ComponentSimple;
 import com.nbsaas.boot.generator.beans.FieldBean;
 import com.nbsaas.boot.generator.beans.FormBean;
 import com.nbsaas.boot.generator.rest.handle.base.BaseFieldHandle;
@@ -89,5 +91,11 @@ public class SearchFieldHandle extends BaseFieldHandle {
             bean.setApi(annotation.name());
         }
         formBean.getSearches().add(bean);
+
+        if (annotation.type()== InputType.dictionary){
+            formBean.getSearchComponentSet().add(ComponentSimple.builder()
+                    .name("nbSelect").model("@/components/nbSelect.vue")
+                    .build());
+        }
     }
 }
