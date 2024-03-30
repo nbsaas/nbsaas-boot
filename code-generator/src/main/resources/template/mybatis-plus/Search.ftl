@@ -31,6 +31,9 @@ private static final long serialVersionUID = 1L;
 
 <#list formBean.searches as item>
 
+    /**
+    * ${item.comment!}
+    **/
     @Search(name = "${item.key}",operator = Operator.${item.operator})
     private ${item.className} ${item.id};
 </#list>

@@ -20,10 +20,12 @@
 package com.nbsaas.boot.generator.rest.handle.base;
 
 
+import com.nbsaas.boot.code.annotation.FormField;
 import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.beans.FieldBean;
 import com.nbsaas.boot.generator.rest.handle.untils.FieldUtils;
 import org.hibernate.annotations.Comment;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -35,6 +37,12 @@ public abstract class BaseFieldHandle implements FieldHandle {
         Comment comment = field.getAnnotation(Comment.class);
         if (comment != null) {
             bean.setComment(comment.value());
+        }
+        if (!StringUtils.hasText(bean.getComment())) {
+            FormField formField = field.getAnnotation(FormField.class);
+            if (formField != null) {
+                bean.setComment(formField.title());
+            }
         }
     }
 
