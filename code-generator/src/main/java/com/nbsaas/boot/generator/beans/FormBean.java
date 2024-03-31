@@ -78,6 +78,11 @@ public class FormBean implements Serializable {
     private boolean permissionDataClass;
 
     /**
+     * 模型类型 0数据表 1视图
+     */
+    private int modelType;
+
+    /**
      * 页面字段集合(添加，修改，查询)
      */
     private List<FieldBean> fields = new ArrayList<>();

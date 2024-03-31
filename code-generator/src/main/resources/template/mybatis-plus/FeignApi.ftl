@@ -38,6 +38,9 @@ public interface ${formBean.className}FeignApi {
     @PostMapping("/${formBean.className?uncap_first}/list")
     ListResponse<${formBean.className}Simple> list(@RequestBody ${formBean.className}Search request);
 
+
+    <#if formBean.modelType==0>
+
     /**
     * 添加数据
     *
@@ -75,4 +78,6 @@ public interface ${formBean.className}FeignApi {
     */
     @PostMapping("/${formBean.className?uncap_first}/view")
     ResponseObject <${formBean.className}Response> view(@RequestBody ${formBean.className}Request  request);
+    </#if>
+
 }

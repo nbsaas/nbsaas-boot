@@ -69,6 +69,7 @@ public class ${formBean.className}Controller {
         return ${formBean.className?uncap_first}Api.list(request);
     }
 
+    <#if formBean.modelType==0>
     /**
     * 添加数据
     *
@@ -115,4 +116,5 @@ public class ${formBean.className}Controller {
     public ResponseObject <${formBean.className}Response> view(@RequestBody @Validated(ViewOperator.class) ${formBean.className}Request  request) {
         return ${formBean.className?uncap_first}Api.view(request);
     }
+    </#if>
 }

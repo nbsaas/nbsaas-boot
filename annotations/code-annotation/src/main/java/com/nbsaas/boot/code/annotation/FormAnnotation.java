@@ -27,16 +27,46 @@ import java.lang.annotation.*;
 @Documented
 public @interface FormAnnotation {
 
+    /**
+     * 标题
+     *
+     * @return
+     */
     String title() default "";
 
+    /**
+     * 模型名称
+     *
+     * @return
+     */
     String model() default "";
 
+    /**
+     * 当前菜单编码
+     *
+     * @return
+     */
     String menu() default "";
 
+    /**
+     * 搜索区域宽度
+     *
+     * @return
+     */
     String searchWidth() default "80";
 
+    /**
+     * 详情区域宽度
+     *
+     * @return
+     */
     String viewWidth() default "80";
 
+    /**
+     * 操作区域宽度
+     *
+     * @return
+     */
     String handleWidth() default "210";
 
     /**
@@ -45,5 +75,13 @@ public @interface FormAnnotation {
      * @return
      */
     boolean showHandle() default true;
+
+
+    /**
+     * 模型类型   0:数据表 1:视图 2:自定义查询 3:储存过程
+     *
+     * @return
+     */
+    int modelType() default 0;
 
 }

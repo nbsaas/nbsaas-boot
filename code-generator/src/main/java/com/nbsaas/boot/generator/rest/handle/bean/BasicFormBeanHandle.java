@@ -56,6 +56,7 @@ public class BasicFormBeanHandle implements BeanHandle {
             formBean.setHandleWidth(formAnnotation.handleWidth());
             formBean.setModel(formAnnotation.model());
             formBean.setShowHandle(formAnnotation.showHandle());
+            formBean.setModelType(formAnnotation.modelType());
         }
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {
