@@ -27,7 +27,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2021.0.9</spring-cloud.version>
-        <shiro.version>1.13.0</shiro.version>
+        <shiro.version>2.0.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
         <snakeyaml.version>2.2</snakeyaml.version>
