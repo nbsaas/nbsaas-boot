@@ -52,6 +52,9 @@ import jodd.util.StringUtil;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+/**
+ * 特殊注解解析，优先级最高
+ */
 public class FieldConvertFieldHandle extends BaseFieldHandle {
     @Override
     public void handle(Class<?> object, Field field, FormBean formBean) {
@@ -113,9 +116,9 @@ public class FieldConvertFieldHandle extends BaseFieldHandle {
             bean.setType(field.getType().getSimpleName());
             bean.setFullType(field.getType().getName());
             bean.setExtName("Name");
-            if (dict.keyType().getSimpleName().equals("String")){
+            if (dict.keyType().getSimpleName().equals("String")) {
                 bean.setFieldType(202);
-            }else{
+            } else {
                 bean.setFieldType(201);
             }
             DictItem[] items = dict.items();
@@ -140,5 +143,10 @@ public class FieldConvertFieldHandle extends BaseFieldHandle {
             formBean.getSimples().add(bean);
             formBean.getResponses().add(bean);
         }
+    }
+
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }

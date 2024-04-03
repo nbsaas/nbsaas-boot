@@ -83,4 +83,9 @@ public class RequestFieldHandle extends BaseFieldHandle {
 
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 100;
+    }
 }

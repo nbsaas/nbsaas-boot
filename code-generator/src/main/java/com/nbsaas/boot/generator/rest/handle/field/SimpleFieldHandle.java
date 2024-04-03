@@ -87,4 +87,9 @@ public class SimpleFieldHandle extends BaseFieldHandle {
 
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 100;
+    }
 }

@@ -180,4 +180,9 @@ public class GridFieldHandle extends BaseFieldHandle {
         formBean.getFields().add(bean);
 
     }
+
+    @Override
+    public int getOrder() {
+        return 100;
+    }
 }

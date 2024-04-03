@@ -20,6 +20,7 @@
 package com.nbsaas.boot.generator.beans;
 
 
+import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.entity.Ad;
 import com.nbsaas.boot.generator.api.apis.BeanHandle;
 import com.nbsaas.boot.generator.rest.handle.base.BaseFieldHandle;
@@ -27,7 +28,8 @@ import com.nbsaas.boot.generator.rest.resource.FormBeanHandleResource;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FormBeanConvert {
 
@@ -38,17 +40,21 @@ public class FormBeanConvert {
 
         Reflections fieldReflections = new Reflections("com.nbsaas.boot.generator.rest.handle.field");
         Set<Class<? extends BaseFieldHandle>> handleList = fieldReflections.getSubTypesOf(BaseFieldHandle.class);
+
+        List<FieldHandle> handles=new ArrayList<>();
         for (Class<? extends BaseFieldHandle> handle : handleList) {
             if (Modifier.isAbstract(handle.getModifiers())) {
                 continue;
             }
             try {
                 BaseFieldHandle beanHandle = handle.newInstance();
-                resource.add(beanHandle);
+                handles.add(beanHandle);
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
+        handles.sort(Comparator.comparing(FieldHandle::getOrder));
+        resource.addAllField(handles);
 
         Reflections beanReflections = new Reflections("com.nbsaas.boot.generator.rest.handle.bean");
         Set<Class<? extends BeanHandle>> handleBeanList = beanReflections.getSubTypesOf(BeanHandle.class);

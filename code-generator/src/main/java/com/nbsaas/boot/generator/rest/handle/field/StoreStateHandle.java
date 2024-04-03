@@ -41,4 +41,9 @@ public class StoreStateHandle extends BaseFieldHandle {
             }
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 100;
+    }
 }

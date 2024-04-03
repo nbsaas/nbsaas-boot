@@ -20,13 +20,14 @@
 package com.nbsaas.boot.generator.rest.resource;
 
 import com.nbsaas.boot.generator.api.apis.BeanCollector;
+import com.nbsaas.boot.generator.api.apis.BeanHandle;
 import com.nbsaas.boot.generator.api.apis.FieldCollector;
 import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.beans.FormBean;
-import com.nbsaas.boot.generator.api.apis.BeanHandle;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class FormBeanHandleResource implements BeanCollector {
@@ -37,31 +38,41 @@ public class FormBeanHandleResource implements BeanCollector {
     public boolean add(FieldHandle fieldHandle) {
         return fieldHandles.add(fieldHandle);
     }
+
+    public boolean addAllField(Collection<FieldHandle> fieldHandle) {
+        if (fieldHandle == null) {
+            return false;
+        }
+        return fieldHandles.addAll(fieldHandle);
+    }
+
     public boolean add(BeanHandle fieldHandle) {
         return beanHandles.add(fieldHandle);
     }
 
-    private final List<FieldHandle> fieldHandles=new ArrayList<>();
+    private final List<FieldHandle> fieldHandles = new ArrayList<>();
 
-    private final List<BeanHandle> beanHandles=new ArrayList<>();
+    private final List<BeanHandle> beanHandles = new ArrayList<>();
 
 
     public FormBeanHandleResource(FieldCollector fieldCollector) {
         this.fieldCollector = fieldCollector;
     }
+
     public FormBeanHandleResource() {
         this.fieldCollector = new FieldCollectorResource();
     }
+
     @Override
     public FormBean collect(Class<?> object) {
-        FormBean result=new FormBean();
+        FormBean result = new FormBean();
 
         List<Field> fields = fieldCollector.getAllFields(object);
 
 
         for (Field field : fields) {
             for (FieldHandle fieldHandle : fieldHandles) {
-                fieldHandle.handle(object,field, result);
+                fieldHandle.handle(object, field, result);
             }
         }
 

@@ -14,4 +14,12 @@ public interface FieldHandle {
      * @param formBean
      */
     void handle(Class<?> object,Field field, FormBean formBean);
+
+
+    /**
+     * 获取排序
+     *
+     * @return
+     */
+    int getOrder();
 }

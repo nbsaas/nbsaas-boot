@@ -98,4 +98,9 @@ public class SearchFieldHandle extends BaseFieldHandle {
                     .build());
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 100;
+    }
 }
