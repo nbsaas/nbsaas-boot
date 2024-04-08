@@ -29,6 +29,7 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Map;
 
 public abstract class BaseFieldHandle implements FieldHandle {
 
@@ -48,7 +49,7 @@ public abstract class BaseFieldHandle implements FieldHandle {
 
     protected boolean isCollection(Field field) {
         Class<?> fieldType = field.getType();
-        return Collection.class.isAssignableFrom(fieldType);
+        return Collection.class.isAssignableFrom(fieldType)|| Map.class.isAssignableFrom(fieldType);
     }
 
     protected boolean isBasicType(Class<?> type) {
