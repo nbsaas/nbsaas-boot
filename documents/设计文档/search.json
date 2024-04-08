@@ -1,0 +1,14 @@
+{
+  "page": 1,
+  "size": 10,
+  "filter": {
+    "name": {
+      "operator": "eq",
+      "value": "test"
+    },
+    "age": {
+      "operator": "gt",
+      "value": 18
+    }
+  }
+}

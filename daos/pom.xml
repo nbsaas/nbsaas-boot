@@ -15,6 +15,7 @@
     <modules>
         <module>mybatis-plus-dao</module>
         <module>jpa-dao</module>
+        <module>json-dao</module>
     </modules>
 
     <properties>

@@ -1,0 +1,28 @@
+{
+  "model": "user",
+  "page": 1,
+  "size": 10,
+  "fields": [
+    "id",
+    "name",
+    "age"
+  ],
+  "filters": [
+    {
+      "field": "name",
+      "operator": "like",
+      "value": "%test%"
+    },
+    {
+      "field": "age",
+      "operator": "gt",
+      "value": 20
+    }
+  ],
+  "sorts": [
+    {
+      "field": "age",
+      "direction": "desc"
+    }
+  ]
+}

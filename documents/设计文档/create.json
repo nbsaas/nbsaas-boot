@@ -1,0 +1,7 @@
+{
+  "model": "user",
+  "value": {
+    "name": "test",
+    "age": 18
+  }
+}
