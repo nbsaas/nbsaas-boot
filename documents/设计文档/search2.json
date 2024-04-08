@@ -17,6 +17,21 @@
       "field": "age",
       "operator": "gt",
       "value": 20
+    },
+    {
+      "filterType": "age",
+      "filters": [
+        {
+          "field": "age",
+          "operator": "gt",
+          "value": 20
+        },
+        {
+          "field": "age",
+          "operator": "lt",
+          "value": 30
+        }
+      ]
     }
   ],
   "sorts": [

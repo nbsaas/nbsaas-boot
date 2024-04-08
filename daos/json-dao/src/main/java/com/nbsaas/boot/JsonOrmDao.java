@@ -39,13 +39,13 @@ public class JsonOrmDao implements JsonOrmApi {
     private ModelMapper modelMapper;
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public PageResponse<MapResponse> search(InputStream inputStream) {
         PageResponse<MapResponse> result = new PageResponse<>();
 
         JSONObject search = JSON.parseObject(inputStream);
-        ResponseObject<String> sqlRes = generateSql(inputStream);
+        ResponseObject<String> sqlRes = sql(search);
         if (sqlRes.getCode() != 200) {
             result.setCode(sqlRes.getCode());
             result.setMsg(sqlRes.getMsg());
@@ -67,8 +67,12 @@ public class JsonOrmDao implements JsonOrmApi {
 
     @Override
     public ResponseObject<String> generateSql(InputStream inputStream) {
-        ResponseObject<String> result = new ResponseObject<String>();
         JSONObject search = JSON.parseObject(inputStream);
+        return sql(search);
+    }
+
+    private ResponseObject<String> sql(JSONObject search) {
+        ResponseObject<String> result = new ResponseObject<String>();
         if (!search.containsKey("model")) {
             result.setCode(501);
             result.setMsg("缺少model参数");
@@ -82,7 +86,7 @@ public class JsonOrmDao implements JsonOrmApi {
             return result;
         }
 
-        List<ModelFieldSimple> fields = modelFieldApi.listData(Filter.eq("modelId", modelKey));
+        List<ModelFieldSimple> fields = modelFieldApi.listData(Filter.eq("model_id", modelKey));
         if (fields == null || fields.isEmpty()) {
             result.setCode(501);
             result.setMsg("数据模型没有字段");
@@ -124,10 +128,11 @@ public class JsonOrmDao implements JsonOrmApi {
 
         if (search.containsKey("filters")) {
             Map<String, Integer> fieldTypes = fields.stream()
-                    .collect(Collectors.toMap(ModelFieldSimple::getFieldName, ModelFieldSimple::getFieldType));
+                    .collect(Collectors.toMap(ModelFieldSimple::getDbName, ModelFieldSimple::getFieldType));
 
 
             JSONArray filters = search.getJSONArray("filters");
+            int index = 0;
             for (int i = 0; i < filters.size(); i++) {
                 JSONObject filter = filters.getJSONObject(i);
                 String field = filter.getString("field");
@@ -174,11 +179,12 @@ public class JsonOrmDao implements JsonOrmApi {
                         value = "'" + value + "'";
                     }
                 }
-                if (i == 0) {
+                if (index == 0) {
                     sqlBuffer.append(" where ").append(field).append(" ").append(op).append(" ").append(value);
                 } else {
                     sqlBuffer.append(" and ").append(field).append(" ").append(op).append(" ").append(value);
                 }
+                index++;
             }
         }
         if (search.containsKey("sorts")) {

@@ -26,6 +26,9 @@ public class Model {
      */
     private String name;
 
+
+    //private String permission;
+
     /**
      * 模型介绍
      */
