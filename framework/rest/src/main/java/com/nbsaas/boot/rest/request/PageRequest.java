@@ -45,4 +45,7 @@ public class PageRequest extends RequestObject {
     private String sortMethod;
 
 
+    private List<SortField> sorts;
+
+
 }

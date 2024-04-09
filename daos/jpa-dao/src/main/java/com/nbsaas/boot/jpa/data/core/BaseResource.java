@@ -24,6 +24,7 @@ import com.nbsaas.boot.rest.filter.Filter;
 import com.nbsaas.boot.rest.filter.FilterGroup;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.request.RequestId;
+import com.nbsaas.boot.rest.request.SortField;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
@@ -101,6 +102,16 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         Pageable pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize());
         if (StringUtils.hasText(request.getSortField())){
             pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize(),getSortData(request));
+        }
+        
+        if (request.getSorts()!=null){
+            for (SortField sort : request.getSorts()) {
+                if ("asc".equals(sort.getField())){
+                    pageable.getSort().and(Sort.by(sort.getField()).ascending());
+                }else{
+                    pageable.getSort().and(Sort.by(sort.getField()).descending());
+                }
+            }
         }
 
         Page<Entity> res = getJpaRepository().findAll(data, pageable);

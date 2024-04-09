@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nbsaas.boot.rest.filter.*;
 import com.nbsaas.boot.rest.request.PageRequest;
+import com.nbsaas.boot.rest.request.SortField;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import org.springframework.util.StringUtils;
@@ -28,6 +29,16 @@ public class QueryWrapperUtils {
                 queryWrapper.orderByAsc(request.getSortField());
             } else {
                 queryWrapper.orderByDesc(request.getSortField());
+            }
+        }
+
+        if (request.getSorts() != null) {
+            for (SortField sort : request.getSorts()) {
+                if ("asc".equals(sort.getMethod())) {
+                    queryWrapper.orderByAsc(sort.getField());
+                } else {
+                    queryWrapper.orderByDesc(sort.getField());
+                }
             }
         }
 
