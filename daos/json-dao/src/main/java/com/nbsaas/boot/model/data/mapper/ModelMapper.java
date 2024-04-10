@@ -15,4 +15,10 @@ public interface ModelMapper extends BaseMapper<Model> {
 
     Page<MapResponse> page(IPage<MapResponse> page, @Param("sql") String sql);
 
+
+    int executeSql( @Param("sql") String sql);
+
+
+    MapResponse selectResponse(@Param("sql") String sql);
+
 }
