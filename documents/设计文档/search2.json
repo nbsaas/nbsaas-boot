@@ -19,7 +19,7 @@
       "value": 20
     },
     {
-      "filterType": "age",
+      "filterType": "list",
       "filters": [
         {
           "field": "age",
@@ -29,7 +29,8 @@
         {
           "field": "age",
           "operator": "lt",
-          "value": 30
+          "value": 30,
+          "condition": "or"
         }
       ]
     }

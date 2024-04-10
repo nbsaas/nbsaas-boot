@@ -141,27 +141,7 @@ public class JsonOrmDao implements JsonOrmApi {
                     continue;
                 }
                 //字段类型 1、字符串 2、Integer，3，Long，3 Float，4 Double，5，BigDecimal 6、Date 7、Boolean 8、Enum 9、对象 10、数组
-                Object value;
-                if (fieldType == 1) {
-                    value = filter.getString("value");
-                } else if (fieldType == 2) {
-                    value = filter.getInteger("value");
-                } else if (fieldType == 3) {
-                    value = filter.getLong("value");
-                } else if (fieldType == 4) {
-                    value = filter.getDouble("value");
-                } else if (fieldType == 5) {
-                    value = filter.getBigDecimal("value");
-                } else if (fieldType == 6) {
-                    value = filter.getDate("value");
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    value = format.format(value);
-                } else if (fieldType == 7) {
-                    value = filter.getBoolean("value");
-                } else {
-                    value = filter.getString("value");
-                }
-
+                Object value = fieldTypeMatch(fieldType, filter);
 
                 String operator = filter.getString("operator");
                 if (operator == null) {
@@ -200,7 +180,36 @@ public class JsonOrmDao implements JsonOrmApi {
 
         return sqlBuffer.toString();
     }
-
+    /**
+     * 根据字段类型匹配相应的值。
+     *
+     * @param fieldType 字段类型。
+     * @param filter    搜索过滤条件。
+     * @return 返回根据字段类型处理后的值。
+     */
+    private Object fieldTypeMatch(Integer fieldType, JSONObject filter) {
+        Object value;
+        if (fieldType == 1) {
+            value = filter.getString("value");
+        } else if (fieldType == 2) {
+            value = filter.getInteger("value");
+        } else if (fieldType == 3) {
+            value = filter.getLong("value");
+        } else if (fieldType == 4) {
+            value = filter.getDouble("value");
+        } else if (fieldType == 5) {
+            value = filter.getBigDecimal("value");
+        } else if (fieldType == 6) {
+            value = filter.getDate("value");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            value = format.format(value);
+        } else if (fieldType == 7) {
+            value = filter.getBoolean("value");
+        } else {
+            value = filter.getString("value");
+        }
+        return value;
+    }
 
     @Override
     public PageResponse<MapResponse> list(InputStream inputStream) {
@@ -219,7 +228,16 @@ public class JsonOrmDao implements JsonOrmApi {
 
     @Override
     public ResponseObject<?> delete(InputStream inputStream) {
-        return null;
+        ResponseObject<?> result=new  ResponseObject<>();
+        JSONObject search = JSON.parseObject(inputStream);
+        if (!search.containsKey("id")){
+            result.setCode(501);
+            result.setMsg("id不能为空");
+            return result;
+        }
+        String id=search.getString("id");
+
+        return result;
     }
 
     @Override
