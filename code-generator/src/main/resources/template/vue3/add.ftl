@@ -15,7 +15,7 @@
                     <el-col :span="22">
                         <el-form-item>
                             <el-button @click="goBack">取消</el-button>
-                            <el-button type="primary" @click="add">确定</el-button>
+                            <el-button type="primary" @click="createData">确定</el-button>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -24,17 +24,17 @@
     </div>
 </template>
 
-<script>
+<script setup>
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
     import ${item.name} from "${item.model!}";
     </#list>
     </#if>
-    import {onMounted, ref} from "vue";
+    import {ref} from "vue";
     import {useData} from "@/utils/useData";
     import http from "@/utils/request";
     import {useRouter, useRoute} from "vue-router";
-    import {ElMessage} from "element-plus";
+    import {ElLoading, ElMessage} from "element-plus";
     import {useView} from "@/utils/useView";
 
     const router = useRouter();
@@ -65,7 +65,7 @@
     </#if>
     </#list>
 
-    const updateData = async () => {
+    const createData = async () => {
       try {
         let valid = await ruleForm.value.validate();
         if (!valid) {
