@@ -39,12 +39,12 @@
 package com.nbsaas.boot.generator.rest.handle.bean;
 
 import com.nbsaas.boot.code.annotation.*;
-import com.nbsaas.boot.generator.beans.FormBean;
 import com.nbsaas.boot.generator.api.apis.BeanHandle;
+import com.nbsaas.boot.generator.beans.FormBean;
 
 public class BasicFormBeanHandle implements BeanHandle {
     @Override
-    public void handle(Class<?> object,FormBean formBean) {
+    public void handle(Class<?> object, FormBean formBean) {
         formBean.setClassName(object.getSimpleName());
 
         FormAnnotation formAnnotation = object.getAnnotation(FormAnnotation.class);
@@ -57,6 +57,7 @@ public class BasicFormBeanHandle implements BeanHandle {
             formBean.setModel(formAnnotation.model());
             formBean.setShowHandle(formAnnotation.showHandle());
             formBean.setModelType(formAnnotation.modelType());
+            formBean.setSortField(formAnnotation.sortField());
         }
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {

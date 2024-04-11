@@ -84,4 +84,11 @@ public @interface FormAnnotation {
      */
     int modelType() default 0;
 
+    /**
+     * 排序字段
+     *
+     * @return
+     */
+    String sortField() default "id";
+
 }

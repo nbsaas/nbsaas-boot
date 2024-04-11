@@ -43,6 +43,8 @@ public class FormBean implements Serializable {
     private Boolean hasImage = false;
     private Integer leftSize;
 
+    private String sortField;
+
     private boolean showHandle;
 
     /**
