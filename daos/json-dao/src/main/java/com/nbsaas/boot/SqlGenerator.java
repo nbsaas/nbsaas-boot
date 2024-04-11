@@ -1,4 +1,4 @@
 package com.nbsaas.boot;
 
-public class SqlGene {
+public class SqlGenerator {
 }
