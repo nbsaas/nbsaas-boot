@@ -112,7 +112,7 @@
                     sortMethod: "desc",
                     <#if formBean.searches??>
                     <#list formBean.searches as item>
-                    ${item.id}: ''<#sep>,
+                    ${item.id}: null<#sep>,
                     </#list>
                     </#if>
                 }
@@ -125,7 +125,7 @@ const  {searchObject}=searchStore();
 const clearSearch =()=>{
     <#if formBean.searches??>
     <#list formBean.searches as item>
-    searchObject.${item.id} = "";
+    searchObject.${item.id} = null;
     </#list>
     </#if>
 }
