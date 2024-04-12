@@ -49,12 +49,23 @@
             </el-form>
         </div>
         <div class="data-content">
+            <#if formBean.showAdd>
             <div class="tool-add">
                 <el-button type="primary"   @click="addView">新增</el-button>
+                <#if formBean.showSelect>
+                 <el-button type="danger" :disabled="selectData.length===0" @click="batchDelete">批量删除</el-button>
+                </#if>
             </div>
+            </#if>
 
             <el-table v-loading="loading" :data="pageData.data" @sort-change="changeTableSort"
-                      style="width: 100%;font-size: 12px;">
+                <#if formBean.showSelect>
+                    @selection-change="selectChange"
+                </#if>
+                  style="width: 100%;font-size: 12px;">
+                <#if formBean.showSelect>
+                    <el-table-column type="selection"></el-table-column>
+                </#if>
                 <#if formBean.grids??>
                     <#list formBean.grids as item>
                         <el-table-column label="${item.title}" prop="${item.id!}${item.extName!}"
@@ -101,7 +112,9 @@
     import ${item.name} from "${item.model!}";
     </#list>
     </#if>
-
+    <#if formBean.showSelect>
+    import {ref} from "vue";
+    </#if>
     const searchStore = defineStore('${formBean.className?uncap_first}Store', {
 
         state: () => {
@@ -122,6 +135,15 @@
 
 const  {searchObject}=searchStore();
 
+    <#if formBean.showSelect>
+    const selectData = ref([]);
+    const selectChange = (event) => {
+        selectData.value = event;
+    }
+    const batchDelete = () => {
+        console.info(selectData.value)
+    }
+    </#if>
 const clearSearch =()=>{
     <#if formBean.searches??>
     <#list formBean.searches as item>

@@ -58,6 +58,8 @@ public class BasicFormBeanHandle implements BeanHandle {
             formBean.setShowHandle(formAnnotation.showHandle());
             formBean.setModelType(formAnnotation.modelType());
             formBean.setSortField(formAnnotation.sortField());
+            formBean.setShowAdd(formAnnotation.showAdd());
+            formBean.setShowSelect(formAnnotation.showSelect());
         }
         CatalogClass catalogClass = object.getAnnotation(CatalogClass.class);
         if (catalogClass != null) {

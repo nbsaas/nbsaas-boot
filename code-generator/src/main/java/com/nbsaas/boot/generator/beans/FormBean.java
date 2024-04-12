@@ -46,6 +46,9 @@ public class FormBean implements Serializable {
     private String sortField;
 
     private boolean showHandle;
+    private boolean showAdd;
+    private boolean showSelect;
+
 
     /**
      * 时候启用数据表逻辑删除

@@ -78,6 +78,15 @@ public @interface FormAnnotation {
 
 
     /**
+     * 是否显示添加按钮
+     *
+     * @return
+     */
+    boolean showAdd() default true;
+
+    boolean showSelect() default false;
+
+    /**
      * 模型类型   0:数据表 1:视图 2:自定义查询 3:储存过程
      *
      * @return
