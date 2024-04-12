@@ -88,4 +88,9 @@ public class SearchBeanHandle implements BeanHandle {
             }
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 0;
+    }
 }

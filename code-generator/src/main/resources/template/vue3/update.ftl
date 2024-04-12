@@ -28,12 +28,10 @@
 import ${item.name} from "${item.model!}";
 </#list>
 </#if>
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import {useData} from "@/utils/useData";
-import http from "@/utils/request";
 import {useRouter, useRoute} from "vue-router";
-import {ElMessage} from "element-plus";
-import {useView} from "@/utils/useView";
+import {useUpdate} from "@/uses/useUpdate";
 
 const router = useRouter();
 const route = useRoute()
@@ -63,39 +61,7 @@ const{listData:${item.id}Options}= useData("/${item.option?uncap_first}/list")
 </#if>
 </#list>
 
-onMounted(async () => {
-  let id = route.query.id;
-  let data = {};
-  data.id = id;
-  let res = await http.post("/${formBean.className?uncap_first}/view", data);
-  if (res.code === 200) {
-    form.value = res.data;
-  }
-})
-const updateData = async () => {
-  try {
-    let valid = await ruleForm.value.validate();
-    if (!valid) {
-      return;
-    }
-  } catch (e) {
-    return;
-  }
-
-  let res = await http.post("/${formBean.className?uncap_first}/update", form.value);
-  if (res.code !== 200) {
-    ElMessage.error(res.msg)
-    return
-  }
-
-  ElMessage({
-    message: '更新数据成功',
-    type: 'success',
-  })
-  router.go(-1);
-
-}
-const { goBack} = useView()
+const {updateData,goBack}=useUpdate("${formBean.className?uncap_first}",form,ruleForm)
 
 </script>
 

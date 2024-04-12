@@ -52,9 +52,11 @@ public class GridBeanHandle implements BeanHandle {
         Collections.sort(formBean.getGrids(),Comparator.comparing(FieldBean::getSortNum));
 
         int left = (int) (24 - (formBean.getSearches().stream().filter(FieldBean::isShow).count()%4)* 6);
-        if (left == 0) {
-            left = 24;
-        }
         formBean.setLeftSize(left);
+    }
+
+    @Override
+    public int getOrder() {
+        return 100;
     }
 }

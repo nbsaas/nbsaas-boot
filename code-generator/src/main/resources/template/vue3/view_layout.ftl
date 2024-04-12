@@ -16,49 +16,35 @@
 </template>
 
 <script>
-    import common from "@/mixins/common.js";
+    import {useLayoutView} from "@/uses/useLayoutView";
+    import {useRouter} from "vue-router";
+    const {selectIndex,activeIndex,goBack}=useLayoutView();
+    const router = useRouter();
 
-    export default {
-        name: "${formBean.className?uncap_first}_layout_index",
-        mixins: [common],
-        data() {
-            return {
-                activeIndex: "1"
-            }
-        },
-        methods: {
-            handleSelect(index) {
-                let selectId = this.selectId;
-                if (index === "1") {
-                    this.$router.replace({
-                        path: '/${formBean.className?uncap_first}/view',
-                        query: {
-                            id: selectId,
-                            activeIndex: 1,
-                            time: Math.random()
-                        }
-                    })
-                } else if (index === "2") {
-                    this.$router.replace({
-                        path: '/${formBean.className?uncap_first}/qrcode',
-                        query: {
-                            id: selectId,
-                            activeIndex: 2,
-                            time: Math.random()
-                        }
-                    })
-                } else {
-                    console.log(index)
+
+    const handleSelect=(index)=> {
+        let selectId = selectIndex.value;
+        if (index === "1") {
+            router.replace({
+                path: '/${formBean.className?uncap_first}/view',
+                query: {
+                    id: selectId,
+                    activeIndex: 1,
+                    time: Math.random()
                 }
-            }
-        },
-        mounted() {
-            let activeIndex = this.$route.query.activeIndex;
-            this.selectId = this.$route.query.id;
-            if (activeIndex) {
-                this.activeIndex = activeIndex;
-            }
-        },
+            })
+        } else if (index === "2") {
+            router.replace({
+                path: '/${formBean.className?uncap_first}/qrcode',
+                query: {
+                    id: selectId,
+                    activeIndex: 2,
+                    time: Math.random()
+                }
+            })
+        } else {
+            console.log(index)
+        }
     }
 </script>
 

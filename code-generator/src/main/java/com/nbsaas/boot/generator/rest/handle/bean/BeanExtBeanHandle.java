@@ -100,4 +100,9 @@ public class BeanExtBeanHandle implements BeanHandle {
 
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 0;
+    }
 }

@@ -25,4 +25,11 @@ import com.nbsaas.boot.generator.beans.FormBean;
 public interface BeanHandle {
 
     void handle(Class<?> object, FormBean formBean);
+
+    /**
+     * 获取排序
+     *
+     * @return
+     */
+    int getOrder();
 }

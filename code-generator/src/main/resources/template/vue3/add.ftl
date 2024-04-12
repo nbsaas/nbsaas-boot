@@ -32,16 +32,14 @@
     </#if>
     import {ref} from "vue";
     import {useData} from "@/utils/useData";
-    import http from "@/utils/request";
     import {useRouter, useRoute} from "vue-router";
-    import {ElLoading, ElMessage} from "element-plus";
-    import {useView} from "@/utils/useView";
+    import {useCreate} from "@/uses/useCreate";
 
     const router = useRouter();
     const route = useRoute()
     const form = ref({
        <#list formBean.fields as item>
-         ${item.id!}: ''<#sep>,
+         ${item.id!}: null <#sep>,
         </#list>
     })
 
@@ -65,34 +63,7 @@
     </#if>
     </#list>
 
-    const createData = async () => {
-      try {
-        let valid = await ruleForm.value.validate();
-        if (!valid) {
-          return;
-        }
-      } catch (e) {
-        return;
-      }
-        const loading = ElLoading.service({
-                          lock: true,
-                          text: '数据处理中',
-                          background: 'rgba(0, 0, 0, 0.7)',
-                      })
-      let res = await http.post("/${formBean.className?uncap_first}/create", form.value);
-      if (res.code !== 200) {
-        ElMessage.error(res.msg)
-        return
-      }
-       loading.close();
-      ElMessage({
-        message: '添加数据成功',
-        type: 'success',
-      })
-      router.go(-1);
-
-    }
-    const { goBack} = useView()
+    const {createData,goBack} =useCreate("${formBean.className?uncap_first}",form,ruleForm)
 
 </script>
 

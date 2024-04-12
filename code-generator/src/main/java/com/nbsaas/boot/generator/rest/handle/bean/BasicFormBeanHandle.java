@@ -86,4 +86,9 @@ public class BasicFormBeanHandle implements BeanHandle {
             formBean.setPermissionDataClass(true);
         }
     }
+
+    @Override
+    public int getOrder() {
+        return 0;
+    }
 }
