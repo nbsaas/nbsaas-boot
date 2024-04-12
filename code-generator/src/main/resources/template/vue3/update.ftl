@@ -30,11 +30,8 @@ import ${item.name} from "${item.model!}";
 </#if>
 import {ref} from "vue";
 import {useData} from "@/utils/useData";
-import {useRouter, useRoute} from "vue-router";
 import {useUpdate} from "@/uses/useUpdate";
 
-const router = useRouter();
-const route = useRoute()
 const form = ref({
    <#list formBean.fields as item>
      ${item.id!}: ''<#sep>,

@@ -139,8 +139,12 @@ public class GridFieldHandle extends BaseFieldHandle {
         if (formField.ignore()) {
             return;
         }
+
+
         if (!formBean.getGrids().contains(bean)) {
-            formBean.getGrids().add(bean);
+            if (formField.grid()){
+                formBean.getGrids().add(bean);
+            }
         }
 
 

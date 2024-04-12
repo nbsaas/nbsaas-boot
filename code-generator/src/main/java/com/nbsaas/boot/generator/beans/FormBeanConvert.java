@@ -20,16 +20,18 @@
 package com.nbsaas.boot.generator.beans;
 
 
+import com.nbsaas.boot.generator.api.apis.BeanHandle;
 import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.entity.Ad;
-import com.nbsaas.boot.generator.api.apis.BeanHandle;
 import com.nbsaas.boot.generator.rest.handle.base.BaseFieldHandle;
 import com.nbsaas.boot.generator.rest.resource.FormBeanHandleResource;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 
 public class FormBeanConvert {
 
@@ -56,6 +58,8 @@ public class FormBeanConvert {
         handles.sort(Comparator.comparing(FieldHandle::getOrder));
         resource.addAllField(handles);
 
+        List<BeanHandle> beanHandles=new ArrayList<>();
+
         Reflections beanReflections = new Reflections("com.nbsaas.boot.generator.rest.handle.bean");
         Set<Class<? extends BeanHandle>> handleBeanList = beanReflections.getSubTypesOf(BeanHandle.class);
         for (Class<? extends BeanHandle> handle : handleBeanList) {
@@ -64,12 +68,13 @@ public class FormBeanConvert {
             }
             try {
                 BeanHandle beanHandle = handle.newInstance();
-                resource.add(beanHandle);
+                beanHandles.add(beanHandle);
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
-
+        beanHandles.sort(Comparator.comparing(BeanHandle::getOrder));
+        resource.addAllBean(beanHandles);
 
         return    resource.collect(object);
 

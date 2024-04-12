@@ -45,6 +45,12 @@ public class FormBeanHandleResource implements BeanCollector {
         }
         return fieldHandles.addAll(fieldHandle);
     }
+    public void addAllBean(Collection<BeanHandle> beanHandleCollection) {
+        if (beanHandleCollection == null) {
+            return;
+        }
+        beanHandles.addAll(beanHandleCollection);
+    }
 
     public boolean add(BeanHandle fieldHandle) {
         return beanHandles.add(fieldHandle);
