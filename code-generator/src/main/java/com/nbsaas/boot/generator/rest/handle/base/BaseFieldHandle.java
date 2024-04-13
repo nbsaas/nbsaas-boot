@@ -20,6 +20,8 @@
 package com.nbsaas.boot.generator.rest.handle.base;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.nbsaas.boot.code.annotation.FormField;
 import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.beans.FieldBean;
@@ -45,6 +47,20 @@ public abstract class BaseFieldHandle implements FieldHandle {
                 bean.setComment(formField.title());
             }
         }
+        TableField tableField = field.getAnnotation(TableField.class);
+        if (tableField != null) {
+            bean.setDbField(tableField.value());
+        }
+        if (bean.getDbField()==null){
+            TableId tableId = field.getAnnotation(TableId.class);
+            if (tableId!=null){
+                bean.setDbField(tableId.value());
+            }
+        }
+        if (bean.getDbField()==null){
+            bean.setDbField(bean.getId());
+        }
+
     }
 
     protected boolean isCollection(Field field) {

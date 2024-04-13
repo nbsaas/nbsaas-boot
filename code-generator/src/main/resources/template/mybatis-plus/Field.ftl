@@ -12,7 +12,7 @@ public class ${formBean.className}Field  {
     /**
     * ${item.comment!}
     **/
-    public static final String  ${item.id} = "${item.id}";
+    public static final String  ${item.id} = "${item.dbField}";
 
 </#list>
 }

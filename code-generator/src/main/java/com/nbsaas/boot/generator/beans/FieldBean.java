@@ -48,6 +48,12 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
 
     /**
+     * 数据库字段名称
+     */
+    private String dbField;
+
+
+    /**
      * 父类在当前类的名称
      */
     private String parent;
@@ -117,7 +123,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
      * 102 本类字段
      * 103 扩展字段，转换器不做任何处理
      * 104 其他类型字段
-     *
+     * <p>
      * 201 数字-字符串字典
      */
     private Integer fieldType;
@@ -143,7 +149,7 @@ public class FieldBean implements Serializable, Comparable<FieldBean> {
 
     private boolean show = true;
 
-    private Class<?>  keyType;
+    private Class<?> keyType;
 
 
     @Override
