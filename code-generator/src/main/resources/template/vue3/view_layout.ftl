@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import {useLayoutView} from "@/uses/useLayoutView";
     import {useRouter} from "vue-router";
     const {selectIndex,activeIndex,goBack}=useLayoutView();
