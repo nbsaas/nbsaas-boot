@@ -93,7 +93,10 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
         makeCode(model, model, "\\src\\main\\java\\", "java", codePackage, basePackage);
 
     }
-
+    protected void makeCodeName(String model,String modelName, String codePackage, String basePackage) {
+        // 初始化模板路径
+        makeCode(model, modelName, "\\src\\main\\java\\", "java", codePackage, basePackage);
+    }
     protected void makeCode(String model, String className, String codePackage) {
         // 初始化模板路径
         makeCode(model, className, "\\src\\main\\java\\", "java", codePackage, inputRequestObject.getConfig().getBasePackage());
@@ -107,6 +110,7 @@ public abstract class BaseCommand implements Command<InputRequestObject, Respons
     protected void makeCode(String model, String className, String baseCode, String extension, String codeType, String basePackage) {
         // 初始化模板路径
         try {
+            inputRequestObject.put("modelName",className);
             String codePath = basePackage + codeType;
             Config config = inputRequestObject.getConfig();
             Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
