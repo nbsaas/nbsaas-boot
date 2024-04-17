@@ -11,4 +11,7 @@
     <select id="selectResponse" resultType="com.nbsaas.boot.rest.response.MapResponse">
         ${sql}
     </select>
+    <select id="list" resultType="com.nbsaas.boot.rest.response.MapResponse">
+        ${sql}
+    </select>
 </mapper>

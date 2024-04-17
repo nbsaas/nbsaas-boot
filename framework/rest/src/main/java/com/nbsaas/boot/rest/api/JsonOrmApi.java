@@ -1,5 +1,6 @@
 package com.nbsaas.boot.rest.api;
 
+import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.MapResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
@@ -31,7 +32,7 @@ public interface JsonOrmApi {
      * @param inputStream
      * @return
      */
-    PageResponse<MapResponse> list(InputStream inputStream);
+    ListResponse<MapResponse> list(InputStream inputStream);
 
 
     /**
