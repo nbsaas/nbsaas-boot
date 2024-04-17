@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nbsaas.boot.model.data.entity.Model;
 import com.nbsaas.boot.rest.response.MapResponse;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 /**
  * Mapper
  */
-public interface ModelMapper extends BaseMapper<Model> {
+@Mapper
+public interface SqlExeMapper  {
 
 
     /**

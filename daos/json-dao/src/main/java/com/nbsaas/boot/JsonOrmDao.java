@@ -7,7 +7,7 @@ import com.nbsaas.boot.model.api.apis.ModelFieldApi;
 import com.nbsaas.boot.model.api.domain.response.ModelFieldResponse;
 import com.nbsaas.boot.model.api.domain.response.ModelResponse;
 import com.nbsaas.boot.model.api.domain.simple.ModelFieldSimple;
-import com.nbsaas.boot.model.data.mapper.ModelMapper;
+import com.nbsaas.boot.model.data.mapper.SqlExeMapper;
 import com.nbsaas.boot.model.ext.apis.JsonSearchApi;
 import com.nbsaas.boot.model.ext.apis.SqlGenerator;
 import com.nbsaas.boot.model.ext.resource.JsonSearchResource;
@@ -29,21 +29,19 @@ import java.util.List;
 @Service
 public class JsonOrmDao implements JsonOrmApi {
 
-    @Resource
     private ModelApi modelApi;
 
-    @Resource
     private ModelFieldApi modelFieldApi;
 
     @Resource
-    private ModelMapper modelMapper;
+    private SqlExeMapper sqlExeMapper;
 
 
     @Transactional(readOnly = true)
     @Override
     public PageResponse<MapResponse> search(InputStream inputStream) {
         SqlGenerator sqlGenerator=new SqlGeneratorResource(modelApi,modelFieldApi);
-        JsonSearchApi jsonSearchApi = new JsonSearchResource(sqlGenerator,modelMapper,null);
+        JsonSearchApi jsonSearchApi = new JsonSearchResource(sqlGenerator, sqlExeMapper,null);
         return jsonSearchApi.search(inputStream);
     }
 
@@ -60,7 +58,7 @@ public class JsonOrmDao implements JsonOrmApi {
     @Override
     public ListResponse<MapResponse> list(InputStream inputStream) {
         SqlGenerator sqlGenerator=new SqlGeneratorResource(modelApi,modelFieldApi);
-        JsonSearchApi jsonSearchApi = new JsonSearchResource(sqlGenerator,modelMapper,null);
+        JsonSearchApi jsonSearchApi = new JsonSearchResource(sqlGenerator, sqlExeMapper,null);
         return jsonSearchApi.list(inputStream);
     }
 
@@ -107,7 +105,7 @@ public class JsonOrmDao implements JsonOrmApi {
 
         sqlBuffer.append(") ").append(valuesBuffer).append(")");
 
-        modelMapper.executeSql(sqlBuffer.toString());
+        sqlExeMapper.executeSql(sqlBuffer.toString());
 
         return result;
     }
@@ -160,7 +158,7 @@ public class JsonOrmDao implements JsonOrmApi {
         sqlBuffer.append(" WHERE id = ");
         sqlBuffer.append(id);
 
-        modelMapper.executeSql(sqlBuffer.toString());
+        sqlExeMapper.executeSql(sqlBuffer.toString());
 
         return result;
     }
@@ -199,7 +197,7 @@ public class JsonOrmDao implements JsonOrmApi {
         } else {
             sqlBuffer.append(id);
         }
-        modelMapper.executeSql(sqlBuffer.toString());
+        sqlExeMapper.executeSql(sqlBuffer.toString());
 
         return result;
     }
@@ -254,7 +252,7 @@ public class JsonOrmDao implements JsonOrmApi {
         } else {
             sqlBuffer.append(id);
         }
-        result.setData(modelMapper.selectResponse(sqlBuffer.toString()));
+        result.setData(sqlExeMapper.selectResponse(sqlBuffer.toString()));
         if (result.getData() == null) {
             result.setCode(501);
             result.setMsg("数据不存在");

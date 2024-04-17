@@ -3,7 +3,7 @@ package com.nbsaas.boot.model.ext.resource;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.nbsaas.boot.model.data.mapper.ModelMapper;
+import com.nbsaas.boot.model.data.mapper.SqlExeMapper;
 import com.nbsaas.boot.model.ext.apis.JsonSearchApi;
 import com.nbsaas.boot.model.ext.apis.PermissionCheck;
 import com.nbsaas.boot.model.ext.apis.SqlGenerator;
@@ -20,14 +20,14 @@ public class JsonSearchResource implements JsonSearchApi {
 
     private final SqlGenerator sqlGenerator;
 
-    private final ModelMapper modelMapper;
+    private final SqlExeMapper sqlExeMapper;
 
     private final PermissionCheck permissionCheck;
 
 
-    public JsonSearchResource(SqlGenerator sqlGenerator, ModelMapper modelMapper, PermissionCheck permissionCheck) {
+    public JsonSearchResource(SqlGenerator sqlGenerator, SqlExeMapper sqlExeMapper, PermissionCheck permissionCheck) {
         this.sqlGenerator = sqlGenerator;
-        this.modelMapper = modelMapper;
+        this.sqlExeMapper = sqlExeMapper;
         this.permissionCheck = permissionCheck;
     }
 
@@ -53,7 +53,7 @@ public class JsonSearchResource implements JsonSearchApi {
 
         // 执行查询
         Page<MapResponse> page = new Page<>(pageNo, size);
-        Page<MapResponse> res = modelMapper.page(page, sqlRes.getData());
+        Page<MapResponse> res = sqlExeMapper.page(page, sqlRes.getData());
         return QueryWrapperUtils.handle(res);
     }
 
@@ -68,7 +68,7 @@ public class JsonSearchResource implements JsonSearchApi {
             result.setMsg(sqlRes.getMsg());
             return result;
         }
-        result.setData(modelMapper.list(sqlRes.getData()));
+        result.setData(sqlExeMapper.list(sqlRes.getData()));
         return result;
     }
 

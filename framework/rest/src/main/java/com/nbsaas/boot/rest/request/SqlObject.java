@@ -1,4 +1,4 @@
-package com.nbsaas.boot.model.ext.domain.request;
+package com.nbsaas.boot.rest.request;
 
 import lombok.Data;
 

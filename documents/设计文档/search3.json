@@ -1,0 +1,15 @@
+{
+  "model": "user",
+  "page": 1,
+  "size": 10,
+  "filters":{
+    "name": "",
+    "age": ""
+  },
+  "sorts": [
+    {
+      "field": "age",
+      "direction": "desc"
+    }
+  ]
+}
