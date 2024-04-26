@@ -9,6 +9,7 @@ import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.MapResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
+import org.springframework.util.StringUtils;
 
 public class SqlExeResource implements SqlExeApi {
 
@@ -28,21 +29,27 @@ public class SqlExeResource implements SqlExeApi {
     @Override
     public ListResponse<MapResponse> list(SqlObject searchObject) {
         ListResponse<MapResponse> result=new  ListResponse<>();
-        result.setData(sqlExeMapper.list(searchObject.getSql()));
+        if (StringUtils.hasText(searchObject.getSql())){
+            result.setData(sqlExeMapper.list(searchObject.getSql()));
+        }
         return result;
     }
 
     @Override
     public ResponseObject<Integer> executeSql(SqlObject searchObject) {
         ResponseObject<Integer> result=new  ResponseObject<>();
-        result.setData(sqlExeMapper.executeSql(searchObject.getSql()));
+        if (StringUtils.hasText(searchObject.getSql())){
+            result.setData(sqlExeMapper.executeSql(searchObject.getSql()));
+        }
         return result;
     }
 
     @Override
     public ResponseObject<MapResponse>  selectOne(SqlObject searchObject) {
         ResponseObject<MapResponse> result=new  ResponseObject<>();
-        result.setData(sqlExeMapper.selectResponse(searchObject.getSql()));
+        if (StringUtils.hasText(searchObject.getSql())){
+            result.setData(sqlExeMapper.selectResponse(searchObject.getSql()));
+        }
         return result;
     }
 }
