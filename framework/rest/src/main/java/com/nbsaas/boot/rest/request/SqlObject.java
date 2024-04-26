@@ -32,8 +32,4 @@ public class SqlObject {
      */
     private String varName;
 
-    /**
-     * 执行类型 1串行 2并行
-     */
-    private Integer execType;
 }
