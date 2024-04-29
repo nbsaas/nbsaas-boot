@@ -32,4 +32,9 @@ public class SqlObject {
      */
     private String varName;
 
+    /**
+     * 显示名称
+     */
+    private String label;
+
 }
