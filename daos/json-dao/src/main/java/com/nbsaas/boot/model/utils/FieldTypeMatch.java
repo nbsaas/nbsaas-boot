@@ -80,8 +80,10 @@ public class FieldTypeMatch {
                     map(String::valueOf).
                     collect(Collectors.joining(","));
             value = "(" + value + ")";
+        }else if (fieldType == 101){
+            value = filter.getString(key);
         } else {
-            value = null;
+            value = filter.getString(key);
         }
         return value;
     }
