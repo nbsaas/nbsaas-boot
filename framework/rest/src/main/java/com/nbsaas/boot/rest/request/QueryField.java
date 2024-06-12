@@ -22,6 +22,11 @@ public class QueryField implements Serializable {
     private String fixed;
 
     /**
+     * 显示类型 1 显示 2不显示
+     */
+    private Integer showType;
+
+    /**
      * 取值key
      */
     private String key;
