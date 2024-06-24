@@ -31,7 +31,7 @@ public class QueryFilter implements Serializable {
      */
     private Integer area;
     /**
-     * 输入类型 1、输入框 2、下拉框 3、日期 4、时间 5、日期时间 6、下拉树 7、多选框 8、单选框 9、图片 10、文件 11、富文本
+     * 输入类型 1、输入框 2、下拉框 3、日期 4、时间 5、日期时间 6、多选框 7、开关
      */
     private Integer inputType;
 
