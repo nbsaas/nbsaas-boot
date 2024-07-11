@@ -19,24 +19,21 @@
 
 package com.nbsaas.boot.jpa.data.core;
 
+import com.nbsaas.boot.jpa.data.helper.JpaListHelper;
+import com.nbsaas.boot.jpa.data.helper.JpaSearchHelper;
 import com.nbsaas.boot.jpa.data.utils.JpaHelper;
 import com.nbsaas.boot.rest.filter.Filter;
 import com.nbsaas.boot.rest.filter.FilterGroup;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.request.RequestId;
-import com.nbsaas.boot.rest.request.SortField;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.PageResponse;
 import com.nbsaas.boot.rest.response.ResponseObject;
 import com.nbsaas.boot.utils.BeanDataUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -45,8 +42,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * 基础资源类
@@ -97,67 +92,15 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
     }
 
     protected <T> PageResponse<T> search(PageRequest request, Function<Entity, T> convert) {
-        PageResponse<T> result = new PageResponse<>();
-        SpecificationData<Entity> data = new SpecificationData<>(request);
-        Pageable pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize());
-        if (StringUtils.hasText(request.getSortField())){
-            pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize(),getSortData(request));
-        }
-        
-        if (request.getSorts()!=null){
-            for (SortField sort : request.getSorts()) {
-                if ("asc".equals(sort.getField())){
-                    pageable.getSort().and(Sort.by(sort.getField()).ascending());
-                }else{
-                    pageable.getSort().and(Sort.by(sort.getField()).descending());
-                }
-            }
-        }
-
-        Page<Entity> res = getJpaRepository().findAll(data, pageable);
-        if (!res.getContent().isEmpty()) {
-            List<T> list = res.getContent().stream().map(convert).collect(toList());
-            result.setData(list);
-        }
-        result.setSize(res.getSize());
-        result.setNo(res.getNumber());
-        result.setTotal(res.getTotalElements());
-        result.setTotalPage(res.getTotalPages());
-        return result;
+        return new JpaSearchHelper<>(getJpaRepository()).search(request, convert);
     }
 
     @Transactional(readOnly = true)
     @Override
     public ListResponse<Simple> list(PageRequest request) {
-        return listSimple(request, getConvertSimple());
+        return new JpaListHelper(getJpaRepository()).list(request, getConvertSimple());
     }
 
-    protected ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
-        ListResponse<Simple> result = new ListResponse<>();
-        SpecificationData<Entity> spec = new SpecificationData<>(request);
-        List<Entity> res;
-        if (StringUtils.hasText(request.getSortField())){
-            res = getJpaRepository().findAll(spec,getSortData(request));
-        }else{
-            res = getJpaRepository().findAll(spec);
-        }
-
-        if (res != null && !res.isEmpty()) {
-            List<Simple> list = res.stream().map(convert).collect(toList());
-            result.setData(list);
-        }
-        return result;
-    }
-
-    private static Sort getSortData(PageRequest request) {
-        Sort sort;
-        if ("asc".equals(request.getSortMethod())){
-            sort=Sort.by(Sort.Direction.ASC, request.getSortField());
-        }else{
-            sort=Sort.by(Sort.Direction.DESC, request.getSortField());
-        }
-        return sort;
-    }
 
     public List<Simple> listData(FilterGroup... groups) {
         return null;
