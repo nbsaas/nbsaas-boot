@@ -1,5 +1,6 @@
 package com.nbsaas.boot.model.ext.apis;
 
+import com.nbsaas.boot.rest.request.SqlBatchObject;
 import com.nbsaas.boot.rest.request.SqlObject;
 import com.nbsaas.boot.rest.response.ListResponse;
 import com.nbsaas.boot.rest.response.MapResponse;
@@ -26,4 +27,13 @@ public interface SqlExeApi {
      *
      */
     ResponseObject<MapResponse> selectOne(SqlObject searchObject);
+
+
+    /**
+     * 批量执行sql语句
+     *
+     * @param sqlObject
+     * @return
+     */
+    ResponseObject<MapResponse> batch(SqlBatchObject sqlObject);
 }
