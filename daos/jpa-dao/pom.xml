@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.nbsaas.boot</groupId>
+        <groupId>com.niubaite.boot</groupId>
         <artifactId>daos</artifactId>
         <version>1.1.11-2024</version>
     </parent>
@@ -30,12 +30,12 @@
         </dependency>
 
         <dependency>
-            <groupId>com.nbsaas.boot</groupId>
+            <groupId>com.niubaite.boot</groupId>
             <artifactId>rest</artifactId>
             <version>1.1.11-2024</version>
         </dependency>
         <dependency>
-            <groupId>com.nbsaas.boot</groupId>
+            <groupId>com.niubaite.boot</groupId>
             <artifactId>utils</artifactId>
             <version>1.1.11-2024</version>
         </dependency>
