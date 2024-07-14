@@ -17,7 +17,7 @@
     </modules>
     <groupId>com.niubaite.boot</groupId>
     <artifactId>nbsaas-boot</artifactId>
-    <version>1.1.11-2024</version>
+    <version>1.1.12-2024</version>
     <packaging>pom</packaging>
     <name>nbsaas-boot</name>
     <url>http://www.nbsaas.com</url>
