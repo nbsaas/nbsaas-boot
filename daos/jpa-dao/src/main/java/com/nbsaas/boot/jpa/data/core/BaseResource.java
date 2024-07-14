@@ -101,6 +101,9 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
         return new JpaListHelper(getJpaRepository()).list(request, getConvertSimple());
     }
 
+    protected ListResponse<Simple> listSimple(PageRequest request, Function<Entity, Simple> convert) {
+        return new JpaListHelper(getJpaRepository()).list(request, getConvertSimple());
+    }
 
     public List<Simple> listData(FilterGroup... groups) {
         return null;

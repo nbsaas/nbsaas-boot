@@ -40,8 +40,8 @@ public class JpaListHelper<Entity> {
     }
 
 
-    public <Simple> ListResponse<Simple> list(PageRequest request, Function<Entity,Simple> convert) {
-        ListResponse<Simple> result = new ListResponse<>();
+    public <S> ListResponse<S> list(PageRequest request, Function<Entity, S> convert) {
+        ListResponse<S> result = new ListResponse<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
         List<Entity> res;
         if (StringUtils.hasText(request.getSortField())){
@@ -51,7 +51,7 @@ public class JpaListHelper<Entity> {
         }
 
         if (res != null && !res.isEmpty()) {
-            List<Simple> list = res.stream().map(convert).collect(toList());
+            List<S> list = res.stream().map(convert).collect(toList());
             result.setData(list);
         }
         return result;
