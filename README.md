@@ -1,6 +1,6 @@
 # nbsaas-boot
 
-[![maven](https://img.shields.io/maven-central/v/com.nbsaas.boot/nbsaas-boot.svg)](http://mvnrepository.com/artifact/com.nbsaas.boot/nbsaas-boot)
+[![maven](https://img.shields.io/maven-central/v/com.niubaite.boot/nbsaas-boot.svg)](http://mvnrepository.com/artifact/com.nbsaas.boot/nbsaas-boot)
 [![QQ](https://img.shields.io/badge/chat-on%20QQ-ff69b4.svg?style=flat-square)](//shang.qq.com/wpa/qunwpa?idkey=d1a308945e4b2ff8aeb1711c2c7914342dae15e9ce7041e94756ab355430dc78)
 [![Apache-2.0](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/idea/)
@@ -244,9 +244,9 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 
 ```
     <parent>
-        <groupId>com.nbsaas.boot</groupId>
+        <groupId>com.niubaite.boot</groupId>
         <artifactId>nbsaas-boot</artifactId>
-        <version>1.1.6-2023</version>
+        <version>1.1.12-2024</version>
     </parent>
 ```
 
