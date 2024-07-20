@@ -17,7 +17,7 @@
     </modules>
     <groupId>com.niubaite.boot</groupId>
     <artifactId>nbsaas-boot</artifactId>
-    <version>1.1.12-2024</version>
+    <version>1.1.13-2024</version>
     <packaging>pom</packaging>
     <name>nbsaas-boot</name>
     <url>http://www.nbsaas.com</url>
@@ -147,7 +147,7 @@
                 <version>3.3.1</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -161,7 +161,7 @@
                 <version>3.1.1</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>

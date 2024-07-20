@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.niubaite.boot</groupId>
         <artifactId>nbsaas-boot</artifactId>
-        <version>1.1.12-2024</version>
+        <version>1.1.13-2024</version>
     </parent>
 
     <artifactId>code-generator</artifactId>
@@ -34,12 +34,12 @@
         <dependency>
             <groupId>com.niubaite.boot</groupId>
             <artifactId>chain</artifactId>
-            <version>1.1.12-2024</version>
+            <version>1.1.13-2024</version>
         </dependency>
         <dependency>
             <groupId>com.niubaite.boot</groupId>
             <artifactId>code-annotation</artifactId>
-            <version>1.1.12-2024</version>
+            <version>1.1.13-2024</version>
         </dependency>
         <dependency>
             <groupId>org.jodd</groupId>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>com.niubaite.boot</groupId>
             <artifactId>jpa-dao</artifactId>
-            <version>1.1.12-2024</version>
+            <version>1.1.13-2024</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
