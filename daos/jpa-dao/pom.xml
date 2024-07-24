@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.niubaite.boot</groupId>
         <artifactId>daos</artifactId>
-        <version>1.1.13-2024</version>
+        <version>1.1.14-2024</version>
     </parent>
 
     <artifactId>jpa-dao</artifactId>
@@ -32,12 +32,12 @@
         <dependency>
             <groupId>com.niubaite.boot</groupId>
             <artifactId>rest</artifactId>
-            <version>1.1.13-2024</version>
+            <version>1.1.14-2024</version>
         </dependency>
         <dependency>
             <groupId>com.niubaite.boot</groupId>
             <artifactId>utils</artifactId>
-            <version>1.1.13-2024</version>
+            <version>1.1.14-2024</version>
         </dependency>
     </dependencies>
 </project>
