@@ -4,7 +4,7 @@
     <el-col :span="${item.col!12}">
         <#if item.type='richText'>
             <div style="margin-left: 160px;">
-                <vue-ueditor-wrap v-model="form.${item.id!}" :config="config" ref="${item.id!}"></vue-ueditor-wrap>
+                <sc-editor v-model="form.${item.id!}" placeholder="请输入" style="width: 100%;"  :height="400"></sc-editor>
             </div>
         <#else>
             <el-form-item label="${item.title!}"  prop="${item.id!}">

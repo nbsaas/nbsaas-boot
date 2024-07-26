@@ -177,7 +177,7 @@ public class GridFieldHandle extends BaseFieldHandle {
         }
         if (formField.type() == InputType.richText) {
             formBean.getComponentSet().add(ComponentSimple.builder()
-                    .name("VueUeditorWrap").model("vue-ueditor-wrap")
+                    .name("sc-editor").model("vue-ueditor-wrap")
                     .build());
         }
 

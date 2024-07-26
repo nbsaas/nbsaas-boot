@@ -27,7 +27,12 @@
 <script setup>
     <#if formBean.componentSet??>
     <#list formBean.componentSet as item>
-    import ${item.name} from "${item.model!}";
+        <#if item.name =="sc-editor">
+            import {defineAsyncComponent} from "vue";
+            const scEditor = defineAsyncComponent(() => import('@/components/scEditor/index.vue'));
+       <#else>
+        import ${item.name} from "${item.model!}";
+        </#if>
     </#list>
     </#if>
     import {ref} from "vue";
