@@ -31,9 +31,19 @@ public class QueryFilter implements Serializable {
      */
     private Integer area;
     /**
-     * 输入类型 1、输入框 2、下拉框 3、日期 4、时间 5、日期时间 6、多选框 7、开关
+     * 输入类型 -1自定义组件, 1、输入框 2、下拉框 3、日期 4、时间 5、日期时间 6、多选框 7、开关，8日期区间 9、时间区间
      */
     private Integer inputType;
+
+    /**
+     * 自定义组件路径
+     */
+    private String componentPath;
+
+    /**
+     * 占位符
+     */
+    private String placeholder;
 
     /**
      * 查询地址
