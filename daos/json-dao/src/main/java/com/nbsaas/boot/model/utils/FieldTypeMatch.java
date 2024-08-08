@@ -80,8 +80,15 @@ public class FieldTypeMatch {
                     map(String::valueOf).
                     collect(Collectors.joining(","));
             value = "(" + value + ")";
-        }else if (fieldType == 101){
-            value = filter.getString(key);
+        } else if (fieldType == 13) {
+            //map对象
+            value = filter.getJSONObject(key);
+        } else if (fieldType == 100) {
+            //json 对象
+            value = filter.getJSONObject(key).toJSONString();
+        } else if (fieldType == 101) {
+            //json 数组
+            value = filter.getJSONArray(key).toJSONString();
         } else {
             value = filter.getString(key);
         }

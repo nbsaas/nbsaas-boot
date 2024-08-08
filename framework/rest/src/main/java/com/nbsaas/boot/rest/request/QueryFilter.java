@@ -12,7 +12,10 @@ public class QueryFilter implements Serializable {
     private String javaName;
 
     /**
-     * 字段类型字段类型 字段类型 1、字符串 2、Integer，3，Long，3 Float，4 Double，5，BigDecimal 6、Date 7、Boolean 8、Enum 9、对象 10、字符数组,11,整形数组，12小数数组
+     * 字段类型字段类型 字段类型 1、字符串 2、Integer，3，Long，3 Float，4 Double，
+     * 5，BigDecimal 6、Date 7、Boolean 8、Enum 9、对象
+     * 10、字符数组,11,整形数组，12小数数组,13 map对象
+     * 100 json对象, 101 json数组
      */
     private Integer fieldType;
 
