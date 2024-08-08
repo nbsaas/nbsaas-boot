@@ -30,6 +30,8 @@ nbsaas-boot是一个企业级快速开发框架，具有以下特点：
 
 9. 可扩展性：nbsaas-boot具有良好的可扩展性，支持模块化开发和插件机制，方便扩展功能和定制化需求。
 
+10. 通用数据查询功能，查询修改实时生效，权限，缓存，限流，预处理，后处理，无需重新部署。
+
 综上所述，nbsaas-boot是一个全面、高效、安全、可扩展、易用的SaaS平台，适用于各种企业级应用的开发和部署。
 
 ### 技术选型：
@@ -228,17 +230,74 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 
 ## nbsaas-boot业务生态
 
-| 项目名称                   | git地址                                            | 
-|:-----------------------|--------------------------------------------------|
-| nbsaas-boot-starter    | https://gitee.com/cng1985/nbsaas-boot-starter    | 
-| nbsaas-product-starter | https://gitee.com/cng1985/nbsaas-product-starter | 
-| nbsaas-sample-starter  | https://gitee.com/cng1985/nbsaas-sample-starter  | 
-| nbsaas-app-starter     | https://gitee.com/cng1985/nbsaas-app-starter     | 
-| nbsaas-article-starter | https://gitee.com/cng1985/nbsaas-article-starter | 
-| nbsaas-no-starter      | https://gitee.com/cng1985/nbsaas-no-starter      | 
+| 项目名称                        | git地址                                        | 
+|:----------------------------|--------------------------------------------------|
+| nbsaas-boot-starter         | https://gitee.com/cng1985/nbsaas-boot-starter    | 
+| nbsaas-product-starter      | https://gitee.com/cng1985/nbsaas-product-starter | 
+| nbsaas-sample-starter       | https://gitee.com/cng1985/nbsaas-sample-starter  | 
+| nbsaas-app-starter          | https://gitee.com/cng1985/nbsaas-app-starter     | 
+| nbsaas-article-starter      | https://gitee.com/cng1985/nbsaas-article-starter | 
+| nbsaas-no-starter           | https://gitee.com/cng1985/nbsaas-no-starter      | 
+| nbsaas-data-starter         | https://gitee.com/cng1985/nbsaas-data-starter    | 
+| nbsaas-store-starter        | https://gitee.com/cng1985/nbsaas-store-starter   | 
 
 
-### 使用访问
+
+## 通用查询
+### 批量查询
+#### /data/batch
+```
+{
+    "model": "batchTest",
+    "page": 1,
+    "size": 1,
+    "filters": {
+        "beginDate": "2024-01-03",
+        "endDate": "2024-05-09",
+        "warehouseCodeList": "000,SD002"
+    }
+}
+
+```
+
+
+### 列表查询
+#### /data/list
+```
+{
+    "model": "pageForUserLoginLog",
+    "page": 1,
+    "size": 1,
+    "filters": {
+        "beginDate": "2024-01-03",
+        "endDate": "2024-05-09",
+        "warehouseCodeList": "000,SD002"
+    }
+}
+
+```
+
+
+### 分页查询
+#### /data/search
+```
+{
+    "model": "pageForUserLoginLog",
+    "page": 1,
+    "size": 1,
+    "filters": {
+        "beginDate": "2024-01-03",
+        "endDate": "2024-05-09",
+        "warehouseCodeList": "000,SD002"
+    }
+}
+
+```
+
+### 列表无条件查询
+#### /data/data/{model}
+例如 http://152.136.236.93:8100/data/data/org
+
 
 已经发布到maven中央仓库了
 
