@@ -240,6 +240,7 @@ public class UserInfoSearchRequest   extends PageRequest implements Serializable
 | nbsaas-no-starter           | https://gitee.com/cng1985/nbsaas-no-starter      | 
 | nbsaas-data-starter         | https://gitee.com/cng1985/nbsaas-data-starter    | 
 | nbsaas-store-starter        | https://gitee.com/cng1985/nbsaas-store-starter   | 
+| nbsaas-quartz-starter        | https://gitee.com/cng1985/nbsaas-quartz-starter   | 
 
 
 
