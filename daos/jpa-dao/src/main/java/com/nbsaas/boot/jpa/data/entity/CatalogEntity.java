@@ -20,6 +20,8 @@
 package com.nbsaas.boot.jpa.data.entity;
 
 
+import com.nbsaas.boot.code.annotation.SearchItem;
+import com.nbsaas.boot.rest.filter.Operator;
 import lombok.Data;
 import org.hibernate.annotations.Comment;
 
@@ -42,7 +44,7 @@ public abstract class CatalogEntity implements Serializable,CatalogTree {
     @Comment("主键id")
     private Long id;
 
-
+    @SearchItem(label = "名称", name = "name")
     @Comment("名称")
     private String name;
 
@@ -50,6 +52,7 @@ public abstract class CatalogEntity implements Serializable,CatalogTree {
     @Comment("排序号")
     private Integer sortNum;
 
+    @SearchItem(label = "编码", name = "code")
     @Comment("编码")
     @Column(length = 50)
     private String code;
@@ -64,6 +67,7 @@ public abstract class CatalogEntity implements Serializable,CatalogTree {
     @Comment("右节点")
     private Integer rgt;
 
+    @SearchItem(label = "深度", name = "depth",classType = Integer.class,operator = Operator.eq)
     @Comment("深度")
     private Integer depth;
 

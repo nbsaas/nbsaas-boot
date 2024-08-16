@@ -19,7 +19,9 @@
 
 package com.nbsaas.boot.jpa.data.entity;
 
+import com.nbsaas.boot.code.annotation.SearchItem;
 import com.nbsaas.boot.rest.enums.StoreState;
+import com.nbsaas.boot.rest.filter.Operator;
 import lombok.Data;
 import org.hibernate.annotations.Comment;
 
@@ -38,6 +40,7 @@ public class BaseStateEntity extends BaseEntity {
     /**
      * 数据存储状态.
      */
+    @SearchItem(label = "数据存储状态", name = "storeState", classType = StoreState.class, operator = Operator.eq)
     @Comment("数据存储状态 0:草稿 1:正常 2:回收站 3:归档")
     private StoreState storeState;
 }
