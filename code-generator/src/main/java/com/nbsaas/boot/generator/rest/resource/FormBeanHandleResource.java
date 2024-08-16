@@ -24,6 +24,7 @@ import com.nbsaas.boot.generator.api.apis.BeanHandle;
 import com.nbsaas.boot.generator.api.apis.FieldCollector;
 import com.nbsaas.boot.generator.api.apis.FieldHandle;
 import com.nbsaas.boot.generator.beans.FormBean;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class FormBeanHandleResource implements BeanCollector {
         }
         return fieldHandles.addAll(fieldHandle);
     }
+
     public void addAllBean(Collection<BeanHandle> beanHandleCollection) {
         if (beanHandleCollection == null) {
             return;
@@ -82,10 +84,16 @@ public class FormBeanHandleResource implements BeanCollector {
             }
         }
 
-
-        for (BeanHandle beanHandle : beanHandles) {
-            beanHandle.handle(object, result);
+        List<Class<?>> cls = new ClassCollectorResource().getAllClass(object);
+        for (Class<?> cl : cls) {
+            for (BeanHandle beanHandle : beanHandles) {
+                beanHandle.handle(cl, result);
+            }
         }
+        if (!StringUtils.hasText(result.getClassName())) {
+            throw new RuntimeException(object.getSimpleName() + "没有FormAnnotation注解");
+        }
+
 
         return result;
     }

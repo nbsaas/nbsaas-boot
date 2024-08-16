@@ -45,10 +45,10 @@ import com.nbsaas.boot.generator.beans.FormBean;
 public class BasicFormBeanHandle implements BeanHandle {
     @Override
     public void handle(Class<?> object, FormBean formBean) {
-        formBean.setClassName(object.getSimpleName());
 
         FormAnnotation formAnnotation = object.getAnnotation(FormAnnotation.class);
         if (formAnnotation != null) {
+            formBean.setClassName(object.getSimpleName());
             formBean.setTitle(formAnnotation.title());
             formBean.setMenu(formAnnotation.menu());
             formBean.setViewWidth(formAnnotation.viewWidth());

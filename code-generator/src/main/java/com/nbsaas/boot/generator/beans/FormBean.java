@@ -106,26 +106,26 @@ public class FormBean implements Serializable {
      * 详情对象
      */
     private Set<FieldBean> responses = new HashSet<FieldBean>();
-    private List<FieldBean> dates = new ArrayList<FieldBean>();
+    private Set<FieldBean> dates = new HashSet<FieldBean>();
 
     /**
      * 搜索字段
      */
-    List<FieldBean> searches = new ArrayList<>();
+    Set<FieldBean> searches = new HashSet<>();
 
     /**
      * 没有标记搜索注解的字段
      */
-    List<FieldBean> searchFields = new ArrayList<>();
+    Set<FieldBean> searchFields = new HashSet<>();
 
 
     /**
      * 列表显示字段
      */
-    private List<FieldBean> grids = new ArrayList<FieldBean>();
+    private List<FieldBean> grids = new ArrayList<>();
 
 
-    private List<FieldBean> images = new ArrayList<FieldBean>();
+    private Set<FieldBean> images = new HashSet<FieldBean>();
 
 
     private Set<ComponentSimple> componentSet = new HashSet<>();
