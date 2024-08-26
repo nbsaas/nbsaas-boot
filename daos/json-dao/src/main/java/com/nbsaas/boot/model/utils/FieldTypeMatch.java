@@ -83,10 +83,13 @@ public class FieldTypeMatch {
         } else if (fieldType == 13) {
             //map对象
             value = filter.getJSONObject(key);
-        } else if (fieldType == 100) {
+        } else if (fieldType == 101) {
+            //字符串
+            value = filter.getString(key);
+        } else if (fieldType == 200) {
             //json 对象
             value = filter.getJSONObject(key).toJSONString();
-        } else if (fieldType == 101) {
+        } else if (fieldType == 201) {
             //json 数组
             value = filter.getJSONArray(key).toJSONString();
         } else {
