@@ -67,6 +67,16 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
                    result.set${item.id?cap_first}Name(label);
                 }
                 result.set${item.id?cap_first}(source.get${item.id?cap_first}());
+            <#elseif item.fieldType==202>
+                if(source.get${item.id?cap_first}()!=null){
+                Map<String,String> ${item.id?cap_first}Map=new HashMap<>();
+                <#list item.dictItems as dictItem>
+                    ${item.id?cap_first}Map.put("${dictItem.value}","${dictItem.label}");
+                </#list>
+                String label=  ${item.id?cap_first}Map.get(source.get${item.id?cap_first}());
+                result.set${item.id?cap_first}Name(label);
+                }
+                result.set${item.id?cap_first}(source.get${item.id?cap_first}());
             <#else>
                 result.set${item.id?cap_first}(source.get${item.id?cap_first}());
             </#if>
