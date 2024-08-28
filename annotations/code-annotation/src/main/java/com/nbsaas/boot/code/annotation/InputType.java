@@ -27,6 +27,8 @@ public enum InputType {
     time,
     date,
     image,
+    video,
+    imageList,
     select,
     tree,
     selectRemote,
@@ -48,5 +50,6 @@ public enum InputType {
     el_transfer,
     el_time_select,
     el_date_picker,
-    el_date_time_picker;
+    el_date_time_picker,
+    data_select;
 }

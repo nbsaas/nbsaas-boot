@@ -180,6 +180,12 @@ public class GridFieldHandle extends BaseFieldHandle {
                     .name("sc-editor").model("vue-ueditor-wrap")
                     .build());
         }
+        if (formField.type() == InputType.data_select) {
+            formBean.getComponentSet().add(ComponentSimple.builder()
+                    .name("dataSelect").model("@/components/DataSelect.vue")
+                    .build());
+        }
+
 
         formBean.getFields().add(bean);
 
