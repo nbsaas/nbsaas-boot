@@ -35,9 +35,13 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
     <#if formBean.simples??>
         <#list formBean.simples as item>
             <#if item.fieldType==2>
-               if(source.get${item.id?cap_first}()!=null){
-                   result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
-               }
+
+               try {
+                   if(source.get${item.id?cap_first}()!=null){
+                       result.set${item.id?cap_first}(source.get${item.id?cap_first}().getId());
+                   }
+                } catch (Exception ignored) { }
+
             <#elseif item.fieldType==3>
 
                 try {

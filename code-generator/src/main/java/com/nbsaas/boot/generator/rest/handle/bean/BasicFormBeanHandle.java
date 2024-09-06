@@ -65,7 +65,14 @@ public class BasicFormBeanHandle implements BeanHandle {
         if (catalogClass != null) {
             formBean.setCatalog(true);
             formBean.setLazy(catalogClass.lazyData());
+            formBean.setPageType(2);
         }
+
+        SimpleClass simpleClass = object.getAnnotation(SimpleClass.class);
+        if (simpleClass != null) {
+            formBean.setPageType(3);
+        }
+
         ComposeView composeView = object.getAnnotation(ComposeView.class);
         if (composeView != null) {
             formBean.setCompose(true);

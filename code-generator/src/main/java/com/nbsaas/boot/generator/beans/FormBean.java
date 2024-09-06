@@ -62,6 +62,14 @@ public class FormBean implements Serializable {
      */
     private boolean catalog;
 
+
+
+    /**
+     * 页面类型 1通用页面 2 分类页面 3简单通用页面
+     */
+    private Integer pageType=1;
+
+
     private boolean lazy;
 
     /**

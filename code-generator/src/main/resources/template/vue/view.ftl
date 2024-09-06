@@ -16,28 +16,9 @@
     </div>
 </template>
 
-<script>
-    import common from "@/mixins/common.js";
-
-    export default {
-        name: "${formBean.className?uncap_first}_view",
-        mixins: [common],
-        data() {
-            return {
-                viewModel: {},
-                activeIndex: "1"
-            }
-        },
-        async mounted() {
-            let id = this.$route.query.id;
-            let data = {};
-            data.id = id;
-            let res = await this.$http.post("/${formBean.className?uncap_first}/view", data);
-            if (res.code === 200) {
-                this.viewModel = res.data;
-            }
-        }
-    }
+<script setup>
+    import {useShow} from "@/utils/useShow";
+    const { goBack,viewModel} = useShow("/${formBean.className?uncap_first}/view")
 </script>
 
 <style scoped>

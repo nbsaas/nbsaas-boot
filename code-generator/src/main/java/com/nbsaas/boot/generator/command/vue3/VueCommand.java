@@ -45,11 +45,12 @@ public class VueCommand extends BaseCommand {
         chars[0] = Character.toLowerCase(chars[0]);
         return new String(chars);
     }
-    private String first(String str){
-        if (str==null){
+
+    private String first(String str) {
+        if (str == null) {
             return str;
         }
-      return   str.substring(0,1).toLowerCase()+str.substring(1);
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
     @Override
@@ -70,18 +71,24 @@ public class VueCommand extends BaseCommand {
 
         if (formBean.isCompose()) {
             handle(routerDir, configuration, context, "router2.ftl", toLowerCase(formBean.getClassName()) + ".js");
-        }else if (formBean.isCatalog()) {
+        } else if (formBean.getPageType() == 2) {
             handle(routerDir, configuration, context, "routerTree.ftl", toLowerCase(formBean.getClassName()) + ".js");
-        }  else {
+        } else if (formBean.getPageType() == 3) {
+            handle(routerDir, configuration, context, "routerTree.ftl", toLowerCase(formBean.getClassName()) + ".js");
+        } else {
             handle(routerDir, configuration, context, "router.ftl", toLowerCase(formBean.getClassName()) + ".js");
         }
 
 
-        if (formBean.isCatalog()) {
+        if (formBean.getPageType() == 2) {
+            //分类页面
             handle(pageDir, configuration, context, "tree.ftl", "index.vue");
-
+        } else if (formBean.getPageType() == 3) {
+            //简单页面
+            handle(pageDir, configuration, context, "simplePage.ftl", "index.vue");
+            handle(pageDir, configuration, context, "dialogShow.ftl", "dialogShow.vue");
         } else {
-
+            //通用页面
             handle(pageDir, configuration, context, "add.ftl", "add.vue");
             handle(pageDir, configuration, context, "index.ftl", "index.vue");
             handle(pageDir, configuration, context, "update.ftl", "update.vue");

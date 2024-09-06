@@ -50,19 +50,19 @@
         </div>
         <div class="data-content">
             <#if formBean.showAdd>
-            <div class="tool-add">
-                <el-button type="primary"   @click="addView">新增</el-button>
-                <#if formBean.showSelect>
-                 <el-button type="danger" :disabled="selectData.length===0" @click="batchDelete">批量删除</el-button>
-                </#if>
-            </div>
+                <div class="tool-add">
+                    <el-button type="primary"   @click="addView">新增</el-button>
+                    <#if formBean.showSelect>
+                        <el-button type="danger" :disabled="selectData.length===0" @click="batchDelete">批量删除</el-button>
+                    </#if>
+                </div>
             </#if>
 
             <el-table v-loading="loading" :data="pageData.data" @sort-change="changeTableSort"
-                <#if formBean.showSelect>
-                    @selection-change="selectChange"
-                </#if>
-                  style="width: 100%;font-size: 12px;">
+                    <#if formBean.showSelect>
+                        @selection-change="selectChange"
+                    </#if>
+                      style="width: 100%;font-size: 12px;">
                 <#if formBean.showSelect>
                     <el-table-column type="selection"></el-table-column>
                 </#if>
@@ -74,18 +74,18 @@
                     </#list>
                 </#if>
                 <#if formBean.showHandle>
-                <el-table-column width="${formBean.handleWidth!'210'}" align="center" fixed="right" label="操作">
-                    <template #default="scope">
-                        <el-button text   class="operation_bt" :icon="InfoFilled" type="info"   @click="showView(scope.row)">详情
-                        </el-button>
+                    <el-table-column width="${formBean.handleWidth!'210'}" align="center" fixed="right" label="操作">
+                        <template #default="scope">
+                            <el-button text   class="operation_bt" :icon="InfoFilled" type="info"   @click="showView(scope.row)">详情
+                            </el-button>
 
-                        <el-button text   class="operation_bt" :icon="Edit" type="primary"   @click="editView(scope.row)">编辑
-                        </el-button>
+                            <el-button text   class="operation_bt" :icon="Edit" type="primary"   @click="editView(scope.row)">编辑
+                            </el-button>
 
-                        <el-button text :icon="Delete" class="operation_bt" type="danger"    style="cursor: pointer;"     @click="deleteData(scope.row)">删除
-                        </el-button>
-                    </template>
-                </el-table-column>
+                            <el-button text :icon="Delete" class="operation_bt" type="danger"    style="cursor: pointer;"     @click="deleteData(scope.row)">删除
+                            </el-button>
+                        </template>
+                    </el-table-column>
                 </#if>
             </el-table>
 
@@ -97,6 +97,9 @@
                 </el-pagination>
             </div>
         </div>
+
+        <dialogShow v-if="dialogModelVisible" :dataId="dataId" :model="dialogModelType" @success="searchHandle" @cancel="cancel"></dialogShow>
+
     </div>
 </template>
 
@@ -105,16 +108,16 @@
     import {defineStore} from 'pinia'
     import {usePage} from "@/utils/usePage";
     import {useDelete} from "@/utils/useDelete";
-    import {useView} from "@/utils/useView";
-    import {useData} from "@/utils/useData";
     <#if formBean.searchComponentSet??>
     <#list formBean.searchComponentSet as item>
     import ${item.name} from "${item.model!}";
     </#list>
     </#if>
-    <#if formBean.showSelect>
     import {ref} from "vue";
-    </#if>
+    import dialogShow from './dialogShow.vue'
+
+
+
     const searchStore = defineStore('${formBean.className?uncap_first}Store', {
 
         state: () => {
@@ -133,7 +136,7 @@
         }
     })
 
-const  {searchObject}=searchStore();
+    const  {searchObject}=searchStore();
 
     <#if formBean.showSelect>
     const selectData = ref([]);
@@ -144,22 +147,52 @@ const  {searchObject}=searchStore();
         console.info(selectData.value)
     }
     </#if>
-const clearSearch =()=>{
-    <#if formBean.searches??>
-    <#list formBean.searches as item>
-    searchObject.${item.id} = null;
-    </#list>
-    </#if>
-}
-const {pageData, sizeChange, pageChange, search, changeTableSort,loading}=usePage("/${formBean.className?uncap_first}/search", searchObject);
-const {dialogVisible, deleteData,handleDelete}=useDelete("/${formBean.className?uncap_first}/delete",search);
-const {showView,addView,editView}=useView();
+    const clearSearch =()=>{
+        <#if formBean.searches??>
+        <#list formBean.searches as item>
+        searchObject.${item.id} = null;
+        </#list>
+        </#if>
+    }
+    const {pageData, sizeChange, pageChange, search, changeTableSort,loading}=usePage("/${formBean.className?uncap_first}/search", searchObject);
+    const {dialogVisible, deleteData,handleDelete}=useDelete("/${formBean.className?uncap_first}/delete",search);
 
-<#list formBean.fields as item>
-<#if item.option?length gt 2 >
-const{listData:${item.id}Options}= useData("/${item.option?uncap_first}/list")
-</#if>
-</#list>
+    <#list formBean.fields as item>
+    <#if item.option?length gt 2 >
+    const{listData:${item.id}Options}= useData("/${item.option?uncap_first}/list")
+    </#if>
+    </#list>
+
+
+
+    const dialogModelVisible = ref(false);
+    const dialogModelType = ref("add");
+    const dataId=ref(null);
+    const showView = async (row) => {
+        dataId.value=row.id;
+        dialogModelType.value = "view";
+        dialogModelVisible.value=true;
+
+    }
+    const addView = async () => {
+        dialogModelVisible.value = true;
+        dialogModelType.value = "create";
+        console.info("初始化加载")
+    }
+    const editView = async (row) => {
+        dataId.value=row.id;
+        dialogModelType.value = "update";
+        dialogModelVisible.value=true;
+
+    }
+    const cancel=()=>{
+        dialogModelVisible.value=false;
+    }
+
+    const searchHandle=()=>{
+        dialogModelVisible.value=false;
+        search();
+    }
 </script>
 
 <style scoped>

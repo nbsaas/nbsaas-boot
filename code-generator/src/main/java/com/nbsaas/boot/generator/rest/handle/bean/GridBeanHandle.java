@@ -49,7 +49,7 @@ public class GridBeanHandle implements BeanHandle {
     @Override
     public void handle(Class<?> object, FormBean formBean) {
 
-        Collections.sort(formBean.getGrids(),Comparator.comparing(FieldBean::getSortNum));
+        formBean.getGrids().sort(Comparator.comparing(FieldBean::getSortNum));
 
         int left = (int) (24 - (formBean.getSearches().stream().filter(FieldBean::isShow).count()%4)* 6);
         formBean.setLeftSize(left);
