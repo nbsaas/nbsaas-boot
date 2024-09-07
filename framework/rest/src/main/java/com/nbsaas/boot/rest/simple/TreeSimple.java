@@ -31,15 +31,20 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TreeSimple implements Serializable {
+public class TreeSimple implements Serializable,Tree<TreeSimple> {
 
     private Long id;
 
     private String label;
 
-    private Long parentId;
+    private String code;
+
+
+    private Long parent;
 
     private Long value;
 
     private List<TreeSimple> children;
+
+
 }
