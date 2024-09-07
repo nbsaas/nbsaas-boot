@@ -28,6 +28,8 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 import com.nbsaas.boot.rest.request.PageRequest;
 import com.nbsaas.boot.rest.response.ListResponse;
 import ${requestPackage}.${formBean.className}Search;
+import com.nbsaas.boot.rest.utils.TreeUtils;
+import java.util.List;
 </#if>
 /**
 *   ${formBean.model!}-业务接口实现
@@ -62,6 +64,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
 
 
     <#if formBean.catalog>
+    @Transactional(readOnly = true)
     @Override
     public ListResponse<${formBean.className}Simple> list(PageRequest request) {
         ${formBean.className}SimpleConvert convert=new ${formBean.className}SimpleConvert();
@@ -71,6 +74,17 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
         }
         return listSimple(request,convert);
     }
+
+
+    @Transactional(readOnly = true)
+    @Override
+    public ListResponse<${formBean.className}Simple> root(AreaSearch search) {
+        ListResponse<${formBean.className}Simple> result=new  ListResponse<>();
+        List<${formBean.className}Simple> simples = list(search).getData();
+        result.setData(TreeUtils.tree(simples));
+        return result;
+    }
+
     </#if>
 
     <#if formBean.storeState>

@@ -11,5 +11,8 @@ import com.nbsaas.boot.rest.api.BaseApi;
 */
 public interface ${formBean.className}Api extends BaseApi<${formBean.className}Response, ${formBean.className}Simple, ${formBean.className}Request> {
 
+    <#if formBean.catalog>
+    ListResponse<${formBean.className}Simple> root(${formBean.className}Search search);
+     </#if>
 
 }

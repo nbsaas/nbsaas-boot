@@ -106,6 +106,10 @@ public ${formBean.className}Simple convert(${formBean.className} source) {
             result.setHasChildren(false);
             </#if>
         }
+
+        if (result.getCode()==null){
+           result.setCode("");
+        }
     </#if>
 
     <#if formBean.enumList??>

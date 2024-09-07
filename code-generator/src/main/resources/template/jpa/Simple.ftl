@@ -19,14 +19,19 @@ import lombok.Data;
 </#if>
 <#if formBean.catalog>
     import java.util.List;
+    import com.nbsaas.boot.rest.simple.Tree;
 </#if>
 
 /**
 * ${formBean.model!}-列表对象
 */
+<#if formBean.catalog>
+@Data
+public class ${formBean.className}Simple implements Serializable , Tree<${formBean.className}Simple> {
+<#else>
 @Data
 public class ${formBean.className}Simple implements Serializable {
-
+</#if>
 /**
 * 序列化参数
 */
