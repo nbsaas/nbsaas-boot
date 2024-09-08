@@ -26,6 +26,7 @@ import com.nbsaas.boot.rest.response.ResponseObject;
 public class ApiCommand extends BaseCommand {
     @Override
     public ResponseObject<?> handle(InputRequestObject context) {
+        this.setOverrideFile(true);
         Config config = inputRequestObject.getConfig();
         makeCode("Api", "."+config.getModuleName()+".api.apis");
         return ResponseObject.success();

@@ -78,7 +78,7 @@ public class ${formBean.className}Resource extends BaseResource<${formBean.class
 
     @Transactional(readOnly = true)
     @Override
-    public ListResponse<${formBean.className}Simple> root(AreaSearch search) {
+    public ListResponse<${formBean.className}Simple> root(${formBean.className}Search search) {
         ListResponse<${formBean.className}Simple> result=new  ListResponse<>();
         List<${formBean.className}Simple> simples = list(search).getData();
         result.setData(TreeUtils.tree(simples));
