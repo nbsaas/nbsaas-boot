@@ -76,6 +76,9 @@ public class SimpleFieldHandle extends BaseFieldHandle {
                     throw new RuntimeException(object.getName() + "中实体类不能为做请求参数:" + field.getType().getSimpleName());
                 }
             }else{
+                if (field.getAnnotation(NoSimple.class) != null) {
+                    return;
+                }
                 FieldBean bean = new FieldBean();
                 bean.setId(field.getName());
                 bean.setType(field.getType().getSimpleName());
