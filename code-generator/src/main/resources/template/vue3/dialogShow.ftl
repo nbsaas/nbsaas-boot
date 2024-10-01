@@ -75,7 +75,7 @@
         if (props.model !== 'create') {
             let param={};
             param.id=props.dataId;
-            let res = await http.post(`/pageGroup/view`, param);
+            let res = await http.post(`/${formBean.className?uncap_first}/view`, param);
             if (res.code===200){
                 form.value=res.data;
             }
