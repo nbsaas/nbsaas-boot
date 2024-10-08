@@ -55,7 +55,7 @@ public class JpaSearchHelper<Entity> {
 
         if (request.getSorts()!=null){
             for (SortField sort : request.getSorts()) {
-                if ("asc".equals(sort.getField())){
+                if ("asc".equals(sort.getMethod())){
                     pageable.getSort().and(Sort.by(sort.getField()).ascending());
                 }else{
                     pageable.getSort().and(Sort.by(sort.getField()).descending());

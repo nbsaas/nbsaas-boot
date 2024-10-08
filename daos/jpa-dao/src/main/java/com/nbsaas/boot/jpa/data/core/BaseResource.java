@@ -202,7 +202,7 @@ public abstract class BaseResource<Entity, Response, Simple, Form extends Reques
 
     @Transactional
     @Override
-    public ResponseObject<Response> viewByOne(Object request) {
+    public ResponseObject<Response>  viewByOne(Object request) {
 
         ResponseObject<Response> result = new ResponseObject<>();
         SpecificationData<Entity> spec = new SpecificationData<>(request);
