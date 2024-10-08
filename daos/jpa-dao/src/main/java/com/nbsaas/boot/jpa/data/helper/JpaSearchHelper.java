@@ -54,13 +54,21 @@ public class JpaSearchHelper<Entity> {
         }
 
         if (request.getSorts()!=null){
-            for (SortField sort : request.getSorts()) {
-                if ("asc".equals(sort.getMethod())){
-                    pageable.getSort().and(Sort.by(sort.getField()).ascending());
-                }else{
-                    pageable.getSort().and(Sort.by(sort.getField()).descending());
-                }
+            if (StringUtils.hasText(request.getSortField())){
+                SortField sortField=new SortField();
+                sortField.setField(request.getSortField());
+                sortField.setMethod(request.getSortMethod());
+                request.getSorts().add(sortField);
             }
+            List<Sort.Order> orders = request.getSorts().stream().map(item -> {
+                if ("asc".equals(item.getMethod())) {
+                    return new Sort.Order(Sort.Direction.ASC, item.getField());
+                } else {
+                    return new Sort.Order(Sort.Direction.DESC, item.getField());
+                }
+            }).collect(toList());
+
+            pageable = org.springframework.data.domain.PageRequest.of(request.getNo() - 1, request.getSize(),Sort.by(orders));
         }
 
         Page<Entity> res = repository.findAll(data, pageable);
