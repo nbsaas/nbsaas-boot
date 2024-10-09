@@ -21,7 +21,9 @@ public interface QuerySqlApi {
 
 
 
-    ResponseObject<String> sql( QueryRequest request);
+    default  ResponseObject<String> sql( QueryRequest request){
+        return makeSql(request);
+    }
 
    default ResponseObject<String> makeSql( QueryRequest request){
 
