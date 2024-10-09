@@ -29,8 +29,8 @@
         <spring-cloud.version>2021.0.9</spring-cloud.version>
         <shiro.version>1.13.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <snakeyaml.version>2.2</snakeyaml.version>
+        <mybatis-plus.version>3.5.8</mybatis-plus.version>
+        <snakeyaml.version>2.3</snakeyaml.version>
     </properties>
     <description>Spring Boot for nbsaas.com</description>
     <dependencies>
