@@ -15,7 +15,7 @@
         <module>annotations</module>
         <module>daos</module>
     </modules>
-    <groupId>com.niubaite.boot</groupId>
+    <groupId>com.nbsaas.boot</groupId>
     <artifactId>nbsaas-boot</artifactId>
     <version>1.1.19-2024</version>
     <packaging>pom</packaging>
