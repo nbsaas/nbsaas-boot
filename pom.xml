@@ -30,7 +30,8 @@
         <shiro.version>1.13.0</shiro.version>
         <jjwt.version>0.9.1</jjwt.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
-        <snakeyaml.version>2.2</snakeyaml.version>
+        <snakeyaml.version>2.3</snakeyaml.version>
+        <mybatis.version>3.5.16</mybatis.version>
     </properties>
     <description>Spring Boot for nbsaas.com</description>
     <dependencies>
@@ -87,6 +88,11 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
                 <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -19,7 +19,6 @@
 
 package com.nbsaas.boot.rest.request;
 
-import com.nbsaas.boot.rest.filter.FilterGroup;
 import lombok.Data;
 
 import java.util.List;
@@ -34,17 +33,30 @@ public class PageRequest extends RequestObject {
     /**
      * 页码
      */
-
     private Integer no = 1;
+
+
+    /**
+     * 每页大小
+     */
     private Integer size = 10;
 
 
+    /**
+     * 排序字段
+     */
     private String sortField;
 
 
+    /**
+     * 排序方式
+     */
     private String sortMethod;
 
 
+    /**
+     * 排序方式集合
+     */
     private List<SortField> sorts;
 
 
